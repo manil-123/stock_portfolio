@@ -20,11 +20,11 @@ class ShareInfoModel {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
     map['companyName'] = companyName;
     map['symbol'] = symbol;
-    map['ltp'] = ltp;
+    map['LTP'] = ltp;
     map['change'] = change;
     return map;
   }
