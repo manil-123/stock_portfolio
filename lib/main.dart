@@ -21,11 +21,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ShareListBloc(
-            shareInfoListDAO: ShareInfoListDAO(),
-            nepseRepo: NepseRepo(),
-          ),
-        ),
+            create: (context) => ShareListBloc(
+                  shareInfoListDAO: ShareInfoListDAO(),
+                  nepseRepo: NepseRepo(),
+                )..add(ShareListLoad())),
         BlocProvider(
           create: (context) => HomeBloc(
             nepseRepo: NepseRepo(),
@@ -35,6 +34,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Stock Portfolio',
         debugShowCheckedModeBanner: false,
+
         theme: ThemeData(
           primaryColor: Color(0xFF252527),
           accentColor: Color(0xFF000000),

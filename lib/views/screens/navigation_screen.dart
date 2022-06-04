@@ -6,7 +6,7 @@ import 'package:share_portfolio/blocs/share_list_bloc/share_list_bloc.dart';
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_event.dart';
 import 'package:share_portfolio/views/screens/home_screen.dart';
 import 'package:share_portfolio/views/screens/share_list_screen.dart';
-import 'package:share_portfolio/views/screens/third_screen.dart';
+import 'package:share_portfolio/views/screens/portfolio/portfolio_screen.dart';
 import '../../config/connect.dart';
 import '../../config/show_snack.dart';
 
@@ -28,7 +28,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     ShareListScreen(),
-    ThirdScreen(),
+    PortfolioScreen(),
   ];
 
   void _onPageChanged(int index) {
@@ -83,7 +83,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).accentColor,
-        title: Text('HomeScreen'),
+        title: Text('Stock Portfolio'),
       ),
       body: PageView(
         controller: _pageController,
