@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:autocomplete_textfield_ns/autocomplete_textfield_ns.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_portfolio/model/local_stock_data.dart';
+import '../../../data/local_stock_dao.dart';
 import '../../../model/list_data_model.dart';
 
 enum Market { IPO, SECONDARY }
@@ -19,6 +21,7 @@ class _AddStocksState extends State<AddStocks> {
   final priceController = TextEditingController();
   GlobalKey<AutoCompleteTextFieldState<String>> companyNameKey = GlobalKey();
   final _formKey = GlobalKey<FormState>();
+  final LocalStockListDAO _localStockListDAO = LocalStockListDAO();
 
   var selectedMarket = Market.SECONDARY;
   List<String> sectorNames = [];
@@ -230,8 +233,25 @@ class _AddStocksState extends State<AddStocks> {
             ),
             ElevatedButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {}
-                setState(() {});
+                if (_formKey.currentState!.validate()) {
+                  setState(() {
+                    var sectorName = getSector(companyNameController.text);
+                    var localStockData = LocalStockData(
+                      scrip: scripNameController.text,
+                      companyName: companyNameController.text,
+                      sectorName: sectorName,
+                      quantity: int.parse(quantityController.text),
+                      price: int.parse(priceController.text),
+                    );
+                    _localStockListDAO.insert(localStockData);
+                    Navigator.pop(context, true);
+                    AlertDialog alertDialog = AlertDialog(
+                      title: Text('Status'),
+                      content: Text('Stock Added Successfully'),
+                    );
+                    showDialog(context: context, builder: (_) => alertDialog);
+                  });
+                }
               },
               style: ElevatedButton.styleFrom(
                 primary: Theme.of(context).primaryColor,
