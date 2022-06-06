@@ -10,7 +10,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   NepseRepo? nepseRepo = NepseRepo();
 
   HomeBloc({this.nepseRepo}) : super(HomeStateLoading()) {
-    on<HomeLoad>((event, emit) async {
+    on<LoadHome>((event, emit) async {
       emit(HomeStateLoading());
       NepseIndexModel? nepseIndex = await nepseRepo!.getNepseIndex();
       List<TopGainersModel>? topGainers = await nepseRepo!.getTopGainers();

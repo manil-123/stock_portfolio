@@ -2,7 +2,17 @@ import 'package:flutter/material.dart';
 import '../../../../constants/style.dart';
 
 class CurrentHoldings extends StatelessWidget {
-  const CurrentHoldings({Key? key}) : super(key: key);
+  final double? totalProfitLoss;
+  final double? currentValue;
+  final int? totalSharesCount;
+  final int? totalStockCount;
+  const CurrentHoldings(
+      {Key? key,
+      this.totalProfitLoss,
+      this.currentValue,
+      this.totalSharesCount,
+      this.totalStockCount})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +29,49 @@ class CurrentHoldings extends StatelessWidget {
         children: [
           Text(
             'Your Current Holdings',
-            style: greyTextStyle.copyWith(fontSize: 18.0),
+            style: greyTextStyle.copyWith(fontSize: 20.0),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Rs. $currentValue',
+                  style: whiteTextStyle.copyWith(fontSize: 28.0),
+                ),
+              ),
+              Row(
+                children: [
+                  totalProfitLoss! > 0
+                      ? Icon(
+                          Icons.arrow_upward,
+                          color: greenColor,
+                          size: 20,
+                        )
+                      : Icon(
+                          Icons.arrow_downward,
+                          color: redColor,
+                          size: 20,
+                        ),
+                  Text(
+                    'Rs. ${totalProfitLoss!.toString().replaceAll(RegExp('-'), '')}',
+                    style: TextStyle(
+                        color: totalProfitLoss! > 0 ? greenColor : redColor,
+                        fontSize: 16.0),
+                  ),
+                ],
+              )
+            ],
           ),
           SizedBox(
             height: 10,
           ),
           Text(
-            'Rs.500000',
-            style: whiteTextStyle.copyWith(fontSize: 30.0),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            '500 kitta ko 2 company',
+            totalStockCount == 1
+                ? '$totalSharesCount shares of $totalStockCount company'
+                : '$totalSharesCount shares of $totalStockCount companies',
             style: whiteTextStyle.copyWith(fontSize: 18.0),
           ),
           SizedBox(

@@ -4,7 +4,7 @@ class LocalStockData {
   String? companyName;
   String? sectorName;
   int? quantity;
-  int? price;
+  double? price;
 
   LocalStockData({
     this.scrip,

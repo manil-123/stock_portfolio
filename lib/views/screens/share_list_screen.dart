@@ -38,7 +38,7 @@ class _ShareListScreenState extends State<ShareListScreen> {
           } else if (state is ShareListLoaded) {
             return RefreshIndicator(
               onRefresh: () async {
-                shareListBloc!.add(ShareListLoad());
+                shareListBloc!.add(LoadShareList());
               },
               child: SingleChildScrollView(
                 child: Column(

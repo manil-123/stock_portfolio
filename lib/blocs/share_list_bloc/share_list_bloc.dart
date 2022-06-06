@@ -12,7 +12,7 @@ class ShareListBloc extends Bloc<ShareListEvent, ShareListState> {
 
   ShareListBloc({this.shareInfoListDAO, this.nepseRepo})
       : super(ShareListLoading()) {
-    on<ShareListLoad>((event, emit) async {
+    on<LoadShareList>((event, emit) async {
       emit(ShareListLoading());
       List<ShareInfoModel>? shareList = await nepseRepo!.getShareInfoList();
       shareInfoListDAO!.insert(ShareInfoList(shareInfoList: shareList));

@@ -1,15 +1,19 @@
-import 'dart:developer';
-
 import 'package:autocomplete_textfield_ns/autocomplete_textfield_ns.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/model/local_stock_data.dart';
+import '../../../blocs/portfolio/portfolio_event.dart';
 import '../../../data/local_stock_dao.dart';
 import '../../../model/list_data_model.dart';
 
 enum Market { IPO, SECONDARY }
 
 class AddStocks extends StatefulWidget {
+  final PortfolioBloc? portfolioBloc;
+
+  const AddStocks({Key? key, this.portfolioBloc}) : super(key: key);
   @override
   _AddStocksState createState() => _AddStocksState();
 }
@@ -21,7 +25,7 @@ class _AddStocksState extends State<AddStocks> {
   final priceController = TextEditingController();
   GlobalKey<AutoCompleteTextFieldState<String>> companyNameKey = GlobalKey();
   final _formKey = GlobalKey<FormState>();
-  final LocalStockListDAO _localStockListDAO = LocalStockListDAO();
+  PortfolioBloc? pBloc;
 
   var selectedMarket = Market.SECONDARY;
   List<String> sectorNames = [];
@@ -46,6 +50,7 @@ class _AddStocksState extends State<AddStocks> {
   void initState() {
     super.initState();
     getData();
+    pBloc = widget.portfolioBloc;
   }
 
   @override
@@ -129,8 +134,10 @@ class _AddStocksState extends State<AddStocks> {
               title: Text('IPO'),
               value: Market.IPO,
               groupValue: selectedMarket,
-              onChanged: (Market? newValue) =>
-                  setState(() => selectedMarket = newValue!),
+              onChanged: (Market? newValue) => setState(() {
+                selectedMarket = newValue!;
+                priceController.text = "100";
+              }),
             ),
             RadioListTile(
               title: Text('Secondary'),
@@ -188,15 +195,17 @@ class _AddStocksState extends State<AddStocks> {
                   ),
                   TextFormField(
                     controller: priceController,
+                    readOnly: selectedMarket == Market.IPO ? true : false,
                     validator: (String? val) {
                       if (val!.isEmpty)
                         return "Price field should not be empty";
-                      else if (int.parse(val) == 0) return "Price cannot be 0";
+                      else if (double.parse(val) == 0.0)
+                        return "Price cannot be 0";
                     },
                     keyboardType:
-                        TextInputType.numberWithOptions(decimal: false),
+                        TextInputType.numberWithOptions(decimal: true),
                     inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))
                     ],
                     decoration: InputDecoration(
                       labelText: 'Price',
@@ -241,15 +250,16 @@ class _AddStocksState extends State<AddStocks> {
                       companyName: companyNameController.text,
                       sectorName: sectorName,
                       quantity: int.parse(quantityController.text),
-                      price: int.parse(priceController.text),
+                      price: double.parse(priceController.text),
                     );
-                    _localStockListDAO.insert(localStockData);
-                    Navigator.pop(context, true);
-                    AlertDialog alertDialog = AlertDialog(
-                      title: Text('Status'),
-                      content: Text('Stock Added Successfully'),
-                    );
-                    showDialog(context: context, builder: (_) => alertDialog);
+                    pBloc!.add(AddStock(localStockData: localStockData));
+                    Fluttertoast.showToast(msg: 'Stock Added Successfully');
+                    Navigator.pop(context);
+                    // AlertDialog alertDialog = AlertDialog(
+                    //   title: Text('Status'),
+                    //   content: Text('Stock Added Successfully'),
+                    // );
+                    // showDialog(context: context, builder: (_) => alertDialog);
                   });
                 }
               },
@@ -278,12 +288,10 @@ class _AddStocksState extends State<AddStocks> {
       padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
       child: Wrap(
         children: [
-          Expanded(
-            child: Text(
-              item,
-              maxLines: 2,
-              style: TextStyle(fontSize: 14),
-            ),
+          Text(
+            item,
+            maxLines: 2,
+            style: TextStyle(fontSize: 14),
           )
         ],
       ),

@@ -48,7 +48,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     _shareListBloc = BlocProvider.of<ShareListBloc>(context);
     _connectionStatus = await Connect.checkConnection();
     if (await Connect.isConnected(context)) {
-      _shareListBloc!.add(ShareListLoad());
+      _shareListBloc!.add(LoadShareList());
     }
   }
 

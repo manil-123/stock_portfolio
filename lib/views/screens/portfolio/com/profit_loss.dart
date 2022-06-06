@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:share_portfolio/constants/style.dart';
 
 class ProfitLoss extends StatelessWidget {
-  const ProfitLoss({Key? key}) : super(key: key);
+  final double? totalInvestment;
+  final double? profitLossPercent;
+  const ProfitLoss({Key? key, this.totalInvestment, this.profitLossPercent})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class ProfitLoss extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Total Profit/Loss',
+                    'Total Investment',
                     maxLines: 2,
                     style: TextStyle(color: Color(0xFF79787D), fontSize: 16.0),
                   ),
@@ -31,40 +35,29 @@ class ProfitLoss extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    'Rs.10000',
+                    "Rs. $totalInvestment",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
                   ),
                   SizedBox(
                     height: 8,
                   ),
                   Container(
-                    // height: 32,
-                    // width: 90,
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color: Color(0xFF0E3F1A),
+                      color: Colors.white.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(25),
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 15, bottom: 5),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.change_history,
-                            color: Color(0xFF30D059),
-                            size: 14,
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            '2.69%',
-                            style: TextStyle(
-                                color: Color(0xFF30D059), fontSize: 14.0),
-                          )
-                        ],
-                      ),
+                    child: Text(
+                      profitLossPercent! < 0
+                          ? '${profitLossPercent!.toStringAsFixed(1)} % loss'
+                          : '${profitLossPercent!.toStringAsFixed(1)} % profit',
+                      style: TextStyle(
+                          color: profitLossPercent! > 0 ? greenColor : redColor,
+                          fontSize: 14.0),
                     ),
                   )
                 ],

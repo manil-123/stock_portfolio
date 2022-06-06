@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: Theme.of(context).accentColor,
               color: Colors.white,
               onRefresh: () async {
-                _homeBloc!.add(HomeLoad());
+                _homeBloc!.add(LoadHome());
               },
               child: ListView(
                 children: [

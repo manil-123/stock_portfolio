@@ -5,4 +5,4 @@ abstract class ShareListEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ShareListLoad extends ShareListEvent {}
+class LoadShareList extends ShareListEvent {}

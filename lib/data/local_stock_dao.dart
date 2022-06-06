@@ -45,10 +45,9 @@ class LocalStockListDAO {
           companyName: localStockData.companyName,
           scrip: localStockData.scrip,
           quantity: (i.quantity! + localStockData.quantity!),
-          price: (i.price! * i.quantity! +
-                      localStockData.price! * localStockData.quantity!)
-                  .toDouble() ~/
-              (i.quantity! + localStockData.quantity!).toDouble(),
+          price: (i.price! * i.quantity!.toDouble() +
+                  localStockData.price! * localStockData.quantity!.toDouble()) /
+              (i.quantity!.toDouble() + localStockData.quantity!.toDouble()),
           sectorName: localStockData.sectorName,
         );
 
