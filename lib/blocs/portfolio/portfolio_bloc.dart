@@ -20,6 +20,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
         final totalProfitLoss = await calculationRepo!.getTotalProfitLoss();
         final currentValue = await calculationRepo!.getCurrentValue();
         final totalPLPercentage = await calculationRepo!.profitLossPercentage();
+        final dailyPL = await calculationRepo!.getTotalDailyProfitLoss();
         emit(PortfolioLoaded(
             totalInvestment: totalInvestment,
             totalShares: totalShares,
@@ -27,6 +28,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
             totalProfiLoss: totalProfitLoss,
             currentValue: currentValue,
             totalPLPercentage: totalPLPercentage,
+            totalDailyPL: dailyPL,
             localStockDataList: localStockList));
       } catch (e) {
         emit(PortfolioFailedToLoad());
@@ -43,6 +45,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
         final totalProfitLoss = await calculationRepo!.getTotalProfitLoss();
         final currentValue = await calculationRepo!.getCurrentValue();
         final totalPLPercentage = await calculationRepo!.profitLossPercentage();
+        final dailyPL = await calculationRepo!.getTotalDailyProfitLoss();
         emit(PortfolioLoaded(
             totalInvestment: totalInvestment,
             totalShares: totalShares,
@@ -50,6 +53,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
             totalProfiLoss: totalProfitLoss,
             currentValue: currentValue,
             totalPLPercentage: totalPLPercentage,
+            totalDailyPL: dailyPL,
             localStockDataList: localStockList));
       } catch (e) {
         emit(PortfolioFailedToLoad());
@@ -67,6 +71,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
         final totalProfitLoss = await calculationRepo!.getTotalProfitLoss();
         final currentValue = await calculationRepo!.getCurrentValue();
         final totalPLPercentage = await calculationRepo!.profitLossPercentage();
+        final dailyPL = await calculationRepo!.getTotalDailyProfitLoss();
         emit(PortfolioLoaded(
             totalInvestment: totalInvestment,
             totalShares: totalShares,
@@ -74,6 +79,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
             totalProfiLoss: totalProfitLoss,
             currentValue: currentValue,
             totalPLPercentage: totalPLPercentage,
+            totalDailyPL: dailyPL,
             localStockDataList: localStockList));
       } catch (e) {
         emit(PortfolioFailedToLoad());

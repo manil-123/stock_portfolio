@@ -15,6 +15,7 @@ class PortfolioLoaded extends PortfolioState {
   final double? totalProfiLoss;
   final double? currentValue;
   final double? totalPLPercentage;
+  final double? totalDailyPL;
   final List<LocalStockData>? localStockDataList;
 
   PortfolioLoaded(
@@ -24,6 +25,7 @@ class PortfolioLoaded extends PortfolioState {
       this.totalProfiLoss,
       this.currentValue,
       this.totalPLPercentage,
+      this.totalDailyPL,
       this.localStockDataList});
 }
 

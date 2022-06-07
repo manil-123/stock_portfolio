@@ -11,6 +11,7 @@ abstract class CalculationRepository {
   Future<double?> getTotalProfitLoss();
   Future<double?> getCurrentValue();
   Future<double?> profitLossPercentage();
+  Future<double?> getTotalDailyProfitLoss();
 }
 
 class CalculationRepo implements CalculationRepository {
@@ -110,5 +111,16 @@ class CalculationRepo implements CalculationRepository {
     var totalProfitLoss = await getTotalProfitLoss();
     var per = (totalProfitLoss! / totalInvestment!) * 100;
     return per;
+  }
+
+  @override
+  Future<double?> getTotalDailyProfitLoss() async {
+    var localStockList = await localStockListDAO!.getLocalStockList();
+    double dailyPL = 0;
+    for (var i in localStockList!) {
+      var individualLTP = await getLTPDifference(i.scrip);
+      dailyPL = dailyPL + individualLTP! * i.quantity!;
+    }
+    return dailyPL;
   }
 }

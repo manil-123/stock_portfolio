@@ -16,6 +16,8 @@ class CurrentHoldings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(totalProfitLoss);
+
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
@@ -42,27 +44,30 @@ class CurrentHoldings extends StatelessWidget {
                   style: whiteTextStyle.copyWith(fontSize: 28.0),
                 ),
               ),
-              Row(
-                children: [
-                  totalProfitLoss! > 0
-                      ? Icon(
-                          Icons.arrow_upward,
-                          color: greenColor,
-                          size: 20,
-                        )
-                      : Icon(
-                          Icons.arrow_downward,
-                          color: redColor,
-                          size: 20,
+              totalProfitLoss != 0.0
+                  ? Row(
+                      children: [
+                        totalProfitLoss! > 0
+                            ? Icon(
+                                Icons.arrow_upward,
+                                color: greenColor,
+                                size: 20,
+                              )
+                            : Icon(
+                                Icons.arrow_downward,
+                                color: redColor,
+                                size: 20,
+                              ),
+                        Text(
+                          'Rs. ${totalProfitLoss!.toString().replaceAll(RegExp('-'), '')}',
+                          style: TextStyle(
+                              color:
+                                  totalProfitLoss! > 0 ? greenColor : redColor,
+                              fontSize: 16.0),
                         ),
-                  Text(
-                    'Rs. ${totalProfitLoss!.toString().replaceAll(RegExp('-'), '')}',
-                    style: TextStyle(
-                        color: totalProfitLoss! > 0 ? greenColor : redColor,
-                        fontSize: 16.0),
-                  ),
-                ],
-              )
+                      ],
+                    )
+                  : SizedBox.shrink()
             ],
           ),
           SizedBox(
