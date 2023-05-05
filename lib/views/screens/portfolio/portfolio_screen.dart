@@ -7,6 +7,7 @@ import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
+import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
@@ -25,15 +26,17 @@ class PortfolioScreen extends StatefulWidget {
 class _PortfolioScreenState extends State<PortfolioScreen> {
   StreamSubscription? _deleteStockStreamSubscription;
   StreamSubscription? _addStockStreamSubscription;
+  StreamSubscription? _addToWatchlistStreamSubscription;
 
   @override
   void initState() {
     super.initState();
     _loadPortfolio();
-    _listenForAddDeleteOperation();
+    _listenForStockAddDeleteOperation();
+    _listenForWatchlistAddOperation();
   }
 
-  void _listenForAddDeleteOperation() async {
+  void _listenForStockAddDeleteOperation() async {
     _addStockStreamSubscription = getIt<AddStockCubit>().stream.listen((state) {
       state.whenOrNull(
         success: () {
@@ -43,6 +46,17 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     });
     _deleteStockStreamSubscription =
         getIt<DeleteStockCubit>().stream.listen((state) {
+      state.whenOrNull(
+        success: () {
+          _loadPortfolio();
+        },
+      );
+    });
+  }
+
+  void _listenForWatchlistAddOperation() async {
+    _addToWatchlistStreamSubscription =
+        getIt<AddToWatchlistCubit>().stream.listen((state) {
       state.whenOrNull(
         success: () {
           _loadPortfolio();
@@ -63,6 +77,9 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     }
     if (_addStockStreamSubscription != null) {
       _addStockStreamSubscription!.cancel();
+    }
+    if (_addToWatchlistStreamSubscription != null) {
+      _addToWatchlistStreamSubscription!.cancel();
     }
   }
 

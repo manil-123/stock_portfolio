@@ -7,7 +7,7 @@ import 'package:share_portfolio/repository/local_stock_repository.dart';
 part 'remove_from_watchlist_state.dart';
 part 'remove_from_watchlist_cubit.freezed.dart';
 
-@LazySingleton()
+@injectable
 class RemoveFromWatchlistCubit extends Cubit<RemoveFromWatchlistState> {
   final LocalStockRepository _localStockRepository;
 

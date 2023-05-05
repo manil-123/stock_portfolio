@@ -74,7 +74,7 @@ extension GetItInjectableX on _i1.GetIt {
             ));
     gh.lazySingleton<_i13.NepseRepository>(
         () => _i13.NepseRepositoryImpl(gh<_i11.DataService>()));
-    gh.lazySingleton<_i14.RemoveFromWatchlistCubit>(
+    gh.factory<_i14.RemoveFromWatchlistCubit>(
         () => _i14.RemoveFromWatchlistCubit(gh<_i12.LocalStockRepository>()));
     gh.lazySingleton<_i15.ShareListBloc>(() => _i15.ShareListBloc(
           gh<_i12.LocalStockRepository>(),

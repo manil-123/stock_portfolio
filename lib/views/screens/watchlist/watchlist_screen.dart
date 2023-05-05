@@ -121,30 +121,32 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    '${watchlistDataModel.symbol} ',
-                    style: const TextStyle(fontSize: 18.0),
-                  ),
-                  Text(
-                    '(${watchlistDataModel.sectorName})',
-                    style: const TextStyle(fontSize: 12.0),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 4.0,
-              ),
-              Text(
-                watchlistDataModel.companyName,
-                style: const TextStyle(fontSize: 14.0),
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      '${watchlistDataModel.symbol} ',
+                      style: const TextStyle(fontSize: 18.0),
+                    ),
+                    Text(
+                      '(${watchlistDataModel.sectorName})',
+                      style: const TextStyle(fontSize: 12.0),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 4.0,
+                ),
+                Text(
+                  watchlistDataModel.companyName,
+                  style: const TextStyle(fontSize: 14.0),
+                ),
+              ],
+            ),
           ),
           InkWell(
             onTap: () => showDeleteAlert(watchlistDataModel),
