@@ -15,11 +15,11 @@ class WatchlistScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => getIt<LoadWatchlistCubit>(),
+        BlocProvider<LoadWatchlistCubit>(
+          create: (_) => getIt<LoadWatchlistCubit>(),
         ),
-        BlocProvider(
-          create: (context) => getIt<RemoveFromWatchlistCubit>(),
+        BlocProvider<RemoveFromWatchlistCubit>(
+          create: (_) => getIt<RemoveFromWatchlistCubit>(),
         ),
       ],
       child: const WatchlistContentScreen(),
@@ -149,7 +149,7 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
             ),
           ),
           InkWell(
-            onTap: () => showDeleteAlert(watchlistDataModel),
+            onTap: () => showDeleteAlert(context, watchlistDataModel),
             child: const Icon(
               Icons.delete,
               color: Colors.white,
@@ -160,10 +160,11 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
     );
   }
 
-  Future<dynamic> showDeleteAlert(WatchlistDataModel watchlistDataModel) {
+  Future<dynamic> showDeleteAlert(
+      BuildContext ctx, WatchlistDataModel watchlistDataModel) {
     return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
+      context: ctx,
+      builder: (ctx) => AlertDialog(
         content: Container(
           width: 280.0,
           height: 100,
@@ -186,9 +187,9 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                 children: [
                   MaterialButton(
                     onPressed: () {
-                      getIt<RemoveFromWatchlistCubit>()
+                      BlocProvider.of<RemoveFromWatchlistCubit>(context)
                           .removeStockFromWatchList(watchlistDataModel);
-                      Navigator.pop(context);
+                      Navigator.pop(ctx);
                     },
                     color: Theme.of(context).colorScheme.secondary,
                     child: const Text(
