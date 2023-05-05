@@ -1,39 +1,41 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 import 'package:share_portfolio/repository/local_stock_repository.dart';
 
-part 'delete_from_watchlist_state.dart';
-part 'delete_from_watchlist_cubit.freezed.dart';
+part 'remove_from_watchlist_state.dart';
+part 'remove_from_watchlist_cubit.freezed.dart';
 
-class DeleteFromWatchlistCubit extends Cubit<DeleteFromWatchlistState> {
+@LazySingleton()
+class RemoveFromWatchlistCubit extends Cubit<RemoveFromWatchlistState> {
   final LocalStockRepository _localStockRepository;
 
-  DeleteFromWatchlistCubit(this._localStockRepository)
+  RemoveFromWatchlistCubit(this._localStockRepository)
       : super(
-          const DeleteFromWatchlistState.initial(),
+          const RemoveFromWatchlistState.initial(),
         );
 
   void removeStockFromWatchList(WatchlistDataModel watchlistDataModel) async {
     emit(
-      const DeleteFromWatchlistState.loading(),
+      const RemoveFromWatchlistState.loading(),
     );
     try {
       final result =
           await _localStockRepository.removeFromWatchlist(watchlistDataModel);
       if (result != 0) {
         emit(
-          const DeleteFromWatchlistState.success(),
+          const RemoveFromWatchlistState.success(),
         );
       } else {
         emit(
-          const DeleteFromWatchlistState.failed(
+          const RemoveFromWatchlistState.failed(
               errorMessage: "Failed to delete stock from watchlist"),
         );
       }
     } catch (e) {
       emit(
-        const DeleteFromWatchlistState.failed(
+        const RemoveFromWatchlistState.failed(
             errorMessage: "Failed to delete stock from watchlist"),
       );
     }

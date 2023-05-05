@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/blocs/watchlist/load_watchlist/load_watchlist_cubit.dart';
+import 'package:share_portfolio/blocs/watchlist/remove_from_watchlist/remove_from_watchlist_cubit.dart';
+import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 
@@ -10,8 +13,15 @@ class WatchlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<LoadWatchlistCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<LoadWatchlistCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<RemoveFromWatchlistCubit>(),
+        ),
+      ],
       child: const WatchlistContentScreen(),
     );
   }
@@ -52,16 +62,38 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                 color: Colors.white,
               ),
               loaded: (watchlistDataList) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: watchlistDataList.length,
-                    itemBuilder: (context, index) {
-                      return _watchlistItem(watchlistDataList[index]);
-                    },
+                return BlocListener<RemoveFromWatchlistCubit,
+                    RemoveFromWatchlistState>(
+                  listener: (context, removeFromWatchlistState) {
+                    removeFromWatchlistState.whenOrNull(
+                      success: () {
+                        showInfo(context,
+                            "Stock removed from watchlist successfully");
+                        Future.delayed(Duration.zero, () {
+                          _loadWatchlist();
+                          getIt<LoadPortfolioCubit>().loadPortfolio();
+                        });
+                      },
+                      failed: (errorMessage) {
+                        showErrorInfo(context, errorMessage);
+                      },
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: watchlistDataList.isEmpty
+                        ? const Center(
+                            child: Text('No stocks in the watchlist'),
+                          )
+                        : ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: watchlistDataList.length,
+                            itemBuilder: (context, index) {
+                              return _watchlistItem(watchlistDataList[index]);
+                            },
+                          ),
                   ),
                 );
               },
@@ -152,7 +184,8 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                 children: [
                   MaterialButton(
                     onPressed: () {
-                      // getIt<DeleteStockCubit>().deleteStock(localStockData);
+                      getIt<RemoveFromWatchlistCubit>()
+                          .removeStockFromWatchList(watchlistDataModel);
                       Navigator.pop(context);
                     },
                     color: Theme.of(context).colorScheme.secondary,

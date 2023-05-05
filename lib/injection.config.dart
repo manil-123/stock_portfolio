@@ -15,22 +15,24 @@ import 'package:share_portfolio/app/database/local_stock_dao.dart' as _i5;
 import 'package:share_portfolio/app/database/share_info_dao.dart' as _i7;
 import 'package:share_portfolio/app/database/stock_watchlist_dao.dart' as _i8;
 import 'package:share_portfolio/blocs/auth/auth_bloc.dart' as _i9;
-import 'package:share_portfolio/blocs/home/home_bloc.dart' as _i18;
+import 'package:share_portfolio/blocs/home/home_bloc.dart' as _i19;
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart'
-    as _i15;
+    as _i16;
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart'
-    as _i17;
+    as _i18;
 import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart'
     as _i3;
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart'
-    as _i19;
-import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart'
     as _i20;
-import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart' as _i14;
-import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart'
-    as _i16;
-import 'package:share_portfolio/blocs/watchlist/load_watchlist/load_watchlist_cubit.dart'
+import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart'
     as _i21;
+import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart' as _i15;
+import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart'
+    as _i17;
+import 'package:share_portfolio/blocs/watchlist/load_watchlist/load_watchlist_cubit.dart'
+    as _i22;
+import 'package:share_portfolio/blocs/watchlist/remove_from_watchlist/remove_from_watchlist_cubit.dart'
+    as _i14;
 import 'package:share_portfolio/repository/calculation_repo.dart' as _i10;
 import 'package:share_portfolio/repository/local_stock_repository.dart' as _i12;
 import 'package:share_portfolio/repository/nepse_repository.dart' as _i13;
@@ -72,26 +74,28 @@ extension GetItInjectableX on _i1.GetIt {
             ));
     gh.lazySingleton<_i13.NepseRepository>(
         () => _i13.NepseRepositoryImpl(gh<_i11.DataService>()));
-    gh.lazySingleton<_i14.ShareListBloc>(() => _i14.ShareListBloc(
+    gh.lazySingleton<_i14.RemoveFromWatchlistCubit>(
+        () => _i14.RemoveFromWatchlistCubit(gh<_i12.LocalStockRepository>()));
+    gh.lazySingleton<_i15.ShareListBloc>(() => _i15.ShareListBloc(
           gh<_i12.LocalStockRepository>(),
           gh<_i13.NepseRepository>(),
         ));
-    gh.lazySingleton<_i15.AddStockCubit>(
-        () => _i15.AddStockCubit(gh<_i12.LocalStockRepository>()));
-    gh.lazySingleton<_i16.AddToWatchlistCubit>(
-        () => _i16.AddToWatchlistCubit(gh<_i12.LocalStockRepository>()));
-    gh.lazySingleton<_i17.DeleteStockCubit>(
-        () => _i17.DeleteStockCubit(gh<_i12.LocalStockRepository>()));
-    gh.lazySingleton<_i18.HomeBloc>(
-        () => _i18.HomeBloc(gh<_i13.NepseRepository>()));
-    gh.lazySingleton<_i19.LoadPortfolioCubit>(() => _i19.LoadPortfolioCubit(
+    gh.lazySingleton<_i16.AddStockCubit>(
+        () => _i16.AddStockCubit(gh<_i12.LocalStockRepository>()));
+    gh.lazySingleton<_i17.AddToWatchlistCubit>(
+        () => _i17.AddToWatchlistCubit(gh<_i12.LocalStockRepository>()));
+    gh.lazySingleton<_i18.DeleteStockCubit>(
+        () => _i18.DeleteStockCubit(gh<_i12.LocalStockRepository>()));
+    gh.lazySingleton<_i19.HomeBloc>(
+        () => _i19.HomeBloc(gh<_i13.NepseRepository>()));
+    gh.lazySingleton<_i20.LoadPortfolioCubit>(() => _i20.LoadPortfolioCubit(
           gh<_i12.LocalStockRepository>(),
           gh<_i10.CalculationRepository>(),
         ));
-    gh.lazySingleton<_i20.LoadPortfolioStockListCubit>(() =>
-        _i20.LoadPortfolioStockListCubit(gh<_i12.LocalStockRepository>()));
-    gh.factory<_i21.LoadWatchlistCubit>(
-        () => _i21.LoadWatchlistCubit(gh<_i12.LocalStockRepository>()));
+    gh.lazySingleton<_i21.LoadPortfolioStockListCubit>(() =>
+        _i21.LoadPortfolioStockListCubit(gh<_i12.LocalStockRepository>()));
+    gh.factory<_i22.LoadWatchlistCubit>(
+        () => _i22.LoadWatchlistCubit(gh<_i12.LocalStockRepository>()));
     return this;
   }
 }

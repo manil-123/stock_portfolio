@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'delete_from_watchlist_cubit.dart';
+part of 'remove_from_watchlist_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DeleteFromWatchlistState {
+mixin _$RemoveFromWatchlistState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -69,17 +69,17 @@ mixin _$DeleteFromWatchlistState {
 }
 
 /// @nodoc
-abstract class $DeleteFromWatchlistStateCopyWith<$Res> {
-  factory $DeleteFromWatchlistStateCopyWith(DeleteFromWatchlistState value,
-          $Res Function(DeleteFromWatchlistState) then) =
-      _$DeleteFromWatchlistStateCopyWithImpl<$Res, DeleteFromWatchlistState>;
+abstract class $RemoveFromWatchlistStateCopyWith<$Res> {
+  factory $RemoveFromWatchlistStateCopyWith(RemoveFromWatchlistState value,
+          $Res Function(RemoveFromWatchlistState) then) =
+      _$RemoveFromWatchlistStateCopyWithImpl<$Res, RemoveFromWatchlistState>;
 }
 
 /// @nodoc
-class _$DeleteFromWatchlistStateCopyWithImpl<$Res,
-        $Val extends DeleteFromWatchlistState>
-    implements $DeleteFromWatchlistStateCopyWith<$Res> {
-  _$DeleteFromWatchlistStateCopyWithImpl(this._value, this._then);
+class _$RemoveFromWatchlistStateCopyWithImpl<$Res,
+        $Val extends RemoveFromWatchlistState>
+    implements $RemoveFromWatchlistStateCopyWith<$Res> {
+  _$RemoveFromWatchlistStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -96,7 +96,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$DeleteFromWatchlistStateCopyWithImpl<$Res, _$_Initial>
+    extends _$RemoveFromWatchlistStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -109,7 +109,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'DeleteFromWatchlistState.initial()';
+    return 'RemoveFromWatchlistState.initial()';
   }
 
   @override
@@ -196,7 +196,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements DeleteFromWatchlistState {
+abstract class _Initial implements RemoveFromWatchlistState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -209,7 +209,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$DeleteFromWatchlistStateCopyWithImpl<$Res, _$_Loading>
+    extends _$RemoveFromWatchlistStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -222,7 +222,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'DeleteFromWatchlistState.loading()';
+    return 'RemoveFromWatchlistState.loading()';
   }
 
   @override
@@ -309,7 +309,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements DeleteFromWatchlistState {
+abstract class _Loading implements RemoveFromWatchlistState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -322,7 +322,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SuccessCopyWithImpl<$Res>
-    extends _$DeleteFromWatchlistStateCopyWithImpl<$Res, _$_Success>
+    extends _$RemoveFromWatchlistStateCopyWithImpl<$Res, _$_Success>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, _then);
@@ -335,7 +335,7 @@ class _$_Success implements _Success {
 
   @override
   String toString() {
-    return 'DeleteFromWatchlistState.success()';
+    return 'RemoveFromWatchlistState.success()';
   }
 
   @override
@@ -422,7 +422,7 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements DeleteFromWatchlistState {
+abstract class _Success implements RemoveFromWatchlistState {
   const factory _Success() = _$_Success;
 }
 
@@ -436,7 +436,7 @@ abstract class _$$_FailedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_FailedCopyWithImpl<$Res>
-    extends _$DeleteFromWatchlistStateCopyWithImpl<$Res, _$_Failed>
+    extends _$RemoveFromWatchlistStateCopyWithImpl<$Res, _$_Failed>
     implements _$$_FailedCopyWith<$Res> {
   __$$_FailedCopyWithImpl(_$_Failed _value, $Res Function(_$_Failed) _then)
       : super(_value, _then);
@@ -465,7 +465,7 @@ class _$_Failed implements _Failed {
 
   @override
   String toString() {
-    return 'DeleteFromWatchlistState.failed(errorMessage: $errorMessage)';
+    return 'RemoveFromWatchlistState.failed(errorMessage: $errorMessage)';
   }
 
   @override
@@ -561,7 +561,7 @@ class _$_Failed implements _Failed {
   }
 }
 
-abstract class _Failed implements DeleteFromWatchlistState {
+abstract class _Failed implements RemoveFromWatchlistState {
   const factory _Failed({required final String errorMessage}) = _$_Failed;
 
   String get errorMessage;

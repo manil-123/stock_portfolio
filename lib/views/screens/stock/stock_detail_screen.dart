@@ -87,7 +87,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                   height: 16.0,
                 ),
                 _moreInfo('Last Traded Price', 'Rs. ${widget.ltp}'),
-                _moreInfo('Change', 'Rs. ${widget.change}'),
+                _moreInfo('Change Percent', '${widget.change} %'),
                 const SizedBox(
                   height: 40.0,
                 ),
@@ -141,7 +141,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
       WatchlistDataModel(
         symbol: widget.symbol,
         companyName: widget.companyName,
-        price: double.parse(widget.ltp),
+        price: double.parse(widget.ltp.replaceAll(',', '')),
         sectorName: getSector(widget.companyName),
       ),
     );
