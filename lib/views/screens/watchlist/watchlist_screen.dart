@@ -60,15 +60,7 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                     shrinkWrap: true,
                     itemCount: watchlistDataList.length,
                     itemBuilder: (context, index) {
-                      return InkWell(
-                        onLongPress: () {
-                          // showDeleteAlert(
-                          //   context,
-                          //   watchlistDataList[index],
-                          // );
-                        },
-                        child: _watchlistItem(watchlistDataList[index]),
-                      );
+                      return _watchlistItem(watchlistDataList[index]);
                     },
                   ),
                 );
@@ -94,27 +86,96 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                '${watchlistDataModel.scrip} ',
-                style: const TextStyle(fontSize: 18.0),
+              Row(
+                children: [
+                  Text(
+                    '${watchlistDataModel.symbol} ',
+                    style: const TextStyle(fontSize: 18.0),
+                  ),
+                  Text(
+                    '(${watchlistDataModel.sectorName})',
+                    style: const TextStyle(fontSize: 12.0),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 4.0,
               ),
               Text(
-                '(${watchlistDataModel.sectorName})',
-                style: const TextStyle(fontSize: 12.0),
-              )
+                watchlistDataModel.companyName,
+                style: const TextStyle(fontSize: 14.0),
+              ),
             ],
           ),
-          Text(
-            watchlistDataModel.companyName,
-            style: const TextStyle(fontSize: 14.0),
+          InkWell(
+            onTap: () => showDeleteAlert(watchlistDataModel),
+            child: const Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
           ),
         ],
+      ),
+    );
+  }
+
+  Future<dynamic> showDeleteAlert(WatchlistDataModel watchlistDataModel) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Container(
+          width: 280.0,
+          height: 100,
+          decoration: const BoxDecoration(
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.all(
+              Radius.circular(32.0),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Do you want to remove ${watchlistDataModel.symbol} from watchlist?',
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: 18.0),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MaterialButton(
+                    onPressed: () {
+                      // getIt<DeleteStockCubit>().deleteStock(localStockData);
+                      Navigator.pop(context);
+                    },
+                    color: Theme.of(context).colorScheme.secondary,
+                    child: const Text(
+                      'Yes',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    color: Theme.of(context).colorScheme.secondary,
+                    child: const Text(
+                      'No',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

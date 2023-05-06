@@ -7,7 +7,7 @@ part 'watchlist_data_model.g.dart';
 class WatchlistDataModel with _$WatchlistDataModel {
   const factory WatchlistDataModel({
     int? id,
-    required String scrip,
+    required String symbol,
     required String companyName,
     required String sectorName,
     required double price,

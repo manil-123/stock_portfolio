@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,6 +80,10 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Portfolio Stock List'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.router.pop(),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -92,19 +95,19 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
           ),
         ],
       ),
-      body:
-          BlocBuilder<LoadPortfolioStockListCubit, LoadPortfolioStockListState>(
-        builder: (context, state) {
-          return state.maybeWhen(
-            loading: () => const SpinKitPulsingGrid(
-              color: Colors.white,
-            ),
-            loaded: (localStockDataList) {
-              return RefreshIndicator(
-                onRefresh: () async {
-                  _loadPortfolio();
-                },
-                child: Padding(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          _loadPortfolio();
+        },
+        child: BlocBuilder<LoadPortfolioStockListCubit,
+            LoadPortfolioStockListState>(
+          builder: (context, state) {
+            return state.maybeWhen(
+              loading: () => const SpinKitPulsingGrid(
+                color: Colors.white,
+              ),
+              loaded: (localStockDataList) {
+                return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
@@ -123,17 +126,17 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                       );
                     },
                   ),
-                ),
-              );
-            },
-            failed: () => const Center(
-              child: SizedBox(child: Text('Failed to Load')),
-            ),
-            orElse: () {
-              return Container();
-            },
-          );
-        },
+                );
+              },
+              failed: () => const Center(
+                child: SizedBox(child: Text('Failed to Load')),
+              ),
+              orElse: () {
+                return Container();
+              },
+            );
+          },
+        ),
       ),
     );
   }

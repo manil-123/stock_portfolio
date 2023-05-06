@@ -21,7 +21,7 @@ WatchlistDataModel _$WatchlistDataModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$WatchlistDataModel {
   int? get id => throw _privateConstructorUsedError;
-  String get scrip => throw _privateConstructorUsedError;
+  String get symbol => throw _privateConstructorUsedError;
   String get companyName => throw _privateConstructorUsedError;
   String get sectorName => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $WatchlistDataModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String scrip,
+      String symbol,
       String companyName,
       String sectorName,
       double price});
@@ -60,7 +60,7 @@ class _$WatchlistDataModelCopyWithImpl<$Res, $Val extends WatchlistDataModel>
   @override
   $Res call({
     Object? id = freezed,
-    Object? scrip = null,
+    Object? symbol = null,
     Object? companyName = null,
     Object? sectorName = null,
     Object? price = null,
@@ -70,9 +70,9 @@ class _$WatchlistDataModelCopyWithImpl<$Res, $Val extends WatchlistDataModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      scrip: null == scrip
-          ? _value.scrip
-          : scrip // ignore: cast_nullable_to_non_nullable
+      symbol: null == symbol
+          ? _value.symbol
+          : symbol // ignore: cast_nullable_to_non_nullable
               as String,
       companyName: null == companyName
           ? _value.companyName
@@ -100,7 +100,7 @@ abstract class _$$_WatchlistDataModelCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      String scrip,
+      String symbol,
       String companyName,
       String sectorName,
       double price});
@@ -118,7 +118,7 @@ class __$$_WatchlistDataModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? scrip = null,
+    Object? symbol = null,
     Object? companyName = null,
     Object? sectorName = null,
     Object? price = null,
@@ -128,9 +128,9 @@ class __$$_WatchlistDataModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      scrip: null == scrip
-          ? _value.scrip
-          : scrip // ignore: cast_nullable_to_non_nullable
+      symbol: null == symbol
+          ? _value.symbol
+          : symbol // ignore: cast_nullable_to_non_nullable
               as String,
       companyName: null == companyName
           ? _value.companyName
@@ -153,7 +153,7 @@ class __$$_WatchlistDataModelCopyWithImpl<$Res>
 class _$_WatchlistDataModel implements _WatchlistDataModel {
   const _$_WatchlistDataModel(
       {this.id,
-      required this.scrip,
+      required this.symbol,
       required this.companyName,
       required this.sectorName,
       required this.price});
@@ -164,7 +164,7 @@ class _$_WatchlistDataModel implements _WatchlistDataModel {
   @override
   final int? id;
   @override
-  final String scrip;
+  final String symbol;
   @override
   final String companyName;
   @override
@@ -174,7 +174,7 @@ class _$_WatchlistDataModel implements _WatchlistDataModel {
 
   @override
   String toString() {
-    return 'WatchlistDataModel(id: $id, scrip: $scrip, companyName: $companyName, sectorName: $sectorName, price: $price)';
+    return 'WatchlistDataModel(id: $id, symbol: $symbol, companyName: $companyName, sectorName: $sectorName, price: $price)';
   }
 
   @override
@@ -183,7 +183,7 @@ class _$_WatchlistDataModel implements _WatchlistDataModel {
         (other.runtimeType == runtimeType &&
             other is _$_WatchlistDataModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.scrip, scrip) || other.scrip == scrip) &&
+            (identical(other.symbol, symbol) || other.symbol == symbol) &&
             (identical(other.companyName, companyName) ||
                 other.companyName == companyName) &&
             (identical(other.sectorName, sectorName) ||
@@ -194,7 +194,7 @@ class _$_WatchlistDataModel implements _WatchlistDataModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, scrip, companyName, sectorName, price);
+      Object.hash(runtimeType, id, symbol, companyName, sectorName, price);
 
   @JsonKey(ignore: true)
   @override
@@ -214,7 +214,7 @@ class _$_WatchlistDataModel implements _WatchlistDataModel {
 abstract class _WatchlistDataModel implements WatchlistDataModel {
   const factory _WatchlistDataModel(
       {final int? id,
-      required final String scrip,
+      required final String symbol,
       required final String companyName,
       required final String sectorName,
       required final double price}) = _$_WatchlistDataModel;
@@ -225,7 +225,7 @@ abstract class _WatchlistDataModel implements WatchlistDataModel {
   @override
   int? get id;
   @override
-  String get scrip;
+  String get symbol;
   @override
   String get companyName;
   @override

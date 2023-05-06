@@ -119,8 +119,25 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   ),
                 );
               },
-              failed: () => const Center(
-                child: SizedBox(child: Text('Failed to Load')),
+              failed: () => Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Failed to Load'),
+                    const SizedBox(
+                      height: 12.0,
+                    ),
+                    InkWell(
+                      onTap: () => _loadPortfolio(),
+                      child: const Text(
+                        'Tap to load',
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               orElse: () {
                 return Container();
@@ -292,7 +309,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
           Row(
             children: [
               Text(
-                '${watchlistDataModel.scrip} ',
+                '${watchlistDataModel.symbol} ',
                 style: const TextStyle(fontSize: 18.0),
               ),
               Text(

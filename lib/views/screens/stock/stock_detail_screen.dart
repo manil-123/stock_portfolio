@@ -139,7 +139,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
   void _addToWatchlist() {
     BlocProvider.of<AddToWatchlistCubit>(context).addStockToWatchList(
       WatchlistDataModel(
-        scrip: widget.symbol,
+        symbol: widget.symbol,
         companyName: widget.companyName,
         price: double.parse(widget.ltp),
         sectorName: getSector(widget.companyName),
