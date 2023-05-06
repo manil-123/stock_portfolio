@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/blocs/watchlist/load_watchlist/load_watchlist_cubit.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
@@ -47,8 +48,8 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
         child: BlocBuilder<LoadWatchlistCubit, LoadWatchlistState>(
           builder: (context, state) {
             return state.maybeWhen(
-              loading: () => const Center(
-                child: CircularProgressIndicator(color: Colors.white),
+              loading: () => const SpinKitPulsingGrid(
+                color: Colors.white,
               ),
               loaded: (watchlistDataList) {
                 return Padding(

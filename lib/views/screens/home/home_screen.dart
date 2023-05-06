@@ -8,6 +8,7 @@ import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
 import 'package:share_portfolio/views/screens/home/nepse_index_screen.dart';
 import 'package:share_portfolio/views/widgets/share_info_widget.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,8 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, state) {
           return state.when(
             initial: () => Container(),
-            loading: () => const Center(
-              child: CircularProgressIndicator(color: Colors.white),
+            loading: () => const SpinKitPulsingGrid(
+              color: Colors.white,
             ),
             loaded: (nepseIndex, topGainers, topLosers) =>
                 _homeLoaded(nepseIndex, topGainers, topLosers),

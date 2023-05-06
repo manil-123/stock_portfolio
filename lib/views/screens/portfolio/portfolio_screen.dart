@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
@@ -75,8 +76,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         child: BlocBuilder<LoadPortfolioCubit, LoadPortfolioState>(
           builder: (context, state) {
             return state.maybeWhen(
-              loading: () => const Center(
-                child: CircularProgressIndicator(color: Colors.white),
+              loading: () => const SpinKitPulsingGrid(
+                color: Colors.white,
               ),
               loaded: (
                 totalInvestment,

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
@@ -34,10 +35,8 @@ class _StockListScreenState extends State<StockListScreen> {
           builder: (context, state) {
             return state.when(
               initial: () => Container(),
-              loading: () => const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.white,
-                ),
+              loading: () => const SpinKitPulsingGrid(
+                color: Colors.white,
               ),
               loaded: (shareList) => _shareListLoaded(shareList),
               failed: (failure) => Center(
