@@ -12,8 +12,9 @@ abstract class LocalStockRepository {
   Future<List<WatchlistDataModel>> getStockWatchlist();
   Future<int> insertShareInfoList({List<ShareInfoModel>? shareInfoList});
   Future<int> addStockToPortfolio(LocalStockDataModel localStockData);
-  Future<int> deleteStock(LocalStockDataModel localStockData);
-  Future<int> addToWatchlist(WatchlistDataModel localStockData);
+  Future<int> deleteStockFromPortfolio(LocalStockDataModel localStockData);
+  Future<int> addToWatchlist(WatchlistDataModel watchlistDataModel);
+  Future<int> removeFromWatchlist(WatchlistDataModel watchlistDataModel);
 }
 
 @LazySingleton(as: LocalStockRepository)
@@ -54,12 +55,18 @@ class LocalStockRepositoryImpl implements LocalStockRepository {
   }
 
   @override
-  Future<int> deleteStock(LocalStockDataModel localStockData) async {
+  Future<int> deleteStockFromPortfolio(
+      LocalStockDataModel localStockData) async {
     return await _localStockListDAO.delete(localStockData);
   }
 
   @override
   Future<int> addToWatchlist(WatchlistDataModel watchlistDataModel) async {
     return await _stockWatchlistDAO.insert(watchlistDataModel);
+  }
+
+  @override
+  Future<int> removeFromWatchlist(WatchlistDataModel watchlistDataModel) async {
+    return await _stockWatchlistDAO.delete(watchlistDataModel);
   }
 }

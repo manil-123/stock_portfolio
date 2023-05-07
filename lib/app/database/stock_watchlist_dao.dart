@@ -54,9 +54,9 @@ class StockWatchlistDAO {
     }
   }
 
-  Future delete(WatchlistDataModel watchlistDataModel) async {
+  Future<int> delete(WatchlistDataModel watchlistDataModel) async {
     final finder = Finder(filter: Filter.byKey(watchlistDataModel.id));
-    await _stockWatchlistStore.delete(
+    return await _stockWatchlistStore.delete(
       await _db,
       finder: finder,
     );

@@ -190,23 +190,27 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   }
 
   Widget _portfolioItems(List<LocalStockDataModel> stockList) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12.0),
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
-      height: 100,
-      width: double.infinity,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: stockList.take(5).length,
-        itemBuilder: (context, index) {
-          return _portfolioItem(
-            stockList[index],
+    return stockList.isEmpty
+        ? const SizedBox(
+            height: 16.0,
+          )
+        : Container(
+            margin: const EdgeInsets.symmetric(horizontal: 12.0),
+            padding: const EdgeInsets.symmetric(vertical: 6.0),
+            height: 100,
+            width: double.infinity,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: stockList.take(5).length,
+              itemBuilder: (context, index) {
+                return _portfolioItem(
+                  stockList[index],
+                );
+              },
+            ),
           );
-        },
-      ),
-    );
   }
 
   Widget _portfolioItem(LocalStockDataModel stockData) {

@@ -143,7 +143,7 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Do you want to remove ${watchlistDataModel.symbol} from watchlist?',
+                'Do you want to remove "${watchlistDataModel.symbol}" from watchlist?',
                 style: const TextStyle(
                     fontWeight: FontWeight.bold, fontSize: 18.0),
               ),
