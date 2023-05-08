@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 ThemeData get appTheme => ThemeData(
-      primaryColor: Color(0xFF252527),
-      scaffoldBackgroundColor: Color(0xFF252527),
+      primaryColor: const Color(0xFF252527),
+      scaffoldBackgroundColor: const Color(0xFF252527),
       colorScheme: ColorScheme.fromSwatch().copyWith(
-        secondary: Color(0xFF000000),
+        secondary: const Color(0xFF000000),
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFF252527),
       ),
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         bodyLarge: TextStyle(),
         bodyMedium: TextStyle(),
         bodySmall: TextStyle(),

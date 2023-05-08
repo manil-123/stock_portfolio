@@ -12,16 +12,16 @@ class MySearchDelegate extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return theme.copyWith(
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         // Use this to change the query's text style
         titleLarge: TextStyle(fontSize: 18.0, color: Colors.white),
       ),
       appBarTheme: AppBarTheme(
-        backgroundColor: Color(0xFF000000),
+        backgroundColor: const Color(0xFF000000),
         iconTheme: theme.primaryIconTheme.copyWith(color: Colors.white),
       ),
       inputDecorationTheme: searchFieldDecorationTheme ??
-          InputDecorationTheme(
+          const InputDecorationTheme(
             border: InputBorder.none,
             hintStyle: TextStyle(color: Colors.white),
           ),
@@ -36,7 +36,7 @@ class MySearchDelegate extends SearchDelegate {
             if (query.isEmpty) close(context, null);
             query = '';
           },
-          icon: Icon(Icons.clear))
+          icon: const Icon(Icons.clear))
     ];
   }
 
@@ -46,7 +46,7 @@ class MySearchDelegate extends SearchDelegate {
         onPressed: () {
           close(context, null);
         },
-        icon: Icon(Icons.arrow_back));
+        icon: const Icon(Icons.arrow_back));
   }
 
   @override

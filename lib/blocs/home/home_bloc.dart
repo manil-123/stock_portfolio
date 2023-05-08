@@ -17,11 +17,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   HomeBloc(this._nepseRepo)
       : super(
-          HomeState.initial(),
+          const HomeState.initial(),
         ) {
     on<_LoadHome>((event, emit) async {
       emit(
-        HomeState.loading(),
+        const HomeState.loading(),
       );
       NepseIndexModel nepseIndex = await _nepseRepo.getNepseIndex();
       final topGainersListResponse = await _nepseRepo.getTopGainers();

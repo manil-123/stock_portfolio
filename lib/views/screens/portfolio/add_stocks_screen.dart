@@ -51,7 +51,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
       child: Scaffold(
         backgroundColor: AppColors.whiteBackgroundColor,
         appBar: AppBar(
-          title: Text('Add Details'),
+          title: const Text('Add Details'),
         ),
         body: BlocListener<AddStockCubit, AddStockState>(
           listener: (context, state) {
@@ -82,7 +82,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                   companySectorNameMap,
                   selectedMarket,
                 ),
-                orElse: () => Center(
+                orElse: () => const Center(
                   child: Text('Failed to load portfolio'),
                 ),
               );
@@ -109,9 +109,9 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
         key: _formKey,
         child: ListView(
           children: [
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             buildAutoCompleteTextField(companyNames, scripCompanyNameMap),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             CustomTextFormField(
@@ -124,7 +124,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               labelText: 'Scrip',
             ),
             RadioListTile(
-              title: Text('IPO'),
+              title: const Text('IPO'),
               value: MarketEnum.IPO,
               groupValue: selectedMarket,
               onChanged: (MarketEnum? newValue) {
@@ -133,7 +133,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               },
             ),
             RadioListTile(
-              title: Text('Secondary'),
+              title: const Text('Secondary'),
               value: MarketEnum.SECONDARY,
               groupValue: selectedMarket,
               onChanged: (MarketEnum? newValue) {
@@ -150,13 +150,14 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                     else if (int.parse(val) == 0) return "Quantity cannot be 0";
                     return null;
                   },
-                  keyboardType: TextInputType.numberWithOptions(decimal: false),
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: false),
                   inputFormatter: <TextInputFormatter>[
                     FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
                   ],
                   labelText: 'Quantity',
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 CustomTextFormField(
@@ -169,7 +170,8 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                       return "Price cannot be 0";
                     return null;
                   },
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
                   inputFormatter: <TextInputFormatter>[
                     FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))
                   ],
@@ -177,7 +179,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             BlocBuilder<AddStockCubit, AddStockState>(
@@ -190,10 +192,10 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                   child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: addStockState.maybeMap(
-                        loading: (value) => CircularProgressIndicator(
+                        loading: (value) => const CircularProgressIndicator(
                           color: Colors.white,
                         ),
-                        orElse: () => Text(
+                        orElse: () => const Text(
                           'ADD',
                           style: TextStyle(
                               color: Colors.white,
@@ -272,13 +274,13 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
 
   Widget suggestionBox(String item) {
     return Container(
-      padding: EdgeInsets.fromLTRB(5, 10, 5, 5),
+      padding: const EdgeInsets.fromLTRB(5, 10, 5, 5),
       child: Wrap(
         children: [
           Text(
             item,
             maxLines: 2,
-            style: TextStyle(fontSize: 14, color: Colors.black),
+            style: const TextStyle(fontSize: 14, color: Colors.black),
           )
         ],
       ),

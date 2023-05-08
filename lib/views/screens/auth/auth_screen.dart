@@ -16,7 +16,7 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   void checkBiometric() async {
     context.read<AuthBloc>().add(
-          AuthEvent.submitAuth(),
+          const AuthEvent.submitAuth(),
         );
   }
 
@@ -51,7 +51,7 @@ class _AuthScreenState extends State<AuthScreen> {
         builder: (context, state) {
           return state.when(
               initial: () => _authWidget(),
-              submitting: () => Center(
+              submitting: () => const Center(
                     child: LinearProgressIndicator(
                       backgroundColor: Colors.white,
                     ),
@@ -72,16 +72,16 @@ class _AuthScreenState extends State<AuthScreen> {
         children: [
           IconButton(
             onPressed: () => checkBiometric(),
-            icon: Icon(
+            icon: const Icon(
               Icons.fingerprint,
               color: Colors.white,
               size: 50,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16.0,
           ),
-          Text('Press here to login'),
+          const Text('Press here to login'),
         ],
       ),
     );

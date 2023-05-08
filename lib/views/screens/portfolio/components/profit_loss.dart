@@ -15,14 +15,14 @@ class ProfitLoss extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       width: MediaQuery.of(context).size.width,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(20),
@@ -31,27 +31,27 @@ class ProfitLoss extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Total Investment',
                     maxLines: 2,
                     style: TextStyle(color: Color(0xFF79787D), fontSize: 16.0),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Text(
                     "Rs. $totalInvestment",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20.0,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(25),
@@ -75,12 +75,12 @@ class ProfitLoss extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(20),
@@ -89,12 +89,12 @@ class ProfitLoss extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Daily Profit/Loss',
                     maxLines: 2,
                     style: TextStyle(color: Color(0xFF79787D), fontSize: 16.0),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Row(
@@ -110,29 +110,29 @@ class ProfitLoss extends StatelessWidget {
                                     : AppColors.greenColor,
                             fontSize: 20.0),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       dailyProfitLoss == 0
-                          ? Icon(
+                          ? const Icon(
                               Icons.arrow_upward,
                               color: Colors.white,
                               size: 20,
                             )
                           : dailyProfitLoss > 0
-                              ? Icon(
+                              ? const Icon(
                                   Icons.arrow_upward,
                                   color: AppColors.greenColor,
                                   size: 20,
                                 )
-                              : Icon(
+                              : const Icon(
                                   Icons.arrow_downward,
                                   color: AppColors.redColor,
                                   size: 20,
                                 ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                 ],

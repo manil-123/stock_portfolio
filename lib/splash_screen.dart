@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       vsync: this,
     );
 
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     _animationController.forward();
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       context.router.replace(
         const DashboardRoute(),
       );
@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
-          child: Text(
+          child: const Text(
             'Stock Portfolio',
             style: TextStyle(
               fontSize: 24,

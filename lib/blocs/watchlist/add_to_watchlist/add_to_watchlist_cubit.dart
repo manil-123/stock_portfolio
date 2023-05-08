@@ -13,29 +13,29 @@ class AddToWatchlistCubit extends Cubit<AddToWatchlistState> {
 
   AddToWatchlistCubit(this._localStockRepository)
       : super(
-          AddToWatchlistState.initial(),
+          const AddToWatchlistState.initial(),
         );
 
   void addStockToWatchList(WatchlistDataModel watchlistDataModel) async {
     emit(
-      AddToWatchlistState.loading(),
+      const AddToWatchlistState.loading(),
     );
     try {
       final result =
           await _localStockRepository.addToWatchlist(watchlistDataModel);
       if (result != 0) {
         emit(
-          AddToWatchlistState.success(),
+          const AddToWatchlistState.success(),
         );
       } else {
         emit(
-          AddToWatchlistState.failed(
+          const AddToWatchlistState.failed(
               errorMessage: "Stock already in the watchlist"),
         );
       }
     } catch (e) {
       emit(
-        AddToWatchlistState.failed(
+        const AddToWatchlistState.failed(
             errorMessage: "Failed to add stock in watchlist"),
       );
     }

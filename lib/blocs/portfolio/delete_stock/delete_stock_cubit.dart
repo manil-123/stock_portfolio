@@ -14,27 +14,27 @@ class DeleteStockCubit extends Cubit<DeleteStockState> {
   DeleteStockCubit(
     this._localStockRepository,
   ) : super(
-          DeleteStockState.initial(),
+          const DeleteStockState.initial(),
         );
 
   void deleteStock(LocalStockDataModel localStockData) async {
     emit(
-      DeleteStockState.loading(),
+      const DeleteStockState.loading(),
     );
     try {
       final result = await _localStockRepository.deleteStock(localStockData);
       if (result != 0) {
         emit(
-          DeleteStockState.success(),
+          const DeleteStockState.success(),
         );
       } else {
         emit(
-          DeleteStockState.failed(),
+          const DeleteStockState.failed(),
         );
       }
     } catch (e) {
       emit(
-        DeleteStockState.failed(),
+        const DeleteStockState.failed(),
       );
     }
   }

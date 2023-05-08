@@ -1,29 +1,33 @@
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:share_portfolio/blocs/watchlist/state/watchlist_state.dart';
+import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 import 'package:share_portfolio/repository/local_stock_repository.dart';
 
-@LazySingleton()
-class LoadWatchlistCubit extends Cubit<WatchlistState> {
-  final LocalStockRepository _localStockRepository;
+part 'load_watchlist_state.dart';
+part 'load_watchlist_cubit.freezed.dart';
 
+@LazySingleton()
+class LoadWatchlistCubit extends Cubit<LoadWatchlistState> {
+  final LocalStockRepository _localStockRepository;
   LoadWatchlistCubit(this._localStockRepository)
       : super(
-          WatchlistState.initial(),
+          const LoadWatchlistState.initial(),
         );
 
-  void loadWatchList() async {
+  void loadWatchlist() async {
     emit(
-      WatchlistState.loading(),
+      const LoadWatchlistState.loading(),
     );
     try {
       final watchlist = await _localStockRepository.getStockWatchlist();
       emit(
-        WatchlistState.loaded(watchlistDataList: watchlist),
+        LoadWatchlistState.loaded(watchlistDataList: watchlist),
       );
     } catch (e) {
       emit(
-        WatchlistState.failed(errorMessage: "Failed to load watchlist"),
+        const LoadWatchlistState.failed(
+            errorMessage: "Failed to load watchlist"),
       );
     }
   }

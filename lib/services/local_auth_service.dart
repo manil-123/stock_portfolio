@@ -14,24 +14,25 @@ class LocalAuthService {
   Future<Either<Failure, bool>> authenticate() async {
     try {
       if (!await _canAuthenticate())
-        return Left(
+        return const Left(
           Failure.localAuthFailure(failureMessage: "Device not supported"),
         );
 
       final didAuthenticate = await _auth.authenticate(
         localizedReason: 'Fingerprint required to authenticate',
-        options: AuthenticationOptions(useErrorDialogs: true, stickyAuth: true),
+        options: const AuthenticationOptions(
+            useErrorDialogs: true, stickyAuth: true),
       );
       if (didAuthenticate) {
         return Right(didAuthenticate);
       } else {
-        return Left(
+        return const Left(
           Failure.localAuthFailure(failureMessage: "Please Enter Biometric"),
         );
       }
     } catch (e) {
       debugPrint('error $e');
-      return Left(
+      return const Left(
         Failure.localAuthFailure(failureMessage: "Local Auth Exception"),
       );
     }

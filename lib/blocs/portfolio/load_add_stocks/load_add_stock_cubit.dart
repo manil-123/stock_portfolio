@@ -11,7 +11,7 @@ part 'load_add_stock_cubit.freezed.dart';
 class LoadAddStockCubit extends Cubit<LoadAddStockState> {
   LoadAddStockCubit()
       : super(
-          LoadAddStockState.initial(),
+          const LoadAddStockState.initial(),
         );
 
   void loadAddStockScreen() {

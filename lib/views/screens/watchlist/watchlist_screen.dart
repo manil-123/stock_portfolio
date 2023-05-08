@@ -10,7 +10,7 @@ class WatchlistScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<LoadWatchlistCubit>(),
-      child: WatchlistContentScreen(),
+      child: const WatchlistContentScreen(),
     );
   }
 }
@@ -26,14 +26,14 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<LoadWatchlistCubit>().loadWatchList();
+    // context.read<LoadWatchlistCubit>().loadWatchList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Watchlist'),
+        title: const Text('My Watchlist'),
       ),
     );
   }

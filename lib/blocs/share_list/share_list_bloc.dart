@@ -18,11 +18,11 @@ class ShareListBloc extends Bloc<ShareListEvent, ShareListState> {
     this._localStockRepository,
     this._nepseRepo,
   ) : super(
-          ShareListState.initial(),
+          const ShareListState.initial(),
         ) {
     on<_LoadShareList>((event, emit) async {
       emit(
-        ShareListState.loading(),
+        const ShareListState.loading(),
       );
       final shareListResponse = await _nepseRepo.getShareInfoList();
       shareListResponse.fold((failure) {

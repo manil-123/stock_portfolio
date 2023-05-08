@@ -6,7 +6,7 @@ class NepseIndexScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),
@@ -39,7 +39,7 @@ class NepseIndexScreen extends StatelessWidget {
         isPositive ? const Color(0xFF0E3F1A) : const Color(0xFF661628);
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(10),

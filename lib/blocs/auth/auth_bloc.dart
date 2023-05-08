@@ -13,13 +13,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LocalAuthService _localAuthService;
   AuthBloc(this._localAuthService)
       : super(
-          AuthState.initial(),
+          const AuthState.initial(),
         ) {
     on<_SubmitAuth>(
       (event, emit) async {
         final authResponse = await _localAuthService.authenticate();
         emit(
-          AuthState.submitting(),
+          const AuthState.submitting(),
         );
         Future.delayed(const Duration(seconds: 1));
         authResponse.fold(
@@ -30,7 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           },
           (success) {
             emit(
-              AuthState.success(),
+              const AuthState.success(),
             );
           },
         );

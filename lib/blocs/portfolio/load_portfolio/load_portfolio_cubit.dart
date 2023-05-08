@@ -17,16 +17,16 @@ class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
     this._localStockRepository,
     this._calculationRepo,
   ) : super(
-          LoadPortfolioState.initial(),
+          const LoadPortfolioState.initial(),
         );
 
   void loadPortfolio() async {
     emit(
-      LoadPortfolioState.loading(),
+      const LoadPortfolioState.loading(),
     );
     try {
       await Future.delayed(
-        Duration(milliseconds: 500),
+        const Duration(milliseconds: 500),
       );
       final localStockList = await _localStockRepository.getLocalStockList();
       final totalInvestment = await _calculationRepo.getTotalInvestment();
@@ -52,7 +52,7 @@ class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
       );
     } catch (e) {
       emit(
-        LoadPortfolioState.failed(),
+        const LoadPortfolioState.failed(),
       );
     }
   }

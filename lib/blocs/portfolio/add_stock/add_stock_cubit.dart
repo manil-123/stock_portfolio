@@ -13,28 +13,28 @@ class AddStockCubit extends Cubit<AddStockState> {
   AddStockCubit(
     this._localStockRepository,
   ) : super(
-          AddStockState.initial(),
+          const AddStockState.initial(),
         );
 
   void addStockToPortfolio(LocalStockDataModel localStockData) async {
     emit(
-      AddStockState.loading(),
+      const AddStockState.loading(),
     );
     try {
       final result =
           await _localStockRepository.addStockToPortfolio(localStockData);
       if (result != 0) {
         emit(
-          AddStockState.success(),
+          const AddStockState.success(),
         );
       } else {
         emit(
-          AddStockState.failed(),
+          const AddStockState.failed(),
         );
       }
     } catch (e) {
       emit(
-        AddStockState.failed(),
+        const AddStockState.failed(),
       );
     }
   }

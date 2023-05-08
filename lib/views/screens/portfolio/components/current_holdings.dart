@@ -17,8 +17,8 @@ class CurrentHoldings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),
@@ -31,7 +31,7 @@ class CurrentHoldings extends StatelessWidget {
             'Your Current Holdings',
             style: greyTextStyle.copyWith(fontSize: 20.0),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
@@ -46,18 +46,18 @@ class CurrentHoldings extends StatelessWidget {
                   ? Row(
                       children: [
                         totalProfitLoss == 0
-                            ? Icon(
+                            ? const Icon(
                                 Icons.arrow_upward,
                                 color: Colors.white,
                                 size: 20,
                               )
                             : totalProfitLoss > 0
-                                ? Icon(
+                                ? const Icon(
                                     Icons.arrow_upward,
                                     color: AppColors.greenColor,
                                     size: 20,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.arrow_downward,
                                     color: AppColors.redColor,
                                     size: 20,
@@ -74,10 +74,10 @@ class CurrentHoldings extends StatelessWidget {
                         ),
                       ],
                     )
-                  : SizedBox.shrink()
+                  : const SizedBox.shrink()
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(
@@ -86,7 +86,7 @@ class CurrentHoldings extends StatelessWidget {
                 : '$totalSharesCount shares of $totalStockCount companies',
             style: whiteTextStyle.copyWith(fontSize: 18.0),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
         ],

@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     context.read<HomeBloc>().add(
-          HomeEvent.loadHome(),
+          const HomeEvent.loadHome(),
         );
   }
 
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, state) {
           return state.when(
             initial: () => Container(),
-            loading: () => Center(
+            loading: () => const Center(
               child: CircularProgressIndicator(color: Colors.white),
             ),
             loaded: (nepseIndex, topGainers, topLosers) =>
@@ -56,30 +56,30 @@ class _HomeScreenState extends State<HomeScreen> {
     return RefreshIndicator(
       onRefresh: () async {
         context.read<HomeBloc>().add(
-              HomeEvent.loadHome(),
+              const HomeEvent.loadHome(),
             );
       },
       child: SafeArea(
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           children: [
-            NepseIndexScreen(),
-            SizedBox(
+            const NepseIndexScreen(),
+            const SizedBox(
               height: 16,
             ),
-            Text(
+            const Text(
               'Top Gainers',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ListView.builder(
               scrollDirection: Axis.vertical,
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               shrinkWrap: true,
               itemCount: topGainers.length,
               itemBuilder: (context, index) {
@@ -103,22 +103,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            Text(
+            const Text(
               'Top Losers',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ListView.builder(
               scrollDirection: Axis.vertical,
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               shrinkWrap: true,
               itemCount: topLosers.length,
               itemBuilder: (context, index) {
