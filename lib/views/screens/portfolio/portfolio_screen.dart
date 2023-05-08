@@ -133,7 +133,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _portfolioHeading(List<LocalStockDataModel> localStockDataList) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 1),
+      padding:
+          const EdgeInsets.only(left: 20.0, right: 20.0, top: 16, bottom: 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -196,7 +197,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
       margin: const EdgeInsets.only(right: 12.0),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,7 +225,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     return watchlistDataList.isEmpty
         ? const SizedBox.shrink()
         : Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+            padding: const EdgeInsets.only(
+                left: 20.0, right: 20.0, top: 16, bottom: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -280,7 +282,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
       margin: const EdgeInsets.only(right: 12.0),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

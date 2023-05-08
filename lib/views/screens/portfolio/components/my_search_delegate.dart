@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
 import 'package:share_portfolio/views/widgets/share_info_widget.dart';
@@ -61,11 +63,23 @@ class MySearchDelegate extends SearchDelegate {
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder: ((context, index) {
-        return ShareInfoWidget(
-            companyName: suggestions[index].companyName,
-            symbol: suggestions[index].symbol,
-            ltp: suggestions[index].ltp,
-            change: suggestions[index].change);
+        return InkWell(
+          onTap: () {
+            context.router.push(
+              StockDetailRoute(
+                companyName: suggestions[index].companyName,
+                symbol: suggestions[index].symbol,
+                ltp: suggestions[index].ltp,
+                change: suggestions[index].change,
+              ),
+            );
+          },
+          child: ShareInfoWidget(
+              companyName: suggestions[index].companyName,
+              symbol: suggestions[index].symbol,
+              ltp: suggestions[index].ltp,
+              change: suggestions[index].change),
+        );
       }),
     );
   }
@@ -84,11 +98,23 @@ class MySearchDelegate extends SearchDelegate {
       body: ListView.builder(
         itemCount: suggestions.length,
         itemBuilder: ((context, index) {
-          return ShareInfoWidget(
-              companyName: suggestions[index].companyName,
-              symbol: suggestions[index].symbol,
-              ltp: suggestions[index].ltp,
-              change: suggestions[index].change);
+          return InkWell(
+            onTap: () {
+              context.router.push(
+                StockDetailRoute(
+                  companyName: suggestions[index].companyName,
+                  symbol: suggestions[index].symbol,
+                  ltp: suggestions[index].ltp,
+                  change: suggestions[index].change,
+                ),
+              );
+            },
+            child: ShareInfoWidget(
+                companyName: suggestions[index].companyName,
+                symbol: suggestions[index].symbol,
+                ltp: suggestions[index].ltp,
+                change: suggestions[index].change),
+          );
         }),
       ),
     );
