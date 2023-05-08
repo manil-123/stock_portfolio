@@ -62,7 +62,7 @@ class ShowAlertDialog extends StatelessWidget {
                       Navigator.pop(context);
                     },
                   )
-                : SizedBox.shrink(),
+                : const SizedBox.shrink(),
             Expanded(
               flex: showCancel! ? 0 : 1,
               child: MaterialButton(

@@ -75,7 +75,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         child: BlocBuilder<LoadPortfolioCubit, LoadPortfolioState>(
           builder: (context, state) {
             return state.maybeWhen(
-              loading: () => Center(
+              loading: () => const Center(
                 child: CircularProgressIndicator(color: Colors.white),
               ),
               loaded: (
@@ -94,7 +94,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Welcome(),
+                        const Welcome(),
                         CurrentHoldings(
                           totalProfitLoss: totalProfiLoss,
                           currentValue: currentValue,
@@ -110,7 +110,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         _portfolioItems(localStockDataList),
                         _watchlistHeading(watchlistDataList),
                         _watchlistItems(watchlistDataList),
-                        SizedBox(
+                        const SizedBox(
                           height: 16.0,
                         )
                       ],
@@ -118,7 +118,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   ),
                 );
               },
-              failed: () => Center(
+              failed: () => const Center(
                 child: SizedBox(child: Text('Failed to Load')),
               ),
               orElse: () {
@@ -133,12 +133,12 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _portfolioHeading(List<LocalStockDataModel> localStockDataList) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 1),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 1),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'Portfolio',
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
@@ -146,18 +146,18 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             onTap: () {
               localStockDataList.isEmpty
                   ? context.router.push(
-                      AddStocksRoute(),
+                      const AddStocksRoute(),
                     )
                   : context.router.push(
-                      PortfolioListRouter(),
+                      const PortfolioListRouter(),
                     );
             },
             child: localStockDataList.isEmpty
-                ? Icon(
+                ? const Icon(
                     Icons.add_circle,
                     color: Colors.white,
                   )
-                : Text(
+                : const Text(
                     'View All',
                     style: TextStyle(
                       fontSize: 16,
@@ -172,13 +172,13 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _portfolioItems(List<LocalStockDataModel> stockList) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12.0),
-      padding: EdgeInsets.symmetric(vertical: 6.0),
+      margin: const EdgeInsets.symmetric(horizontal: 12.0),
+      padding: const EdgeInsets.symmetric(vertical: 6.0),
       height: 100,
       width: double.infinity,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         itemCount: stockList.take(5).length,
         itemBuilder: (context, index) {
@@ -192,8 +192,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _portfolioItem(LocalStockDataModel stockData) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-      margin: EdgeInsets.only(right: 12.0),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+      margin: const EdgeInsets.only(right: 12.0),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),
@@ -206,11 +206,11 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             children: [
               Text(
                 '${stockData.scrip} ',
-                style: TextStyle(fontSize: 18.0),
+                style: const TextStyle(fontSize: 18.0),
               ),
               Text(
                 '(${stockData.sectorName})',
-                style: TextStyle(fontSize: 12.0),
+                style: const TextStyle(fontSize: 12.0),
               )
             ],
           ),
@@ -222,26 +222,26 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _watchlistHeading(List<WatchlistDataModel> watchlistDataList) {
     return watchlistDataList.isEmpty
-        ? SizedBox.shrink()
+        ? const SizedBox.shrink()
         : Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'My Watchlist',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 GestureDetector(
                   onTap: () {
                     context.router.push(
-                      WatchlistRoute(),
+                      const WatchlistRoute(),
                     );
                   },
                   child: watchlistDataList.isEmpty
-                      ? SizedBox.shrink()
-                      : Text(
+                      ? const SizedBox.shrink()
+                      : const Text(
                           'View All',
                           style: TextStyle(
                             fontSize: 16,
@@ -256,13 +256,13 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _watchlistItems(List<WatchlistDataModel> watchlist) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12.0),
-      padding: EdgeInsets.symmetric(vertical: 6.0),
+      margin: const EdgeInsets.symmetric(horizontal: 12.0),
+      padding: const EdgeInsets.symmetric(vertical: 6.0),
       height: 100,
       width: double.infinity,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         itemCount: watchlist.take(5).length,
         itemBuilder: (context, index) {
@@ -276,8 +276,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _watchlistItem(WatchlistDataModel watchlistDataModel) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-      margin: EdgeInsets.only(right: 12.0),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+      margin: const EdgeInsets.only(right: 12.0),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),
@@ -290,11 +290,11 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             children: [
               Text(
                 '${watchlistDataModel.scrip} ',
-                style: TextStyle(fontSize: 18.0),
+                style: const TextStyle(fontSize: 18.0),
               ),
               Text(
                 '(${watchlistDataModel.sectorName})',
-                style: TextStyle(fontSize: 12.0),
+                style: const TextStyle(fontSize: 12.0),
               )
             ],
           ),
@@ -302,7 +302,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             watchlistDataModel.companyName.length > 30
                 ? watchlistDataModel.companyName.substring(0, 30) + '...'
                 : watchlistDataModel.companyName,
-            style: TextStyle(fontSize: 14.0),
+            style: const TextStyle(fontSize: 14.0),
           ),
         ],
       ),
@@ -319,11 +319,11 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             '${stockData.quantity} Shares, LTP: ${snapshot.data}',
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else {
           return Text(
             '${stockData.quantity} Shares, LTP: Error',
-            style: TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
+            style: const TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
           );
         }
       },
@@ -338,7 +338,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         content: Container(
           width: 280.0,
           height: 100,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.all(
               Radius.circular(32.0),
@@ -347,7 +347,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Do you want to delete?',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
               ),
@@ -360,7 +360,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                       Navigator.pop(context);
                     },
                     color: Theme.of(context).colorScheme.secondary,
-                    child: Text(
+                    child: const Text(
                       'Yes',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -370,7 +370,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                       Navigator.pop(context);
                     },
                     color: Theme.of(context).colorScheme.secondary,
-                    child: Text(
+                    child: const Text(
                       'No',
                       style: TextStyle(color: Colors.white),
                     ),

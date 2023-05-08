@@ -53,24 +53,24 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
               children: [
                 Text(
                   '${widget.companyName}(${widget.symbol})',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500,
                     color: Colors.white60,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 2.0,
                 ),
                 Text(
                   'Sector : ${getSector(widget.companyName)}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500,
                     color: Colors.white60,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16.0,
                 ),
                 Container(
@@ -79,16 +79,16 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(6.0),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text('Chart'),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16.0,
                 ),
                 _moreInfo('Last Traded Price', 'Rs. ${widget.ltp}'),
                 _moreInfo('Change', 'Rs. ${widget.change}'),
-                SizedBox(
+                const SizedBox(
                   height: 40.0,
                 ),
                 Center(
@@ -105,7 +105,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                             horizontal: 16.0,
                           ),
                           child: addToWatchlistState.maybeMap(
-                            loading: (value) => SizedBox(
+                            loading: (value) => const SizedBox(
                               height: 20,
                               width: 20,
                               child: CircularProgressIndicator(
@@ -114,7 +114,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                               ),
                             ),
                             orElse: () {
-                              return Text(
+                              return const Text(
                                 'ADD TO WATCHLIST',
                                 style: TextStyle(
                                     color: Colors.white,
@@ -155,7 +155,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.w500,
             ),

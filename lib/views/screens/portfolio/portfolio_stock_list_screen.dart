@@ -79,15 +79,15 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Portfolio Stock List'),
+        title: const Text('Portfolio Stock List'),
         actions: [
           IconButton(
             onPressed: () {
               context.router.push(
-                AddStocksRoute(),
+                const AddStocksRoute(),
               );
             },
-            icon: Icon(Icons.add_circle),
+            icon: const Icon(Icons.add_circle),
           ),
         ],
       ),
@@ -95,7 +95,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
           BlocBuilder<LoadPortfolioStockListCubit, LoadPortfolioStockListState>(
         builder: (context, state) {
           return state.maybeWhen(
-            loading: () => Center(
+            loading: () => const Center(
               child: CircularProgressIndicator(color: Colors.white),
             ),
             loaded: (localStockDataList) {
@@ -107,7 +107,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: localStockDataList.length,
                     itemBuilder: (context, index) {
@@ -125,7 +125,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                 ),
               );
             },
-            failed: () => Center(
+            failed: () => const Center(
               child: SizedBox(child: Text('Failed to Load')),
             ),
             orElse: () {
@@ -139,8 +139,8 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
 
   Widget _portfolioItem(LocalStockDataModel stockData) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),
@@ -155,9 +155,9 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
               children: [
                 Text(
                   stockData.scrip,
-                  style: TextStyle(color: Colors.white, fontSize: 20.0),
+                  style: const TextStyle(color: Colors.white, fontSize: 20.0),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildStockInfo(stockData),
               ],
             ),
@@ -167,7 +167,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildStockPrice(stockData),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               _buildStockDifference(stockData),
             ],
           ),
@@ -184,14 +184,14 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
             '${stockData.quantity} Shares, LTP: ${snapshot.data}',
-            style: TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
+            style: const TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else {
           return Text(
             '${stockData.quantity} Shares, LTP: Error',
-            style: TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
+            style: const TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
           );
         }
       },
@@ -206,12 +206,12 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
             'Rs.${(stockData.quantity * double.parse(snapshot.data!)).toStringAsFixed(1)}',
-            style: TextStyle(color: Colors.white, fontSize: 14),
+            style: const TextStyle(color: Colors.white, fontSize: 14),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else {
-          return Text(
+          return const Text(
             ' Error',
             style: TextStyle(color: Colors.white, fontSize: 14),
           );
@@ -235,9 +235,9 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
             ),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else {
-          return Text(
+          return const Text(
             ' Error',
             style: TextStyle(color: Colors.white, fontSize: 14),
           );
@@ -254,7 +254,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         content: Container(
           width: 280.0,
           height: 100,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.all(
               Radius.circular(32.0),
@@ -263,7 +263,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Do you want to delete?',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
               ),
@@ -276,7 +276,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                       Navigator.pop(context);
                     },
                     color: Theme.of(context).colorScheme.secondary,
-                    child: Text(
+                    child: const Text(
                       'Yes',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -286,7 +286,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                       Navigator.pop(context);
                     },
                     color: Theme.of(context).colorScheme.secondary,
-                    child: Text(
+                    child: const Text(
                       'No',
                       style: TextStyle(color: Colors.white),
                     ),

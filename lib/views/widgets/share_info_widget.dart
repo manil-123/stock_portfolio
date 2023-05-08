@@ -16,13 +16,13 @@ class ShareInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -33,12 +33,13 @@ class ShareInfoWidget extends StatelessWidget {
                 children: [
                   Text(
                     symbol,
-                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                    style: const TextStyle(color: Colors.white, fontSize: 18.0),
                   ),
                   Text(
                     companyName,
                     maxLines: 2,
-                    style: TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
+                    style: const TextStyle(
+                        color: Color(0xFF79787D), fontSize: 12.0),
                   ),
                 ],
               ),
@@ -51,37 +52,38 @@ class ShareInfoWidget extends StatelessWidget {
                   ltp,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
+                  style: const TextStyle(color: Colors.white, fontSize: 18.0),
                 ),
                 Container(
                   height: 32,
                   width: 80,
                   decoration: BoxDecoration(
                     color: double.parse(change) >= 0
-                        ? Color(0xFF0E3F1A)
-                        : Color(0xFF661628),
+                        ? const Color(0xFF0E3F1A)
+                        : const Color(0xFF661628),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
                     child: Row(
                       children: [
                         Icon(
                           Icons.change_history,
                           color: double.parse(change) >= 0
-                              ? Color(0xFF30D059)
-                              : Color(0xFFF73961),
+                              ? const Color(0xFF30D059)
+                              : const Color(0xFFF73961),
                           size: 14,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 6,
                         ),
                         Text(
                           '$change %',
                           style: TextStyle(
                               color: double.parse(change) >= 0
-                                  ? Color(0xFF30D059)
-                                  : Color(0xFFF73961),
+                                  ? const Color(0xFF30D059)
+                                  : const Color(0xFFF73961),
                               fontSize: 12.0),
                         )
                       ],

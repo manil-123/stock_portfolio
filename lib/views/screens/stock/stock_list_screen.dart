@@ -21,7 +21,7 @@ class _StockListScreenState extends State<StockListScreen> {
   void initState() {
     super.initState();
     context.read<ShareListBloc>().add(
-          ShareListEvent.loadShareList(),
+          const ShareListEvent.loadShareList(),
         );
   }
 
@@ -34,7 +34,7 @@ class _StockListScreenState extends State<StockListScreen> {
           builder: (context, state) {
             return state.when(
               initial: () => Container(),
-              loading: () => Center(
+              loading: () => const Center(
                 child: CircularProgressIndicator(
                   color: Colors.white,
                 ),
@@ -56,7 +56,7 @@ class _StockListScreenState extends State<StockListScreen> {
     return RefreshIndicator(
       onRefresh: () async {
         context.read<ShareListBloc>().add(
-              ShareListEvent.loadShareList(),
+              const ShareListEvent.loadShareList(),
             );
       },
       child: SingleChildScrollView(
@@ -77,7 +77,7 @@ class _StockListScreenState extends State<StockListScreen> {
                       else
                         showErrorInfo(context, "Unable to search right now");
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.search,
                       color: Colors.white,
                       size: 30,
@@ -86,7 +86,7 @@ class _StockListScreenState extends State<StockListScreen> {
             ),
             ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: shareList.length,
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
