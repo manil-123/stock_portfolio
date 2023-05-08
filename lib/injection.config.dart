@@ -29,6 +29,8 @@ import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/cubit/
 import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart' as _i14;
 import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart'
     as _i16;
+import 'package:share_portfolio/blocs/watchlist/load_watchlist/load_watchlist_cubit.dart'
+    as _i21;
 import 'package:share_portfolio/repository/calculation_repo.dart' as _i10;
 import 'package:share_portfolio/repository/local_stock_repository.dart' as _i12;
 import 'package:share_portfolio/repository/nepse_repository.dart' as _i13;
@@ -88,6 +90,8 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.lazySingleton<_i20.LoadPortfolioStockListCubit>(() =>
         _i20.LoadPortfolioStockListCubit(gh<_i12.LocalStockRepository>()));
+    gh.lazySingleton<_i21.LoadWatchlistCubit>(
+        () => _i21.LoadWatchlistCubit(gh<_i12.LocalStockRepository>()));
     return this;
   }
 }

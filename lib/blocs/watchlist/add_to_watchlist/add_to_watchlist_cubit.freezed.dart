@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'watchlist_state.dart';
+part of 'add_to_watchlist_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$WatchlistState {
+mixin _$AddToWatchlistState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -45,7 +45,7 @@ mixin _$WatchlistState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) success,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failed value) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ mixin _$WatchlistState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? success,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failed value)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ mixin _$WatchlistState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? success,
+    TResult Function(_Success value)? success,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) =>
@@ -69,16 +69,16 @@ mixin _$WatchlistState {
 }
 
 /// @nodoc
-abstract class $WatchlistStateCopyWith<$Res> {
-  factory $WatchlistStateCopyWith(
-          WatchlistState value, $Res Function(WatchlistState) then) =
-      _$WatchlistStateCopyWithImpl<$Res, WatchlistState>;
+abstract class $AddToWatchlistStateCopyWith<$Res> {
+  factory $AddToWatchlistStateCopyWith(
+          AddToWatchlistState value, $Res Function(AddToWatchlistState) then) =
+      _$AddToWatchlistStateCopyWithImpl<$Res, AddToWatchlistState>;
 }
 
 /// @nodoc
-class _$WatchlistStateCopyWithImpl<$Res, $Val extends WatchlistState>
-    implements $WatchlistStateCopyWith<$Res> {
-  _$WatchlistStateCopyWithImpl(this._value, this._then);
+class _$AddToWatchlistStateCopyWithImpl<$Res, $Val extends AddToWatchlistState>
+    implements $AddToWatchlistStateCopyWith<$Res> {
+  _$AddToWatchlistStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -95,7 +95,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$WatchlistStateCopyWithImpl<$Res, _$_Initial>
+    extends _$AddToWatchlistStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -108,7 +108,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'WatchlistState.initial()';
+    return 'AddToWatchlistState.initial()';
   }
 
   @override
@@ -162,7 +162,7 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) success,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failed value) failed,
   }) {
     return initial(this);
@@ -173,7 +173,7 @@ class _$_Initial implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? success,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failed value)? failed,
   }) {
     return initial?.call(this);
@@ -184,7 +184,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? success,
+    TResult Function(_Success value)? success,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
@@ -195,7 +195,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements WatchlistState {
+abstract class _Initial implements AddToWatchlistState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -208,7 +208,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$WatchlistStateCopyWithImpl<$Res, _$_Loading>
+    extends _$AddToWatchlistStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -221,7 +221,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'WatchlistState.loading()';
+    return 'AddToWatchlistState.loading()';
   }
 
   @override
@@ -275,7 +275,7 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) success,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failed value) failed,
   }) {
     return loading(this);
@@ -286,7 +286,7 @@ class _$_Loading implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? success,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failed value)? failed,
   }) {
     return loading?.call(this);
@@ -297,7 +297,7 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? success,
+    TResult Function(_Success value)? success,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
@@ -308,38 +308,39 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements WatchlistState {
+abstract class _Loading implements AddToWatchlistState {
   const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
-abstract class _$$_LoadedCopyWith<$Res> {
-  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
-      __$$_LoadedCopyWithImpl<$Res>;
+abstract class _$$_SuccessCopyWith<$Res> {
+  factory _$$_SuccessCopyWith(
+          _$_Success value, $Res Function(_$_Success) then) =
+      __$$_SuccessCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadedCopyWithImpl<$Res>
-    extends _$WatchlistStateCopyWithImpl<$Res, _$_Loaded>
-    implements _$$_LoadedCopyWith<$Res> {
-  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
+class __$$_SuccessCopyWithImpl<$Res>
+    extends _$AddToWatchlistStateCopyWithImpl<$Res, _$_Success>
+    implements _$$_SuccessCopyWith<$Res> {
+  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Loaded implements _Loaded {
-  const _$_Loaded();
+class _$_Success implements _Success {
+  const _$_Success();
 
   @override
   String toString() {
-    return 'WatchlistState.success()';
+    return 'AddToWatchlistState.success()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Loaded);
+        (other.runtimeType == runtimeType && other is _$_Success);
   }
 
   @override
@@ -387,7 +388,7 @@ class _$_Loaded implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) success,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failed value) failed,
   }) {
     return success(this);
@@ -398,7 +399,7 @@ class _$_Loaded implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? success,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failed value)? failed,
   }) {
     return success?.call(this);
@@ -409,7 +410,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? success,
+    TResult Function(_Success value)? success,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
@@ -420,8 +421,8 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements WatchlistState {
-  const factory _Loaded() = _$_Loaded;
+abstract class _Success implements AddToWatchlistState {
+  const factory _Success() = _$_Success;
 }
 
 /// @nodoc
@@ -434,7 +435,7 @@ abstract class _$$_FailedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_FailedCopyWithImpl<$Res>
-    extends _$WatchlistStateCopyWithImpl<$Res, _$_Failed>
+    extends _$AddToWatchlistStateCopyWithImpl<$Res, _$_Failed>
     implements _$$_FailedCopyWith<$Res> {
   __$$_FailedCopyWithImpl(_$_Failed _value, $Res Function(_$_Failed) _then)
       : super(_value, _then);
@@ -463,7 +464,7 @@ class _$_Failed implements _Failed {
 
   @override
   String toString() {
-    return 'WatchlistState.failed(errorMessage: $errorMessage)';
+    return 'AddToWatchlistState.failed(errorMessage: $errorMessage)';
   }
 
   @override
@@ -526,7 +527,7 @@ class _$_Failed implements _Failed {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) success,
+    required TResult Function(_Success value) success,
     required TResult Function(_Failed value) failed,
   }) {
     return failed(this);
@@ -537,7 +538,7 @@ class _$_Failed implements _Failed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? success,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Failed value)? failed,
   }) {
     return failed?.call(this);
@@ -548,7 +549,7 @@ class _$_Failed implements _Failed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? success,
+    TResult Function(_Success value)? success,
     TResult Function(_Failed value)? failed,
     required TResult orElse(),
   }) {
@@ -559,7 +560,7 @@ class _$_Failed implements _Failed {
   }
 }
 
-abstract class _Failed implements WatchlistState {
+abstract class _Failed implements AddToWatchlistState {
   const factory _Failed({required final String errorMessage}) = _$_Failed;
 
   String get errorMessage;

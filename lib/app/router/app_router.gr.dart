@@ -11,9 +11,9 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:auto_route/empty_router_widgets.dart' as _i4;
-import 'package:flutter/material.dart' as _i12;
+import 'package:flutter/material.dart' as _i13;
 
 import '../../splash_screen.dart' as _i1;
 import '../../views/screens/auth/auth_screen.dart' as _i2;
@@ -21,61 +21,62 @@ import '../../views/screens/dashboard/dashboard_screen.dart' as _i3;
 import '../../views/screens/home/home_screen.dart' as _i5;
 import '../../views/screens/portfolio/add_stocks_screen.dart' as _i9;
 import '../../views/screens/portfolio/portfolio_screen.dart' as _i8;
-import '../../views/screens/portfolio/portfolio_stock_list_screen.dart' as _i10;
+import '../../views/screens/portfolio/portfolio_stock_list_screen.dart' as _i11;
 import '../../views/screens/stock/stock_detail_screen.dart' as _i6;
 import '../../views/screens/stock/stock_list_screen.dart' as _i7;
+import '../../views/screens/watchlist/watchlist_screen.dart' as _i10;
 
-class AppRouter extends _i11.RootStackRouter {
-  AppRouter([_i12.GlobalKey<_i12.NavigatorState>? navigatorKey])
+class AppRouter extends _i12.RootStackRouter {
+  AppRouter([_i13.GlobalKey<_i13.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i11.PageFactory> pagesMap = {
+  final Map<String, _i12.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.SplashScreen(),
       );
     },
     AuthRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.AuthScreen(),
       );
     },
     DashboardRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i3.DashboardScreen(),
       );
     },
     HomeRouter.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i4.EmptyRouterPage(),
       );
     },
     StockListRouter.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i4.EmptyRouterPage(),
       );
     },
     PortfolioRouter.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i4.EmptyRouterPage(),
       );
     },
     HomeRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i5.HomeScreen(),
       );
     },
     StockDetailRoute.name: (routeData) {
       final args = routeData.argsAs<StockDetailRouteArgs>();
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i6.StockDetailScreen(
           key: args.key,
@@ -87,115 +88,126 @@ class AppRouter extends _i11.RootStackRouter {
       );
     },
     StockListRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i7.StockListScreen(),
       );
     },
     PortfolioRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i8.PortfolioScreen(),
       );
     },
     PortfolioListRouter.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i4.EmptyRouterPage(),
       );
     },
     AddStocksRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i9.AddStocksScreen(),
       );
     },
-    PortfolioStockListRoute.name: (routeData) {
-      return _i11.MaterialPageX<dynamic>(
+    WatchlistRoute.name: (routeData) {
+      return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i10.PortfolioStockListScreen(),
+        child: const _i10.WatchlistScreen(),
+      );
+    },
+    PortfolioStockListRoute.name: (routeData) {
+      return _i12.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i11.PortfolioStockListScreen(),
       );
     },
   };
 
   @override
-  List<_i11.RouteConfig> get routes => [
-        _i11.RouteConfig(
+  List<_i12.RouteConfig> get routes => [
+        _i12.RouteConfig(
           SplashRoute.name,
           path: '/',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           AuthRoute.name,
           path: '/authScreen',
         ),
-        _i11.RouteConfig(
+        _i12.RouteConfig(
           DashboardRoute.name,
           path: '/dashboardScreen',
           children: [
-            _i11.RouteConfig(
+            _i12.RouteConfig(
               HomeRouter.name,
               path: 'homeScreen',
               parent: DashboardRoute.name,
               children: [
-                _i11.RouteConfig(
+                _i12.RouteConfig(
                   HomeRoute.name,
                   path: '',
                   parent: HomeRouter.name,
                 ),
-                _i11.RouteConfig(
+                _i12.RouteConfig(
                   StockDetailRoute.name,
                   path: 'stockDetailScreen',
                   parent: HomeRouter.name,
                 ),
               ],
             ),
-            _i11.RouteConfig(
+            _i12.RouteConfig(
               StockListRouter.name,
               path: 'stockListScreen',
               parent: DashboardRoute.name,
               children: [
-                _i11.RouteConfig(
+                _i12.RouteConfig(
                   StockListRoute.name,
                   path: '',
                   parent: StockListRouter.name,
                 ),
-                _i11.RouteConfig(
+                _i12.RouteConfig(
                   StockDetailRoute.name,
                   path: 'stockDetailScreen',
                   parent: StockListRouter.name,
                 ),
               ],
             ),
-            _i11.RouteConfig(
+            _i12.RouteConfig(
               PortfolioRouter.name,
               path: 'portfolioScreen',
               parent: DashboardRoute.name,
               children: [
-                _i11.RouteConfig(
+                _i12.RouteConfig(
                   PortfolioRoute.name,
                   path: '',
                   parent: PortfolioRouter.name,
                 ),
-                _i11.RouteConfig(
+                _i12.RouteConfig(
                   PortfolioListRouter.name,
                   path: 'portfolioStockListScreen',
                   parent: PortfolioRouter.name,
                   children: [
-                    _i11.RouteConfig(
+                    _i12.RouteConfig(
                       PortfolioStockListRoute.name,
                       path: '',
                       parent: PortfolioListRouter.name,
                     ),
-                    _i11.RouteConfig(
+                    _i12.RouteConfig(
                       AddStocksRoute.name,
                       path: 'addStocksScreen',
                       parent: PortfolioListRouter.name,
                     ),
                   ],
                 ),
-                _i11.RouteConfig(
+                _i12.RouteConfig(
                   AddStocksRoute.name,
                   path: 'addStocksScreen',
+                  parent: PortfolioRouter.name,
+                ),
+                _i12.RouteConfig(
+                  WatchlistRoute.name,
+                  path: 'watchlistScreen',
                   parent: PortfolioRouter.name,
                 ),
               ],
@@ -207,7 +219,7 @@ class AppRouter extends _i11.RootStackRouter {
 
 /// generated route for
 /// [_i1.SplashScreen]
-class SplashRoute extends _i11.PageRouteInfo<void> {
+class SplashRoute extends _i12.PageRouteInfo<void> {
   const SplashRoute()
       : super(
           SplashRoute.name,
@@ -219,7 +231,7 @@ class SplashRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.AuthScreen]
-class AuthRoute extends _i11.PageRouteInfo<void> {
+class AuthRoute extends _i12.PageRouteInfo<void> {
   const AuthRoute()
       : super(
           AuthRoute.name,
@@ -231,8 +243,8 @@ class AuthRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.DashboardScreen]
-class DashboardRoute extends _i11.PageRouteInfo<void> {
-  const DashboardRoute({List<_i11.PageRouteInfo>? children})
+class DashboardRoute extends _i12.PageRouteInfo<void> {
+  const DashboardRoute({List<_i12.PageRouteInfo>? children})
       : super(
           DashboardRoute.name,
           path: '/dashboardScreen',
@@ -244,8 +256,8 @@ class DashboardRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.EmptyRouterPage]
-class HomeRouter extends _i11.PageRouteInfo<void> {
-  const HomeRouter({List<_i11.PageRouteInfo>? children})
+class HomeRouter extends _i12.PageRouteInfo<void> {
+  const HomeRouter({List<_i12.PageRouteInfo>? children})
       : super(
           HomeRouter.name,
           path: 'homeScreen',
@@ -257,8 +269,8 @@ class HomeRouter extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.EmptyRouterPage]
-class StockListRouter extends _i11.PageRouteInfo<void> {
-  const StockListRouter({List<_i11.PageRouteInfo>? children})
+class StockListRouter extends _i12.PageRouteInfo<void> {
+  const StockListRouter({List<_i12.PageRouteInfo>? children})
       : super(
           StockListRouter.name,
           path: 'stockListScreen',
@@ -270,8 +282,8 @@ class StockListRouter extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.EmptyRouterPage]
-class PortfolioRouter extends _i11.PageRouteInfo<void> {
-  const PortfolioRouter({List<_i11.PageRouteInfo>? children})
+class PortfolioRouter extends _i12.PageRouteInfo<void> {
+  const PortfolioRouter({List<_i12.PageRouteInfo>? children})
       : super(
           PortfolioRouter.name,
           path: 'portfolioScreen',
@@ -283,7 +295,7 @@ class PortfolioRouter extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.HomeScreen]
-class HomeRoute extends _i11.PageRouteInfo<void> {
+class HomeRoute extends _i12.PageRouteInfo<void> {
   const HomeRoute()
       : super(
           HomeRoute.name,
@@ -295,9 +307,9 @@ class HomeRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.StockDetailScreen]
-class StockDetailRoute extends _i11.PageRouteInfo<StockDetailRouteArgs> {
+class StockDetailRoute extends _i12.PageRouteInfo<StockDetailRouteArgs> {
   StockDetailRoute({
-    _i12.Key? key,
+    _i13.Key? key,
     required String companyName,
     required String symbol,
     required String ltp,
@@ -326,7 +338,7 @@ class StockDetailRouteArgs {
     required this.change,
   });
 
-  final _i12.Key? key;
+  final _i13.Key? key;
 
   final String companyName;
 
@@ -344,7 +356,7 @@ class StockDetailRouteArgs {
 
 /// generated route for
 /// [_i7.StockListScreen]
-class StockListRoute extends _i11.PageRouteInfo<void> {
+class StockListRoute extends _i12.PageRouteInfo<void> {
   const StockListRoute()
       : super(
           StockListRoute.name,
@@ -356,7 +368,7 @@ class StockListRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.PortfolioScreen]
-class PortfolioRoute extends _i11.PageRouteInfo<void> {
+class PortfolioRoute extends _i12.PageRouteInfo<void> {
   const PortfolioRoute()
       : super(
           PortfolioRoute.name,
@@ -368,8 +380,8 @@ class PortfolioRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.EmptyRouterPage]
-class PortfolioListRouter extends _i11.PageRouteInfo<void> {
-  const PortfolioListRouter({List<_i11.PageRouteInfo>? children})
+class PortfolioListRouter extends _i12.PageRouteInfo<void> {
+  const PortfolioListRouter({List<_i12.PageRouteInfo>? children})
       : super(
           PortfolioListRouter.name,
           path: 'portfolioStockListScreen',
@@ -381,7 +393,7 @@ class PortfolioListRouter extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.AddStocksScreen]
-class AddStocksRoute extends _i11.PageRouteInfo<void> {
+class AddStocksRoute extends _i12.PageRouteInfo<void> {
   const AddStocksRoute()
       : super(
           AddStocksRoute.name,
@@ -392,8 +404,20 @@ class AddStocksRoute extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.PortfolioStockListScreen]
-class PortfolioStockListRoute extends _i11.PageRouteInfo<void> {
+/// [_i10.WatchlistScreen]
+class WatchlistRoute extends _i12.PageRouteInfo<void> {
+  const WatchlistRoute()
+      : super(
+          WatchlistRoute.name,
+          path: 'watchlistScreen',
+        );
+
+  static const String name = 'WatchlistRoute';
+}
+
+/// generated route for
+/// [_i11.PortfolioStockListScreen]
+class PortfolioStockListRoute extends _i12.PageRouteInfo<void> {
   const PortfolioStockListRoute()
       : super(
           PortfolioStockListRoute.name,

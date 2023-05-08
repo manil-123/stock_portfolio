@@ -133,7 +133,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _portfolioHeading(List<LocalStockDataModel> localStockDataList) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 1),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -143,7 +143,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           GestureDetector(
-            onTap: () async {
+            onTap: () {
               localStockDataList.isEmpty
                   ? context.router.push(
                       AddStocksRoute(),
@@ -206,7 +206,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             children: [
               Text(
                 '${stockData.scrip} ',
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(fontSize: 18.0),
               ),
               Text(
                 '(${stockData.sectorName})',
@@ -234,7 +234,11 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 GestureDetector(
-                  onTap: () async {},
+                  onTap: () {
+                    context.router.push(
+                      WatchlistRoute(),
+                    );
+                  },
                   child: watchlistDataList.isEmpty
                       ? SizedBox.shrink()
                       : Text(
@@ -286,7 +290,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             children: [
               Text(
                 '${watchlistDataModel.scrip} ',
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(fontSize: 18.0),
               ),
               Text(
                 '(${watchlistDataModel.sectorName})',
@@ -295,7 +299,9 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             ],
           ),
           Text(
-            '${watchlistDataModel.companyName} ',
+            watchlistDataModel.companyName.length > 30
+                ? watchlistDataModel.companyName.substring(0, 30) + '...'
+                : watchlistDataModel.companyName,
             style: TextStyle(fontSize: 14.0),
           ),
         ],
