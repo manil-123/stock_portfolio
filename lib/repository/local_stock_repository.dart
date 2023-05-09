@@ -5,14 +5,15 @@ import 'package:share_portfolio/app/database/stock_watchlist_dao.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
+import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 
 abstract class LocalStockRepository {
   Future<List<LocalStockDataModel>> getLocalStockList();
-  Future<List<LocalStockDataModel>> getStockWatchlist();
+  Future<List<WatchlistDataModel>> getStockWatchlist();
   Future<int> insertShareInfoList({List<ShareInfoModel>? shareInfoList});
   Future<int> addStockToPortfolio(LocalStockDataModel localStockData);
   Future<int> deleteStock(LocalStockDataModel localStockData);
-  Future<int> addToWatchlist(LocalStockDataModel localStockData);
+  Future<int> addToWatchlist(WatchlistDataModel localStockData);
 }
 
 @LazySingleton(as: LocalStockRepository)
@@ -34,7 +35,7 @@ class LocalStockRepositoryImpl implements LocalStockRepository {
   }
 
   @override
-  Future<List<LocalStockDataModel>> getStockWatchlist() async {
+  Future<List<WatchlistDataModel>> getStockWatchlist() async {
     final stockWatchlist = await _stockWatchlistDAO.getStockWatchList() ?? [];
     return stockWatchlist;
   }
@@ -58,7 +59,7 @@ class LocalStockRepositoryImpl implements LocalStockRepository {
   }
 
   @override
-  Future<int> addToWatchlist(LocalStockDataModel localStockData) async {
-    return await _stockWatchlistDAO.insert(localStockData);
+  Future<int> addToWatchlist(WatchlistDataModel watchlistDataModel) async {
+    return await _stockWatchlistDAO.insert(watchlistDataModel);
   }
 }
