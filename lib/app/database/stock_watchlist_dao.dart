@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:sembast/sembast.dart';
 import 'package:share_portfolio/app/database/app_database.dart';
-import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
+import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 
 @LazySingleton()
 class StockWatchlistDAO {
@@ -15,7 +15,7 @@ class StockWatchlistDAO {
   // singleton instance of an opened database.
   Future<Database> get _db async => await AppDatabase.instance.database;
 
-  Future<List<LocalStockDataModel>?> getStockWatchList() async {
+  Future<List<WatchlistDataModel>?> getStockWatchList() async {
     // Finder object can also sort data.
     final finder = Finder(sortOrders: [
       SortOrder('companyName'),
@@ -27,18 +27,18 @@ class StockWatchlistDAO {
     );
     // Making a List<LocalStockData> out of List<RecordSnapshot>
     return recordSnapshots.map((snapshot) {
-      final localStockData = LocalStockDataModel.fromJson(snapshot.value);
+      final watchlistData = WatchlistDataModel.fromJson(snapshot.value);
       // An ID is a key of a record from the database.
 
-      return localStockData.copyWith(id: snapshot.key);
+      return watchlistData.copyWith(id: snapshot.key);
     }).toList();
   }
 
-  Future<int> insert(LocalStockDataModel localStockData) async {
-    var localDataList = await getStockWatchList();
+  Future<int> insert(WatchlistDataModel watchlistDataModel) async {
+    var watchlist = await getStockWatchList();
     int result = 0;
-    for (var oldLocalStockData in localDataList!) {
-      if (oldLocalStockData.companyName == localStockData.companyName) {
+    for (var oldLocalStockData in watchlist!) {
+      if (oldLocalStockData.companyName == watchlistDataModel.companyName) {
         result = 1;
         break;
       }
@@ -46,7 +46,7 @@ class StockWatchlistDAO {
     if (result == 0) {
       await _stockWatchlistStore.add(
         await _db,
-        localStockData.toJson(),
+        watchlistDataModel.toJson(),
       );
       return 1;
     } else {
@@ -54,8 +54,8 @@ class StockWatchlistDAO {
     }
   }
 
-  Future delete(LocalStockDataModel localStockData) async {
-    final finder = Finder(filter: Filter.byKey(localStockData.id));
+  Future delete(WatchlistDataModel watchlistDataModel) async {
+    final finder = Finder(filter: Filter.byKey(watchlistDataModel.id));
     await _stockWatchlistStore.delete(
       await _db,
       finder: finder,
