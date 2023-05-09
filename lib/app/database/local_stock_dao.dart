@@ -34,7 +34,7 @@ class LocalStockListDAO {
     }).toList();
   }
 
-  Future insert(LocalStockDataModel localStockData) async {
+  Future<int> insert(LocalStockDataModel localStockData) async {
     var localDataList = await getLocalStockList();
     int? updateId;
     int result = 0;
@@ -57,29 +57,29 @@ class LocalStockListDAO {
       }
     }
     if (result == 0) {
-      await _localStockListStore.add(
+      return await _localStockListStore.add(
         await _db,
         localStockData.toJson(),
       );
     } else {
-      update(localStockData, updateId);
+      return update(localStockData, updateId);
     }
   }
 
-  Future update(LocalStockDataModel localStockData, int? id) async {
+  Future<int> update(LocalStockDataModel localStockData, int? id) async {
     // For filtering by key (ID), RegEx, greater than, and many other criteria,
     // we use a Finder.
     final finder = Finder(filter: Filter.byKey(id));
-    await _localStockListStore.update(
+    return await _localStockListStore.update(
       await _db,
       localStockData.toJson(),
       finder: finder,
     );
   }
 
-  Future delete(LocalStockDataModel localStockData) async {
+  Future<int> delete(LocalStockDataModel localStockData) async {
     final finder = Finder(filter: Filter.byKey(localStockData.id));
-    await _localStockListStore.delete(
+    return await _localStockListStore.delete(
       await _db,
       finder: finder,
     );
