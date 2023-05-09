@@ -34,7 +34,7 @@ class StockWatchlistDAO {
     }).toList();
   }
 
-  Future<String> insert(LocalStockDataModel localStockData) async {
+  Future<int> insert(LocalStockDataModel localStockData) async {
     var localDataList = await getStockWatchList();
     int result = 0;
     for (var oldLocalStockData in localDataList!) {
@@ -48,9 +48,9 @@ class StockWatchlistDAO {
         await _db,
         localStockData.toJson(),
       );
-      return 'Stock successfully added in the watchlist';
+      return 1;
     } else {
-      return 'Stock already in the watchlist';
+      return 0;
     }
   }
 

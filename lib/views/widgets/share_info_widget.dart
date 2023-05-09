@@ -103,11 +103,20 @@ class ShareInfoWidget extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: InkWell(
                 onTap: () {},
-                child: Text(
-                  'Add to watchlist',
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    decoration: TextDecoration.underline,
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 6.0,
+                    vertical: 4.0,
+                  ),
+                  decoration: BoxDecoration(
+                      color: Color(0xFF79787D),
+                      borderRadius: BorderRadius.circular(12.0)),
+                  child: Text(
+                    'Add to watchlist',
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      // decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
               ),
