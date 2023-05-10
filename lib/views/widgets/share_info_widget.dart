@@ -5,13 +5,13 @@ class ShareInfoWidget extends StatelessWidget {
   final String symbol;
   final String ltp;
   final String change;
-  const ShareInfoWidget(
-      {Key? key,
-      required this.companyName,
-      required this.symbol,
-      required this.ltp,
-      required this.change})
-      : super(key: key);
+  const ShareInfoWidget({
+    Key? key,
+    required this.companyName,
+    required this.symbol,
+    required this.ltp,
+    required this.change,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,73 +23,95 @@ class ShareInfoWidget extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    symbol,
-                    style: TextStyle(color: Colors.white, fontSize: 18.0),
-                  ),
-                  Text(
-                    companyName,
-                    maxLines: 2,
-                    style: TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
-                  ),
-                ],
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  ltp,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-                Container(
-                  height: 32,
-                  width: 80,
-                  decoration: BoxDecoration(
-                    color: double.parse(change) >= 0
-                        ? Color(0xFF0E3F1A)
-                        : Color(0xFF661628),
-                    borderRadius: BorderRadius.circular(25),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        symbol,
+                        style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      ),
+                      Text(
+                        companyName,
+                        maxLines: 2,
+                        style:
+                            TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
+                      ),
+                    ],
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 9, vertical: 5),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.change_history,
-                          color: double.parse(change) >= 0
-                              ? Color(0xFF30D059)
-                              : Color(0xFFF73961),
-                          size: 14,
-                        ),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Text(
-                          '$change %',
-                          style: TextStyle(
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      ltp,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(color: Colors.white, fontSize: 18.0),
+                    ),
+                    Container(
+                      height: 32,
+                      width: 80,
+                      decoration: BoxDecoration(
+                        color: double.parse(change) >= 0
+                            ? Color(0xFF0E3F1A)
+                            : Color(0xFF661628),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.change_history,
                               color: double.parse(change) >= 0
                                   ? Color(0xFF30D059)
                                   : Color(0xFFF73961),
-                              fontSize: 12.0),
-                        )
-                      ],
-                    ),
-                  ),
-                )
+                              size: 14,
+                            ),
+                            SizedBox(
+                              width: 6,
+                            ),
+                            Text(
+                              '$change %',
+                              style: TextStyle(
+                                  color: double.parse(change) >= 0
+                                      ? Color(0xFF30D059)
+                                      : Color(0xFFF73961),
+                                  fontSize: 12.0),
+                            )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
+            SizedBox(
+              height: 12.0,
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: InkWell(
+                onTap: () {},
+                child: Text(
+                  'Add to watchlist',
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

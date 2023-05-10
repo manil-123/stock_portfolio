@@ -1,20 +1,20 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
+import 'package:share_portfolio/repository/local_stock_repository.dart';
 
 part 'load_portfolio_state.dart';
 part 'load_portfolio_cubit.freezed.dart';
 
 @LazySingleton()
 class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
-  final LocalStockListDAO localStockListDAO;
-  final CalculationRepository calculationRepo;
+  final LocalStockRepository _localStockRepository;
+  final CalculationRepository _calculationRepo;
   LoadPortfolioCubit(
-    this.localStockListDAO,
-    this.calculationRepo,
+    this._localStockRepository,
+    this._calculationRepo,
   ) : super(
           LoadPortfolioState.initial(),
         );
@@ -27,14 +27,15 @@ class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
       await Future.delayed(
         Duration(milliseconds: 500),
       );
-      final localStockList = await localStockListDAO.getLocalStockList() ?? [];
-      final totalInvestment = await calculationRepo.getTotalInvestment();
-      final totalShares = await calculationRepo.getTotalSharesCount();
-      final totalStock = await calculationRepo.getTotalStockCount();
-      final totalProfitLoss = await calculationRepo.getTotalProfitLoss();
-      final currentValue = await calculationRepo.getCurrentValue();
-      final totalPLPercentage = await calculationRepo.profitLossPercentage();
-      final dailyPL = await calculationRepo.getTotalDailyProfitLoss();
+      final localStockList =
+          await _localStockRepository.getLocalStockList() ?? [];
+      final totalInvestment = await _calculationRepo.getTotalInvestment();
+      final totalShares = await _calculationRepo.getTotalSharesCount();
+      final totalStock = await _calculationRepo.getTotalStockCount();
+      final totalProfitLoss = await _calculationRepo.getTotalProfitLoss();
+      final currentValue = await _calculationRepo.getCurrentValue();
+      final totalPLPercentage = await _calculationRepo.profitLossPercentage();
+      final dailyPL = await _calculationRepo.getTotalDailyProfitLoss();
       emit(
         LoadPortfolioState.loaded(
             totalInvestment: totalInvestment,
@@ -54,12 +55,12 @@ class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
   }
 
   Future<String> getCompanyPrice(String? scrip) async {
-    var ltp = await calculationRepo.getLTP(scrip);
+    var ltp = await _calculationRepo.getLTP(scrip);
     return ltp;
   }
 
   Future<double> getLTPDiff(String? scrip) async {
-    var value = await calculationRepo.getLTPDifference(scrip);
+    var value = await _calculationRepo.getLTPDifference(scrip);
     return value;
   }
 }
