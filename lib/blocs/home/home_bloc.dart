@@ -13,9 +13,9 @@ part 'home_bloc.freezed.dart';
 
 @LazySingleton()
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final NepseRepository nepseRepo;
+  final NepseRepository _nepseRepo;
 
-  HomeBloc(this.nepseRepo)
+  HomeBloc(this._nepseRepo)
       : super(
           HomeState.initial(),
         ) {
@@ -23,9 +23,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(
         HomeState.loading(),
       );
-      NepseIndexModel nepseIndex = await nepseRepo.getNepseIndex();
-      final topGainersListResponse = await nepseRepo.getTopGainers();
-      final topLosersListResponse = await nepseRepo.getTopLosers();
+      NepseIndexModel nepseIndex = await _nepseRepo.getNepseIndex();
+      final topGainersListResponse = await _nepseRepo.getTopGainers();
+      final topLosersListResponse = await _nepseRepo.getTopLosers();
       topGainersListResponse.fold(
         (failure) {
           emit(

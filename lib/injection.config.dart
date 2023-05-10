@@ -70,11 +70,12 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i15.LocalStockRepositoryImpl(
               gh<_i5.LocalStockListDAO>(),
               gh<_i8.StockWatchlistDAO>(),
+              gh<_i7.ShareInfoListDAO>(),
             ));
     gh.lazySingleton<_i16.NepseRepository>(
         () => _i16.NepseRepositoryImpl(gh<_i12.DataService>()));
     gh.lazySingleton<_i17.ShareListBloc>(() => _i17.ShareListBloc(
-          gh<_i7.ShareInfoListDAO>(),
+          gh<_i15.LocalStockRepository>(),
           gh<_i16.NepseRepository>(),
         ));
     gh.lazySingleton<_i18.HomeBloc>(

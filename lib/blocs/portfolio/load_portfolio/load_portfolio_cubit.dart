@@ -27,8 +27,7 @@ class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
       await Future.delayed(
         Duration(milliseconds: 500),
       );
-      final localStockList =
-          await _localStockRepository.getLocalStockList() ?? [];
+      final localStockList = await _localStockRepository.getLocalStockList();
       final totalInvestment = await _calculationRepo.getTotalInvestment();
       final totalShares = await _calculationRepo.getTotalSharesCount();
       final totalStock = await _calculationRepo.getTotalStockCount();

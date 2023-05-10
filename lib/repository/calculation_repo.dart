@@ -17,14 +17,18 @@ abstract class CalculationRepository {
 
 @LazySingleton(as: CalculationRepository)
 class CalculationRepositoryImpl implements CalculationRepository {
-  final ShareInfoListDAO shareInfoListDAO;
-  final LocalStockListDAO localStockListDAO;
-  CalculationRepositoryImpl(
-      {required this.shareInfoListDAO, required this.localStockListDAO});
+  final ShareInfoListDAO _shareInfoListDAO;
+  final LocalStockListDAO _localStockListDAO;
+
+  CalculationRepositoryImpl({
+    required ShareInfoListDAO shareInfoListDAO,
+    required LocalStockListDAO localStockListDAO,
+  })  : _localStockListDAO = localStockListDAO,
+        _shareInfoListDAO = shareInfoListDAO;
 
   @override
   Future<String> getLTP(String? scrip) async {
-    var shareInfoList = await shareInfoListDAO.getShareInfoList();
+    var shareInfoList = await _shareInfoListDAO.getShareInfoList();
     if (shareInfoList == null) return '0';
     for (var i in shareInfoList.shareInfoList!) {
       if (scrip == i.symbol) {
@@ -36,7 +40,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
 
   @override
   Future<String> getChange(String? scrip) async {
-    var shareInfoList = await shareInfoListDAO.getShareInfoList();
+    var shareInfoList = await _shareInfoListDAO.getShareInfoList();
     if (shareInfoList == null) return '0';
     for (var i in shareInfoList.shareInfoList!) {
       if (scrip == i.symbol) {
@@ -64,7 +68,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
   @override
   Future<double> getTotalInvestment() async {
     double totalInvestment = 0;
-    var localStockList = await localStockListDAO.getLocalStockList();
+    var localStockList = await _localStockListDAO.getLocalStockList();
     for (var i in localStockList!) {
       totalInvestment = totalInvestment + i.quantity * i.price;
     }
@@ -74,7 +78,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
   @override
   Future<int> getTotalSharesCount() async {
     int sum = 0;
-    var localStockList = await localStockListDAO.getLocalStockList();
+    var localStockList = await _localStockListDAO.getLocalStockList();
     for (var i in localStockList!) {
       sum = sum + i.quantity;
     }
@@ -83,13 +87,13 @@ class CalculationRepositoryImpl implements CalculationRepository {
 
   @override
   Future<int> getTotalStockCount() async {
-    var localStockList = await localStockListDAO.getLocalStockList();
+    var localStockList = await _localStockListDAO.getLocalStockList();
     return localStockList!.length;
   }
 
   @override
   Future<double> getTotalProfitLoss() async {
-    var localStockList = await localStockListDAO.getLocalStockList();
+    var localStockList = await _localStockListDAO.getLocalStockList();
     double profitLoss = 0;
     for (var i in localStockList!) {
       var ltp = await getLTP(i.scrip);
@@ -101,7 +105,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
 
   @override
   Future<double> getCurrentValue() async {
-    var localStockList = await localStockListDAO.getLocalStockList();
+    var localStockList = await _localStockListDAO.getLocalStockList();
     double currentValue = 0;
     for (var i in localStockList!) {
       var ltp = await getLTP(i.scrip);
@@ -120,7 +124,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
 
   @override
   Future<double> getTotalDailyProfitLoss() async {
-    var localStockList = await localStockListDAO.getLocalStockList();
+    var localStockList = await _localStockListDAO.getLocalStockList();
     double dailyPL = 0;
     for (var i in localStockList!) {
       var individualLTP = await getLTPDifference(i.scrip);

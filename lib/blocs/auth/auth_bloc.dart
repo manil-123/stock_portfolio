@@ -10,14 +10,14 @@ part 'auth_bloc.freezed.dart';
 
 @LazySingleton()
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final LocalAuthService localAuthService;
-  AuthBloc(this.localAuthService)
+  final LocalAuthService _localAuthService;
+  AuthBloc(this._localAuthService)
       : super(
           AuthState.initial(),
         ) {
     on<_SubmitAuth>(
       (event, emit) async {
-        final authResponse = await localAuthService.authenticate();
+        final authResponse = await _localAuthService.authenticate();
         emit(
           AuthState.submitting(),
         );

@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:share_portfolio/app/database/share_info_dao.dart';
 import 'package:share_portfolio/core/error/failures.dart';
-import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
+import 'package:share_portfolio/repository/local_stock_repository.dart';
 import 'package:share_portfolio/repository/nepse_repository.dart';
 
 part 'share_list_event.dart';
@@ -13,11 +12,11 @@ part 'share_list_bloc.freezed.dart';
 
 @LazySingleton()
 class ShareListBloc extends Bloc<ShareListEvent, ShareListState> {
-  final ShareInfoListDAO shareInfoListDAO;
-  final NepseRepository nepseRepo;
+  final LocalStockRepository _localStockRepository;
+  final NepseRepository _nepseRepo;
   ShareListBloc(
-    this.shareInfoListDAO,
-    this.nepseRepo,
+    this._localStockRepository,
+    this._nepseRepo,
   ) : super(
           ShareListState.initial(),
         ) {
@@ -25,15 +24,13 @@ class ShareListBloc extends Bloc<ShareListEvent, ShareListState> {
       emit(
         ShareListState.loading(),
       );
-      final shareListResponse = await nepseRepo.getShareInfoList();
+      final shareListResponse = await _nepseRepo.getShareInfoList();
       shareListResponse.fold((failure) {
         emit(
           ShareListState.failed(failure: failure),
         );
       }, (shareList) {
-        shareInfoListDAO.insert(
-          ShareInfoList(shareInfoList: shareList),
-        );
+        _localStockRepository.insertShareInfoList(shareInfoList: shareList);
         emit(
           ShareListState.loaded(shareList: shareList),
         );
