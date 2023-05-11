@@ -1,25 +1,39 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:share_portfolio/core/error/failures.dart';
 
 @LazySingleton()
 class LocalAuthService {
-  static final _auth = LocalAuthentication();
+  final _auth = LocalAuthentication();
 
-  static Future<bool> _canAuthenticate() async =>
+  Future<bool> _canAuthenticate() async =>
       await _auth.canCheckBiometrics || await _auth.isDeviceSupported();
 
-  static Future<bool> authenticate() async {
+  Future<Either<Failure, bool>> authenticate() async {
     try {
-      if (!await _canAuthenticate()) return false;
+      if (!await _canAuthenticate())
+        return Left(
+          Failure.localAuthFailure(failureMessage: "Device not supported"),
+        );
 
-      return await _auth.authenticate(
+      final didAuthenticate = await _auth.authenticate(
         localizedReason: 'Fingerprint required to authenticate',
         options: AuthenticationOptions(useErrorDialogs: true, stickyAuth: true),
       );
+      if (didAuthenticate) {
+        return Right(didAuthenticate);
+      } else {
+        return Left(
+          Failure.localAuthFailure(failureMessage: "Please Enter Biometric"),
+        );
+      }
     } catch (e) {
       debugPrint('error $e');
-      return false;
+      return Left(
+        Failure.localAuthFailure(failureMessage: "Local Auth Exception"),
+      );
     }
   }
 }

@@ -8,4 +8,6 @@ class Failure with _$Failure {
       _ServerFailure;
   const factory Failure.scrapFailure({required String failureMessage}) =
       _ScrapFailure;
+  const factory Failure.localAuthFailure({required String failureMessage}) =
+      _LocalAuthFailure;
 }
