@@ -19,7 +19,7 @@ import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart' as _i11;
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_bloc.dart'
     as _i12;
 import 'package:share_portfolio/repository/calculation_repo.dart' as _i8;
-import 'package:share_portfolio/repository/nepse_repo.dart' as _i10;
+import 'package:share_portfolio/repository/nepse_repository.dart' as _i10;
 import 'package:share_portfolio/services/data_service.dart' as _i9;
 import 'package:share_portfolio/services/local_auth_service.dart' as _i3;
 import 'package:share_portfolio/services/scrapper.dart' as _i5;

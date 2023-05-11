@@ -5,7 +5,7 @@ import 'package:share_portfolio/core/error/failures.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
-import 'package:share_portfolio/repository/nepse_repo.dart';
+import 'package:share_portfolio/repository/nepse_repository.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

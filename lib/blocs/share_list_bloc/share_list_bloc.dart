@@ -5,7 +5,7 @@ import 'package:share_portfolio/app/database/share_info_dao.dart';
 import 'package:share_portfolio/core/error/failures.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
-import 'package:share_portfolio/repository/nepse_repo.dart';
+import 'package:share_portfolio/repository/nepse_repository.dart';
 
 part 'share_list_event.dart';
 part 'share_list_state.dart';
