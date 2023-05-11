@@ -43,12 +43,14 @@ dependencies:
   freezed_annotation: ^2.2.0
   # Service locator
   get_it: ^7.2.0
-  injectable: ^2.1.0
-  # json serialization
-  json_annotation: ^4.8.0
   html: ^0.15.3
   # http request
   http: ^0.13.6
+  injectable: ^2.1.0
+  # json serialization
+  json_annotation: ^4.8.0
+  # local authentication
+  local_auth: ^2.1.6
   path_provider: ^2.0.15
   # Local storage
   sembast: ^3.4.4
