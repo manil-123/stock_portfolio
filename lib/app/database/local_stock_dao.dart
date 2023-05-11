@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:sembast/sembast.dart';
 import 'package:share_portfolio/app/database/app_database.dart';
 import 'package:share_portfolio/model/local_stock_data.dart';
 
+@LazySingleton()
 class LocalStockListDAO {
   static const String LOCAL_STOCK_LIST_STORE_NAME = 'localstocklist';
   // A Store with int keys and Map<String, dynamic> values.
@@ -23,7 +25,7 @@ class LocalStockListDAO {
       await _db,
       finder: finder,
     );
-    // Making a List<Fruit> out of List<RecordSnapshot>
+    // Making a List<LocalStockData> out of List<RecordSnapshot>
     return recordSnapshots.map((snapshot) {
       final localStockData = LocalStockData.fromJson(snapshot.value);
       // An ID is a key of a record from the database.

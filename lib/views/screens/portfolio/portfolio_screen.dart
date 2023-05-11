@@ -6,13 +6,12 @@
 // import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 // import 'package:share_portfolio/blocs/portfolio/portfolio_state.dart';
 // import 'package:share_portfolio/app/database/local_stock_dao.dart';
-// import 'package:share_portfolio/model/share_info_model.dart';
+// import 'package:share_portfolio/model/stock/share_info_model.dart';
 // import 'package:share_portfolio/repository/calculation_repo.dart';
 // import 'package:share_portfolio/views/screens/portfolio/com/current_holdings.dart';
 // import 'package:share_portfolio/views/screens/portfolio/com/profit_loss.dart';
 // import 'package:share_portfolio/views/screens/portfolio/com/welcome.dart';
 // import '../../../blocs/share_list_bloc/share_list_bloc.dart';
-// import '../../../blocs/share_list_bloc/share_list_event.dart';
 // import '../../../app/database/share_info_dao.dart';
 // import 'add_stocks.dart';
 

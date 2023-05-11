@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +31,6 @@ class _AuthScreenState extends State<AuthScreen> {
       backgroundColor: Theme.of(context).colorScheme.secondary,
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
-          log(state.toString());
           state.when(
             initial: () {},
             submitting: () {},
@@ -51,15 +49,7 @@ class _AuthScreenState extends State<AuthScreen> {
         },
         builder: (context, state) {
           return state.when(
-              initial: () => Center(
-                    child: IconButton(
-                        onPressed: () => checkBiometric(),
-                        icon: Icon(
-                          Icons.fingerprint,
-                          color: Colors.white,
-                          size: 50,
-                        )),
-                  ),
+              initial: () => _authWidget(),
               submitting: () => Center(
                     child: LinearProgressIndicator(
                       backgroundColor: Colors.white,
@@ -67,17 +57,31 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
               success: () => Container(),
               failed: (failure) {
-                return Center(
-                  child: IconButton(
-                      onPressed: () => checkBiometric(),
-                      icon: Icon(
-                        Icons.fingerprint,
-                        color: Colors.white,
-                        size: 50,
-                      )),
-                );
+                return _authWidget();
               });
         },
+      ),
+    );
+  }
+
+  Widget _authWidget() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            onPressed: () => checkBiometric(),
+            icon: Icon(
+              Icons.fingerprint,
+              color: Colors.white,
+              size: 50,
+            ),
+          ),
+          SizedBox(
+            height: 16.0,
+          ),
+          Text('Press here to login'),
+        ],
       ),
     );
   }
