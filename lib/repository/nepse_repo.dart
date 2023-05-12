@@ -8,7 +8,7 @@ import '../model/nepse_index_model.dart';
 import '../model/stock/share_info_model.dart';
 
 abstract class NepseRepository {
-  Future<List<ShareInfoModel>> getShareInfoList();
+  Future<Either<Failure, List<ShareInfoModel>>> getShareInfoList();
   Future<NepseIndexModel> getNepseIndex();
   Future<Either<Failure, List<TopGainersModel>>> getTopGainers();
   Future<Either<Failure, List<TopLosersModel>>> getTopLosers();
@@ -20,7 +20,7 @@ class NepseRepositoryImpl implements NepseRepository {
 
   NepseRepositoryImpl(this._dataService);
   @override
-  Future<List<ShareInfoModel>> getShareInfoList() async {
+  Future<Either<Failure, List<ShareInfoModel>>> getShareInfoList() async {
     return await _dataService.fetchShareData();
   }
 

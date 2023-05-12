@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/app/database/share_info_dao.dart';
+import 'package:share_portfolio/core/error/failures.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
 import 'package:share_portfolio/repository/nepse_repo.dart';
@@ -24,13 +25,19 @@ class ShareListBloc extends Bloc<ShareListEvent, ShareListState> {
       emit(
         ShareListState.loading(),
       );
-      List<ShareInfoModel> shareList = await nepseRepo.getShareInfoList();
-      shareInfoListDAO.insert(
-        ShareInfoList(shareInfoList: shareList),
-      );
-      emit(
-        ShareListState.loaded(shareList: shareList),
-      );
+      final shareListResponse = await nepseRepo.getShareInfoList();
+      shareListResponse.fold((failure) {
+        emit(
+          ShareListState.failed(failure: failure),
+        );
+      }, (shareList) {
+        shareInfoListDAO.insert(
+          ShareInfoList(shareInfoList: shareList),
+        );
+        emit(
+          ShareListState.loaded(shareList: shareList),
+        );
+      });
     });
   }
 }

@@ -171,7 +171,7 @@ mixin _$ShareListState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ShareInfoModel> shareList) loaded,
-    required TResult Function() failed,
+    required TResult Function(Failure failure) failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -179,7 +179,7 @@ mixin _$ShareListState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ShareInfoModel> shareList)? loaded,
-    TResult? Function()? failed,
+    TResult? Function(Failure failure)? failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -187,7 +187,7 @@ mixin _$ShareListState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ShareInfoModel> shareList)? loaded,
-    TResult Function()? failed,
+    TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -276,7 +276,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ShareInfoModel> shareList) loaded,
-    required TResult Function() failed,
+    required TResult Function(Failure failure) failed,
   }) {
     return initial();
   }
@@ -287,7 +287,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ShareInfoModel> shareList)? loaded,
-    TResult? Function()? failed,
+    TResult? Function(Failure failure)? failed,
   }) {
     return initial?.call();
   }
@@ -298,7 +298,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ShareInfoModel> shareList)? loaded,
-    TResult Function()? failed,
+    TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -389,7 +389,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ShareInfoModel> shareList) loaded,
-    required TResult Function() failed,
+    required TResult Function(Failure failure) failed,
   }) {
     return loading();
   }
@@ -400,7 +400,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ShareInfoModel> shareList)? loaded,
-    TResult? Function()? failed,
+    TResult? Function(Failure failure)? failed,
   }) {
     return loading?.call();
   }
@@ -411,7 +411,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ShareInfoModel> shareList)? loaded,
-    TResult Function()? failed,
+    TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -535,7 +535,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ShareInfoModel> shareList) loaded,
-    required TResult Function() failed,
+    required TResult Function(Failure failure) failed,
   }) {
     return loaded(shareList);
   }
@@ -546,7 +546,7 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ShareInfoModel> shareList)? loaded,
-    TResult? Function()? failed,
+    TResult? Function(Failure failure)? failed,
   }) {
     return loaded?.call(shareList);
   }
@@ -557,7 +557,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ShareInfoModel> shareList)? loaded,
-    TResult Function()? failed,
+    TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -618,6 +618,10 @@ abstract class _Loaded implements ShareListState {
 abstract class _$$_FailedCopyWith<$Res> {
   factory _$$_FailedCopyWith(_$_Failed value, $Res Function(_$_Failed) then) =
       __$$_FailedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Failure failure});
+
+  $FailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -626,26 +630,58 @@ class __$$_FailedCopyWithImpl<$Res>
     implements _$$_FailedCopyWith<$Res> {
   __$$_FailedCopyWithImpl(_$_Failed _value, $Res Function(_$_Failed) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failure = null,
+  }) {
+    return _then(_$_Failed(
+      failure: null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FailureCopyWith<$Res> get failure {
+    return $FailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Failed implements _Failed {
-  const _$_Failed();
+  const _$_Failed({required this.failure});
+
+  @override
+  final Failure failure;
 
   @override
   String toString() {
-    return 'ShareListState.failed()';
+    return 'ShareListState.failed(failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Failed);
+        (other.runtimeType == runtimeType &&
+            other is _$_Failed &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FailedCopyWith<_$_Failed> get copyWith =>
+      __$$_FailedCopyWithImpl<_$_Failed>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -653,9 +689,9 @@ class _$_Failed implements _Failed {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<ShareInfoModel> shareList) loaded,
-    required TResult Function() failed,
+    required TResult Function(Failure failure) failed,
   }) {
-    return failed();
+    return failed(failure);
   }
 
   @override
@@ -664,9 +700,9 @@ class _$_Failed implements _Failed {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<ShareInfoModel> shareList)? loaded,
-    TResult? Function()? failed,
+    TResult? Function(Failure failure)? failed,
   }) {
-    return failed?.call();
+    return failed?.call(failure);
   }
 
   @override
@@ -675,11 +711,11 @@ class _$_Failed implements _Failed {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<ShareInfoModel> shareList)? loaded,
-    TResult Function()? failed,
+    TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
     if (failed != null) {
-      return failed();
+      return failed(failure);
     }
     return orElse();
   }
@@ -723,5 +759,10 @@ class _$_Failed implements _Failed {
 }
 
 abstract class _Failed implements ShareListState {
-  const factory _Failed() = _$_Failed;
+  const factory _Failed({required final Failure failure}) = _$_Failed;
+
+  Failure get failure;
+  @JsonKey(ignore: true)
+  _$$_FailedCopyWith<_$_Failed> get copyWith =>
+      throw _privateConstructorUsedError;
 }

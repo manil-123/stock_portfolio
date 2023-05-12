@@ -38,7 +38,11 @@ class _StockListScreenState extends State<StockListScreen> {
                 ),
               ),
               loaded: (shareList) => _shareListLoaded(shareList),
-              failed: () => Container(),
+              failed: (failure) => Center(
+                child: Text(
+                  failure.failureMessage,
+                ),
+              ),
             );
           },
         ),

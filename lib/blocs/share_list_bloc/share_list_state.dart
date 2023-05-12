@@ -6,5 +6,5 @@ class ShareListState with _$ShareListState {
   const factory ShareListState.loading() = _Loading;
   const factory ShareListState.loaded(
       {required List<ShareInfoModel> shareList}) = _Loaded;
-  const factory ShareListState.failed() = _Failed;
+  const factory ShareListState.failed({required Failure failure}) = _Failed;
 }

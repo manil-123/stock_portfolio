@@ -18,14 +18,18 @@ class DataService {
   final Scrapper scrapper;
 
   DataService(this.scrapper);
-  Future<List<ShareInfoModel>> fetchShareData() async {
-    final response = await scrapper.fetchStockData();
+  Future<Either<Failure, List<ShareInfoModel>>> fetchShareData() async {
     try {
+      final response = await scrapper.fetchStockData();
       final shareInfoList = ShareInfoList.fromMap(response);
-      return shareInfoList.shareInfoList ?? [];
+      return Right(shareInfoList.shareInfoList ?? []);
     } catch (e) {
       debugPrint(e.toString());
-      return [];
+      return Left(
+        Failure.scrapFailure(
+          failureMessage: e.toString(),
+        ),
+      );
     }
   }
 
@@ -45,8 +49,8 @@ class DataService {
   }
 
   Future<Either<Failure, List<TopGainersModel>>> getTopGainers() async {
-    final response = await scrapper.fetchTopGainersData();
     try {
+      final response = await scrapper.fetchTopGainersData();
       final topGainersList = TopGainersListResponse.fromJson(
           response['top_gainers'] as List<Map<String, dynamic>>);
       return Right(topGainersList.topGainersListData ?? []);
@@ -61,8 +65,8 @@ class DataService {
   }
 
   Future<Either<Failure, List<TopLosersModel>>> getTopLosers() async {
-    final response = await scrapper.fetchTopLosersData();
     try {
+      final response = await scrapper.fetchTopLosersData();
       final topLosersList = TopLosersListResponse.fromJson(
           response['top_losers'] as List<Map<String, dynamic>>);
       return Right(topLosersList.topLosersListData ?? []);
