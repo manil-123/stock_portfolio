@@ -11,7 +11,7 @@ abstract class NepseRepository {
   Future<List<ShareInfoModel>> getShareInfoList();
   Future<NepseIndexModel> getNepseIndex();
   Future<Either<Failure, List<TopGainersModel>>> getTopGainers();
-  Future<List<TopLosersModel>> getTopLosers();
+  Future<Either<Failure, List<TopLosersModel>>> getTopLosers();
 }
 
 @LazySingleton(as: NepseRepository)
@@ -35,7 +35,7 @@ class NepseRepositoryImpl implements NepseRepository {
   }
 
   @override
-  Future<List<TopLosersModel>> getTopLosers() async {
+  Future<Either<Failure, List<TopLosersModel>>> getTopLosers() async {
     return await _dataService.getTopLosers();
   }
 }

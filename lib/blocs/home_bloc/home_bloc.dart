@@ -25,7 +25,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
       NepseIndexModel nepseIndex = await nepseRepo.getNepseIndex();
       final topGainersListResponse = await nepseRepo.getTopGainers();
-      List<TopLosersModel> topLosers = await nepseRepo.getTopLosers();
+      final topLosersListResponse = await nepseRepo.getTopLosers();
       topGainersListResponse.fold(
         (failure) {
           emit(
@@ -33,12 +33,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           );
         },
         (topGainersList) {
-          emit(
-            HomeState.loaded(
+          topLosersListResponse.fold((failure) {
+            emit(
+              HomeState.failed(failure: failure),
+            );
+          }, (topLosersList) {
+            emit(
+              HomeState.loaded(
                 nepseIndex: nepseIndex,
                 topGainers: topGainersList,
-                topLosers: topLosers),
-          );
+                topLosers: topLosersList,
+              ),
+            );
+          });
         },
       );
     });

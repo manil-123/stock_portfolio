@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -61,15 +60,19 @@ class DataService {
     }
   }
 
-  Future<List<TopLosersModel>> getTopLosers() async {
+  Future<Either<Failure, List<TopLosersModel>>> getTopLosers() async {
     final response = await scrapper.fetchTopLosersData();
     try {
       final topLosersList = TopLosersListResponse.fromJson(
           response['top_losers'] as List<Map<String, dynamic>>);
-      return topLosersList.topLosersListData ?? [];
+      return Right(topLosersList.topLosersListData ?? []);
     } catch (e) {
       debugPrint(e.toString());
-      return [];
+      return Left(
+        Failure.scrapFailure(
+          failureMessage: e.toString(),
+        ),
+      );
     }
   }
 }
