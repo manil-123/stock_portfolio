@@ -9,5 +9,5 @@ class HomeState with _$HomeState {
     required List<TopGainersModel> topGainers,
     required List<TopLosersModel> topLosers,
   }) = _Loaded;
-  const factory HomeState.failed() = _Failed;
+  const factory HomeState.failed({required Failure failure}) = _Failed;
 }

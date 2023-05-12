@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:share_portfolio/core/error/failures.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
@@ -23,13 +24,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         HomeState.loading(),
       );
       NepseIndexModel nepseIndex = await nepseRepo.getNepseIndex();
-      List<TopGainersModel> topGainers = await nepseRepo.getTopGainers();
+      final topGainersListResponse = await nepseRepo.getTopGainers();
       List<TopLosersModel> topLosers = await nepseRepo.getTopLosers();
-      emit(
-        HomeState.loaded(
-            nepseIndex: nepseIndex,
-            topGainers: topGainers,
-            topLosers: topLosers),
+      topGainersListResponse.fold(
+        (failure) {
+          emit(
+            HomeState.failed(failure: failure),
+          );
+        },
+        (topGainersList) {
+          emit(
+            HomeState.loaded(
+                nepseIndex: nepseIndex,
+                topGainers: topGainersList,
+                topLosers: topLosers),
+          );
+        },
       );
     });
   }

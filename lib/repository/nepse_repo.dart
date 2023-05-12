@@ -1,4 +1,6 @@
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:share_portfolio/core/error/failures.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/services/data_service.dart';
 import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
@@ -8,7 +10,7 @@ import '../model/stock/share_info_model.dart';
 abstract class NepseRepository {
   Future<List<ShareInfoModel>> getShareInfoList();
   Future<NepseIndexModel> getNepseIndex();
-  Future<List<TopGainersModel>> getTopGainers();
+  Future<Either<Failure, List<TopGainersModel>>> getTopGainers();
   Future<List<TopLosersModel>> getTopLosers();
 }
 
@@ -28,7 +30,7 @@ class NepseRepositoryImpl implements NepseRepository {
   }
 
   @override
-  Future<List<TopGainersModel>> getTopGainers() async {
+  Future<Either<Failure, List<TopGainersModel>>> getTopGainers() async {
     return await _dataService.getTopGainers();
   }
 

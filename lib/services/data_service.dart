@@ -1,8 +1,10 @@
 import 'dart:developer';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
+import 'package:share_portfolio/core/error/failures.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
@@ -43,15 +45,19 @@ class DataService {
     }
   }
 
-  Future<List<TopGainersModel>> getTopGainers() async {
+  Future<Either<Failure, List<TopGainersModel>>> getTopGainers() async {
     final response = await scrapper.fetchTopGainersData();
     try {
       final topGainersList = TopGainersListResponse.fromJson(
           response['top_gainers'] as List<Map<String, dynamic>>);
-      return topGainersList.topGainersListData ?? [];
+      return Right(topGainersList.topGainersListData ?? []);
     } catch (e) {
       debugPrint(e.toString());
-      return [];
+      return Left(
+        Failure.scrapFailure(
+          failureMessage: e.toString(),
+        ),
+      );
     }
   }
 

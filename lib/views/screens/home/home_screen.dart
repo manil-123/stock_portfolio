@@ -36,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             loaded: (nepseIndex, topGainers, topLosers) =>
                 _homeLoaded(nepseIndex, topGainers, topLosers),
-            failed: () => Container(),
+            failed: (failure) => Center(
+              child: Text(failure.failureMessage),
+            ),
           );
         },
       ),
