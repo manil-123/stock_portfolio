@@ -1,8 +1,6 @@
 part of 'share_list_bloc.dart';
 
-abstract class ShareListEvent extends Equatable {
-  @override
-  List<Object> get props => [];
+@freezed
+class ShareListEvent with _$ShareListEvent {
+  const factory ShareListEvent.loadShareList() = _LoadShareList;
 }
-
-class LoadShareList extends ShareListEvent {}

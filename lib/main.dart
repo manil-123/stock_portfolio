@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
           create: (context) => getIt<ShareListBloc>()
             ..add(
-              LoadShareList(),
+              ShareListEvent.loadShareList(),
             ),
         ),
         BlocProvider(

@@ -1,16 +1,10 @@
 part of 'share_list_bloc.dart';
 
-abstract class ShareListState extends Equatable {
-  @override
-  List<Object> get props => [];
+@freezed
+class ShareListState with _$ShareListState {
+  const factory ShareListState.initial() = _Initial;
+  const factory ShareListState.loading() = _Loading;
+  const factory ShareListState.loaded(
+      {required List<ShareInfoModel> shareList}) = _Loaded;
+  const factory ShareListState.failed() = _Failed;
 }
-
-class ShareListLoading extends ShareListState {}
-
-class ShareListLoaded extends ShareListState {
-  final List<ShareInfoModel> shareList;
-
-  ShareListLoaded({required this.shareList});
-}
-
-class ShareListFailedToLoad extends ShareListState {}

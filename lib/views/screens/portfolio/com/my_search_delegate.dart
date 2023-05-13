@@ -53,7 +53,7 @@ class MySearchDelegate extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     List<ShareInfoModel> suggestions =
         shareInfoList!.shareInfoList!.where((element) {
-      final result = element.companyName!.toLowerCase();
+      final result = element.companyName.toLowerCase();
       final input = query.toLowerCase();
       return result.contains(input);
     }).toList();
