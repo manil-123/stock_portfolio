@@ -5,7 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
-import 'package:share_portfolio/model/top_gainers_model.dart';
+import 'package:share_portfolio/model/home/top_gainers_model.dart';
 import 'package:share_portfolio/model/top_losers_model.dart';
 import 'package:share_portfolio/services/scrapper.dart';
 import 'dart:convert';
@@ -19,7 +19,7 @@ class DataService {
   DataService(this.scrapper);
   Future<List<ShareInfoModel>> fetchShareData() async {
     final response = await scrapper.fetchStockData();
-    log(response.toString());
+    final topGainers = await scrapper.fetchTopGainersData();
     try {
       final shareInfoList = ShareInfoList.fromMap(response);
       return shareInfoList.shareInfoList ?? [];

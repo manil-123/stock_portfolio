@@ -3,7 +3,7 @@ import 'package:share_portfolio/services/data_service.dart';
 import 'package:share_portfolio/model/top_losers_model.dart';
 import '../model/nepse_index_model.dart';
 import '../model/stock/share_info_model.dart';
-import '../model/top_gainers_model.dart';
+import '../model/home/top_gainers_model.dart';
 
 abstract class NepseRepository {
   Future<List<ShareInfoModel>> getShareInfoList();
