@@ -59,8 +59,8 @@ class Scrapper {
       }
       topGainersMapList.add(individualMap);
     }
-    log(topGainersMapList.toString());
     topGainersMapList.removeAt(0);
-    return {"list": topGainersMapList};
+    log(topGainersMapList.toString());
+    return {"top_gainers": topGainersMapList};
   }
 }

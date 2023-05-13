@@ -8,7 +8,7 @@ import '../model/home/top_gainers_model.dart';
 abstract class NepseRepository {
   Future<List<ShareInfoModel>> getShareInfoList();
   Future<NepseIndexModel?> getNepseIndex();
-  Future<List<TopGainersModel>?> getTopGainers();
+  Future<List<TopGainersModel>> getTopGainers();
   Future<List<TopLosersModel>?> getTopLosers();
 }
 
@@ -28,7 +28,7 @@ class NepseRepositoryImpl implements NepseRepository {
   }
 
   @override
-  Future<List<TopGainersModel>?> getTopGainers() async {
+  Future<List<TopGainersModel>> getTopGainers() async {
     return await _dataService.getTopGainers();
   }
 

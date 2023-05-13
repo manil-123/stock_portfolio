@@ -19,7 +19,6 @@ class DataService {
   DataService(this.scrapper);
   Future<List<ShareInfoModel>> fetchShareData() async {
     final response = await scrapper.fetchStockData();
-    final topGainers = await scrapper.fetchTopGainersData();
     try {
       final shareInfoList = ShareInfoList.fromMap(response);
       return shareInfoList.shareInfoList ?? [];
@@ -44,19 +43,16 @@ class DataService {
     }
   }
 
-  Future<List<TopGainersModel>?> getTopGainers() async {
-    final response = await http.get(Uri.parse(URLConstants.TOP_GAINERS_URL));
+  Future<List<TopGainersModel>> getTopGainers() async {
+    final response = await scrapper.fetchTopGainersData();
     try {
-      if (response.statusCode == 200) {
-        final parsed = await json.decode(response.body);
-        return parsed
-            .map<TopGainersModel>((json) => TopGainersModel.fromJson(json))
-            .toList();
-      } else
-        return null;
+      final topGainersList = TopGainersListResponse.fromJson(
+          response['top_gainers'] as List<Map<String, dynamic>>);
+      log(topGainersList.toString());
+      return topGainersList.topGainersListData ?? [];
     } catch (e) {
       debugPrint(e.toString());
-      return null;
+      return [];
     }
   }
 
