@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:share_portfolio/model/stock/share_info_model.dart';
+part of 'share_list_bloc.dart';
 
 abstract class ShareListState extends Equatable {
   @override

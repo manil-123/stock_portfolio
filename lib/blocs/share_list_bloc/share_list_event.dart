@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'share_list_bloc.dart';
 
 abstract class ShareListEvent extends Equatable {
   @override

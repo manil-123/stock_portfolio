@@ -7,7 +7,6 @@ import 'package:share_portfolio/blocs/home_bloc/home_event.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_bloc.dart';
-import 'package:share_portfolio/blocs/share_list_bloc/share_list_event.dart';
 import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/app/database/share_info_dao.dart';
 import 'package:share_portfolio/injection.dart';

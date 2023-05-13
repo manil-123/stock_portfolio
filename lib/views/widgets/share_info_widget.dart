@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ShareInfoWidget extends StatelessWidget {
-  final String? companyName;
-  final String? symbol;
-  final String? ltp;
-  final String? change;
+  final String companyName;
+  final String symbol;
+  final String ltp;
+  final String change;
   const ShareInfoWidget(
       {Key? key,
-      @required this.companyName,
-      @required this.symbol,
-      @required this.ltp,
-      @required this.change})
+      required this.companyName,
+      required this.symbol,
+      required this.ltp,
+      required this.change})
       : super(key: key);
 
   @override
@@ -33,11 +33,11 @@ class ShareInfoWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    '$symbol',
+                    symbol,
                     style: TextStyle(color: Colors.white, fontSize: 18.0),
                   ),
                   Text(
-                    '$companyName',
+                    companyName,
                     maxLines: 2,
                     style: TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
                   ),
@@ -49,7 +49,7 @@ class ShareInfoWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '$ltp',
+                  ltp,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: TextStyle(color: Colors.white, fontSize: 18.0),
@@ -58,7 +58,7 @@ class ShareInfoWidget extends StatelessWidget {
                   height: 32,
                   width: 80,
                   decoration: BoxDecoration(
-                    color: double.parse(change!) >= 0
+                    color: double.parse(change) >= 0
                         ? Color(0xFF0E3F1A)
                         : Color(0xFF661628),
                     borderRadius: BorderRadius.circular(25),
@@ -69,7 +69,7 @@ class ShareInfoWidget extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.change_history,
-                          color: double.parse(change!) >= 0
+                          color: double.parse(change) >= 0
                               ? Color(0xFF30D059)
                               : Color(0xFFF73961),
                           size: 14,
@@ -80,7 +80,7 @@ class ShareInfoWidget extends StatelessWidget {
                         Text(
                           '$change %',
                           style: TextStyle(
-                              color: double.parse(change!) >= 0
+                              color: double.parse(change) >= 0
                                   ? Color(0xFF30D059)
                                   : Color(0xFFF73961),
                               fontSize: 12.0),
