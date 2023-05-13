@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_bloc.dart';
+import 'package:share_portfolio/core/widgets/message_widget.dart';
+import 'package:share_portfolio/model/stock/share_info_list.dart';
+import 'package:share_portfolio/views/screens/portfolio/com/my_search_delegate.dart';
 import 'package:share_portfolio/views/widgets/share_info_widget.dart';
 
 class StockListScreen extends StatefulWidget {
@@ -41,30 +44,29 @@ class _StockListScreenState extends State<StockListScreen> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      // Align(
-                      //   alignment: Alignment.centerRight,
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.all(8.0),
-                      //     child: IconButton(
-                      //         onPressed: () async {
-                      //           if (state.shareList != null)
-                      //             showSearch(
-                      //                 context: context,
-                      //                 delegate: MySearchDelegate(
-                      //                     shareInfoList: ShareInfoList(
-                      //                         shareInfoList: state.shareList)));
-                      //           else
-                      //             ShowMessage(context,
-                      //                 message: "Unable to search right now",
-                      //                 backColor: Colors.red);
-                      //         },
-                      //         icon: Icon(
-                      //           Icons.search,
-                      //           color: Colors.white,
-                      //           size: 30,
-                      //         )),
-                      //   ),
-                      // ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: IconButton(
+                              onPressed: () async {
+                                if (state.shareList.isNotEmpty)
+                                  showSearch(
+                                      context: context,
+                                      delegate: MySearchDelegate(
+                                          shareInfoList: ShareInfoList(
+                                              shareInfoList: state.shareList)));
+                                else
+                                  showErrorInfo(
+                                      context, "Unable to search right now");
+                              },
+                              icon: Icon(
+                                Icons.search,
+                                color: Colors.white,
+                                size: 30,
+                              )),
+                        ),
+                      ),
                       ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
