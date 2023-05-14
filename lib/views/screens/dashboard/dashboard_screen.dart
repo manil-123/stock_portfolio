@@ -45,7 +45,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   padding: EdgeInsets.all(4.0),
                   child: Icon(Icons.density_medium),
                 ),
-                label: 'More'),
+                label: 'Portfolio'),
           ],
         );
       },

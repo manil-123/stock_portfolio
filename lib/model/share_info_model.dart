@@ -1,8 +1,3 @@
-// "companyName": "Aarambha Chautari Laghubitta Bittiya Sanstha Limited",
-// "symbol": "ACLBSL",
-// "LTP": "1,552.00",
-// "change": "0.84"
-
 class ShareInfoModel {
   String? companyName;
   String? symbol;
