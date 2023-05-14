@@ -36,17 +36,13 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ShareListBloc(
-            shareInfoListDAO: ShareInfoListDAO(),
-            nepseRepo: NepseRepo(),
-          )..add(
+          create: (context) => getIt<ShareListBloc>()
+            ..add(
               LoadShareList(),
             ),
         ),
         BlocProvider(
-          create: (context) => HomeBloc(
-            nepseRepo: NepseRepo(),
-          )..add(LoadHome()),
+          create: (context) => getIt<HomeBloc>()..add(LoadHome()),
         ),
         BlocProvider(
             create: (context) => PortfolioBloc(

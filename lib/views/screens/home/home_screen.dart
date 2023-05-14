@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_portfolio/services/scrapper.dart';
 import 'package:share_portfolio/views/screens/home/nepse_index_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,15 +11,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // Scrapper.scrapData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-          children: const [
-            NepseIndexScreen(),
-          ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          // Scrapper.scrapData();
+        },
+        child: SafeArea(
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+            children: const [
+              NepseIndexScreen(),
+            ],
+          ),
         ),
       ),
     );

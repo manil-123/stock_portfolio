@@ -1,7 +1,8 @@
+import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/services/data_service.dart';
 import 'package:share_portfolio/model/top_losers_model.dart';
 import '../model/nepse_index_model.dart';
-import '../model/share_info_model.dart';
+import '../model/stock/share_info_model.dart';
 import '../model/top_gainers_model.dart';
 
 abstract class NepseRepoitory {
@@ -11,24 +12,28 @@ abstract class NepseRepoitory {
   Future<List<TopLosersModel>?> getTopLosers();
 }
 
-class NepseRepo implements NepseRepoitory {
+@LazySingleton(as: NepseRepoitory)
+class NepseRepositoryImpl implements NepseRepoitory {
+  final DataService _dataService;
+
+  NepseRepositoryImpl(this._dataService);
   @override
-  Future<List<ShareInfoModel>?> getShareInfoList() async {
-    return await DataService.fetchShareData();
+  Future<List<ShareInfoModel>> getShareInfoList() async {
+    return await _dataService.fetchShareData();
   }
 
   @override
   Future<NepseIndexModel?> getNepseIndex() async {
-    return await DataService.getNepseIndex();
+    return await _dataService.getNepseIndex();
   }
 
   @override
   Future<List<TopGainersModel>?> getTopGainers() async {
-    return await DataService.getTopGainers();
+    return await _dataService.getTopGainers();
   }
 
   @override
   Future<List<TopLosersModel>?> getTopLosers() async {
-    return await DataService.getTopLosers();
+    return await _dataService.getTopLosers();
   }
 }
