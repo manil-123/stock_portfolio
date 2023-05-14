@@ -1,4 +1,4 @@
-import 'package:share_portfolio/model/share_info_model.dart';
+import 'package:share_portfolio/model/stock/share_info_model.dart';
 
 class ShareInfoList {
   List<ShareInfoModel>? shareInfoList;

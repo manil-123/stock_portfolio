@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/blocs/home_bloc/home_event.dart';
 import 'package:share_portfolio/blocs/home_bloc/home_state.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
@@ -6,10 +7,14 @@ import 'package:share_portfolio/model/top_gainers_model.dart';
 import 'package:share_portfolio/model/top_losers_model.dart';
 import 'package:share_portfolio/repository/nepse_repo.dart';
 
+@LazySingleton()
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  NepseRepo? nepseRepo = NepseRepo();
+  final NepseRepositoryImpl nepseRepo;
 
-  HomeBloc({this.nepseRepo}) : super(HomeStateLoading()) {
+  HomeBloc(this.nepseRepo)
+      : super(
+          HomeStateLoading(),
+        ) {
     on<LoadHome>((event, emit) async {
       emit(HomeStateLoading());
       NepseIndexModel? nepseIndex = await nepseRepo!.getNepseIndex();
