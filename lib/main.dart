@@ -12,7 +12,6 @@ import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/app/database/share_info_dao.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
-import 'package:share_portfolio/repository/nepse_repo.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +41,10 @@ class _MyAppState extends State<MyApp> {
             ),
         ),
         BlocProvider(
-          create: (context) => getIt<HomeBloc>()..add(LoadHome()),
+          create: (context) => getIt<HomeBloc>()
+            ..add(
+              LoadHome(),
+            ),
         ),
         BlocProvider(
             create: (context) => PortfolioBloc(

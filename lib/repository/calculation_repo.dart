@@ -24,7 +24,7 @@ class CalculationRepo implements CalculationRepository {
     var shareInfoList = await shareInfoListDAO!.getShareInfoList();
     for (var i in shareInfoList!.shareInfoList!) {
       if (scrip == i.symbol) {
-        return i.ltp!.replaceAll(RegExp(','), '');
+        return i.ltp.replaceAll(RegExp(','), '');
       }
     }
     return null;

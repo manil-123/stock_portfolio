@@ -5,7 +5,7 @@ import 'package:share_portfolio/core/constants/constants.dart';
 
 @LazySingleton()
 class Scrapper {
-  Future<dynamic> scrapData() async {
+  Future<Map<String, dynamic>> fetchStockData() async {
     final url = Uri.parse(URLConstants.SCRAP_URL);
     final response = await http.get(url);
     final html = parse(response.body);
@@ -28,6 +28,7 @@ class Scrapper {
       }
       tradingMapList.add(individualMap);
     }
+    tradingMapList.removeAt(0);
     return {"list": tradingMapList};
   }
 }

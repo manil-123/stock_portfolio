@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:share_portfolio/services/scrapper.dart';
 import 'package:share_portfolio/views/screens/home/nepse_index_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +11,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // Scrapper.scrapData();
   }

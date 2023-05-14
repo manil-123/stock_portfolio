@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:sembast/sembast.dart';
-import 'package:share_portfolio/model/share_info_list.dart';
+import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'app_database.dart';
 
+@LazySingleton()
 class ShareInfoListDAO {
   static const String SHARE_INFO_LIST_STORE_NAME = 'shareinfolist';
   // A Store with int keys and Map<String, dynamic> values.

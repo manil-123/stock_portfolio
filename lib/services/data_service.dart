@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
+import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/top_gainers_model.dart';
 import 'package:share_portfolio/model/top_losers_model.dart';
 import 'package:share_portfolio/services/scrapper.dart';
@@ -16,17 +19,11 @@ class DataService {
 
   DataService(this.scrapper);
   Future<List<ShareInfoModel>> fetchShareData() async {
-    final response = await http.get(Uri.parse(URLConstants.BASE_URL));
+    final response = await scrapper.fetchStockData();
+    log(response.toString());
     try {
-      if (response.statusCode == 200) {
-        final parsed =
-            await json.decode(response.body).cast<Map<String, dynamic>>();
-        return parsed
-            .map<ShareInfoModel>((json) => ShareInfoModel.fromJson(json))
-            .toList();
-      } else {
-        return [];
-      }
+      final shareInfoList = ShareInfoList.fromMap(response);
+      return shareInfoList.shareInfoList ?? [];
     } catch (e) {
       debugPrint(e.toString());
       return [];

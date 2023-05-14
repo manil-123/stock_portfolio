@@ -5,15 +5,15 @@ import '../model/nepse_index_model.dart';
 import '../model/stock/share_info_model.dart';
 import '../model/top_gainers_model.dart';
 
-abstract class NepseRepoitory {
-  Future<List<ShareInfoModel>?> getShareInfoList();
+abstract class NepseRepository {
+  Future<List<ShareInfoModel>> getShareInfoList();
   Future<NepseIndexModel?> getNepseIndex();
   Future<List<TopGainersModel>?> getTopGainers();
   Future<List<TopLosersModel>?> getTopLosers();
 }
 
-@LazySingleton(as: NepseRepoitory)
-class NepseRepositoryImpl implements NepseRepoitory {
+@LazySingleton(as: NepseRepository)
+class NepseRepositoryImpl implements NepseRepository {
   final DataService _dataService;
 
   NepseRepositoryImpl(this._dataService);

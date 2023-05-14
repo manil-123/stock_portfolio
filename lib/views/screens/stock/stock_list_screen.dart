@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_portfolio/blocs/share_list_bloc/share_list_bloc.dart';
+import 'package:share_portfolio/blocs/share_list_bloc/share_list_event.dart';
 
 class StockListScreen extends StatefulWidget {
   const StockListScreen({super.key});
@@ -8,6 +11,14 @@ class StockListScreen extends StatefulWidget {
 }
 
 class _StockListScreenState extends State<StockListScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ShareListBloc>().add(
+          LoadShareList(),
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

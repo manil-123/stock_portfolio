@@ -13,7 +13,7 @@ class ShareInfoList {
     };
   }
 
-  static ShareInfoList fromMap(Map<String, dynamic> map) {
+  factory ShareInfoList.fromMap(Map<String, dynamic> map) {
     return ShareInfoList(
       shareInfoList: map['list']
           .map((x) => ShareInfoModel.fromJson(x))
