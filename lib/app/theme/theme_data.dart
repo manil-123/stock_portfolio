@@ -6,4 +6,9 @@ ThemeData get appTheme => ThemeData(
       colorScheme: ColorScheme.fromSwatch().copyWith(
         secondary: Color(0xFF000000),
       ),
+      textTheme: TextTheme(
+        bodyLarge: TextStyle(),
+        bodyMedium: TextStyle(),
+        bodySmall: TextStyle(),
+      ).apply(bodyColor: Colors.white),
     );
