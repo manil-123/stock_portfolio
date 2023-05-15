@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:share_portfolio/core/constants/url.dart';
+import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/top_gainers_model.dart';
 import 'package:share_portfolio/model/top_losers_model.dart';
@@ -10,7 +10,7 @@ import 'dart:async';
 
 class DataService {
   static Future<List<ShareInfoModel>?> fetchShareData() async {
-    final response = await http.get(Uri.parse(AppConstants.BASE_URL));
+    final response = await http.get(Uri.parse(URLConstants.BASE_URL));
     try {
       if (response.statusCode == 200) {
         final parsed =
@@ -28,7 +28,7 @@ class DataService {
   }
 
   static Future<NepseIndexModel?> getNepseIndex() async {
-    final response = await http.get(Uri.parse(AppConstants.NEPSE_INDEX_URL));
+    final response = await http.get(Uri.parse(URLConstants.NEPSE_INDEX_URL));
     try {
       if (response.statusCode == 200) {
         final parsed = await json.decode(response.body);
@@ -43,7 +43,7 @@ class DataService {
   }
 
   static Future<List<TopGainersModel>?> getTopGainers() async {
-    final response = await http.get(Uri.parse(AppConstants.TOP_GAINERS_URL));
+    final response = await http.get(Uri.parse(URLConstants.TOP_GAINERS_URL));
     try {
       if (response.statusCode == 200) {
         final parsed = await json.decode(response.body);
@@ -59,7 +59,7 @@ class DataService {
   }
 
   static Future<List<TopLosersModel>?> getTopLosers() async {
-    final response = await http.get(Uri.parse(AppConstants.TOP_LOSERS_URL));
+    final response = await http.get(Uri.parse(URLConstants.TOP_LOSERS_URL));
     try {
       if (response.statusCode == 200) {
         final parsed = await json.decode(response.body);
