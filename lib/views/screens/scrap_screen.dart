@@ -1,8 +1,5 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:html/parser.dart';
-import 'package:http/http.dart' as http;
-import 'package:html/dom.dart' as dom;
+import 'package:share_portfolio/services/scrapper.dart';
 
 class ScrapScreen extends StatefulWidget {
   const ScrapScreen({super.key});
@@ -19,23 +16,7 @@ class _ScrapScreenState extends State<ScrapScreen> {
   }
 
   Future<void> getNepseData() async {
-    final url = Uri.parse("https://merolagani.com/LatestMarket.aspx");
-    final response = await http.get(url);
-    final html = parse(response.body);
-    final tradingData = html.querySelector('#live-trading')!;
-    final tradingRow = tradingData.querySelectorAll('tr');
-    for (var row in tradingRow) {
-      final rowData = row.querySelectorAll('td');
-      if (rowData.isNotEmpty) {
-        log(rowData[0].text.toString());
-        log(rowData[1].text.toString());
-        log(rowData[2].text.toString());
-        log(rowData[3].text.toString());
-      }
-    }
-    final topGainersTable = html.querySelector('#gainers')!;
-    final topGainersTableRow = topGainersTable.querySelectorAll('tr');
-    log(topGainersTableRow.toString());
+    Scrapper.scrapData();
   }
 
   @override

@@ -1,4 +1,3 @@
-import 'dart:async';
 // import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,8 +6,6 @@ import 'package:share_portfolio/blocs/share_list_bloc/share_list_event.dart';
 import 'package:share_portfolio/views/screens/home_screen.dart';
 import 'package:share_portfolio/views/screens/share_list_screen.dart';
 import 'package:share_portfolio/views/screens/portfolio/portfolio_screen.dart';
-import '../../core/config/connect.dart';
-import '../../core/config/show_snack.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({Key? key}) : super(key: key);

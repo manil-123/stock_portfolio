@@ -11,7 +11,6 @@ import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/app/database/share_info_dao.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
 import 'package:share_portfolio/repository/nepse_repo.dart';
-import 'package:share_portfolio/views/screens/navigation_screen.dart';
 import 'package:share_portfolio/views/screens/scrap_screen.dart';
 
 void main() {
