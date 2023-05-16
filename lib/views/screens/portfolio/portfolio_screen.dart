@@ -34,9 +34,9 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   getData() async {
     _shareListBloc = BlocProvider.of<ShareListBloc>(context);
     _portfolioBloc = BlocProvider.of<PortfolioBloc>(context);
-    if (await Connect.isConnected(context)) {
-      _shareListBloc!.add(LoadShareList());
-    }
+    // if (await Connect.isConnected(context)) {
+    _shareListBloc!.add(LoadShareList());
+    // }
     var shareInfoList = await _shareInfoListDAO.getShareInfoList();
     shareInfoModelList = shareInfoList!.shareInfoList!;
   }

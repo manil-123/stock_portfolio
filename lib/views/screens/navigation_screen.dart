@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:connectivity_plus/connectivity_plus.dart';
+// import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_bloc.dart';
@@ -19,9 +19,9 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen> {
   ShareListBloc? _shareListBloc;
-  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
-  final Connectivity _connectivity = Connectivity();
-  ConnectivityResult _connectionStatus = ConnectivityResult.none;
+  // late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  // final Connectivity _connectivity = Connectivity();
+  // ConnectivityResult _connectionStatus = ConnectivityResult.none;
   final PageController _pageController = PageController();
   int _currentIndex = 0;
 
@@ -46,35 +46,35 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   getData() async {
     _shareListBloc = BlocProvider.of<ShareListBloc>(context);
-    _connectionStatus = await Connect.checkConnection();
-    if (await Connect.isConnected(context)) {
-      _shareListBloc!.add(LoadShareList());
-    }
+    // _connectionStatus = await Connect.checkConnection();
+    // if (await Connect.isConnected(context)) {
+    _shareListBloc!.add(LoadShareList());
+    // }
   }
 
-  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
-    setState(() {
-      _connectionStatus = result;
-    });
-    if (_connectionStatus == ConnectivityResult.none)
-      ShowMessage(context,
-          message: "No internet connection",
-          backColor: Colors.red,
-          textColor: Colors.white,
-          showIcon: true);
-  }
+  // Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+  //   setState(() {
+  //     _connectionStatus = result;
+  //   });
+  //   if (_connectionStatus == ConnectivityResult.none)
+  //     ShowMessage(context,
+  //         message: "No internet connection",
+  //         backColor: Colors.red,
+  //         textColor: Colors.white,
+  //         showIcon: true);
+  // }
 
   @override
   void initState() {
     super.initState();
     getData();
-    _connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+    // _connectivitySubscription =
+    //     _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
   @override
   void dispose() {
-    _connectivitySubscription.cancel();
+    // _connectivitySubscription.cancel();
     super.dispose();
   }
 
