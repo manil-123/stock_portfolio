@@ -7,6 +7,7 @@ import 'package:share_portfolio/views/screens/dashboard/dashboard_screen.dart';
 import 'package:share_portfolio/views/screens/home/home_screen.dart';
 import 'package:share_portfolio/views/screens/portfolio/add_stocks_screen.dart';
 import 'package:share_portfolio/views/screens/portfolio/portfolio_screen.dart';
+import 'package:share_portfolio/views/screens/portfolio/portfolio_stock_list_screen.dart';
 import 'package:share_portfolio/views/screens/stock/stock_list_screen.dart';
 
 @MaterialAutoRouter(
@@ -41,6 +42,10 @@ import 'package:share_portfolio/views/screens/stock/stock_list_screen.dart';
               AutoRoute(
                 path: '',
                 page: PortfolioScreen,
+              ),
+              AutoRoute(
+                path: Routes.portfolioStockListScreenRoute,
+                page: PortfolioStockListScreen,
               ),
               AutoRoute(
                 path: Routes.addStocksScreenRoute,

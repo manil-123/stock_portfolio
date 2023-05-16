@@ -10,7 +10,6 @@ import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cu
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
-import 'package:share_portfolio/repository/calculation_repo.dart';
 import 'package:share_portfolio/views/screens/portfolio/components/current_holdings.dart';
 import 'package:share_portfolio/views/screens/portfolio/components/profit_loss.dart';
 
@@ -63,16 +62,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   void _loadPortfolio() {
     context.read<LoadPortfolioCubit>().loadPortfolio();
-  }
-
-  Future<String?> getCompanyPrice(String? scrip) async {
-    var ltp = await getIt<CalculationRepository>().getLTP(scrip);
-    return ltp;
-  }
-
-  Future<double?> getLTPDiff(String? scrip) async {
-    var value = await getIt<CalculationRepository>().getLTPDifference(scrip);
-    return value;
   }
 
   @override
@@ -132,22 +121,27 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Your Portfolio',
+                              'Portfolio',
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: 28, fontWeight: FontWeight.bold),
                             ),
                             GestureDetector(
                               onTap: () async {
+                                // context.router.push(
+                                //   AddStocksRoute(),
+                                // );
                                 context.router.push(
-                                  AddStocksRoute(),
+                                  PortfolioStockListRoute(
+                                    localStockDataList: localStockDataList,
+                                  ),
                                 );
                               },
-                              child: Icon(
-                                Icons.add_circle,
-                                color: Colors.white,
-                                size: 40,
+                              child: Text(
+                                'View All',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             )
                           ],
@@ -178,14 +172,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
       shrinkWrap: true,
       itemCount: stockList.length,
       itemBuilder: (context, index) {
-        return InkWell(
-          onLongPress: () {
-            showDeleteAlert(
-              context,
-              stockList[index],
-            );
-          },
-          child: _portfolioItem(stockList[index]),
+        return _portfolioItem(
+          stockList[index],
         );
       },
     );
@@ -231,8 +219,9 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   }
 
   Widget _buildStockInfo(LocalStockDataModel stockData) {
-    return FutureBuilder<String?>(
-      future: getCompanyPrice(stockData.scrip),
+    return FutureBuilder<String>(
+      future:
+          context.read<LoadPortfolioCubit>().getCompanyPrice(stockData.scrip),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
@@ -252,8 +241,9 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   }
 
   Widget _buildStockPrice(LocalStockDataModel stockData) {
-    return FutureBuilder<String?>(
-      future: getCompanyPrice(stockData.scrip),
+    return FutureBuilder<String>(
+      future:
+          context.read<LoadPortfolioCubit>().getCompanyPrice(stockData.scrip),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
@@ -273,8 +263,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   }
 
   Widget _buildStockDifference(LocalStockDataModel stockData) {
-    return FutureBuilder<double?>(
-      future: getLTPDiff(stockData.scrip),
+    return FutureBuilder<double>(
+      future: context.read<LoadPortfolioCubit>().getLTPDiff(stockData.scrip),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
@@ -295,60 +285,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
           );
         }
       },
-    );
-  }
-
-  Future<dynamic> showDeleteAlert(
-      BuildContext context, LocalStockDataModel localStockData) {
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: Container(
-          width: 280.0,
-          height: 100,
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.all(
-              Radius.circular(32.0),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Do you want to delete?',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  MaterialButton(
-                    onPressed: () {
-                      getIt<DeleteStockCubit>().deleteStock(localStockData);
-                      Navigator.pop(context);
-                    },
-                    color: Theme.of(context).colorScheme.secondary,
-                    child: Text(
-                      'Yes',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    color: Theme.of(context).colorScheme.secondary,
-                    child: Text(
-                      'No',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
