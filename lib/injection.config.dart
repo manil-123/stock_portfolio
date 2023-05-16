@@ -14,7 +14,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:share_portfolio/app/database/local_stock_dao.dart' as _i5;
 import 'package:share_portfolio/app/database/share_info_dao.dart' as _i7;
 import 'package:share_portfolio/blocs/auth/auth_bloc.dart' as _i9;
-import 'package:share_portfolio/blocs/home/home_bloc.dart' as _i16;
+import 'package:share_portfolio/blocs/home/home_bloc.dart' as _i17;
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart'
     as _i8;
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart'
@@ -23,9 +23,11 @@ import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_c
     as _i3;
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart'
     as _i13;
-import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart' as _i15;
+import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/cubit/load_portfolio_stock_list_cubit.dart'
+    as _i14;
+import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart' as _i16;
 import 'package:share_portfolio/repository/calculation_repo.dart' as _i10;
-import 'package:share_portfolio/repository/nepse_repository.dart' as _i14;
+import 'package:share_portfolio/repository/nepse_repository.dart' as _i15;
 import 'package:share_portfolio/services/data_service.dart' as _i11;
 import 'package:share_portfolio/services/local_auth_service.dart' as _i4;
 import 'package:share_portfolio/services/scrapper.dart' as _i6;
@@ -63,14 +65,16 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i5.LocalStockListDAO>(),
           gh<_i10.CalculationRepository>(),
         ));
-    gh.lazySingleton<_i14.NepseRepository>(
-        () => _i14.NepseRepositoryImpl(gh<_i11.DataService>()));
-    gh.lazySingleton<_i15.ShareListBloc>(() => _i15.ShareListBloc(
+    gh.lazySingleton<_i14.LoadPortfolioStockListCubit>(
+        () => _i14.LoadPortfolioStockListCubit(gh<_i5.LocalStockListDAO>()));
+    gh.lazySingleton<_i15.NepseRepository>(
+        () => _i15.NepseRepositoryImpl(gh<_i11.DataService>()));
+    gh.lazySingleton<_i16.ShareListBloc>(() => _i16.ShareListBloc(
           gh<_i7.ShareInfoListDAO>(),
-          gh<_i14.NepseRepository>(),
+          gh<_i15.NepseRepository>(),
         ));
-    gh.lazySingleton<_i16.HomeBloc>(
-        () => _i16.HomeBloc(gh<_i14.NepseRepository>()));
+    gh.lazySingleton<_i17.HomeBloc>(
+        () => _i17.HomeBloc(gh<_i15.NepseRepository>()));
     return this;
   }
 }

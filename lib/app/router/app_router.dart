@@ -35,23 +35,31 @@ import 'package:share_portfolio/views/screens/stock/stock_list_screen.dart';
           page: StockListScreen,
         ),
         AutoRoute(
-            path: Routes.portfolioScreenRoute,
-            name: 'PortfolioRouter',
-            page: EmptyRouterPage,
-            children: [
-              AutoRoute(
-                path: '',
-                page: PortfolioScreen,
-              ),
-              AutoRoute(
-                path: Routes.portfolioStockListScreenRoute,
-                page: PortfolioStockListScreen,
-              ),
-              AutoRoute(
-                path: Routes.addStocksScreenRoute,
-                page: AddStocksScreen,
-              ),
-            ]),
+          path: Routes.portfolioScreenRoute,
+          name: 'PortfolioRouter',
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(
+              path: '',
+              page: PortfolioScreen,
+            ),
+            AutoRoute(
+              path: Routes.portfolioStockListScreenRoute,
+              name: 'PortfolioListRouter',
+              page: EmptyRouterPage,
+              children: [
+                AutoRoute(
+                  path: '',
+                  page: PortfolioStockListScreen,
+                ),
+                AutoRoute(
+                  path: Routes.addStocksScreenRoute,
+                  page: AddStocksScreen,
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     )
   ],

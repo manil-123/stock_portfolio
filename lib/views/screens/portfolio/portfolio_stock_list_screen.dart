@@ -1,17 +1,21 @@
+import 'dart:async';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
+import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/cubit/load_portfolio_stock_list_cubit.dart';
+import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 
 class PortfolioStockListScreen extends StatefulWidget {
-  final List<LocalStockDataModel> localStockDataList;
-
   const PortfolioStockListScreen({
     super.key,
-    required this.localStockDataList,
   });
 
   @override
@@ -20,12 +24,55 @@ class PortfolioStockListScreen extends StatefulWidget {
 }
 
 class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
-  List<LocalStockDataModel> _localStockDataList = [];
+  StreamSubscription? _deleteStockStreamSubscription;
+  StreamSubscription? _addStockStreamSubscription;
+
+  void _loadPortfolio() {
+    context.read<LoadPortfolioStockListCubit>().loadStocksList();
+  }
+
+  void _listenForDeleteOperation() async {
+    _deleteStockStreamSubscription =
+        getIt<DeleteStockCubit>().stream.listen((state) {
+      state.whenOrNull(
+        success: () {
+          showInfo(context, "Stock deleted successfully");
+          _loadPortfolio();
+        },
+        failed: () {
+          showErrorInfo(context, "Failed to delete stock");
+        },
+      );
+    });
+  }
+
+  void _listenForAddOperation() async {
+    _addStockStreamSubscription = getIt<AddStockCubit>().stream.listen((state) {
+      state.whenOrNull(
+        success: () {
+          _loadPortfolio();
+        },
+      );
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    _localStockDataList = widget.localStockDataList;
+    _loadPortfolio();
+    _listenForDeleteOperation();
+    _listenForAddOperation();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (_deleteStockStreamSubscription != null) {
+      _deleteStockStreamSubscription!.cancel();
+    }
+    if (_addStockStreamSubscription != null) {
+      _addStockStreamSubscription!.cancel();
+    }
   }
 
   @override
@@ -35,26 +82,54 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.secondary,
         title: Text('Portfolio Stock List'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.router.push(
+                AddStocksRoute(),
+              );
+            },
+            icon: Icon(Icons.add_circle),
+          ),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: _localStockDataList.length,
-          itemBuilder: (context, index) {
-            return InkWell(
-              onLongPress: () {
-                showDeleteAlert(
-                  context,
-                  _localStockDataList[index],
-                );
-              },
-              child: _portfolioItem(_localStockDataList[index]),
-            );
-          },
-        ),
+      body:
+          BlocBuilder<LoadPortfolioStockListCubit, LoadPortfolioStockListState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            loading: () => Center(
+              child: CircularProgressIndicator(color: Colors.white),
+            ),
+            loaded: (localStockDataList) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: localStockDataList.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onLongPress: () {
+                        showDeleteAlert(
+                          context,
+                          localStockDataList[index],
+                        );
+                      },
+                      child: _portfolioItem(localStockDataList[index]),
+                    );
+                  },
+                ),
+              );
+            },
+            failed: () => Center(
+              child: SizedBox(child: Text('Failed to Load')),
+            ),
+            orElse: () {
+              return Container();
+            },
+          );
+        },
       ),
     );
   }
@@ -194,7 +269,6 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                 children: [
                   MaterialButton(
                     onPressed: () {
-                      _localStockDataList.remove(localStockData);
                       getIt<DeleteStockCubit>().deleteStock(localStockData);
                       Navigator.pop(context);
                     },

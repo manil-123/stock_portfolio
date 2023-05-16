@@ -15,7 +15,6 @@ import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:auto_route/empty_router_widgets.dart' as _i6;
 import 'package:flutter/material.dart' as _i11;
 
-import '../../model/local_stock_data/local_stock_data_model.dart' as _i12;
 import '../../splash_screen.dart' as _i1;
 import '../../views/screens/auth/auth_screen.dart' as _i2;
 import '../../views/screens/dashboard/dashboard_screen.dart' as _i3;
@@ -73,14 +72,16 @@ class AppRouter extends _i10.RootStackRouter {
         child: const _i7.PortfolioScreen(),
       );
     },
-    PortfolioStockListRoute.name: (routeData) {
-      final args = routeData.argsAs<PortfolioStockListRouteArgs>();
+    PortfolioListRouter.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i8.PortfolioStockListScreen(
-          key: args.key,
-          localStockDataList: args.localStockDataList,
-        ),
+        child: const _i6.EmptyRouterPage(),
+      );
+    },
+    PortfolioStockListRoute.name: (routeData) {
+      return _i10.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i8.PortfolioStockListScreen(),
       );
     },
     AddStocksRoute.name: (routeData) {
@@ -126,14 +127,21 @@ class AppRouter extends _i10.RootStackRouter {
                   parent: PortfolioRouter.name,
                 ),
                 _i10.RouteConfig(
-                  PortfolioStockListRoute.name,
+                  PortfolioListRouter.name,
                   path: 'portfolioStockListScreen',
                   parent: PortfolioRouter.name,
-                ),
-                _i10.RouteConfig(
-                  AddStocksRoute.name,
-                  path: 'addStocksScreen',
-                  parent: PortfolioRouter.name,
+                  children: [
+                    _i10.RouteConfig(
+                      PortfolioStockListRoute.name,
+                      path: '',
+                      parent: PortfolioListRouter.name,
+                    ),
+                    _i10.RouteConfig(
+                      AddStocksRoute.name,
+                      path: 'addStocksScreen',
+                      parent: PortfolioListRouter.name,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -229,38 +237,28 @@ class PortfolioRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.PortfolioStockListScreen]
-class PortfolioStockListRoute
-    extends _i10.PageRouteInfo<PortfolioStockListRouteArgs> {
-  PortfolioStockListRoute({
-    _i11.Key? key,
-    required List<_i12.LocalStockDataModel> localStockDataList,
-  }) : super(
-          PortfolioStockListRoute.name,
+/// [_i6.EmptyRouterPage]
+class PortfolioListRouter extends _i10.PageRouteInfo<void> {
+  const PortfolioListRouter({List<_i10.PageRouteInfo>? children})
+      : super(
+          PortfolioListRouter.name,
           path: 'portfolioStockListScreen',
-          args: PortfolioStockListRouteArgs(
-            key: key,
-            localStockDataList: localStockDataList,
-          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'PortfolioListRouter';
+}
+
+/// generated route for
+/// [_i8.PortfolioStockListScreen]
+class PortfolioStockListRoute extends _i10.PageRouteInfo<void> {
+  const PortfolioStockListRoute()
+      : super(
+          PortfolioStockListRoute.name,
+          path: '',
         );
 
   static const String name = 'PortfolioStockListRoute';
-}
-
-class PortfolioStockListRouteArgs {
-  const PortfolioStockListRouteArgs({
-    this.key,
-    required this.localStockDataList,
-  });
-
-  final _i11.Key? key;
-
-  final List<_i12.LocalStockDataModel> localStockDataList;
-
-  @override
-  String toString() {
-    return 'PortfolioStockListRouteArgs{key: $key, localStockDataList: $localStockDataList}';
-  }
 }
 
 /// generated route for
