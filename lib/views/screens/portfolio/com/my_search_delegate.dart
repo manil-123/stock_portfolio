@@ -14,7 +14,7 @@ class MySearchDelegate extends SearchDelegate {
     return theme.copyWith(
       textTheme: TextTheme(
         // Use this to change the query's text style
-        headline6: TextStyle(fontSize: 18.0, color: Colors.white),
+        titleLarge: TextStyle(fontSize: 18.0, color: Colors.white),
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: Color(0xFF000000),

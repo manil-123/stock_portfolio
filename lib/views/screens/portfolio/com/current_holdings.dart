@@ -16,13 +16,11 @@ class CurrentHoldings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(totalProfitLoss);
-
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
       decoration: BoxDecoration(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(

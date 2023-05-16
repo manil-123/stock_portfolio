@@ -82,7 +82,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).accentColor,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         title: Text('Stock Portfolio'),
       ),
       body: PageView(
@@ -95,7 +95,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Theme.of(context).scaffoldBackgroundColor,
-        backgroundColor: Theme.of(context).accentColor,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
         items: const [

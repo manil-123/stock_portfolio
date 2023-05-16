@@ -20,7 +20,6 @@ class AppDatabase {
   AppDatabase();
 
   // Sembast database object
-  Database? _database;
 
   // Database object accessor
   Future<Database> get database async {

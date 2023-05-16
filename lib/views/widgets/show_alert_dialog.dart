@@ -35,7 +35,7 @@ class ShowAlertDialog extends StatelessWidget {
               child: Icon(
                 iconData,
                 size: size.getFs(48),
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
             SizedBox(height: size.getH(8)),
@@ -68,7 +68,7 @@ class ShowAlertDialog extends StatelessWidget {
               child: MaterialButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(size.getFs(20))),
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 child: Text(
                   actionTitle!,
                   style:

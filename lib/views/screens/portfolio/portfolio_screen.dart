@@ -4,7 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_state.dart';
-import 'package:share_portfolio/config/size_config.dart';
 import 'package:share_portfolio/constants/style.dart';
 import 'package:share_portfolio/data/local_stock_dao.dart';
 import 'package:share_portfolio/model/share_info_model.dart';
@@ -67,11 +66,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = Ssize(context);
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: RefreshIndicator(
-        backgroundColor: Theme.of(context).accentColor,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         color: Colors.white,
         onRefresh: () async {
           _portfolioBloc!.add(LoadPortfolio());
@@ -174,7 +172,9 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                                                     'Stock deleted successfully');
                                             Navigator.pop(context);
                                           },
-                                          color: Theme.of(context).accentColor,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
                                           child: Text(
                                             'Yes',
                                             style:
@@ -185,7 +185,9 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                                           onPressed: () {
                                             Navigator.pop(context);
                                           },
-                                          color: Theme.of(context).accentColor,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
                                           child: Text(
                                             'No',
                                             style:
@@ -206,7 +208,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                           padding: EdgeInsets.symmetric(
                               vertical: 20, horizontal: 14),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Row(

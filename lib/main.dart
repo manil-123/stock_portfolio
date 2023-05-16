@@ -49,11 +49,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Stock Portfolio',
         debugShowCheckedModeBanner: false,
-
         theme: ThemeData(
           primaryColor: Color(0xFF252527),
-          accentColor: Color(0xFF000000),
           scaffoldBackgroundColor: Color(0xFFF3F5F7),
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            secondary: Color(0xFF000000),
+          ),
         ),
         // ignore: prefer_const_constructors
         home: NavigationScreen(),

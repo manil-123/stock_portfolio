@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           } else if (state is HomeStateLoaded) {
             return RefreshIndicator(
-              backgroundColor: Theme.of(context).accentColor,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               color: Colors.white,
               onRefresh: () async {
                 _homeBloc!.add(LoadHome());
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                     height: 90,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Padding(

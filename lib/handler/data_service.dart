@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/top_gainers_model.dart';
@@ -20,7 +21,8 @@ class DataService {
         return null;
       }
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
+      return null;
     }
   }
 
@@ -30,12 +32,12 @@ class DataService {
       if (response.statusCode == 200) {
         final parsed = await json.decode(response.body);
         final data = json.decode(parsed);
-        print((data as List)[0]);
         return NepseIndexModel.fromJson((data as List)[0]);
       } else
         return null;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
+      return null;
     }
   }
 
@@ -50,7 +52,8 @@ class DataService {
       } else
         return null;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
+      return null;
     }
   }
 
@@ -65,7 +68,8 @@ class DataService {
       } else
         return null;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
+      return null;
     }
   }
 }

@@ -36,6 +36,7 @@ dependencies:
   equatable: ^2.0.3
   connectivity_plus: ^2.3.0
   autocomplete_textfield_ns: ^2.0.0
+  fluttertoast: ^8.2.1
 
 
   # The following adds the Cupertino Icons font to your application.

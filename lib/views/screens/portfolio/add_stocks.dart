@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/model/local_stock_data.dart';
 import '../../../blocs/portfolio/portfolio_event.dart';
-import '../../../data/local_stock_dao.dart';
 import '../../../model/list_data_model.dart';
 
 enum Market { IPO, SECONDARY }
@@ -157,6 +156,7 @@ class _AddStocksState extends State<AddStocks> {
                         return "Quantity field should not be empty";
                       else if (int.parse(val) == 0)
                         return "Quantity cannot be 0";
+                      return null;
                     },
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: false),
@@ -201,6 +201,7 @@ class _AddStocksState extends State<AddStocks> {
                         return "Price field should not be empty";
                       else if (double.parse(val) == 0.0)
                         return "Price cannot be 0";
+                      return null;
                     },
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: true),
@@ -264,7 +265,7 @@ class _AddStocksState extends State<AddStocks> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context).primaryColor,
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12.0),
