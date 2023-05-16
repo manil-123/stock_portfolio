@@ -10,12 +10,16 @@ import 'package:share_portfolio/blocs/share_list_bloc/share_list_bloc.dart';
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_event.dart';
 import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/app/database/share_info_dao.dart';
+import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
 import 'package:share_portfolio/repository/nepse_repo.dart';
-import 'package:share_portfolio/splash_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureInjection();
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatefulWidget {
