@@ -6,6 +6,7 @@ import 'package:share_portfolio/model/top_losers_model.dart';
 import 'dart:convert';
 import '../constants/url.dart';
 import '../model/share_info_model.dart';
+import 'dart:async';
 
 class DataService {
   static Future<List<ShareInfoModel>?> fetchShareData() async {

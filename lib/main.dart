@@ -11,6 +11,7 @@ import 'package:share_portfolio/data/share_info_dao.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
 import 'package:share_portfolio/repository/nepse_repo.dart';
 import 'package:share_portfolio/views/screens/navigation_screen.dart';
+import 'package:share_portfolio/views/screens/scrap_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         // ignore: prefer_const_constructors
-        home: NavigationScreen(),
+        home: ScrapScreen(),
       ),
     );
   }

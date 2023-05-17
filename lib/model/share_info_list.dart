@@ -7,7 +7,9 @@ class ShareInfoList {
 
   Map<String, dynamic> toMap() {
     return {
-      "list": List<dynamic>.from(shareInfoList!.map((x) => x.toJson())).toList()
+      "list": shareInfoList != null
+          ? List<dynamic>.from(shareInfoList!.map((x) => x.toJson())).toList()
+          : []
     };
   }
 
