@@ -1,5 +1,5 @@
-import 'package:share_portfolio/data/local_stock_dao.dart';
-import 'package:share_portfolio/data/share_info_dao.dart';
+import 'package:share_portfolio/app/database/local_stock_dao.dart';
+import 'package:share_portfolio/app/database/share_info_dao.dart';
 
 abstract class CalculationRepository {
   Future<String?> getLTP(String? scrip);

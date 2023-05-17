@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/home_bloc/home_bloc.dart';
 import 'package:share_portfolio/blocs/home_bloc/home_event.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_bloc.dart';
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_event.dart';
-import 'package:share_portfolio/data/local_stock_dao.dart';
-import 'package:share_portfolio/data/share_info_dao.dart';
+import 'package:share_portfolio/app/database/local_stock_dao.dart';
+import 'package:share_portfolio/app/database/share_info_dao.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
 import 'package:share_portfolio/repository/nepse_repo.dart';
 import 'package:share_portfolio/views/screens/navigation_screen.dart';
@@ -50,13 +51,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Stock Portfolio',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: Color(0xFF252527),
-          scaffoldBackgroundColor: Color(0xFFF3F5F7),
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            secondary: Color(0xFF000000),
-          ),
-        ),
+        theme: appTheme,
         // ignore: prefer_const_constructors
         home: ScrapScreen(),
       ),

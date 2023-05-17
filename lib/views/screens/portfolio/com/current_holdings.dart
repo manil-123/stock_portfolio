@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../constants/style.dart';
+import 'package:share_portfolio/app/theme/app_colors.dart';
 
 class CurrentHoldings extends StatelessWidget {
   final double? totalProfitLoss;
@@ -48,19 +48,20 @@ class CurrentHoldings extends StatelessWidget {
                         totalProfitLoss! > 0
                             ? Icon(
                                 Icons.arrow_upward,
-                                color: greenColor,
+                                color: AppColors.greenColor,
                                 size: 20,
                               )
                             : Icon(
                                 Icons.arrow_downward,
-                                color: redColor,
+                                color: AppColors.redColor,
                                 size: 20,
                               ),
                         Text(
                           'Rs. ${totalProfitLoss!.toString().replaceAll(RegExp('-'), '')}',
                           style: TextStyle(
-                              color:
-                                  totalProfitLoss! > 0 ? greenColor : redColor,
+                              color: totalProfitLoss! > 0
+                                  ? AppColors.greenColor
+                                  : AppColors.redColor,
                               fontSize: 16.0),
                         ),
                       ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:share_portfolio/constants/style.dart';
+import 'package:share_portfolio/app/theme/app_colors.dart';
 
 class ProfitLoss extends StatelessWidget {
   final double? totalInvestment;
@@ -63,8 +63,8 @@ class ProfitLoss extends StatelessWidget {
                           color: profitLossPercent!.isNaN
                               ? Colors.white
                               : profitLossPercent! > 0
-                                  ? greenColor
-                                  : redColor,
+                                  ? AppColors.greenColor
+                                  : AppColors.redColor,
                           fontSize: 14.0),
                     ),
                   )
@@ -100,7 +100,9 @@ class ProfitLoss extends StatelessWidget {
                         'Rs. ${dailyPL!.toStringAsFixed(1).replaceAll(RegExp('-'), '')}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: dailyPL! < 0 ? redColor : greenColor,
+                            color: dailyPL! < 0
+                                ? AppColors.redColor
+                                : AppColors.greenColor,
                             fontSize: 20.0),
                       ),
                       SizedBox(
@@ -109,12 +111,12 @@ class ProfitLoss extends StatelessWidget {
                       dailyPL! > 0
                           ? Icon(
                               Icons.arrow_upward,
-                              color: greenColor,
+                              color: AppColors.greenColor,
                               size: 20,
                             )
                           : Icon(
                               Icons.arrow_downward,
-                              color: redColor,
+                              color: AppColors.redColor,
                               size: 20,
                             ),
                     ],

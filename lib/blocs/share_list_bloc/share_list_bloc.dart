@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_event.dart';
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_state.dart';
-import 'package:share_portfolio/data/share_info_dao.dart';
+import 'package:share_portfolio/app/database/share_info_dao.dart';
 import 'package:share_portfolio/model/share_info_list.dart';
 import 'package:share_portfolio/model/share_info_model.dart';
 import 'package:share_portfolio/repository/nepse_repo.dart';

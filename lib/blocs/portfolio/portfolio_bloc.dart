@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_state.dart';
-import 'package:share_portfolio/data/local_stock_dao.dart';
+import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
 
 class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {

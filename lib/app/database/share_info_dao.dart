@@ -1,6 +1,6 @@
 import 'package:sembast/sembast.dart';
 import 'package:share_portfolio/model/share_info_list.dart';
-import '../config/database.dart';
+import '../../config/database.dart';
 
 class ShareInfoListDAO {
   static const String SHARE_INFO_LIST_STORE_NAME = 'shareinfolist';

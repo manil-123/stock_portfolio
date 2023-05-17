@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:share_portfolio/app/theme/app_colors.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_state.dart';
-import 'package:share_portfolio/constants/style.dart';
-import 'package:share_portfolio/data/local_stock_dao.dart';
+import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/model/share_info_model.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
 import 'package:share_portfolio/views/screens/portfolio/com/current_holdings.dart';
@@ -14,7 +14,7 @@ import 'package:share_portfolio/views/screens/portfolio/com/welcome.dart';
 import '../../../blocs/share_list_bloc/share_list_bloc.dart';
 import '../../../blocs/share_list_bloc/share_list_event.dart';
 import '../../../config/connect.dart';
-import '../../../data/share_info_dao.dart';
+import '../../../app/database/share_info_dao.dart';
 import 'add_stocks.dart';
 
 class PortfolioScreen extends StatefulWidget {
@@ -294,8 +294,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                                             'Rs. ${(snapshot.data! * state.localStockDataList![index].quantity!).toStringAsFixed(1)}',
                                             style: TextStyle(
                                                 color: snapshot.data! > 0.0
-                                                    ? greenColor
-                                                    : redColor,
+                                                    ? AppColors.greenColor
+                                                    : AppColors.redColor,
                                                 fontSize: 14),
                                           );
                                         else if (snapshot.connectionState ==

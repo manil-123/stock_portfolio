@@ -1,4 +1,4 @@
-import 'package:share_portfolio/handler/data_service.dart';
+import 'package:share_portfolio/services/data_service.dart';
 import 'package:share_portfolio/model/top_losers_model.dart';
 import '../model/nepse_index_model.dart';
 import '../model/share_info_model.dart';
