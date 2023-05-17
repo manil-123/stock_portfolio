@@ -13,7 +13,7 @@ import 'package:share_portfolio/views/screens/portfolio/com/profit_loss.dart';
 import 'package:share_portfolio/views/screens/portfolio/com/welcome.dart';
 import '../../../blocs/share_list_bloc/share_list_bloc.dart';
 import '../../../blocs/share_list_bloc/share_list_event.dart';
-import '../../../config/connect.dart';
+import '../../../core/config/connect.dart';
 import '../../../app/database/share_info_dao.dart';
 import 'add_stocks.dart';
 

@@ -6,7 +6,7 @@ import 'package:share_portfolio/model/share_info_list.dart';
 import 'package:share_portfolio/views/screens/portfolio/com/my_search_delegate.dart';
 import 'package:share_portfolio/views/widgets/share_info_widget.dart';
 import '../../blocs/share_list_bloc/share_list_event.dart';
-import '../../config/show_snack.dart';
+import '../../core/config/show_snack.dart';
 
 class ShareListScreen extends StatefulWidget {
   const ShareListScreen({Key? key}) : super(key: key);

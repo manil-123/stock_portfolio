@@ -42,9 +42,7 @@ class _ScrapScreenState extends State<ScrapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Scrap Screen'),
-      ),
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       body: Center(
         child: ElevatedButton(
           onPressed: () => getNepseData(),

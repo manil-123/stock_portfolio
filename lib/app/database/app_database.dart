@@ -39,7 +39,7 @@ class AppDatabase {
     // Get a platform-specific directory where persistent app data can be stored
     final appDocumentDir = await getApplicationDocumentsDirectory();
     // Path with the form: /platform-specific-directory/demo.db
-    final dbPath = join(appDocumentDir.path, 'demo.db');
+    final dbPath = join(appDocumentDir.path, 'nepse_portfolio.db');
 
     final database = await databaseFactoryIo.openDatabase(dbPath);
     // Any code awaiting the Completer's future will now start executing

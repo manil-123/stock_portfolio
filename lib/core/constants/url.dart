@@ -1,3 +1,4 @@
+
 class AppConstants {
   static const String BASE_URL = "https://warm-cove-81937.herokuapp.com";
   static const String TOP_GAINERS_URL =

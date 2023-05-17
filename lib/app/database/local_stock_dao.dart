@@ -1,6 +1,6 @@
 import 'package:sembast/sembast.dart';
+import 'package:share_portfolio/app/database/app_database.dart';
 import 'package:share_portfolio/model/local_stock_data.dart';
-import '../../config/database.dart';
 
 class LocalStockListDAO {
   static const String LOCAL_STOCK_LIST_STORE_NAME = 'localstocklist';

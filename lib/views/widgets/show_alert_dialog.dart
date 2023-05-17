@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../config/size_config.dart';
+import '../../core/config/size_config.dart';
 
 class ShowAlertDialog extends StatelessWidget {
   final BuildContext? ctx;

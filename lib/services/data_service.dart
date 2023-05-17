@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:share_portfolio/core/constants/url.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/top_gainers_model.dart';
 import 'package:share_portfolio/model/top_losers_model.dart';
 import 'dart:convert';
-import '../constants/url.dart';
 import '../model/share_info_model.dart';
 import 'dart:async';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:share_portfolio/config/size_config.dart';
+import 'package:share_portfolio/core/config/size_config.dart';
 
 class ShowMessage {
   final BuildContext context;
