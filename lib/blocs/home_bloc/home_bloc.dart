@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:share_portfolio/model/home/top_gainers_model.dart';
+import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
-import 'package:share_portfolio/model/top_losers_model.dart';
+import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
 import 'package:share_portfolio/repository/nepse_repo.dart';
 
 part 'home_event.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/blocs/home_bloc/home_bloc.dart';
-import 'package:share_portfolio/model/home/top_gainers_model.dart';
+import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
-import 'package:share_portfolio/model/top_losers_model.dart';
+import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
 import 'package:share_portfolio/views/screens/home/nepse_index_screen.dart';
 import 'package:share_portfolio/views/widgets/share_info_widget.dart';
 
@@ -83,6 +83,33 @@ class _HomeScreenState extends State<HomeScreen> {
                   symbol: topGainers[index].symbol,
                   ltp: topGainers[index].ltp,
                   change: topGainers[index].change,
+                );
+              },
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              'Top Losers',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            ListView.builder(
+              scrollDirection: Axis.vertical,
+              physics: ScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: topLosers.length,
+              itemBuilder: (context, index) {
+                return ShareInfoWidget(
+                  companyName: topLosers[index].companyName,
+                  symbol: topLosers[index].symbol,
+                  ltp: topLosers[index].ltp,
+                  change: topLosers[index].change,
                 );
               },
             ),
