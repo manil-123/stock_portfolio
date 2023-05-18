@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/home_bloc/home_bloc.dart';
-import 'package:share_portfolio/blocs/home_bloc/home_event.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 import 'package:share_portfolio/blocs/share_list_bloc/share_list_bloc.dart';
@@ -42,7 +41,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
           create: (context) => getIt<HomeBloc>()
             ..add(
-              LoadHome(),
+              HomeEvent.loadHome(),
             ),
         ),
         BlocProvider(

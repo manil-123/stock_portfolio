@@ -7,9 +7,9 @@ import '../model/home/top_gainers_model.dart';
 
 abstract class NepseRepository {
   Future<List<ShareInfoModel>> getShareInfoList();
-  Future<NepseIndexModel?> getNepseIndex();
+  Future<NepseIndexModel> getNepseIndex();
   Future<List<TopGainersModel>> getTopGainers();
-  Future<List<TopLosersModel>?> getTopLosers();
+  Future<List<TopLosersModel>> getTopLosers();
 }
 
 @LazySingleton(as: NepseRepository)
@@ -23,7 +23,7 @@ class NepseRepositoryImpl implements NepseRepository {
   }
 
   @override
-  Future<NepseIndexModel?> getNepseIndex() async {
+  Future<NepseIndexModel> getNepseIndex() async {
     return await _dataService.getNepseIndex();
   }
 
@@ -33,7 +33,7 @@ class NepseRepositoryImpl implements NepseRepository {
   }
 
   @override
-  Future<List<TopLosersModel>?> getTopLosers() async {
+  Future<List<TopLosersModel>> getTopLosers() async {
     return await _dataService.getTopLosers();
   }
 }

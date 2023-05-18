@@ -28,7 +28,7 @@ class DataService {
     }
   }
 
-  Future<NepseIndexModel?> getNepseIndex() async {
+  Future<NepseIndexModel> getNepseIndex() async {
     final response = await http.get(Uri.parse(URLConstants.NEPSE_INDEX_URL));
     try {
       if (response.statusCode == 200) {
@@ -36,10 +36,10 @@ class DataService {
         final data = json.decode(parsed);
         return NepseIndexModel.fromJson((data as List)[0]);
       } else
-        return null;
+        return NepseIndexModel();
     } catch (e) {
       debugPrint(e.toString());
-      return null;
+      return NepseIndexModel();
     }
   }
 
@@ -56,7 +56,7 @@ class DataService {
     }
   }
 
-  Future<List<TopLosersModel>?> getTopLosers() async {
+  Future<List<TopLosersModel>> getTopLosers() async {
     final response = await http.get(Uri.parse(URLConstants.TOP_LOSERS_URL));
     try {
       if (response.statusCode == 200) {
@@ -65,10 +65,10 @@ class DataService {
             .map<TopLosersModel>((json) => TopLosersModel.fromJson(json))
             .toList();
       } else
-        return null;
+        return [];
     } catch (e) {
       debugPrint(e.toString());
-      return null;
+      return [];
     }
   }
 }

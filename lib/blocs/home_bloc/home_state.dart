@@ -1,21 +1,13 @@
-import 'package:equatable/equatable.dart';
-import 'package:share_portfolio/model/nepse_index_model.dart';
-import 'package:share_portfolio/model/home/top_gainers_model.dart';
-import 'package:share_portfolio/model/top_losers_model.dart';
+part of 'home_bloc.dart';
 
-abstract class HomeState extends Equatable {
-  @override
-  List<Object> get props => [];
+@freezed
+class HomeState with _$HomeState {
+  const factory HomeState.initial() = _Initial;
+  const factory HomeState.loading() = _Loading;
+  const factory HomeState.loaded({
+    required NepseIndexModel nepseIndex,
+    required List<TopGainersModel> topGainers,
+    required List<TopLosersModel> topLosers,
+  }) = _Loaded;
+  const factory HomeState.failed() = _Failed;
 }
-
-class HomeStateLoading extends HomeState {}
-
-class HomeStateLoaded extends HomeState {
-  final NepseIndexModel? nepseIndex;
-  final List<TopGainersModel>? topGainers;
-  final List<TopLosersModel>? topLosers;
-
-  HomeStateLoaded({this.nepseIndex, this.topGainers, this.topLosers});
-}
-
-class HomeStateFailedToLoad extends HomeState {}
