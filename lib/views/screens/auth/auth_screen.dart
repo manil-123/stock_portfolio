@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/blocs/auth_bloc/auth_bloc.dart';
+import 'package:share_portfolio/core/error/failures.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -57,7 +58,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
               success: () => Container(),
               failed: (failure) {
-                return _authWidget();
+                return _failureWidget(failure);
               });
         },
       ),
@@ -83,6 +84,12 @@ class _AuthScreenState extends State<AuthScreen> {
           Text('Press here to login'),
         ],
       ),
+    );
+  }
+
+  Widget _failureWidget(Failure failure) {
+    return Center(
+      child: Text(failure.failureMessage),
     );
   }
 }
