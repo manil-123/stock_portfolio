@@ -13,11 +13,10 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:share_portfolio/app/database/local_stock_dao.dart' as _i4;
 import 'package:share_portfolio/app/database/share_info_dao.dart' as _i6;
-import 'package:share_portfolio/blocs/auth_bloc/auth_bloc.dart' as _i7;
-import 'package:share_portfolio/blocs/home_bloc/home_bloc.dart' as _i13;
+import 'package:share_portfolio/blocs/auth/auth_bloc.dart' as _i7;
+import 'package:share_portfolio/blocs/home/home_bloc.dart' as _i13;
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart' as _i11;
-import 'package:share_portfolio/blocs/share_list_bloc/share_list_bloc.dart'
-    as _i12;
+import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart' as _i12;
 import 'package:share_portfolio/repository/calculation_repo.dart' as _i8;
 import 'package:share_portfolio/repository/nepse_repository.dart' as _i10;
 import 'package:share_portfolio/services/data_service.dart' as _i9;
