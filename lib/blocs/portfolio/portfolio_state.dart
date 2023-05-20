@@ -9,24 +9,37 @@ abstract class PortfolioState extends Equatable {
 class PortfolioLoading extends PortfolioState {}
 
 class PortfolioLoaded extends PortfolioState {
-  final double? totalInvestment;
-  final int? totalShares;
-  final int? totalStock;
-  final double? totalProfiLoss;
-  final double? currentValue;
-  final double? totalPLPercentage;
-  final double? totalDailyPL;
-  final List<LocalStockData>? localStockDataList;
+  final double totalInvestment;
+  final int totalShares;
+  final int totalStock;
+  final double totalProfiLoss;
+  final double currentValue;
+  final double totalPLPercentage;
+  final double totalDailyPL;
+  final List<LocalStockData> localStockDataList;
 
-  PortfolioLoaded(
-      {this.totalInvestment,
-      this.totalShares,
-      this.totalStock,
-      this.totalProfiLoss,
-      this.currentValue,
-      this.totalPLPercentage,
-      this.totalDailyPL,
-      this.localStockDataList});
+  PortfolioLoaded({
+    required this.totalInvestment,
+    required this.totalShares,
+    required this.totalStock,
+    required this.totalProfiLoss,
+    required this.currentValue,
+    required this.totalPLPercentage,
+    required this.totalDailyPL,
+    required this.localStockDataList,
+  });
+
+  @override
+  List<Object> get props => [
+        totalInvestment,
+        totalShares,
+        totalStock,
+        totalProfiLoss,
+        currentValue,
+        totalPLPercentage,
+        totalDailyPL,
+        localStockDataList,
+      ];
 }
 
 class PortfolioFailedToLoad extends PortfolioState {}

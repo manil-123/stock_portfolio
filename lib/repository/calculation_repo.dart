@@ -11,7 +11,7 @@ abstract class CalculationRepository {
   Future<int> getTotalStockCount();
   Future<double> getTotalProfitLoss();
   Future<double> getCurrentValue();
-  Future<double?> profitLossPercentage();
+  Future<double> profitLossPercentage();
   Future<double> getTotalDailyProfitLoss();
 }
 
@@ -109,11 +109,11 @@ class CalculationRepositoryImpl implements CalculationRepository {
   }
 
   @override
-  Future<double?> profitLossPercentage() async {
-    var totalInvestment = await getTotalInvestment();
-    var totalProfitLoss = await getTotalProfitLoss();
-    var per = (totalProfitLoss / totalInvestment) * 100;
-    return per;
+  Future<double> profitLossPercentage() async {
+    final totalInvestment = await getTotalInvestment();
+    final totalProfitLoss = await getTotalProfitLoss();
+    final per = (totalProfitLoss / totalInvestment) * 100;
+    return totalProfitLoss == 0 ? 0 : per;
   }
 
   @override

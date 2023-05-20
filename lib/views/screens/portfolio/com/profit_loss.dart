@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
 
 class ProfitLoss extends StatelessWidget {
-  final double? totalInvestment;
-  final double? profitLossPercent;
-  final double? dailyPL;
-  const ProfitLoss(
-      {Key? key, this.totalInvestment, this.profitLossPercent, this.dailyPL})
-      : super(key: key);
+  final double totalInvestment;
+  final double profitLossPercent;
+  final double dailyProfitLoss;
+  const ProfitLoss({
+    Key? key,
+    required this.totalInvestment,
+    required this.profitLossPercent,
+    required this.dailyProfitLoss,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       width: MediaQuery.of(context).size.width,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,18 +57,18 @@ class ProfitLoss extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: Text(
-                      profitLossPercent!.isNaN
+                      profitLossPercent == 0
                           ? 'No profit/loss'
-                          : (profitLossPercent! < 0
-                              ? '${profitLossPercent!.toStringAsFixed(1)} % loss'
-                              : '${profitLossPercent!.toStringAsFixed(1)} % profit'),
+                          : (profitLossPercent < 0
+                              ? '${profitLossPercent.toStringAsFixed(1)} % loss'
+                              : '${profitLossPercent.toStringAsFixed(1)} % profit'),
                       style: TextStyle(
-                          color: profitLossPercent!.isNaN
-                              ? Colors.white
-                              : profitLossPercent! > 0
-                                  ? AppColors.greenColor
-                                  : AppColors.redColor,
-                          fontSize: 14.0),
+                        color: profitLossPercent == 0
+                            ? Colors.white
+                            : profitLossPercent > 0
+                                ? AppColors.greenColor
+                                : AppColors.redColor,
+                      ),
                     ),
                   )
                 ],
@@ -97,28 +100,36 @@ class ProfitLoss extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Rs. ${dailyPL!.toStringAsFixed(1).replaceAll(RegExp('-'), '')}',
+                        'Rs. ${dailyProfitLoss.toStringAsFixed(1).replaceAll(RegExp('-'), '')}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: dailyPL! < 0
-                                ? AppColors.redColor
-                                : AppColors.greenColor,
+                            color: dailyProfitLoss == 0
+                                ? Colors.white
+                                : dailyProfitLoss < 0
+                                    ? AppColors.redColor
+                                    : AppColors.greenColor,
                             fontSize: 20.0),
                       ),
                       SizedBox(
                         width: 4,
                       ),
-                      dailyPL! > 0
+                      dailyProfitLoss == 0
                           ? Icon(
                               Icons.arrow_upward,
-                              color: AppColors.greenColor,
+                              color: Colors.white,
                               size: 20,
                             )
-                          : Icon(
-                              Icons.arrow_downward,
-                              color: AppColors.redColor,
-                              size: 20,
-                            ),
+                          : dailyProfitLoss > 0
+                              ? Icon(
+                                  Icons.arrow_upward,
+                                  color: AppColors.greenColor,
+                                  size: 20,
+                                )
+                              : Icon(
+                                  Icons.arrow_downward,
+                                  color: AppColors.redColor,
+                                  size: 20,
+                                ),
                     ],
                   ),
                   SizedBox(

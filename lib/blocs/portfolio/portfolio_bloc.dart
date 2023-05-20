@@ -14,9 +14,12 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
       {required this.localStockListDAO, required this.calculationRepo})
       : super(PortfolioLoading()) {
     on<LoadPortfolio>((event, emit) async {
-      emit(PortfolioLoading());
+      emit(
+        PortfolioLoading(),
+      );
       try {
-        final localStockList = await localStockListDAO.getLocalStockList();
+        final localStockList =
+            await localStockListDAO.getLocalStockList() ?? [];
         final totalInvestment = await calculationRepo.getTotalInvestment();
         final totalShares = await calculationRepo.getTotalSharesCount();
         final totalStock = await calculationRepo.getTotalStockCount();
@@ -38,11 +41,14 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
       }
     });
     on<AddStock>((event, emit) async {
-      emit(PortfolioLoading());
+      emit(
+        PortfolioLoading(),
+      );
       try {
         await localStockListDAO.insert(event.localStockData!);
         final totalInvestment = await calculationRepo.getTotalInvestment();
-        final localStockList = await localStockListDAO.getLocalStockList();
+        final localStockList =
+            await localStockListDAO.getLocalStockList() ?? [];
         final totalShares = await calculationRepo.getTotalSharesCount();
         final totalStock = await calculationRepo.getTotalStockCount();
         final totalProfitLoss = await calculationRepo.getTotalProfitLoss();
@@ -64,11 +70,14 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
     });
 
     on<DeleteStock>((event, emit) async {
-      emit(PortfolioLoading());
+      emit(
+        PortfolioLoading(),
+      );
       try {
         await localStockListDAO.delete(event.localStockData!);
         final totalInvestment = await calculationRepo.getTotalInvestment();
-        final localStockList = await localStockListDAO.getLocalStockList();
+        final localStockList =
+            await localStockListDAO.getLocalStockList() ?? [];
         final totalShares = await calculationRepo.getTotalSharesCount();
         final totalStock = await calculationRepo.getTotalStockCount();
         final totalProfitLoss = await calculationRepo.getTotalProfitLoss();
