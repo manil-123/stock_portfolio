@@ -27,17 +27,17 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
   final _formKey = GlobalKey<FormState>();
 
   var selectedMarket = Market.SECONDARY;
-  List<String> _sectorNames = [];
-  List<String> _companyNames = [];
+  List<String> sectorNames = [];
+  List<String> companyNames = [];
   Map<String, String> scripCompanyName = ListDataModel.scripCompanyNameData;
   Map<String, String> companySectorName = ListDataModel.companySectorData;
 
   void getData() async {
     for (String value in scripCompanyName.values) {
-      _companyNames.add(value);
+      companyNames.add(value);
     }
     for (String value in companySectorName.values) {
-      _sectorNames.add(value);
+      sectorNames.add(value);
     }
   }
 
@@ -73,7 +73,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               SizedBox(height: 12),
               AutoCompleteTextField<String>(
                 key: companyNameKey,
-                suggestions: _companyNames,
+                suggestions: companyNames,
                 clearOnSubmit: false,
                 decoration: InputDecoration(
                   labelText: 'Enter Company Name',
@@ -260,8 +260,9 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                         quantity: int.parse(_quantityController.text),
                         price: double.parse(_priceController.text),
                       );
-                      getIt<PortfolioBloc>()
-                          .add(AddStock(localStockData: localStockData));
+                      getIt<PortfolioBloc>().add(
+                        AddStock(localStockData: localStockData),
+                      );
                       Fluttertoast.showToast(msg: 'Stock Added Successfully');
                       Navigator.pop(context);
                       // AlertDialog alertDialog = AlertDialog(

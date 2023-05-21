@@ -9,8 +9,10 @@ abstract class PortfolioEvent extends Equatable {
 class LoadPortfolio extends PortfolioEvent {}
 
 class AddStock extends PortfolioEvent {
-  final LocalStockData? localStockData;
-  AddStock({this.localStockData});
+  final LocalStockData localStockData;
+  AddStock({
+    required this.localStockData,
+  });
 }
 
 class DeleteStock extends PortfolioEvent {
