@@ -16,7 +16,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       routes: const [
         HomeRoute(),
         StockListRoute(),
-        AutoPortfolioRoute(),
+        PortfolioRouter(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(

@@ -1,11 +1,12 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_state.dart';
-import 'package:share_portfolio/views/screens/portfolio/add_stocks.dart';
 import 'package:share_portfolio/views/screens/portfolio/com/current_holdings.dart';
 import 'package:share_portfolio/views/screens/portfolio/com/profit_loss.dart';
 
@@ -83,11 +84,8 @@ class _AutoPortfolioScreenState extends State<AutoPortfolioScreen> {
                           ),
                           GestureDetector(
                             onTap: () async {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => AddStocks(),
-                                ),
+                              context.router.push(
+                                AddStocksRoute(),
                               );
                             },
                             child: Icon(

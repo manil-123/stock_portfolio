@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:share_portfolio/core/constants/routes.dart';
 import 'package:share_portfolio/splash_screen.dart';
 import 'package:share_portfolio/views/screens/auth/auth_screen.dart';
 import 'package:share_portfolio/views/screens/dashboard/dashboard_screen.dart';
 import 'package:share_portfolio/views/screens/home/home_screen.dart';
+import 'package:share_portfolio/views/screens/portfolio/add_stocks.dart';
 import 'package:share_portfolio/views/screens/portfolio/auto_portfolio_screen.dart';
 import 'package:share_portfolio/views/screens/stock/stock_list_screen.dart';
 
@@ -32,9 +34,19 @@ import 'package:share_portfolio/views/screens/stock/stock_list_screen.dart';
           page: StockListScreen,
         ),
         AutoRoute(
-          path: Routes.autoPortfolioScreenRoute,
-          page: AutoPortfolioScreen,
-        ),
+            path: Routes.autoPortfolioScreenRoute,
+            name: 'PortfolioRouter',
+            page: EmptyRouterPage,
+            children: [
+              AutoRoute(
+                path: '',
+                page: AutoPortfolioScreen,
+              ),
+              AutoRoute(
+                path: Routes.addStocksScreenRoute,
+                page: AddStocksScreen,
+              ),
+            ]),
       ],
     )
   ],

@@ -10,15 +10,15 @@ import '../../../model/list_data_model.dart';
 
 enum Market { IPO, SECONDARY }
 
-class AddStocks extends StatefulWidget {
-  const AddStocks({
+class AddStocksScreen extends StatefulWidget {
+  const AddStocksScreen({
     Key? key,
   }) : super(key: key);
   @override
-  _AddStocksState createState() => _AddStocksState();
+  _AddStocksScreenState createState() => _AddStocksScreenState();
 }
 
-class _AddStocksState extends State<AddStocks> {
+class _AddStocksScreenState extends State<AddStocksScreen> {
   final _companyNameController = TextEditingController();
   final _scripNameController = TextEditingController();
   final _quantityController = TextEditingController();
