@@ -27,17 +27,21 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
         final currentValue = await calculationRepo.getCurrentValue();
         final totalPLPercentage = await calculationRepo.profitLossPercentage();
         final dailyPL = await calculationRepo.getTotalDailyProfitLoss();
-        emit(PortfolioLoaded(
-            totalInvestment: totalInvestment,
-            totalShares: totalShares,
-            totalStock: totalStock,
-            totalProfiLoss: totalProfitLoss,
-            currentValue: currentValue,
-            totalPLPercentage: totalPLPercentage,
-            totalDailyPL: dailyPL,
-            localStockDataList: localStockList));
+        emit(
+          PortfolioLoaded(
+              totalInvestment: totalInvestment,
+              totalShares: totalShares,
+              totalStock: totalStock,
+              totalProfiLoss: totalProfitLoss,
+              currentValue: currentValue,
+              totalPLPercentage: totalPLPercentage,
+              totalDailyPL: dailyPL,
+              localStockDataList: localStockList),
+        );
       } catch (e) {
-        emit(PortfolioFailedToLoad());
+        emit(
+          PortfolioFailedToLoad(),
+        );
       }
     });
     on<AddStock>((event, emit) async {
@@ -55,17 +59,21 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
         final currentValue = await calculationRepo.getCurrentValue();
         final totalPLPercentage = await calculationRepo.profitLossPercentage();
         final dailyPL = await calculationRepo.getTotalDailyProfitLoss();
-        emit(PortfolioLoaded(
-            totalInvestment: totalInvestment,
-            totalShares: totalShares,
-            totalStock: totalStock,
-            totalProfiLoss: totalProfitLoss,
-            currentValue: currentValue,
-            totalPLPercentage: totalPLPercentage,
-            totalDailyPL: dailyPL,
-            localStockDataList: localStockList));
+        emit(
+          PortfolioLoaded(
+              totalInvestment: totalInvestment,
+              totalShares: totalShares,
+              totalStock: totalStock,
+              totalProfiLoss: totalProfitLoss,
+              currentValue: currentValue,
+              totalPLPercentage: totalPLPercentage,
+              totalDailyPL: dailyPL,
+              localStockDataList: localStockList),
+        );
       } catch (e) {
-        emit(PortfolioFailedToLoad());
+        emit(
+          PortfolioFailedToLoad(),
+        );
       }
     });
 
@@ -84,17 +92,21 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
         final currentValue = await calculationRepo.getCurrentValue();
         final totalPLPercentage = await calculationRepo.profitLossPercentage();
         final dailyPL = await calculationRepo.getTotalDailyProfitLoss();
-        emit(PortfolioLoaded(
-            totalInvestment: totalInvestment,
-            totalShares: totalShares,
-            totalStock: totalStock,
-            totalProfiLoss: totalProfitLoss,
-            currentValue: currentValue,
-            totalPLPercentage: totalPLPercentage,
-            totalDailyPL: dailyPL,
-            localStockDataList: localStockList));
+        emit(
+          PortfolioLoaded(
+              totalInvestment: totalInvestment,
+              totalShares: totalShares,
+              totalStock: totalStock,
+              totalProfiLoss: totalProfitLoss,
+              currentValue: currentValue,
+              totalPLPercentage: totalPLPercentage,
+              totalDailyPL: dailyPL,
+              localStockDataList: localStockList),
+        );
       } catch (e) {
-        emit(PortfolioFailedToLoad());
+        emit(
+          PortfolioFailedToLoad(),
+        );
       }
     });
   }

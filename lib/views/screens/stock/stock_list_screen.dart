@@ -4,7 +4,7 @@ import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
-import 'package:share_portfolio/views/screens/portfolio/com/my_search_delegate.dart';
+import 'package:share_portfolio/views/screens/portfolio/components/my_search_delegate.dart';
 import 'package:share_portfolio/views/widgets/share_info_widget.dart';
 
 class StockListScreen extends StatefulWidget {

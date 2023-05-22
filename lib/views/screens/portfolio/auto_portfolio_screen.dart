@@ -11,10 +11,10 @@ import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/model/local_stock_data.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
-import 'package:share_portfolio/views/screens/portfolio/com/current_holdings.dart';
-import 'package:share_portfolio/views/screens/portfolio/com/profit_loss.dart';
+import 'package:share_portfolio/views/screens/portfolio/components/current_holdings.dart';
+import 'package:share_portfolio/views/screens/portfolio/components/profit_loss.dart';
 
-import 'com/welcome.dart';
+import 'components/welcome.dart';
 
 class AutoPortfolioScreen extends StatefulWidget {
   const AutoPortfolioScreen({super.key});
@@ -27,6 +27,9 @@ class _AutoPortfolioScreenState extends State<AutoPortfolioScreen> {
   @override
   void initState() {
     super.initState();
+    context.read<ShareListBloc>().add(
+          ShareListEvent.loadShareList(),
+        );
     context.read<PortfolioBloc>().add(
           LoadPortfolio(),
         );
