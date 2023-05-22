@@ -9,3 +9,5 @@ class URLConstants {
 
   static const String SCRAP_URL = "https://merolagani.com/LatestMarket.aspx";
 }
+
+enum MarketEnum { IPO, SECONDARY }

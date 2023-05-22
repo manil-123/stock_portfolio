@@ -1,16 +1,18 @@
+import 'dart:developer';
 import 'package:autocomplete_textfield_ns/autocomplete_textfield_ns.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
+import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
+import 'package:share_portfolio/blocs/portfolio/portfolio_state.dart';
+import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/model/local_stock_data.dart';
 import 'package:share_portfolio/views/widgets/custom_text_field.dart';
-import '../../../blocs/portfolio/portfolio_event.dart';
-import '../../../model/list_data_model.dart';
-
-enum Market { IPO, SECONDARY }
 
 class AddStocksScreen extends StatefulWidget {
   const AddStocksScreen({
@@ -28,16 +30,10 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
   GlobalKey<AutoCompleteTextFieldState<String>> companyNameKey = GlobalKey();
   final _formKey = GlobalKey<FormState>();
 
-  var selectedMarket = Market.SECONDARY;
-  final List<String> sectorNames =
-      ListDataModel.companySectorData.values.toList();
-  final List<String> companyNames =
-      ListDataModel.scripCompanyNameData.values.toList();
-  Map<String, String> scripCompanyName = ListDataModel.scripCompanyNameData;
-  Map<String, String> companySectorName = ListDataModel.companySectorData;
-
-  String getSector(String companyName) {
-    return companySectorName[companyName]!;
+  @override
+  void initState() {
+    super.initState();
+    context.read<LoadAddStockCubit>().loadAddStockScreen();
   }
 
   @override
@@ -61,132 +57,176 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
           title: Text('Add Details'),
           backgroundColor: Theme.of(context).primaryColor,
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 12.0,
-            vertical: 10,
-          ),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              children: [
-                SizedBox(height: 12),
-                buildAutoCompleteTextField(),
-                SizedBox(
-                  height: 15,
-                ),
-                CustomTextFormField(
-                  controller: _scripNameController,
-                  readOnly: true,
-                  validator: (String? val) {
-                    if (val!.isEmpty) return "Scrip field should not be empty";
-                    return null;
-                  },
-                  labelText: 'Scrip',
-                ),
-                RadioListTile(
-                  title: Text('IPO'),
-                  value: Market.IPO,
-                  groupValue: selectedMarket,
-                  onChanged: (Market? newValue) => setState(() {
-                    selectedMarket = newValue!;
-                    _priceController.text = "100";
-                  }),
-                ),
-                RadioListTile(
-                  title: Text('Secondary'),
-                  value: Market.SECONDARY,
-                  groupValue: selectedMarket,
-                  onChanged: (Market? newValue) =>
-                      setState(() => selectedMarket = newValue!),
-                ),
-                Column(
-                  children: [
-                    CustomTextFormField(
-                      controller: _quantityController,
-                      validator: (String? val) {
-                        if (val!.isEmpty)
-                          return "Quantity field should not be empty";
-                        else if (int.parse(val) == 0)
-                          return "Quantity cannot be 0";
-                        return null;
-                      },
-                      keyboardType:
-                          TextInputType.numberWithOptions(decimal: false),
-                      inputFormatter: <TextInputFormatter>[
-                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                      ],
-                      labelText: 'Quantity',
+        body: BlocConsumer<LoadAddStockCubit, LoadAddStockState>(
+          listener: (context, state) {
+            log(state.toString());
+          },
+          builder: (context, state) {
+            return state.maybeWhen(
+                loaded: (
+                  List<String> sectorNames,
+                  List<String> companyNames,
+                  Map<String, String> scripCompanyNameMap,
+                  Map<String, String> companySectorNameMap,
+                  MarketEnum selectedMarket,
+                ) =>
+                    _loadedWidget(
+                      sectorNames,
+                      companyNames,
+                      scripCompanyNameMap,
+                      companySectorNameMap,
+                      selectedMarket,
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    CustomTextFormField(
-                      controller: _priceController,
-                      readOnly: selectedMarket == Market.IPO ? true : false,
-                      validator: (String? val) {
-                        if (val!.isEmpty)
-                          return "Price field should not be empty";
-                        else if (double.parse(val) == 0.0)
-                          return "Price cannot be 0";
-                        return null;
-                      },
-                      keyboardType:
-                          TextInputType.numberWithOptions(decimal: true),
-                      inputFormatter: <TextInputFormatter>[
-                        FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))
-                      ],
-                      labelText: 'Price',
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_companyNameController.text.isEmpty) {
-                      showErrorInfo(context, "Please select a company");
-                    }
-                    if (_formKey.currentState!.validate()) {
-                      var sectorName = getSector(_companyNameController.text);
-                      var localStockData = LocalStockData(
-                        scrip: _scripNameController.text,
-                        companyName: _companyNameController.text,
-                        sectorName: sectorName,
-                        quantity: int.parse(_quantityController.text),
-                        price: double.parse(_priceController.text),
-                      );
-                      getIt<PortfolioBloc>().add(
-                        AddStock(localStockData: localStockData),
-                      );
-                      Fluttertoast.showToast(msg: 'Stock Added Successfully');
-                      Navigator.pop(context);
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
-                    child: Text(
-                      'ADD',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+                orElse: () => Container());
+          },
         ),
       ),
     );
   }
 
-  Widget buildAutoCompleteTextField() {
+  Widget _loadedWidget(
+    List<String> sectorNames,
+    List<String> companyNames,
+    Map<String, String> scripCompanyNameMap,
+    Map<String, String> companySectorNameMap,
+    MarketEnum selectedMarket,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12.0,
+        vertical: 10,
+      ),
+      child: Form(
+        key: _formKey,
+        child: ListView(
+          children: [
+            SizedBox(height: 12),
+            buildAutoCompleteTextField(companyNames, scripCompanyNameMap),
+            SizedBox(
+              height: 15,
+            ),
+            CustomTextFormField(
+              controller: _scripNameController,
+              readOnly: true,
+              validator: (String? val) {
+                if (val!.isEmpty) return "Scrip field should not be empty";
+                return null;
+              },
+              labelText: 'Scrip',
+            ),
+            RadioListTile(
+              title: Text('IPO'),
+              value: MarketEnum.IPO,
+              groupValue: selectedMarket,
+              onChanged: (MarketEnum? newValue) {
+                _priceController.text = "100";
+                context.read<LoadAddStockCubit>().selectMarket(newValue!);
+              },
+            ),
+            RadioListTile(
+              title: Text('Secondary'),
+              value: MarketEnum.SECONDARY,
+              groupValue: selectedMarket,
+              onChanged: (MarketEnum? newValue) {
+                context.read<LoadAddStockCubit>().selectMarket(newValue!);
+              },
+            ),
+            Column(
+              children: [
+                CustomTextFormField(
+                  controller: _quantityController,
+                  validator: (String? val) {
+                    if (val!.isEmpty)
+                      return "Quantity field should not be empty";
+                    else if (int.parse(val) == 0) return "Quantity cannot be 0";
+                    return null;
+                  },
+                  keyboardType: TextInputType.numberWithOptions(decimal: false),
+                  inputFormatter: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                  ],
+                  labelText: 'Quantity',
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                CustomTextFormField(
+                  controller: _priceController,
+                  readOnly: selectedMarket == MarketEnum.IPO ? true : false,
+                  validator: (String? val) {
+                    if (val!.isEmpty)
+                      return "Price field should not be empty";
+                    else if (double.parse(val) == 0.0)
+                      return "Price cannot be 0";
+                    return null;
+                  },
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  inputFormatter: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))
+                  ],
+                  labelText: 'Price',
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            BlocBuilder<PortfolioBloc, PortfolioState>(
+              builder: (context, state) {
+                return ElevatedButton(
+                  onPressed: () => _addStock(),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).primaryColor,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    child: state is PortfolioLoading
+                        ? CircularProgressIndicator(
+                            color: Colors.white,
+                          )
+                        : Text(
+                            'ADD',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _addStock() {
+    if (_companyNameController.text.isEmpty) {
+      showErrorInfo(context, "Please select a company");
+    }
+    if (_formKey.currentState!.validate()) {
+      var sectorName = context
+          .read<LoadAddStockCubit>()
+          .getSector(_companyNameController.text);
+      var localStockData = LocalStockData(
+        scrip: _scripNameController.text,
+        companyName: _companyNameController.text,
+        sectorName: sectorName,
+        quantity: int.parse(_quantityController.text),
+        price: double.parse(_priceController.text),
+      );
+      getIt<PortfolioBloc>().add(
+        AddStock(localStockData: localStockData),
+      );
+      log(localStockData.toMap().toString());
+      Fluttertoast.showToast(msg: 'Stock Added Successfully');
+      Navigator.pop(context);
+    }
+  }
+
+  Widget buildAutoCompleteTextField(
+      List<String> companyNames, Map<String, String> scripCompanyNameMap) {
     return AutoCompleteTextField<String>(
       key: companyNameKey,
       suggestions: companyNames,
@@ -215,12 +255,10 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
         return a.compareTo(b);
       },
       itemSubmitted: (item) {
-        setState(() {
-          _companyNameController.text = item;
-          _scripNameController.text = scripCompanyName.keys.firstWhere(
-              (element) =>
-                  scripCompanyName[element] == _companyNameController.text);
-        });
+        _companyNameController.text = item;
+        _scripNameController.text = scripCompanyNameMap.keys.firstWhere(
+            (element) =>
+                scripCompanyNameMap[element] == _companyNameController.text);
       },
       itemBuilder: (context, item) {
         return suggestionBox(item);

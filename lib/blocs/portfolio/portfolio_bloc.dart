@@ -49,7 +49,7 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
         PortfolioLoading(),
       );
       try {
-        await localStockListDAO.insert(event.localStockData!);
+        await localStockListDAO.insert(event.localStockData);
         final totalInvestment = await calculationRepo.getTotalInvestment();
         final localStockList =
             await localStockListDAO.getLocalStockList() ?? [];
