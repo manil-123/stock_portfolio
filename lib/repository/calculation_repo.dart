@@ -3,9 +3,9 @@ import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/app/database/share_info_dao.dart';
 
 abstract class CalculationRepository {
-  Future<String?> getLTP(String? scrip);
-  Future<String?> getChange(String? scrip);
-  Future<double?> getLTPDifference(String? scrip);
+  Future<String> getLTP(String? scrip);
+  Future<String> getChange(String? scrip);
+  Future<double> getLTPDifference(String? scrip);
   Future<double> getTotalInvestment();
   Future<int> getTotalSharesCount();
   Future<int> getTotalStockCount();
@@ -23,37 +23,39 @@ class CalculationRepositoryImpl implements CalculationRepository {
       {required this.shareInfoListDAO, required this.localStockListDAO});
 
   @override
-  Future<String?> getLTP(String? scrip) async {
+  Future<String> getLTP(String? scrip) async {
     var shareInfoList = await shareInfoListDAO.getShareInfoList();
-    for (var i in shareInfoList!.shareInfoList!) {
+    if (shareInfoList == null) return '0';
+    for (var i in shareInfoList.shareInfoList!) {
       if (scrip == i.symbol) {
         return i.ltp.replaceAll(RegExp(','), '');
       }
     }
-    return null;
+    return '0';
   }
 
   @override
-  Future<String?> getChange(String? scrip) async {
+  Future<String> getChange(String? scrip) async {
     var shareInfoList = await shareInfoListDAO.getShareInfoList();
-    for (var i in shareInfoList!.shareInfoList!) {
+    if (shareInfoList == null) return '0';
+    for (var i in shareInfoList.shareInfoList!) {
       if (scrip == i.symbol) {
         return i.change;
       }
     }
-    return null;
+    return '0';
   }
 
   @override
-  Future<double?> getLTPDifference(String? scrip) async {
+  Future<double> getLTPDifference(String? scrip) async {
     var ltp = await getLTP(scrip);
     var change = await getChange(scrip);
     double? result;
-    if (double.parse(change!) > 0) {
-      result = double.parse(ltp!) -
+    if (double.parse(change) > 0) {
+      result = double.parse(ltp) -
           ((100 - double.parse(change)) / 100.0 * double.parse(ltp));
     } else {
-      result = ((100 + double.parse(change)) / 100.0 * double.parse(ltp!)) -
+      result = ((100 + double.parse(change)) / 100.0 * double.parse(ltp)) -
           double.parse(ltp);
     }
     return result;
@@ -92,7 +94,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
     for (var i in localStockList!) {
       var ltp = await getLTP(i.scrip);
       profitLoss = profitLoss +
-          (i.quantity! * double.parse(ltp!) - i.quantity! * i.price!);
+          (i.quantity! * double.parse(ltp) - i.quantity! * i.price!);
     }
     return profitLoss;
   }
@@ -103,7 +105,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
     double currentValue = 0;
     for (var i in localStockList!) {
       var ltp = await getLTP(i.scrip);
-      currentValue = currentValue + i.quantity! * double.parse(ltp!);
+      currentValue = currentValue + i.quantity! * double.parse(ltp);
     }
     return currentValue;
   }
@@ -122,7 +124,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
     double dailyPL = 0;
     for (var i in localStockList!) {
       var individualLTP = await getLTPDifference(i.scrip);
-      dailyPL = dailyPL + individualLTP! * i.quantity!;
+      dailyPL = dailyPL + individualLTP * i.quantity!;
     }
     return dailyPL;
   }

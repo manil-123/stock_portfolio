@@ -38,7 +38,7 @@ class CurrentHoldings extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Rs. $currentValue',
+                  'Rs. ${currentValue.toStringAsFixed(1)}',
                   style: whiteTextStyle.copyWith(fontSize: 28.0),
                 ),
               ),
@@ -63,7 +63,7 @@ class CurrentHoldings extends StatelessWidget {
                                     size: 20,
                                   ),
                         Text(
-                          'Rs. ${totalProfitLoss.toString().replaceAll(RegExp('-'), '')}',
+                          'Rs. ${totalProfitLoss.toStringAsFixed(1).replaceAll(RegExp('-'), '')}',
                           style: TextStyle(
                               color: totalProfitLoss == 0
                                   ? Colors.white
