@@ -1,13 +1,11 @@
-import 'dart:developer';
 import 'package:autocomplete_textfield_ns/autocomplete_textfield_ns.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share_portfolio/blocs/portfolio/add_stock_to_portfolio/add_stock_to_portfolio_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
-import 'package:share_portfolio/blocs/portfolio/portfolio_state.dart';
+import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/injection.dart';
@@ -57,28 +55,39 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
           title: Text('Add Details'),
           backgroundColor: Theme.of(context).primaryColor,
         ),
-        body: BlocConsumer<LoadAddStockCubit, LoadAddStockState>(
+        body: BlocListener<AddStockToPortfolioCubit, AddStockToPortfolioState>(
           listener: (context, state) {
-            log(state.toString());
+            state.whenOrNull(
+              success: () {
+                showInfo(context, "Stock Added Successfully");
+                getIt<PortfolioBloc>().add(LoadPortfolio());
+                Navigator.pop(context);
+              },
+              failed: () {
+                showErrorInfo(context, "Failed to add stock");
+              },
+            );
           },
-          builder: (context, state) {
-            return state.maybeWhen(
-                loaded: (
-                  List<String> sectorNames,
-                  List<String> companyNames,
-                  Map<String, String> scripCompanyNameMap,
-                  Map<String, String> companySectorNameMap,
-                  MarketEnum selectedMarket,
-                ) =>
-                    _loadedWidget(
-                      sectorNames,
-                      companyNames,
-                      scripCompanyNameMap,
-                      companySectorNameMap,
-                      selectedMarket,
-                    ),
-                orElse: () => Container());
-          },
+          child: BlocBuilder<LoadAddStockCubit, LoadAddStockState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                  loaded: (
+                    List<String> sectorNames,
+                    List<String> companyNames,
+                    Map<String, String> scripCompanyNameMap,
+                    Map<String, String> companySectorNameMap,
+                    MarketEnum selectedMarket,
+                  ) =>
+                      _loadedWidget(
+                        sectorNames,
+                        companyNames,
+                        scripCompanyNameMap,
+                        companySectorNameMap,
+                        selectedMarket,
+                      ),
+                  orElse: () => Container());
+            },
+          ),
         ),
       ),
     );
@@ -171,27 +180,27 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
             SizedBox(
               height: 20,
             ),
-            BlocBuilder<PortfolioBloc, PortfolioState>(
-              builder: (context, state) {
+            BlocBuilder<AddStockToPortfolioCubit, AddStockToPortfolioState>(
+              builder: (context, addStockState) {
                 return ElevatedButton(
                   onPressed: () => _addStock(),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
-                    child: state is PortfolioLoading
-                        ? CircularProgressIndicator(
-                            color: Colors.white,
-                          )
-                        : Text(
-                            'ADD',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                  ),
+                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      child: addStockState.maybeMap(
+                        loading: (value) => CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                        orElse: () => Text(
+                          'ADD',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )),
                 );
               },
             ),
@@ -217,9 +226,6 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
         price: double.parse(_priceController.text),
       );
       getIt<AddStockToPortfolioCubit>().addStockToPortfolio(localStockData);
-      log(localStockData.toMap().toString());
-      Fluttertoast.showToast(msg: 'Stock Added Successfully');
-      Navigator.pop(context);
     }
   }
 
