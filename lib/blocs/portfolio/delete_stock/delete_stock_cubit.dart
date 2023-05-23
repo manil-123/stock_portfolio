@@ -4,31 +4,31 @@ import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/model/local_stock_data.dart';
 
-part 'add_stock_state.dart';
-part 'add_stock_cubit.freezed.dart';
+part 'delete_stock_state.dart';
+part 'delete_stock_cubit.freezed.dart';
 
 @LazySingleton()
-class AddStockCubit extends Cubit<AddStockState> {
+class DeleteStockCubit extends Cubit<DeleteStockState> {
   final LocalStockListDAO localStockListDAO;
-  AddStockCubit(
+
+  DeleteStockCubit(
     this.localStockListDAO,
   ) : super(
-          AddStockState.initial(),
+          DeleteStockState.initial(),
         );
 
-  void addStockToPortfolio(LocalStockData localStockData) async {
+  void deleteStock(LocalStockData localStockData) async {
     emit(
-      AddStockState.loading(),
+      DeleteStockState.loading(),
     );
     try {
-      await localStockListDAO.insert(localStockData);
-
+      await localStockListDAO.delete(localStockData);
       emit(
-        AddStockState.success(),
+        DeleteStockState.success(),
       );
     } catch (e) {
       emit(
-        AddStockState.failed(),
+        DeleteStockState.failed(),
       );
     }
   }
