@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:share_portfolio/blocs/portfolio/add_stock_to_portfolio/add_stock_to_portfolio_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
-import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_state.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
@@ -216,9 +216,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
         quantity: int.parse(_quantityController.text),
         price: double.parse(_priceController.text),
       );
-      getIt<PortfolioBloc>().add(
-        AddStock(localStockData: localStockData),
-      );
+      getIt<AddStockToPortfolioCubit>().addStockToPortfolio(localStockData);
       log(localStockData.toMap().toString());
       Fluttertoast.showToast(msg: 'Stock Added Successfully');
       Navigator.pop(context);

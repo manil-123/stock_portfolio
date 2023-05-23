@@ -4,6 +4,7 @@ import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/auth/auth_bloc.dart';
 import 'package:share_portfolio/blocs/home/home_bloc.dart';
+import 'package:share_portfolio/blocs/portfolio/add_stock_to_portfolio/add_stock_to_portfolio_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
@@ -54,6 +55,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => getIt<LoadAddStockCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<AddStockToPortfolioCubit>(),
         ),
       ],
       child: MaterialApp.router(

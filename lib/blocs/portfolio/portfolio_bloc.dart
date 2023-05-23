@@ -44,38 +44,6 @@ class PortfolioBloc extends Bloc<PortfolioEvent, PortfolioState> {
         );
       }
     });
-    on<AddStock>((event, emit) async {
-      emit(
-        PortfolioLoading(),
-      );
-      try {
-        await localStockListDAO.insert(event.localStockData);
-        final totalInvestment = await calculationRepo.getTotalInvestment();
-        final localStockList =
-            await localStockListDAO.getLocalStockList() ?? [];
-        final totalShares = await calculationRepo.getTotalSharesCount();
-        final totalStock = await calculationRepo.getTotalStockCount();
-        final totalProfitLoss = await calculationRepo.getTotalProfitLoss();
-        final currentValue = await calculationRepo.getCurrentValue();
-        final totalPLPercentage = await calculationRepo.profitLossPercentage();
-        final dailyPL = await calculationRepo.getTotalDailyProfitLoss();
-        emit(
-          PortfolioLoaded(
-              totalInvestment: totalInvestment,
-              totalShares: totalShares,
-              totalStock: totalStock,
-              totalProfiLoss: totalProfitLoss,
-              currentValue: currentValue,
-              totalPLPercentage: totalPLPercentage,
-              totalDailyPL: dailyPL,
-              localStockDataList: localStockList),
-        );
-      } catch (e) {
-        emit(
-          PortfolioFailedToLoad(),
-        );
-      }
-    });
 
     on<DeleteStock>((event, emit) async {
       emit(
