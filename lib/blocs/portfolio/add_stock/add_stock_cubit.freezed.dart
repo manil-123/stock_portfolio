@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'add_stock_to_portfolio_cubit.dart';
+part of 'add_stock_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$AddStockToPortfolioState {
+mixin _$AddStockState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -69,17 +69,16 @@ mixin _$AddStockToPortfolioState {
 }
 
 /// @nodoc
-abstract class $AddStockToPortfolioStateCopyWith<$Res> {
-  factory $AddStockToPortfolioStateCopyWith(AddStockToPortfolioState value,
-          $Res Function(AddStockToPortfolioState) then) =
-      _$AddStockToPortfolioStateCopyWithImpl<$Res, AddStockToPortfolioState>;
+abstract class $AddStockStateCopyWith<$Res> {
+  factory $AddStockStateCopyWith(
+          AddStockState value, $Res Function(AddStockState) then) =
+      _$AddStockStateCopyWithImpl<$Res, AddStockState>;
 }
 
 /// @nodoc
-class _$AddStockToPortfolioStateCopyWithImpl<$Res,
-        $Val extends AddStockToPortfolioState>
-    implements $AddStockToPortfolioStateCopyWith<$Res> {
-  _$AddStockToPortfolioStateCopyWithImpl(this._value, this._then);
+class _$AddStockStateCopyWithImpl<$Res, $Val extends AddStockState>
+    implements $AddStockStateCopyWith<$Res> {
+  _$AddStockStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -96,7 +95,7 @@ abstract class _$$_InitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_InitialCopyWithImpl<$Res>
-    extends _$AddStockToPortfolioStateCopyWithImpl<$Res, _$_Initial>
+    extends _$AddStockStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, _then);
@@ -109,7 +108,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'AddStockToPortfolioState.initial()';
+    return 'AddStockState.initial()';
   }
 
   @override
@@ -196,7 +195,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements AddStockToPortfolioState {
+abstract class _Initial implements AddStockState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -209,7 +208,7 @@ abstract class _$$_LoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadingCopyWithImpl<$Res>
-    extends _$AddStockToPortfolioStateCopyWithImpl<$Res, _$_Loading>
+    extends _$AddStockStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
       : super(_value, _then);
@@ -222,7 +221,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'AddStockToPortfolioState.loading()';
+    return 'AddStockState.loading()';
   }
 
   @override
@@ -309,7 +308,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements AddStockToPortfolioState {
+abstract class _Loading implements AddStockState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -322,7 +321,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SuccessCopyWithImpl<$Res>
-    extends _$AddStockToPortfolioStateCopyWithImpl<$Res, _$_Success>
+    extends _$AddStockStateCopyWithImpl<$Res, _$_Success>
     implements _$$_SuccessCopyWith<$Res> {
   __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, _then);
@@ -335,7 +334,7 @@ class _$_Success implements _Success {
 
   @override
   String toString() {
-    return 'AddStockToPortfolioState.success()';
+    return 'AddStockState.success()';
   }
 
   @override
@@ -422,7 +421,7 @@ class _$_Success implements _Success {
   }
 }
 
-abstract class _Success implements AddStockToPortfolioState {
+abstract class _Success implements AddStockState {
   const factory _Success() = _$_Success;
 }
 
@@ -434,7 +433,7 @@ abstract class _$$_FailedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_FailedCopyWithImpl<$Res>
-    extends _$AddStockToPortfolioStateCopyWithImpl<$Res, _$_Failed>
+    extends _$AddStockStateCopyWithImpl<$Res, _$_Failed>
     implements _$$_FailedCopyWith<$Res> {
   __$$_FailedCopyWithImpl(_$_Failed _value, $Res Function(_$_Failed) _then)
       : super(_value, _then);
@@ -447,7 +446,7 @@ class _$_Failed implements _Failed {
 
   @override
   String toString() {
-    return 'AddStockToPortfolioState.failed()';
+    return 'AddStockState.failed()';
   }
 
   @override
@@ -534,6 +533,6 @@ class _$_Failed implements _Failed {
   }
 }
 
-abstract class _Failed implements AddStockToPortfolioState {
+abstract class _Failed implements AddStockState {
   const factory _Failed() = _$_Failed;
 }

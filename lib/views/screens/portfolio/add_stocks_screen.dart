@@ -2,7 +2,7 @@ import 'package:autocomplete_textfield_ns/autocomplete_textfield_ns.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:share_portfolio/blocs/portfolio/add_stock_to_portfolio/add_stock_to_portfolio_cubit.dart';
+import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
@@ -55,7 +55,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
           title: Text('Add Details'),
           backgroundColor: Theme.of(context).primaryColor,
         ),
-        body: BlocListener<AddStockToPortfolioCubit, AddStockToPortfolioState>(
+        body: BlocListener<AddStockCubit, AddStockState>(
           listener: (context, state) {
             state.whenOrNull(
               success: () {
@@ -180,7 +180,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
             SizedBox(
               height: 20,
             ),
-            BlocBuilder<AddStockToPortfolioCubit, AddStockToPortfolioState>(
+            BlocBuilder<AddStockCubit, AddStockState>(
               builder: (context, addStockState) {
                 return ElevatedButton(
                   onPressed: () => _addStock(),
@@ -225,7 +225,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
         quantity: int.parse(_quantityController.text),
         price: double.parse(_priceController.text),
       );
-      getIt<AddStockToPortfolioCubit>().addStockToPortfolio(localStockData);
+      getIt<AddStockCubit>().addStockToPortfolio(localStockData);
     }
   }
 

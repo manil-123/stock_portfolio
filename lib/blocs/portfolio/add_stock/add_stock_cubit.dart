@@ -5,33 +5,33 @@ import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/model/local_stock_data.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
 
-part 'add_stock_to_portfolio_state.dart';
-part 'add_stock_to_portfolio_cubit.freezed.dart';
+part 'add_stock_state.dart';
+part 'add_stock_cubit.freezed.dart';
 
 @LazySingleton()
-class AddStockToPortfolioCubit extends Cubit<AddStockToPortfolioState> {
+class AddStockCubit extends Cubit<AddStockState> {
   final LocalStockListDAO localStockListDAO;
   final CalculationRepository calculationRepo;
-  AddStockToPortfolioCubit(
+  AddStockCubit(
     this.localStockListDAO,
     this.calculationRepo,
   ) : super(
-          AddStockToPortfolioState.initial(),
+          AddStockState.initial(),
         );
 
   void addStockToPortfolio(LocalStockData localStockData) async {
     emit(
-      AddStockToPortfolioState.loading(),
+      AddStockState.loading(),
     );
     try {
       await localStockListDAO.insert(localStockData);
 
       emit(
-        AddStockToPortfolioState.success(),
+        AddStockState.success(),
       );
     } catch (e) {
       emit(
-        AddStockToPortfolioState.failed(),
+        AddStockState.failed(),
       );
     }
   }

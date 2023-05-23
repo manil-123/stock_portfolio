@@ -15,7 +15,7 @@ import 'package:share_portfolio/app/database/local_stock_dao.dart' as _i5;
 import 'package:share_portfolio/app/database/share_info_dao.dart' as _i7;
 import 'package:share_portfolio/blocs/auth/auth_bloc.dart' as _i8;
 import 'package:share_portfolio/blocs/home/home_bloc.dart' as _i15;
-import 'package:share_portfolio/blocs/portfolio/add_stock_to_portfolio/add_stock_to_portfolio_cubit.dart'
+import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart'
     as _i14;
 import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart'
     as _i3;
@@ -62,11 +62,10 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i7.ShareInfoListDAO>(),
           gh<_i11.NepseRepository>(),
         ));
-    gh.lazySingleton<_i14.AddStockToPortfolioCubit>(
-        () => _i14.AddStockToPortfolioCubit(
-              gh<_i5.LocalStockListDAO>(),
-              gh<_i9.CalculationRepository>(),
-            ));
+    gh.lazySingleton<_i14.AddStockCubit>(() => _i14.AddStockCubit(
+          gh<_i5.LocalStockListDAO>(),
+          gh<_i9.CalculationRepository>(),
+        ));
     gh.lazySingleton<_i15.HomeBloc>(
         () => _i15.HomeBloc(gh<_i11.NepseRepository>()));
     return this;
