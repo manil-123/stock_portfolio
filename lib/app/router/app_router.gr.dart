@@ -20,7 +20,7 @@ import '../../views/screens/auth/auth_screen.dart' as _i2;
 import '../../views/screens/dashboard/dashboard_screen.dart' as _i3;
 import '../../views/screens/home/home_screen.dart' as _i4;
 import '../../views/screens/portfolio/add_stocks_screen.dart' as _i8;
-import '../../views/screens/portfolio/auto_portfolio_screen.dart' as _i7;
+import '../../views/screens/portfolio/portfolio_screen.dart' as _i7;
 import '../../views/screens/stock/stock_list_screen.dart' as _i5;
 
 class AppRouter extends _i9.RootStackRouter {
@@ -65,10 +65,10 @@ class AppRouter extends _i9.RootStackRouter {
         child: const _i6.EmptyRouterPage(),
       );
     },
-    AutoPortfolioRoute.name: (routeData) {
+    PortfolioRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i7.AutoPortfolioScreen(),
+        child: const _i7.PortfolioScreen(),
       );
     },
     AddStocksRoute.name: (routeData) {
@@ -105,11 +105,11 @@ class AppRouter extends _i9.RootStackRouter {
             ),
             _i9.RouteConfig(
               PortfolioRouter.name,
-              path: 'autoPortfolioScreen',
+              path: 'portfolioScreen',
               parent: DashboardRoute.name,
               children: [
                 _i9.RouteConfig(
-                  AutoPortfolioRoute.name,
+                  PortfolioRoute.name,
                   path: '',
                   parent: PortfolioRouter.name,
                 ),
@@ -192,7 +192,7 @@ class PortfolioRouter extends _i9.PageRouteInfo<void> {
   const PortfolioRouter({List<_i9.PageRouteInfo>? children})
       : super(
           PortfolioRouter.name,
-          path: 'autoPortfolioScreen',
+          path: 'portfolioScreen',
           initialChildren: children,
         );
 
@@ -200,15 +200,15 @@ class PortfolioRouter extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.AutoPortfolioScreen]
-class AutoPortfolioRoute extends _i9.PageRouteInfo<void> {
-  const AutoPortfolioRoute()
+/// [_i7.PortfolioScreen]
+class PortfolioRoute extends _i9.PageRouteInfo<void> {
+  const PortfolioRoute()
       : super(
-          AutoPortfolioRoute.name,
+          PortfolioRoute.name,
           path: '',
         );
 
-  static const String name = 'AutoPortfolioRoute';
+  static const String name = 'PortfolioRoute';
 }
 
 /// generated route for
