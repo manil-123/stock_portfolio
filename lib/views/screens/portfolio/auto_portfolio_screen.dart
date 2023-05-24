@@ -1,13 +1,15 @@
+import 'dart:async';
 import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_event.dart';
 import 'package:share_portfolio/blocs/portfolio/portfolio_state.dart';
-import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
+import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/model/local_stock_data.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
@@ -24,12 +26,32 @@ class AutoPortfolioScreen extends StatefulWidget {
 }
 
 class _AutoPortfolioScreenState extends State<AutoPortfolioScreen> {
+  StreamSubscription? _deleteStockStreamSubscription;
   @override
   void initState() {
     super.initState();
-    context.read<ShareListBloc>().add(
-          ShareListEvent.loadShareList(),
-        );
+    _loadPortfolio();
+    _listenForDeleteOperation();
+  }
+
+  void _listenForDeleteOperation() async {
+    _deleteStockStreamSubscription =
+        getIt<DeleteStockCubit>().stream.listen((state) {
+      state.whenOrNull(
+        success: () {
+          showInfo(context, "Stock deleted successfully");
+          getIt<PortfolioBloc>().add(
+            LoadPortfolio(),
+          );
+        },
+        failed: () {
+          showErrorInfo(context, "Failed to delete stock");
+        },
+      );
+    });
+  }
+
+  void _loadPortfolio() {
     context.read<PortfolioBloc>().add(
           LoadPortfolio(),
         );
@@ -46,17 +68,20 @@ class _AutoPortfolioScreenState extends State<AutoPortfolioScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    if (_deleteStockStreamSubscription != null) {
+      _deleteStockStreamSubscription!.cancel();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: RefreshIndicator(
         onRefresh: () async {
-          context.read<ShareListBloc>().add(
-                ShareListEvent.loadShareList(),
-              );
-          context.read<PortfolioBloc>().add(
-                LoadPortfolio(),
-              );
+          _loadPortfolio();
         },
         child: BlocConsumer<PortfolioBloc, PortfolioState>(
           listener: (context, state) {
@@ -137,10 +162,14 @@ class _AutoPortfolioScreenState extends State<AutoPortfolioScreen> {
       itemCount: stockList.length,
       itemBuilder: (context, index) {
         return InkWell(
-            onLongPress: () {
-              showDeleteAlert(context);
-            },
-            child: _portfolioItem(stockList[index]));
+          onLongPress: () {
+            showDeleteAlert(
+              context,
+              stockList[index],
+            );
+          },
+          child: _portfolioItem(stockList[index]),
+        );
       },
     );
   }
@@ -252,7 +281,8 @@ class _AutoPortfolioScreenState extends State<AutoPortfolioScreen> {
     );
   }
 
-  Future<dynamic> showDeleteAlert(BuildContext context) {
+  Future<dynamic> showDeleteAlert(
+      BuildContext context, LocalStockData localStockData) {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -277,12 +307,8 @@ class _AutoPortfolioScreenState extends State<AutoPortfolioScreen> {
                 children: [
                   MaterialButton(
                     onPressed: () {
-                      // _portfolioBloc!.add(DeleteStock(
-                      //     localStockData:
-                      //         state.localStockDataList![index]));
-                      // Fluttertoast.showToast(
-                      //     msg: 'Stock deleted successfully');
-                      // Navigator.pop(context);
+                      getIt<DeleteStockCubit>().deleteStock(localStockData);
+                      Navigator.pop(context);
                     },
                     color: Theme.of(context).colorScheme.secondary,
                     child: Text(

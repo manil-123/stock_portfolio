@@ -59,7 +59,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
           listener: (context, state) {
             state.whenOrNull(
               success: () {
-                showInfo(context, "Stock Added Successfully");
+                showInfo(context, "Stock added Successfully");
                 getIt<PortfolioBloc>().add(LoadPortfolio());
                 Navigator.pop(context);
               },
