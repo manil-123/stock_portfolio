@@ -66,7 +66,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
     double totalInvestment = 0;
     var localStockList = await localStockListDAO.getLocalStockList();
     for (var i in localStockList!) {
-      totalInvestment = totalInvestment + i.quantity! * i.price!;
+      totalInvestment = totalInvestment + i.quantity * i.price;
     }
     return totalInvestment;
   }
@@ -76,7 +76,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
     int sum = 0;
     var localStockList = await localStockListDAO.getLocalStockList();
     for (var i in localStockList!) {
-      sum = sum + i.quantity!;
+      sum = sum + i.quantity;
     }
     return sum;
   }
@@ -93,8 +93,8 @@ class CalculationRepositoryImpl implements CalculationRepository {
     double profitLoss = 0;
     for (var i in localStockList!) {
       var ltp = await getLTP(i.scrip);
-      profitLoss = profitLoss +
-          (i.quantity! * double.parse(ltp) - i.quantity! * i.price!);
+      profitLoss =
+          profitLoss + (i.quantity * double.parse(ltp) - i.quantity * i.price);
     }
     return profitLoss;
   }
@@ -105,7 +105,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
     double currentValue = 0;
     for (var i in localStockList!) {
       var ltp = await getLTP(i.scrip);
-      currentValue = currentValue + i.quantity! * double.parse(ltp);
+      currentValue = currentValue + i.quantity * double.parse(ltp);
     }
     return currentValue;
   }
@@ -124,7 +124,7 @@ class CalculationRepositoryImpl implements CalculationRepository {
     double dailyPL = 0;
     for (var i in localStockList!) {
       var individualLTP = await getLTPDifference(i.scrip);
-      dailyPL = dailyPL + individualLTP * i.quantity!;
+      dailyPL = dailyPL + individualLTP * i.quantity;
     }
     return dailyPL;
   }

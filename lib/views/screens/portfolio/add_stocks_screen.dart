@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart';
-import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/injection.dart';
@@ -59,7 +58,6 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
             state.whenOrNull(
               success: () {
                 showInfo(context, "Stock added Successfully");
-                getIt<LoadPortfolioCubit>().loadPortfolio();
                 Navigator.pop(context);
               },
               failed: () {

@@ -38,21 +38,21 @@ class LocalStockListDAO {
     var localDataList = await getLocalStockList();
     int? updateId;
     int result = 0;
-    LocalStockDataModel? localUpdatedData;
-    for (var i in localDataList!) {
-      if (i.companyName == localStockData.companyName) {
-        updateId = i.id;
+    for (var oldLocalStockData in localDataList!) {
+      if (oldLocalStockData.companyName == localStockData.companyName) {
+        updateId = oldLocalStockData.id;
         result = 1;
-        localUpdatedData = LocalStockDataModel(
+        localStockData = localStockData.copyWith(
           companyName: localStockData.companyName,
           scrip: localStockData.scrip,
-          quantity: (i.quantity + localStockData.quantity),
-          price: (i.price * i.quantity.toDouble() +
+          quantity: (oldLocalStockData.quantity + localStockData.quantity),
+          price: (oldLocalStockData.price *
+                      oldLocalStockData.quantity.toDouble() +
                   localStockData.price * localStockData.quantity.toDouble()) /
-              (i.quantity.toDouble() + localStockData.quantity.toDouble()),
+              (oldLocalStockData.quantity.toDouble() +
+                  localStockData.quantity.toDouble()),
           sectorName: localStockData.sectorName,
         );
-
         break;
       }
     }
@@ -62,7 +62,7 @@ class LocalStockListDAO {
         localStockData.toJson(),
       );
     } else {
-      update(localUpdatedData!, updateId);
+      update(localStockData, updateId);
     }
   }
 

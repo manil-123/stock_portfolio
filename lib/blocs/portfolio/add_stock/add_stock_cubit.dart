@@ -22,7 +22,6 @@ class AddStockCubit extends Cubit<AddStockState> {
     );
     try {
       await localStockListDAO.insert(localStockData);
-
       emit(
         AddStockState.success(),
       );

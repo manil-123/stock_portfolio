@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
@@ -24,23 +25,37 @@ class PortfolioScreen extends StatefulWidget {
 
 class _PortfolioScreenState extends State<PortfolioScreen> {
   StreamSubscription? _deleteStockStreamSubscription;
+  StreamSubscription? _addStockStreamSubscription;
+
   @override
   void initState() {
     super.initState();
     _loadPortfolio();
     _listenForDeleteOperation();
+    _listenForAddOperation();
   }
 
   void _listenForDeleteOperation() async {
-    _deleteStockStreamSubscription =
+    _addStockStreamSubscription =
         getIt<DeleteStockCubit>().stream.listen((state) {
       state.whenOrNull(
         success: () {
           showInfo(context, "Stock deleted successfully");
-          getIt<LoadPortfolioCubit>().loadPortfolio();
+          _loadPortfolio();
         },
         failed: () {
           showErrorInfo(context, "Failed to delete stock");
+        },
+      );
+    });
+  }
+
+  void _listenForAddOperation() async {
+    _deleteStockStreamSubscription =
+        getIt<AddStockCubit>().stream.listen((state) {
+      state.whenOrNull(
+        success: () {
+          _loadPortfolio();
         },
       );
     });
@@ -65,6 +80,9 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     super.dispose();
     if (_deleteStockStreamSubscription != null) {
       _deleteStockStreamSubscription!.cancel();
+    }
+    if (_addStockStreamSubscription != null) {
+      _addStockStreamSubscription!.cancel();
     }
   }
 
@@ -190,7 +208,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  '${stockData.scrip}',
+                  stockData.scrip,
                   style: TextStyle(color: Colors.white, fontSize: 20.0),
                 ),
                 SizedBox(height: 10),
