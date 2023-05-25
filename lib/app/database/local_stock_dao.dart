@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:sembast/sembast.dart';
 import 'package:share_portfolio/app/database/app_database.dart';
-import 'package:share_portfolio/model/local_stock_data.dart';
+import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 
 @LazySingleton()
 class LocalStockListDAO {
@@ -15,7 +15,7 @@ class LocalStockListDAO {
   // singleton instance of an opened database.
   Future<Database> get _db async => await AppDatabase.instance.database;
 
-  Future<List<LocalStockData>?> getLocalStockList() async {
+  Future<List<LocalStockDataModel>?> getLocalStockList() async {
     // Finder object can also sort data.
     final finder = Finder(sortOrders: [
       SortOrder('companyName'),
@@ -27,29 +27,29 @@ class LocalStockListDAO {
     );
     // Making a List<LocalStockData> out of List<RecordSnapshot>
     return recordSnapshots.map((snapshot) {
-      final localStockData = LocalStockData.fromJson(snapshot.value);
+      final localStockData = LocalStockDataModel.fromJson(snapshot.value);
       // An ID is a key of a record from the database.
-      localStockData.id = snapshot.key;
-      return localStockData;
+
+      return localStockData.copyWith(id: snapshot.key);
     }).toList();
   }
 
-  Future insert(LocalStockData localStockData) async {
+  Future insert(LocalStockDataModel localStockData) async {
     var localDataList = await getLocalStockList();
     int? updateId;
     int result = 0;
-    LocalStockData? localUpdatedData;
+    LocalStockDataModel? localUpdatedData;
     for (var i in localDataList!) {
       if (i.companyName == localStockData.companyName) {
         updateId = i.id;
         result = 1;
-        localUpdatedData = LocalStockData(
+        localUpdatedData = LocalStockDataModel(
           companyName: localStockData.companyName,
           scrip: localStockData.scrip,
-          quantity: (i.quantity! + localStockData.quantity!),
-          price: (i.price! * i.quantity!.toDouble() +
-                  localStockData.price! * localStockData.quantity!.toDouble()) /
-              (i.quantity!.toDouble() + localStockData.quantity!.toDouble()),
+          quantity: (i.quantity + localStockData.quantity),
+          price: (i.price * i.quantity.toDouble() +
+                  localStockData.price * localStockData.quantity.toDouble()) /
+              (i.quantity.toDouble() + localStockData.quantity.toDouble()),
           sectorName: localStockData.sectorName,
         );
 
@@ -57,24 +57,27 @@ class LocalStockListDAO {
       }
     }
     if (result == 0) {
-      await _localStockListStore.add(await _db, localStockData.toMap());
+      await _localStockListStore.add(
+        await _db,
+        localStockData.toJson(),
+      );
     } else {
       update(localUpdatedData!, updateId);
     }
   }
 
-  Future update(LocalStockData localStockData, int? id) async {
+  Future update(LocalStockDataModel localStockData, int? id) async {
     // For filtering by key (ID), RegEx, greater than, and many other criteria,
     // we use a Finder.
     final finder = Finder(filter: Filter.byKey(id));
     await _localStockListStore.update(
       await _db,
-      localStockData.toMap(),
+      localStockData.toJson(),
       finder: finder,
     );
   }
 
-  Future delete(LocalStockData localStockData) async {
+  Future delete(LocalStockDataModel localStockData) async {
     final finder = Finder(filter: Filter.byKey(localStockData.id));
     await _localStockListStore.delete(
       await _db,

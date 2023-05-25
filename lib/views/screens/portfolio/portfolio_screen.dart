@@ -8,7 +8,7 @@ import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/injection.dart';
-import 'package:share_portfolio/model/local_stock_data.dart';
+import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
 import 'package:share_portfolio/views/screens/portfolio/components/current_holdings.dart';
 import 'package:share_portfolio/views/screens/portfolio/components/profit_loss.dart';
@@ -153,7 +153,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     );
   }
 
-  Widget _portfolioItems(List<LocalStockData> stockList) {
+  Widget _portfolioItems(List<LocalStockDataModel> stockList) {
     return ListView.builder(
       scrollDirection: Axis.vertical,
       physics: NeverScrollableScrollPhysics(),
@@ -173,7 +173,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     );
   }
 
-  Widget _portfolioItem(LocalStockData stockData) {
+  Widget _portfolioItem(LocalStockDataModel stockData) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
@@ -212,7 +212,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     );
   }
 
-  Widget _buildStockInfo(LocalStockData stockData) {
+  Widget _buildStockInfo(LocalStockDataModel stockData) {
     return FutureBuilder<String?>(
       future: getCompanyPrice(stockData.scrip),
       builder: (context, snapshot) {
@@ -233,13 +233,13 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     );
   }
 
-  Widget _buildStockPrice(LocalStockData stockData) {
+  Widget _buildStockPrice(LocalStockDataModel stockData) {
     return FutureBuilder<String?>(
       future: getCompanyPrice(stockData.scrip),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
-            'Rs.${(stockData.quantity! * double.parse(snapshot.data!)).toStringAsFixed(1)}',
+            'Rs.${(stockData.quantity * double.parse(snapshot.data!)).toStringAsFixed(1)}',
             style: TextStyle(color: Colors.white, fontSize: 14),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
@@ -254,13 +254,13 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     );
   }
 
-  Widget _buildStockDifference(LocalStockData stockData) {
+  Widget _buildStockDifference(LocalStockDataModel stockData) {
     return FutureBuilder<double?>(
       future: getLTPDiff(stockData.scrip),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
-            'Rs. ${(snapshot.data! * stockData.quantity!).toStringAsFixed(1)}',
+            'Rs. ${(snapshot.data! * stockData.quantity).toStringAsFixed(1)}',
             style: TextStyle(
               color: snapshot.data! > 0.0
                   ? AppColors.greenColor
@@ -281,7 +281,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   }
 
   Future<dynamic> showDeleteAlert(
-      BuildContext context, LocalStockData localStockData) {
+      BuildContext context, LocalStockDataModel localStockData) {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
