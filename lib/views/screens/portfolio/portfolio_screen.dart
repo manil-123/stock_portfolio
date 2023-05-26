@@ -118,17 +118,26 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                               ),
                               GestureDetector(
                                 onTap: () async {
-                                  context.router.push(
-                                    PortfolioListRouter(),
-                                  );
+                                  localStockDataList.isEmpty
+                                      ? context.router.push(
+                                          AddStocksRoute(),
+                                        )
+                                      : context.router.push(
+                                          PortfolioListRouter(),
+                                        );
                                 },
-                                child: Text(
-                                  'View All',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                                child: localStockDataList.isEmpty
+                                    ? Icon(
+                                        Icons.add_circle,
+                                        color: Colors.white,
+                                      )
+                                    : Text(
+                                        'View All',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
                               )
                             ],
                           ),

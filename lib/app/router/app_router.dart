@@ -58,6 +58,10 @@ import 'package:share_portfolio/views/screens/stock/stock_list_screen.dart';
                 ),
               ],
             ),
+            AutoRoute(
+              path: Routes.addStocksScreenRoute,
+              page: AddStocksScreen,
+            ),
           ],
         ),
       ],

@@ -19,9 +19,9 @@ import '../../splash_screen.dart' as _i1;
 import '../../views/screens/auth/auth_screen.dart' as _i2;
 import '../../views/screens/dashboard/dashboard_screen.dart' as _i3;
 import '../../views/screens/home/home_screen.dart' as _i4;
-import '../../views/screens/portfolio/add_stocks_screen.dart' as _i9;
+import '../../views/screens/portfolio/add_stocks_screen.dart' as _i8;
 import '../../views/screens/portfolio/portfolio_screen.dart' as _i7;
-import '../../views/screens/portfolio/portfolio_stock_list_screen.dart' as _i8;
+import '../../views/screens/portfolio/portfolio_stock_list_screen.dart' as _i9;
 import '../../views/screens/stock/stock_list_screen.dart' as _i5;
 
 class AppRouter extends _i10.RootStackRouter {
@@ -78,16 +78,16 @@ class AppRouter extends _i10.RootStackRouter {
         child: const _i6.EmptyRouterPage(),
       );
     },
-    PortfolioStockListRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i8.PortfolioStockListScreen(),
-      );
-    },
     AddStocksRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i9.AddStocksScreen(),
+        child: const _i8.AddStocksScreen(),
+      );
+    },
+    PortfolioStockListRoute.name: (routeData) {
+      return _i10.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i9.PortfolioStockListScreen(),
       );
     },
   };
@@ -142,6 +142,11 @@ class AppRouter extends _i10.RootStackRouter {
                       parent: PortfolioListRouter.name,
                     ),
                   ],
+                ),
+                _i10.RouteConfig(
+                  AddStocksRoute.name,
+                  path: 'addStocksScreen',
+                  parent: PortfolioRouter.name,
                 ),
               ],
             ),
@@ -250,19 +255,7 @@ class PortfolioListRouter extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.PortfolioStockListScreen]
-class PortfolioStockListRoute extends _i10.PageRouteInfo<void> {
-  const PortfolioStockListRoute()
-      : super(
-          PortfolioStockListRoute.name,
-          path: '',
-        );
-
-  static const String name = 'PortfolioStockListRoute';
-}
-
-/// generated route for
-/// [_i9.AddStocksScreen]
+/// [_i8.AddStocksScreen]
 class AddStocksRoute extends _i10.PageRouteInfo<void> {
   const AddStocksRoute()
       : super(
@@ -271,4 +264,16 @@ class AddStocksRoute extends _i10.PageRouteInfo<void> {
         );
 
   static const String name = 'AddStocksRoute';
+}
+
+/// generated route for
+/// [_i9.PortfolioStockListScreen]
+class PortfolioStockListRoute extends _i10.PageRouteInfo<void> {
+  const PortfolioStockListRoute()
+      : super(
+          PortfolioStockListRoute.name,
+          path: '',
+        );
+
+  static const String name = 'PortfolioStockListRoute';
 }
