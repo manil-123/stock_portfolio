@@ -65,16 +65,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     context.read<LoadPortfolioCubit>().loadPortfolio();
   }
 
-  Future<String?> getCompanyPrice(String? scrip) async {
-    var ltp = await getIt<CalculationRepository>().getLTP(scrip);
-    return ltp;
-  }
-
-  Future<double?> getLTPDiff(String? scrip) async {
-    var value = await getIt<CalculationRepository>().getLTPDifference(scrip);
-    return value;
-  }
-
   @override
   void dispose() {
     super.dispose();
@@ -232,7 +222,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _buildStockInfo(LocalStockDataModel stockData) {
     return FutureBuilder<String?>(
-      future: getCompanyPrice(stockData.scrip),
+      future:
+          context.read<LoadPortfolioCubit>().getCompanyPrice(stockData.scrip),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
@@ -253,7 +244,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
 
   Widget _buildStockPrice(LocalStockDataModel stockData) {
     return FutureBuilder<String?>(
-      future: getCompanyPrice(stockData.scrip),
+      future:
+          context.read<LoadPortfolioCubit>().getCompanyPrice(stockData.scrip),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
@@ -273,8 +265,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   }
 
   Widget _buildStockDifference(LocalStockDataModel stockData) {
-    return FutureBuilder<double?>(
-      future: getLTPDiff(stockData.scrip),
+    return FutureBuilder<double>(
+      future: context.read<LoadPortfolioCubit>().getLTPDiff(stockData.scrip),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(

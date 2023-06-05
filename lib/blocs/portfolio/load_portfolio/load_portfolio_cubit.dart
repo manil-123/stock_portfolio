@@ -52,4 +52,14 @@ class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
       );
     }
   }
+
+  Future<String> getCompanyPrice(String? scrip) async {
+    var ltp = await calculationRepo.getLTP(scrip);
+    return ltp;
+  }
+
+  Future<double> getLTPDiff(String? scrip) async {
+    var value = await calculationRepo.getLTPDifference(scrip);
+    return value;
+  }
 }
