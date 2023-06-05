@@ -3,14 +3,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
-import 'package:share_portfolio/app/theme/app_colors.dart';
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
-import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
-import 'package:share_portfolio/repository/calculation_repo.dart';
 import 'package:share_portfolio/views/screens/portfolio/components/current_holdings.dart';
 import 'package:share_portfolio/views/screens/portfolio/components/profit_loss.dart';
 
@@ -31,28 +28,19 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   void initState() {
     super.initState();
     _loadPortfolio();
-    _listenForDeleteOperation();
-    _listenForAddOperation();
+    _listenForAddDeleteOperation();
   }
 
-  void _listenForDeleteOperation() async {
-    _addStockStreamSubscription =
-        getIt<DeleteStockCubit>().stream.listen((state) {
+  void _listenForAddDeleteOperation() async {
+    _addStockStreamSubscription = getIt<AddStockCubit>().stream.listen((state) {
       state.whenOrNull(
         success: () {
-          showInfo(context, "Stock deleted successfully");
           _loadPortfolio();
-        },
-        failed: () {
-          showErrorInfo(context, "Failed to delete stock");
         },
       );
     });
-  }
-
-  void _listenForAddOperation() async {
     _deleteStockStreamSubscription =
-        getIt<AddStockCubit>().stream.listen((state) {
+        getIt<DeleteStockCubit>().stream.listen((state) {
       state.whenOrNull(
         success: () {
           _loadPortfolio();
@@ -101,50 +89,62 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                 localStockDataList,
               ) {
                 return SafeArea(
-                  child: ListView(
-                    children: [
-                      Welcome(),
-                      CurrentHoldings(
-                        totalProfitLoss: totalProfiLoss,
-                        currentValue: currentValue,
-                        totalSharesCount: totalShares,
-                        totalStockCount: totalStock,
-                      ),
-                      ProfitLoss(
-                        totalInvestment: totalInvestment,
-                        profitLossPercent: totalPLPercentage,
-                        dailyProfitLoss: totalDailyPL,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20.0, vertical: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Your Portfolio',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            GestureDetector(
-                              onTap: () async {
-                                context.router.push(
-                                  AddStocksRoute(),
-                                );
-                              },
-                              child: Icon(
-                                Icons.add_circle,
-                                color: Colors.white,
-                                size: 40,
-                              ),
-                            )
-                          ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Welcome(),
+                        CurrentHoldings(
+                          totalProfitLoss: totalProfiLoss,
+                          currentValue: currentValue,
+                          totalSharesCount: totalShares,
+                          totalStockCount: totalStock,
                         ),
-                      ),
-                      _portfolioItems(localStockDataList)
-                    ],
+                        ProfitLoss(
+                          totalInvestment: totalInvestment,
+                          profitLossPercent: totalPLPercentage,
+                          dailyProfitLoss: totalDailyPL,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Portfolio',
+                                style: TextStyle(
+                                    fontSize: 28, fontWeight: FontWeight.bold),
+                              ),
+                              GestureDetector(
+                                onTap: () async {
+                                  localStockDataList.isEmpty
+                                      ? context.router.push(
+                                          AddStocksRoute(),
+                                        )
+                                      : context.router.push(
+                                          PortfolioListRouter(),
+                                        );
+                                },
+                                child: localStockDataList.isEmpty
+                                    ? Icon(
+                                        Icons.add_circle,
+                                        color: Colors.white,
+                                      )
+                                    : Text(
+                                        'View All',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                              )
+                            ],
+                          ),
+                        ),
+                        _portfolioItems(localStockDataList)
+                      ],
+                    ),
                   ),
                 );
               },
@@ -162,59 +162,50 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   }
 
   Widget _portfolioItems(List<LocalStockDataModel> stockList) {
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: stockList.length,
-      itemBuilder: (context, index) {
-        return InkWell(
-          onLongPress: () {
-            showDeleteAlert(
-              context,
-              stockList[index],
-            );
-          },
-          child: _portfolioItem(stockList[index]),
-        );
-      },
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 12.0),
+      padding: EdgeInsets.symmetric(vertical: 6.0),
+      height: 100,
+      width: double.infinity,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: stockList.take(5).length,
+        itemBuilder: (context, index) {
+          return _portfolioItem(
+            stockList[index],
+          );
+        },
+      ),
     );
   }
 
   Widget _portfolioItem(LocalStockDataModel stockData) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+      margin: EdgeInsets.only(right: 12.0),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  stockData.scrip,
-                  style: TextStyle(color: Colors.white, fontSize: 20.0),
-                ),
-                SizedBox(height: 10),
-                _buildStockInfo(stockData),
-              ],
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Row(
             children: [
-              _buildStockPrice(stockData),
-              SizedBox(height: 10),
-              _buildStockDifference(stockData),
+              Text(
+                '${stockData.scrip} ',
+                style: TextStyle(fontSize: 20.0),
+              ),
+              Text(
+                '(${stockData.sectorName})',
+                style: TextStyle(fontSize: 12.0),
+              )
             ],
           ),
+          _buildStockInfo(stockData),
         ],
       ),
     );
@@ -228,7 +219,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
             '${stockData.quantity} Shares, LTP: ${snapshot.data}',
-            style: TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
@@ -236,54 +226,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
           return Text(
             '${stockData.quantity} Shares, LTP: Error',
             style: TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
-          );
-        }
-      },
-    );
-  }
-
-  Widget _buildStockPrice(LocalStockDataModel stockData) {
-    return FutureBuilder<String?>(
-      future:
-          context.read<LoadPortfolioCubit>().getCompanyPrice(stockData.scrip),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Text(
-            'Rs.${(stockData.quantity * double.parse(snapshot.data!)).toStringAsFixed(1)}',
-            style: TextStyle(color: Colors.white, fontSize: 14),
-          );
-        } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        } else {
-          return Text(
-            ' Error',
-            style: TextStyle(color: Colors.white, fontSize: 14),
-          );
-        }
-      },
-    );
-  }
-
-  Widget _buildStockDifference(LocalStockDataModel stockData) {
-    return FutureBuilder<double>(
-      future: context.read<LoadPortfolioCubit>().getLTPDiff(stockData.scrip),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Text(
-            'Rs. ${(snapshot.data! * stockData.quantity).toStringAsFixed(1)}',
-            style: TextStyle(
-              color: snapshot.data! > 0.0
-                  ? AppColors.greenColor
-                  : AppColors.redColor,
-              fontSize: 14,
-            ),
-          );
-        } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        } else {
-          return Text(
-            ' Error',
-            style: TextStyle(color: Colors.white, fontSize: 14),
           );
         }
       },

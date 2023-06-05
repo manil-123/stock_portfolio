@@ -5,5 +5,7 @@ class Routes {
   static const String homeScreenRoute = 'homeScreen';
   static const String stockListScreenRoute = 'stockListScreen';
   static const String portfolioScreenRoute = 'portfolioScreen';
+  static const String portfolioStockListScreenRoute =
+      'portfolioStockListScreen';
   static const String addStocksScreenRoute = 'addStocksScreen';
 }

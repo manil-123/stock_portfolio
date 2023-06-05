@@ -8,6 +8,7 @@ import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
+import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/cubit/load_portfolio_stock_list_cubit.dart';
 import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
 import 'package:share_portfolio/injection.dart';
 
@@ -49,6 +50,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => getIt<LoadPortfolioCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<LoadPortfolioStockListCubit>(),
         ),
         BlocProvider(
           create: (context) => getIt<LoadAddStockCubit>(),
