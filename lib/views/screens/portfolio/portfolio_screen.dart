@@ -67,7 +67,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
       body: RefreshIndicator(
         onRefresh: () async {
           _loadPortfolio();
