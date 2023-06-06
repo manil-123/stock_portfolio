@@ -44,7 +44,18 @@ import 'package:share_portfolio/views/screens/stock/stock_list_screen.dart';
         ),
         AutoRoute(
           path: Routes.stockListScreenRoute,
-          page: StockListScreen,
+          name: 'StockListRouter',
+          page: EmptyRouterPage,
+          children: [
+            AutoRoute(
+              path: '',
+              page: StockListScreen,
+            ),
+            AutoRoute(
+              path: Routes.stockDetailScreenRoute,
+              page: StockDetailScreen,
+            ),
+          ],
         ),
         AutoRoute(
           path: Routes.portfolioScreenRoute,

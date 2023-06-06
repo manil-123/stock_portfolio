@@ -18,12 +18,12 @@ import 'package:flutter/material.dart' as _i12;
 import '../../splash_screen.dart' as _i1;
 import '../../views/screens/auth/auth_screen.dart' as _i2;
 import '../../views/screens/dashboard/dashboard_screen.dart' as _i3;
-import '../../views/screens/home/home_screen.dart' as _i6;
+import '../../views/screens/home/home_screen.dart' as _i5;
 import '../../views/screens/portfolio/add_stocks_screen.dart' as _i9;
 import '../../views/screens/portfolio/portfolio_screen.dart' as _i8;
 import '../../views/screens/portfolio/portfolio_stock_list_screen.dart' as _i10;
-import '../../views/screens/stock/stock_detail_screen.dart' as _i7;
-import '../../views/screens/stock/stock_list_screen.dart' as _i5;
+import '../../views/screens/stock/stock_detail_screen.dart' as _i6;
+import '../../views/screens/stock/stock_list_screen.dart' as _i7;
 
 class AppRouter extends _i11.RootStackRouter {
   AppRouter([_i12.GlobalKey<_i12.NavigatorState>? navigatorKey])
@@ -55,10 +55,10 @@ class AppRouter extends _i11.RootStackRouter {
         child: const _i4.EmptyRouterPage(),
       );
     },
-    StockListRoute.name: (routeData) {
+    StockListRouter.name: (routeData) {
       return _i11.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i5.StockListScreen(),
+        child: const _i4.EmptyRouterPage(),
       );
     },
     PortfolioRouter.name: (routeData) {
@@ -70,19 +70,25 @@ class AppRouter extends _i11.RootStackRouter {
     HomeRoute.name: (routeData) {
       return _i11.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i6.HomeScreen(),
+        child: const _i5.HomeScreen(),
       );
     },
     StockDetailRoute.name: (routeData) {
       final args = routeData.argsAs<StockDetailRouteArgs>();
       return _i11.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i7.StockDetailScreen(
+        child: _i6.StockDetailScreen(
           key: args.key,
           companyName: args.companyName,
           symbol: args.symbol,
           ltp: args.ltp,
         ),
+      );
+    },
+    StockListRoute.name: (routeData) {
+      return _i11.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i7.StockListScreen(),
       );
     },
     PortfolioRoute.name: (routeData) {
@@ -143,9 +149,21 @@ class AppRouter extends _i11.RootStackRouter {
               ],
             ),
             _i11.RouteConfig(
-              StockListRoute.name,
+              StockListRouter.name,
               path: 'stockListScreen',
               parent: DashboardRoute.name,
+              children: [
+                _i11.RouteConfig(
+                  StockListRoute.name,
+                  path: '',
+                  parent: StockListRouter.name,
+                ),
+                _i11.RouteConfig(
+                  StockDetailRoute.name,
+                  path: 'stockDetailScreen',
+                  parent: StockListRouter.name,
+                ),
+              ],
             ),
             _i11.RouteConfig(
               PortfolioRouter.name,
@@ -237,15 +255,16 @@ class HomeRouter extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.StockListScreen]
-class StockListRoute extends _i11.PageRouteInfo<void> {
-  const StockListRoute()
+/// [_i4.EmptyRouterPage]
+class StockListRouter extends _i11.PageRouteInfo<void> {
+  const StockListRouter({List<_i11.PageRouteInfo>? children})
       : super(
-          StockListRoute.name,
+          StockListRouter.name,
           path: 'stockListScreen',
+          initialChildren: children,
         );
 
-  static const String name = 'StockListRoute';
+  static const String name = 'StockListRouter';
 }
 
 /// generated route for
@@ -262,7 +281,7 @@ class PortfolioRouter extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.HomeScreen]
+/// [_i5.HomeScreen]
 class HomeRoute extends _i11.PageRouteInfo<void> {
   const HomeRoute()
       : super(
@@ -274,7 +293,7 @@ class HomeRoute extends _i11.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.StockDetailScreen]
+/// [_i6.StockDetailScreen]
 class StockDetailRoute extends _i11.PageRouteInfo<StockDetailRouteArgs> {
   StockDetailRoute({
     _i12.Key? key,
@@ -315,6 +334,18 @@ class StockDetailRouteArgs {
   String toString() {
     return 'StockDetailRouteArgs{key: $key, companyName: $companyName, symbol: $symbol, ltp: $ltp}';
   }
+}
+
+/// generated route for
+/// [_i7.StockListScreen]
+class StockListRoute extends _i11.PageRouteInfo<void> {
+  const StockListRoute()
+      : super(
+          StockListRoute.name,
+          path: '',
+        );
+
+  static const String name = 'StockListRoute';
 }
 
 /// generated route for

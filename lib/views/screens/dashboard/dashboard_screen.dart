@@ -16,7 +16,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return AutoTabsScaffold(
       routes: const [
         HomeRouter(),
-        StockListRoute(),
+        StockListRouter(),
         PortfolioRouter(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {

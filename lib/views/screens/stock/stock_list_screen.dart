@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
@@ -86,11 +88,22 @@ class _StockListScreenState extends State<StockListScreen> {
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemCount: shareList.length,
-              itemBuilder: (context, index) => ShareInfoWidget(
-                  companyName: shareList[index].companyName,
-                  symbol: shareList[index].symbol,
-                  ltp: shareList[index].ltp,
-                  change: shareList[index].change),
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  context.router.push(
+                    StockDetailRoute(
+                      companyName: shareList[index].companyName,
+                      symbol: shareList[index].symbol,
+                      ltp: shareList[index].ltp,
+                    ),
+                  );
+                },
+                child: ShareInfoWidget(
+                    companyName: shareList[index].companyName,
+                    symbol: shareList[index].symbol,
+                    ltp: shareList[index].ltp,
+                    change: shareList[index].change),
+              ),
             ),
           ],
         ),
