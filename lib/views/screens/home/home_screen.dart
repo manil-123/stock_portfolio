@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/blocs/home/home_bloc.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
@@ -26,7 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           return state.when(
@@ -82,11 +83,22 @@ class _HomeScreenState extends State<HomeScreen> {
               shrinkWrap: true,
               itemCount: topGainers.length,
               itemBuilder: (context, index) {
-                return ShareInfoWidget(
-                  companyName: topGainers[index].companyName,
-                  symbol: topGainers[index].symbol,
-                  ltp: topGainers[index].ltp,
-                  change: topGainers[index].change,
+                return InkWell(
+                  onTap: () {
+                    context.router.push(
+                      StockDetailRoute(
+                        companyName: topGainers[index].companyName,
+                        symbol: topGainers[index].symbol,
+                        ltp: topGainers[index].ltp,
+                      ),
+                    );
+                  },
+                  child: ShareInfoWidget(
+                    companyName: topGainers[index].companyName,
+                    symbol: topGainers[index].symbol,
+                    ltp: topGainers[index].ltp,
+                    change: topGainers[index].change,
+                  ),
                 );
               },
             ),

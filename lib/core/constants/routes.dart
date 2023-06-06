@@ -8,4 +8,5 @@ class Routes {
   static const String portfolioStockListScreenRoute =
       'portfolioStockListScreen';
   static const String addStocksScreenRoute = 'addStocksScreen';
+  static const String stockDetailScreenRoute = 'stockDetailScreen';
 }

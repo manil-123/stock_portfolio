@@ -56,6 +56,8 @@ dependencies:
   path_provider: ^2.0.15
   # Local storage
   sembast: ^3.4.4
+  # charts
+  syncfusion_flutter_charts: ^21.2.8
   # connectivity_plus: ^3.0.6
 
 
