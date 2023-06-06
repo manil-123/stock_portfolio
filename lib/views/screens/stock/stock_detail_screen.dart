@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
-import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/cubit/add_to_watchlist_cubit.dart';
+import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart';
 import 'package:share_portfolio/blocs/watchlist/state/watchlist_state.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/model/list_data_model.dart';
@@ -143,6 +143,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
         scrip: widget.symbol,
         companyName: widget.companyName,
         price: double.parse(widget.ltp),
+        sectorName: getSector(widget.companyName),
       ),
     );
   }
@@ -178,6 +179,6 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
   }
 
   String getSector(String companyName) {
-    return ListDataModel.companySectorData[companyName] ?? 'No Data';
+    return ListDataModel.companySectorData[companyName] ?? '---';
   }
 }

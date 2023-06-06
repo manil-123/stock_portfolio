@@ -27,7 +27,7 @@ import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cu
 import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/cubit/load_portfolio_stock_list_cubit.dart'
     as _i20;
 import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart' as _i14;
-import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/cubit/add_to_watchlist_cubit.dart'
+import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart'
     as _i16;
 import 'package:share_portfolio/repository/calculation_repo.dart' as _i10;
 import 'package:share_portfolio/repository/local_stock_repository.dart' as _i12;

@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
+import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
 import 'package:share_portfolio/repository/local_stock_repository.dart';
 
@@ -35,16 +36,19 @@ class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
       final currentValue = await _calculationRepo.getCurrentValue();
       final totalPLPercentage = await _calculationRepo.profitLossPercentage();
       final dailyPL = await _calculationRepo.getTotalDailyProfitLoss();
+      final watchlistDataList = await _localStockRepository.getStockWatchlist();
       emit(
         LoadPortfolioState.loaded(
-            totalInvestment: totalInvestment,
-            totalShares: totalShares,
-            totalStock: totalStock,
-            totalProfiLoss: totalProfitLoss,
-            currentValue: currentValue,
-            totalPLPercentage: totalPLPercentage,
-            totalDailyPL: dailyPL,
-            localStockDataList: localStockList),
+          totalInvestment: totalInvestment,
+          totalShares: totalShares,
+          totalStock: totalStock,
+          totalProfiLoss: totalProfitLoss,
+          currentValue: currentValue,
+          totalPLPercentage: totalPLPercentage,
+          totalDailyPL: dailyPL,
+          localStockDataList: localStockList,
+          watchlistDataList: watchlistDataList,
+        ),
       );
     } catch (e) {
       emit(

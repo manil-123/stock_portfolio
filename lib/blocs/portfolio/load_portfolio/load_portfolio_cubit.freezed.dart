@@ -28,7 +28,8 @@ mixin _$LoadPortfolioState {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)
         loaded,
     required TResult Function() failed,
   }) =>
@@ -45,7 +46,8 @@ mixin _$LoadPortfolioState {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)?
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)?
         loaded,
     TResult? Function()? failed,
   }) =>
@@ -62,7 +64,8 @@ mixin _$LoadPortfolioState {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)?
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)?
         loaded,
     TResult Function()? failed,
     required TResult orElse(),
@@ -160,7 +163,8 @@ class _$_Initial implements _Initial {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)
         loaded,
     required TResult Function() failed,
   }) {
@@ -180,7 +184,8 @@ class _$_Initial implements _Initial {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)?
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)?
         loaded,
     TResult? Function()? failed,
   }) {
@@ -200,7 +205,8 @@ class _$_Initial implements _Initial {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)?
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)?
         loaded,
     TResult Function()? failed,
     required TResult orElse(),
@@ -300,7 +306,8 @@ class _$_Loading implements _Loading {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)
         loaded,
     required TResult Function() failed,
   }) {
@@ -320,7 +327,8 @@ class _$_Loading implements _Loading {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)?
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)?
         loaded,
     TResult? Function()? failed,
   }) {
@@ -340,7 +348,8 @@ class _$_Loading implements _Loading {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)?
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)?
         loaded,
     TResult Function()? failed,
     required TResult orElse(),
@@ -406,7 +415,8 @@ abstract class _$$_LoadedCopyWith<$Res> {
       double currentValue,
       double totalPLPercentage,
       double totalDailyPL,
-      List<LocalStockDataModel> localStockDataList});
+      List<LocalStockDataModel> localStockDataList,
+      List<WatchlistDataModel> watchlistDataList});
 }
 
 /// @nodoc
@@ -427,6 +437,7 @@ class __$$_LoadedCopyWithImpl<$Res>
     Object? totalPLPercentage = null,
     Object? totalDailyPL = null,
     Object? localStockDataList = null,
+    Object? watchlistDataList = null,
   }) {
     return _then(_$_Loaded(
       totalInvestment: null == totalInvestment
@@ -461,6 +472,10 @@ class __$$_LoadedCopyWithImpl<$Res>
           ? _value._localStockDataList
           : localStockDataList // ignore: cast_nullable_to_non_nullable
               as List<LocalStockDataModel>,
+      watchlistDataList: null == watchlistDataList
+          ? _value._watchlistDataList
+          : watchlistDataList // ignore: cast_nullable_to_non_nullable
+              as List<WatchlistDataModel>,
     ));
   }
 }
@@ -476,8 +491,10 @@ class _$_Loaded implements _Loaded {
       required this.currentValue,
       required this.totalPLPercentage,
       required this.totalDailyPL,
-      required final List<LocalStockDataModel> localStockDataList})
-      : _localStockDataList = localStockDataList;
+      required final List<LocalStockDataModel> localStockDataList,
+      required final List<WatchlistDataModel> watchlistDataList})
+      : _localStockDataList = localStockDataList,
+        _watchlistDataList = watchlistDataList;
 
   @override
   final double totalInvestment;
@@ -502,9 +519,18 @@ class _$_Loaded implements _Loaded {
     return EqualUnmodifiableListView(_localStockDataList);
   }
 
+  final List<WatchlistDataModel> _watchlistDataList;
+  @override
+  List<WatchlistDataModel> get watchlistDataList {
+    if (_watchlistDataList is EqualUnmodifiableListView)
+      return _watchlistDataList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_watchlistDataList);
+  }
+
   @override
   String toString() {
-    return 'LoadPortfolioState.loaded(totalInvestment: $totalInvestment, totalShares: $totalShares, totalStock: $totalStock, totalProfiLoss: $totalProfiLoss, currentValue: $currentValue, totalPLPercentage: $totalPLPercentage, totalDailyPL: $totalDailyPL, localStockDataList: $localStockDataList)';
+    return 'LoadPortfolioState.loaded(totalInvestment: $totalInvestment, totalShares: $totalShares, totalStock: $totalStock, totalProfiLoss: $totalProfiLoss, currentValue: $currentValue, totalPLPercentage: $totalPLPercentage, totalDailyPL: $totalDailyPL, localStockDataList: $localStockDataList, watchlistDataList: $watchlistDataList)';
   }
 
   @override
@@ -527,7 +553,9 @@ class _$_Loaded implements _Loaded {
             (identical(other.totalDailyPL, totalDailyPL) ||
                 other.totalDailyPL == totalDailyPL) &&
             const DeepCollectionEquality()
-                .equals(other._localStockDataList, _localStockDataList));
+                .equals(other._localStockDataList, _localStockDataList) &&
+            const DeepCollectionEquality()
+                .equals(other._watchlistDataList, _watchlistDataList));
   }
 
   @override
@@ -540,7 +568,8 @@ class _$_Loaded implements _Loaded {
       currentValue,
       totalPLPercentage,
       totalDailyPL,
-      const DeepCollectionEquality().hash(_localStockDataList));
+      const DeepCollectionEquality().hash(_localStockDataList),
+      const DeepCollectionEquality().hash(_watchlistDataList));
 
   @JsonKey(ignore: true)
   @override
@@ -561,12 +590,21 @@ class _$_Loaded implements _Loaded {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)
         loaded,
     required TResult Function() failed,
   }) {
-    return loaded(totalInvestment, totalShares, totalStock, totalProfiLoss,
-        currentValue, totalPLPercentage, totalDailyPL, localStockDataList);
+    return loaded(
+        totalInvestment,
+        totalShares,
+        totalStock,
+        totalProfiLoss,
+        currentValue,
+        totalPLPercentage,
+        totalDailyPL,
+        localStockDataList,
+        watchlistDataList);
   }
 
   @override
@@ -582,7 +620,8 @@ class _$_Loaded implements _Loaded {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)?
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)?
         loaded,
     TResult? Function()? failed,
   }) {
@@ -594,7 +633,8 @@ class _$_Loaded implements _Loaded {
         currentValue,
         totalPLPercentage,
         totalDailyPL,
-        localStockDataList);
+        localStockDataList,
+        watchlistDataList);
   }
 
   @override
@@ -610,14 +650,23 @@ class _$_Loaded implements _Loaded {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)?
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)?
         loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(totalInvestment, totalShares, totalStock, totalProfiLoss,
-          currentValue, totalPLPercentage, totalDailyPL, localStockDataList);
+      return loaded(
+          totalInvestment,
+          totalShares,
+          totalStock,
+          totalProfiLoss,
+          currentValue,
+          totalPLPercentage,
+          totalDailyPL,
+          localStockDataList,
+          watchlistDataList);
     }
     return orElse();
   }
@@ -669,7 +718,8 @@ abstract class _Loaded implements LoadPortfolioState {
       required final double currentValue,
       required final double totalPLPercentage,
       required final double totalDailyPL,
-      required final List<LocalStockDataModel> localStockDataList}) = _$_Loaded;
+      required final List<LocalStockDataModel> localStockDataList,
+      required final List<WatchlistDataModel> watchlistDataList}) = _$_Loaded;
 
   double get totalInvestment;
   int get totalShares;
@@ -679,6 +729,7 @@ abstract class _Loaded implements LoadPortfolioState {
   double get totalPLPercentage;
   double get totalDailyPL;
   List<LocalStockDataModel> get localStockDataList;
+  List<WatchlistDataModel> get watchlistDataList;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -730,7 +781,8 @@ class _$_Failed implements _Failed {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)
         loaded,
     required TResult Function() failed,
   }) {
@@ -750,7 +802,8 @@ class _$_Failed implements _Failed {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)?
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)?
         loaded,
     TResult? Function()? failed,
   }) {
@@ -770,7 +823,8 @@ class _$_Failed implements _Failed {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList)?
+            List<LocalStockDataModel> localStockDataList,
+            List<WatchlistDataModel> watchlistDataList)?
         loaded,
     TResult Function()? failed,
     required TResult orElse(),

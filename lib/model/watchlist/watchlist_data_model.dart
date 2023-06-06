@@ -9,6 +9,7 @@ class WatchlistDataModel with _$WatchlistDataModel {
     int? id,
     required String scrip,
     required String companyName,
+    required String sectorName,
     required double price,
   }) = _WatchlistDataModel;
 

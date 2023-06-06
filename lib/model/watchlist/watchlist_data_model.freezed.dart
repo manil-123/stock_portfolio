@@ -23,6 +23,7 @@ mixin _$WatchlistDataModel {
   int? get id => throw _privateConstructorUsedError;
   String get scrip => throw _privateConstructorUsedError;
   String get companyName => throw _privateConstructorUsedError;
+  String get sectorName => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +38,12 @@ abstract class $WatchlistDataModelCopyWith<$Res> {
           WatchlistDataModel value, $Res Function(WatchlistDataModel) then) =
       _$WatchlistDataModelCopyWithImpl<$Res, WatchlistDataModel>;
   @useResult
-  $Res call({int? id, String scrip, String companyName, double price});
+  $Res call(
+      {int? id,
+      String scrip,
+      String companyName,
+      String sectorName,
+      double price});
 }
 
 /// @nodoc
@@ -56,6 +62,7 @@ class _$WatchlistDataModelCopyWithImpl<$Res, $Val extends WatchlistDataModel>
     Object? id = freezed,
     Object? scrip = null,
     Object? companyName = null,
+    Object? sectorName = null,
     Object? price = null,
   }) {
     return _then(_value.copyWith(
@@ -70,6 +77,10 @@ class _$WatchlistDataModelCopyWithImpl<$Res, $Val extends WatchlistDataModel>
       companyName: null == companyName
           ? _value.companyName
           : companyName // ignore: cast_nullable_to_non_nullable
+              as String,
+      sectorName: null == sectorName
+          ? _value.sectorName
+          : sectorName // ignore: cast_nullable_to_non_nullable
               as String,
       price: null == price
           ? _value.price
@@ -87,7 +98,12 @@ abstract class _$$_WatchlistDataModelCopyWith<$Res>
       __$$_WatchlistDataModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String scrip, String companyName, double price});
+  $Res call(
+      {int? id,
+      String scrip,
+      String companyName,
+      String sectorName,
+      double price});
 }
 
 /// @nodoc
@@ -104,6 +120,7 @@ class __$$_WatchlistDataModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? scrip = null,
     Object? companyName = null,
+    Object? sectorName = null,
     Object? price = null,
   }) {
     return _then(_$_WatchlistDataModel(
@@ -118,6 +135,10 @@ class __$$_WatchlistDataModelCopyWithImpl<$Res>
       companyName: null == companyName
           ? _value.companyName
           : companyName // ignore: cast_nullable_to_non_nullable
+              as String,
+      sectorName: null == sectorName
+          ? _value.sectorName
+          : sectorName // ignore: cast_nullable_to_non_nullable
               as String,
       price: null == price
           ? _value.price
@@ -134,6 +155,7 @@ class _$_WatchlistDataModel implements _WatchlistDataModel {
       {this.id,
       required this.scrip,
       required this.companyName,
+      required this.sectorName,
       required this.price});
 
   factory _$_WatchlistDataModel.fromJson(Map<String, dynamic> json) =>
@@ -146,11 +168,13 @@ class _$_WatchlistDataModel implements _WatchlistDataModel {
   @override
   final String companyName;
   @override
+  final String sectorName;
+  @override
   final double price;
 
   @override
   String toString() {
-    return 'WatchlistDataModel(id: $id, scrip: $scrip, companyName: $companyName, price: $price)';
+    return 'WatchlistDataModel(id: $id, scrip: $scrip, companyName: $companyName, sectorName: $sectorName, price: $price)';
   }
 
   @override
@@ -162,12 +186,15 @@ class _$_WatchlistDataModel implements _WatchlistDataModel {
             (identical(other.scrip, scrip) || other.scrip == scrip) &&
             (identical(other.companyName, companyName) ||
                 other.companyName == companyName) &&
+            (identical(other.sectorName, sectorName) ||
+                other.sectorName == sectorName) &&
             (identical(other.price, price) || other.price == price));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, scrip, companyName, price);
+  int get hashCode =>
+      Object.hash(runtimeType, id, scrip, companyName, sectorName, price);
 
   @JsonKey(ignore: true)
   @override
@@ -189,6 +216,7 @@ abstract class _WatchlistDataModel implements WatchlistDataModel {
       {final int? id,
       required final String scrip,
       required final String companyName,
+      required final String sectorName,
       required final double price}) = _$_WatchlistDataModel;
 
   factory _WatchlistDataModel.fromJson(Map<String, dynamic> json) =
@@ -200,6 +228,8 @@ abstract class _WatchlistDataModel implements WatchlistDataModel {
   String get scrip;
   @override
   String get companyName;
+  @override
+  String get sectorName;
   @override
   double get price;
   @override

@@ -8,6 +8,7 @@ import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
+import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 import 'package:share_portfolio/views/screens/portfolio/components/current_holdings.dart';
 import 'package:share_portfolio/views/screens/portfolio/components/profit_loss.dart';
 
@@ -86,6 +87,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                 totalPLPercentage,
                 totalDailyPL,
                 localStockDataList,
+                watchlistDataList,
               ) {
                 return SafeArea(
                   child: SingleChildScrollView(
@@ -104,44 +106,13 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                           profitLossPercent: totalPLPercentage,
                           dailyProfitLoss: totalDailyPL,
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Portfolio',
-                                style: TextStyle(
-                                    fontSize: 28, fontWeight: FontWeight.bold),
-                              ),
-                              GestureDetector(
-                                onTap: () async {
-                                  localStockDataList.isEmpty
-                                      ? context.router.push(
-                                          AddStocksRoute(),
-                                        )
-                                      : context.router.push(
-                                          PortfolioListRouter(),
-                                        );
-                                },
-                                child: localStockDataList.isEmpty
-                                    ? Icon(
-                                        Icons.add_circle,
-                                        color: Colors.white,
-                                      )
-                                    : Text(
-                                        'View All',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                              )
-                            ],
-                          ),
-                        ),
-                        _portfolioItems(localStockDataList)
+                        _portfolioHeading(localStockDataList),
+                        _portfolioItems(localStockDataList),
+                        _watchlistHeading(watchlistDataList),
+                        _watchlistItems(watchlistDataList),
+                        SizedBox(
+                          height: 16.0,
+                        )
                       ],
                     ),
                   ),
@@ -156,6 +127,45 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             );
           },
         ),
+      ),
+    );
+  }
+
+  Widget _portfolioHeading(List<LocalStockDataModel> localStockDataList) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Portfolio',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+          GestureDetector(
+            onTap: () async {
+              localStockDataList.isEmpty
+                  ? context.router.push(
+                      AddStocksRoute(),
+                    )
+                  : context.router.push(
+                      PortfolioListRouter(),
+                    );
+            },
+            child: localStockDataList.isEmpty
+                ? Icon(
+                    Icons.add_circle,
+                    color: Colors.white,
+                  )
+                : Text(
+                    'View All',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+          )
+        ],
       ),
     );
   }
@@ -205,6 +215,89 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
             ],
           ),
           _buildStockInfo(stockData),
+        ],
+      ),
+    );
+  }
+
+  Widget _watchlistHeading(List<WatchlistDataModel> watchlistDataList) {
+    return watchlistDataList.isEmpty
+        ? SizedBox.shrink()
+        : Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'My Watchlist',
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+                GestureDetector(
+                  onTap: () async {},
+                  child: watchlistDataList.isEmpty
+                      ? SizedBox.shrink()
+                      : Text(
+                          'View All',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                )
+              ],
+            ),
+          );
+  }
+
+  Widget _watchlistItems(List<WatchlistDataModel> watchlist) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 12.0),
+      padding: EdgeInsets.symmetric(vertical: 6.0),
+      height: 100,
+      width: double.infinity,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: watchlist.take(5).length,
+        itemBuilder: (context, index) {
+          return _watchlistItem(
+            watchlist[index],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _watchlistItem(WatchlistDataModel watchlistDataModel) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+      margin: EdgeInsets.only(right: 12.0),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondary,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Text(
+                '${watchlistDataModel.scrip} ',
+                style: TextStyle(fontSize: 20.0),
+              ),
+              Text(
+                '(${watchlistDataModel.sectorName})',
+                style: TextStyle(fontSize: 12.0),
+              )
+            ],
+          ),
+          Text(
+            '${watchlistDataModel.companyName} ',
+            style: TextStyle(fontSize: 14.0),
+          ),
         ],
       ),
     );

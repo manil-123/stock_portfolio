@@ -12,6 +12,7 @@ _$_WatchlistDataModel _$$_WatchlistDataModelFromJson(
       id: json['id'] as int?,
       scrip: json['scrip'] as String,
       companyName: json['companyName'] as String,
+      sectorName: json['sectorName'] as String,
       price: (json['price'] as num).toDouble(),
     );
 
@@ -21,5 +22,6 @@ Map<String, dynamic> _$$_WatchlistDataModelToJson(
       'id': instance.id,
       'scrip': instance.scrip,
       'companyName': instance.companyName,
+      'sectorName': instance.sectorName,
       'price': instance.price,
     };
