@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/cubit/add_to_watchlist_cubit.dart';
+import 'package:share_portfolio/blocs/watchlist/state/watchlist_state.dart';
+import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/model/list_data_model.dart';
+import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 
 class StockDetailScreen extends StatefulWidget {
   final String companyName;
@@ -29,50 +34,115 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
         title: Text(widget.symbol),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '${widget.companyName}(${widget.symbol})',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.w500,
-                color: Colors.white60,
-              ),
+      body: BlocListener<AddToWatchlistCubit, WatchlistState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            success: () {
+              showInfo(context, "Stock added to watchlist successfully");
+              Navigator.pop(context);
+            },
+            failed: (errorMessage) {
+              showErrorInfo(context, errorMessage);
+            },
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${widget.companyName}(${widget.symbol})',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white60,
+                  ),
+                ),
+                SizedBox(
+                  height: 2.0,
+                ),
+                Text(
+                  'Sector : ${getSector(widget.companyName)}',
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white60,
+                  ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(6.0),
+                  ),
+                  child: Center(
+                    child: Text('Chart'),
+                  ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                _moreInfo('Last Traded Price', 'Rs. ${widget.ltp}'),
+                _moreInfo('Change', 'Rs. ${widget.change}'),
+                SizedBox(
+                  height: 40.0,
+                ),
+                Center(
+                  child: BlocBuilder<AddToWatchlistCubit, WatchlistState>(
+                    builder: (context, addToWatchlistState) {
+                      return ElevatedButton(
+                        onPressed: () => _addToWatchlist(),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 12.0,
+                            horizontal: 16.0,
+                          ),
+                          child: addToWatchlistState.maybeMap(
+                            loading: (value) => SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                            orElse: () {
+                              return Text(
+                                'ADD TO WATCHLIST',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              );
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
             ),
-            SizedBox(
-              height: 2.0,
-            ),
-            Text(
-              'Sector : ${getSector(widget.companyName)}',
-              style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w500,
-                color: Colors.white60,
-              ),
-            ),
-            SizedBox(
-              height: 16.0,
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.4,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(6.0),
-              ),
-              child: Center(
-                child: Text('Chart'),
-              ),
-            ),
-            SizedBox(
-              height: 16.0,
-            ),
-            _moreInfo('Last Traded Price', 'Rs. ${widget.ltp}'),
-            _moreInfo('Change', 'Rs. ${widget.change}'),
-          ],
+          ),
         ),
+      ),
+    );
+  }
+
+  void _addToWatchlist() {
+    BlocProvider.of<AddToWatchlistCubit>(context).addStockToWatchList(
+      WatchlistDataModel(
+        scrip: widget.symbol,
+        companyName: widget.companyName,
+        price: double.parse(widget.ltp),
       ),
     );
   }

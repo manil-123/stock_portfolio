@@ -10,6 +10,7 @@ import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_c
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/cubit/load_portfolio_stock_list_cubit.dart';
 import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
+import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/cubit/add_to_watchlist_cubit.dart';
 import 'package:share_portfolio/injection.dart';
 
 void main() async {
@@ -62,6 +63,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => getIt<DeleteStockCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<AddToWatchlistCubit>(),
         ),
       ],
       child: MaterialApp.router(
