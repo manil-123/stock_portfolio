@@ -90,6 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         companyName: topGainers[index].companyName,
                         symbol: topGainers[index].symbol,
                         ltp: topGainers[index].ltp,
+                        change: topGainers[index].change,
                       ),
                     );
                   },
@@ -121,11 +122,23 @@ class _HomeScreenState extends State<HomeScreen> {
               shrinkWrap: true,
               itemCount: topLosers.length,
               itemBuilder: (context, index) {
-                return ShareInfoWidget(
-                  companyName: topLosers[index].companyName,
-                  symbol: topLosers[index].symbol,
-                  ltp: topLosers[index].ltp,
-                  change: topLosers[index].change,
+                return InkWell(
+                  onTap: () {
+                    context.router.push(
+                      StockDetailRoute(
+                        companyName: topLosers[index].companyName,
+                        symbol: topLosers[index].symbol,
+                        ltp: topLosers[index].ltp,
+                        change: topLosers[index].change,
+                      ),
+                    );
+                  },
+                  child: ShareInfoWidget(
+                    companyName: topLosers[index].companyName,
+                    symbol: topLosers[index].symbol,
+                    ltp: topLosers[index].ltp,
+                    change: topLosers[index].change,
+                  ),
                 );
               },
             ),

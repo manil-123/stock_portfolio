@@ -82,6 +82,7 @@ class AppRouter extends _i11.RootStackRouter {
           companyName: args.companyName,
           symbol: args.symbol,
           ltp: args.ltp,
+          change: args.change,
         ),
       );
     },
@@ -300,6 +301,7 @@ class StockDetailRoute extends _i11.PageRouteInfo<StockDetailRouteArgs> {
     required String companyName,
     required String symbol,
     required String ltp,
+    required String change,
   }) : super(
           StockDetailRoute.name,
           path: 'stockDetailScreen',
@@ -308,6 +310,7 @@ class StockDetailRoute extends _i11.PageRouteInfo<StockDetailRouteArgs> {
             companyName: companyName,
             symbol: symbol,
             ltp: ltp,
+            change: change,
           ),
         );
 
@@ -320,6 +323,7 @@ class StockDetailRouteArgs {
     required this.companyName,
     required this.symbol,
     required this.ltp,
+    required this.change,
   });
 
   final _i12.Key? key;
@@ -330,9 +334,11 @@ class StockDetailRouteArgs {
 
   final String ltp;
 
+  final String change;
+
   @override
   String toString() {
-    return 'StockDetailRouteArgs{key: $key, companyName: $companyName, symbol: $symbol, ltp: $ltp}';
+    return 'StockDetailRouteArgs{key: $key, companyName: $companyName, symbol: $symbol, ltp: $ltp, change: $change}';
   }
 }
 

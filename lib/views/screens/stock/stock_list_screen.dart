@@ -95,6 +95,7 @@ class _StockListScreenState extends State<StockListScreen> {
                       companyName: shareList[index].companyName,
                       symbol: shareList[index].symbol,
                       ltp: shareList[index].ltp,
+                      change: shareList[index].change,
                     ),
                   );
                 },
