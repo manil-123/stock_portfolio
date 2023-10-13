@@ -49,7 +49,7 @@ class ShareInfoWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  ltp,
+                double.parse(ltp.replaceAll(',', '')).toStringAsFixed(1).toString(),
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: const TextStyle(color: Colors.white, fontSize: 18.0),
@@ -79,7 +79,7 @@ class ShareInfoWidget extends StatelessWidget {
                           width: 6,
                         ),
                         Text(
-                          '$change %',
+                          '${double.parse(change).toStringAsFixed(1)} %',
                           style: TextStyle(
                               color: double.parse(change) >= 0
                                   ? const Color(0xFF30D059)
