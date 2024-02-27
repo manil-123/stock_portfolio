@@ -6,6 +6,7 @@ class HomeState with _$HomeState {
   const factory HomeState.loading() = _Loading;
   const factory HomeState.loaded({
     required NepseIndexModel nepseIndex,
+    required List<NepseTimeSeriesData> nepseTimeSeriesData,
     required List<TopGainersModel> topGainers,
     required List<TopLosersModel> topLosers,
   }) = _Loaded;

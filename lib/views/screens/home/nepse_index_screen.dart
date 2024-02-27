@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
 
 class NepseIndexScreen extends StatelessWidget {
-  const NepseIndexScreen({Key? key}) : super(key: key);
+  const NepseIndexScreen({Key? key, required this.timeSeriesData})
+      : super(key: key);
+
+  final List<NepseTimeSeriesData> timeSeriesData;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +31,10 @@ class NepseIndexScreen extends StatelessWidget {
               const SizedBox(width: 16.0),
               _buildContainer("-8.0"),
             ],
+          ),
+          Text(
+            timeSeriesData.length.toString(),
+            style: TextStyle(fontSize: 18.0),
           ),
         ],
       ),

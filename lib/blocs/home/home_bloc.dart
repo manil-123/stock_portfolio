@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/error/failures.dart';
+import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
@@ -24,6 +25,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         const HomeState.loading(),
       );
       NepseIndexModel nepseIndex = await _nepseRepo.getNepseIndex();
+      final timeSeriesData = await _nepseRepo.getNepseTimeSeriesData();
       final topGainersListResponse = await _nepseRepo.getTopGainers();
       final topLosersListResponse = await _nepseRepo.getTopLosers();
       topGainersListResponse.fold(
@@ -41,6 +43,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             emit(
               HomeState.loaded(
                 nepseIndex: nepseIndex,
+                nepseTimeSeriesData: timeSeriesData.fold(
+                  (l) => [],
+                  (timeSeriesDataList) => timeSeriesDataList,
+                ),
                 topGainers: topGainersList,
                 topLosers: topLosersList,
               ),

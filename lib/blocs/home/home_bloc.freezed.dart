@@ -169,8 +169,11 @@ mixin _$HomeState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)
+    required TResult Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)
         loaded,
     required TResult Function(Failure failure) failed,
   }) =>
@@ -179,8 +182,11 @@ mixin _$HomeState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)?
+    TResult? Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)?
         loaded,
     TResult? Function(Failure failure)? failed,
   }) =>
@@ -189,8 +195,11 @@ mixin _$HomeState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)?
+    TResult Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)?
         loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
@@ -280,8 +289,11 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)
+    required TResult Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)
         loaded,
     required TResult Function(Failure failure) failed,
   }) {
@@ -293,8 +305,11 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)?
+    TResult? Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)?
         loaded,
     TResult? Function(Failure failure)? failed,
   }) {
@@ -306,8 +321,11 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)?
+    TResult Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)?
         loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
@@ -400,8 +418,11 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)
+    required TResult Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)
         loaded,
     required TResult Function(Failure failure) failed,
   }) {
@@ -413,8 +434,11 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)?
+    TResult? Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)?
         loaded,
     TResult? Function(Failure failure)? failed,
   }) {
@@ -426,8 +450,11 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)?
+    TResult Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)?
         loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
@@ -488,6 +515,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   @useResult
   $Res call(
       {NepseIndexModel nepseIndex,
+      List<NepseTimeSeriesData> nepseTimeSeriesData,
       List<TopGainersModel> topGainers,
       List<TopLosersModel> topLosers});
 }
@@ -504,6 +532,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? nepseIndex = null,
+    Object? nepseTimeSeriesData = null,
     Object? topGainers = null,
     Object? topLosers = null,
   }) {
@@ -512,6 +541,10 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.nepseIndex
           : nepseIndex // ignore: cast_nullable_to_non_nullable
               as NepseIndexModel,
+      nepseTimeSeriesData: null == nepseTimeSeriesData
+          ? _value._nepseTimeSeriesData
+          : nepseTimeSeriesData // ignore: cast_nullable_to_non_nullable
+              as List<NepseTimeSeriesData>,
       topGainers: null == topGainers
           ? _value._topGainers
           : topGainers // ignore: cast_nullable_to_non_nullable
@@ -529,13 +562,24 @@ class __$$LoadedImplCopyWithImpl<$Res>
 class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
       {required this.nepseIndex,
+      required final List<NepseTimeSeriesData> nepseTimeSeriesData,
       required final List<TopGainersModel> topGainers,
       required final List<TopLosersModel> topLosers})
-      : _topGainers = topGainers,
+      : _nepseTimeSeriesData = nepseTimeSeriesData,
+        _topGainers = topGainers,
         _topLosers = topLosers;
 
   @override
   final NepseIndexModel nepseIndex;
+  final List<NepseTimeSeriesData> _nepseTimeSeriesData;
+  @override
+  List<NepseTimeSeriesData> get nepseTimeSeriesData {
+    if (_nepseTimeSeriesData is EqualUnmodifiableListView)
+      return _nepseTimeSeriesData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_nepseTimeSeriesData);
+  }
+
   final List<TopGainersModel> _topGainers;
   @override
   List<TopGainersModel> get topGainers {
@@ -554,7 +598,7 @@ class _$LoadedImpl implements _Loaded {
 
   @override
   String toString() {
-    return 'HomeState.loaded(nepseIndex: $nepseIndex, topGainers: $topGainers, topLosers: $topLosers)';
+    return 'HomeState.loaded(nepseIndex: $nepseIndex, nepseTimeSeriesData: $nepseTimeSeriesData, topGainers: $topGainers, topLosers: $topLosers)';
   }
 
   @override
@@ -565,6 +609,8 @@ class _$LoadedImpl implements _Loaded {
             (identical(other.nepseIndex, nepseIndex) ||
                 other.nepseIndex == nepseIndex) &&
             const DeepCollectionEquality()
+                .equals(other._nepseTimeSeriesData, _nepseTimeSeriesData) &&
+            const DeepCollectionEquality()
                 .equals(other._topGainers, _topGainers) &&
             const DeepCollectionEquality()
                 .equals(other._topLosers, _topLosers));
@@ -574,6 +620,7 @@ class _$LoadedImpl implements _Loaded {
   int get hashCode => Object.hash(
       runtimeType,
       nepseIndex,
+      const DeepCollectionEquality().hash(_nepseTimeSeriesData),
       const DeepCollectionEquality().hash(_topGainers),
       const DeepCollectionEquality().hash(_topLosers));
 
@@ -588,12 +635,15 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)
+    required TResult Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)
         loaded,
     required TResult Function(Failure failure) failed,
   }) {
-    return loaded(nepseIndex, topGainers, topLosers);
+    return loaded(nepseIndex, nepseTimeSeriesData, topGainers, topLosers);
   }
 
   @override
@@ -601,12 +651,15 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)?
+    TResult? Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)?
         loaded,
     TResult? Function(Failure failure)? failed,
   }) {
-    return loaded?.call(nepseIndex, topGainers, topLosers);
+    return loaded?.call(nepseIndex, nepseTimeSeriesData, topGainers, topLosers);
   }
 
   @override
@@ -614,14 +667,17 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)?
+    TResult Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)?
         loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(nepseIndex, topGainers, topLosers);
+      return loaded(nepseIndex, nepseTimeSeriesData, topGainers, topLosers);
     }
     return orElse();
   }
@@ -667,10 +723,12 @@ class _$LoadedImpl implements _Loaded {
 abstract class _Loaded implements HomeState {
   const factory _Loaded(
       {required final NepseIndexModel nepseIndex,
+      required final List<NepseTimeSeriesData> nepseTimeSeriesData,
       required final List<TopGainersModel> topGainers,
       required final List<TopLosersModel> topLosers}) = _$LoadedImpl;
 
   NepseIndexModel get nepseIndex;
+  List<NepseTimeSeriesData> get nepseTimeSeriesData;
   List<TopGainersModel> get topGainers;
   List<TopLosersModel> get topLosers;
   @JsonKey(ignore: true)
@@ -754,8 +812,11 @@ class _$FailedImpl implements _Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)
+    required TResult Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)
         loaded,
     required TResult Function(Failure failure) failed,
   }) {
@@ -767,8 +828,11 @@ class _$FailedImpl implements _Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)?
+    TResult? Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)?
         loaded,
     TResult? Function(Failure failure)? failed,
   }) {
@@ -780,8 +844,11 @@ class _$FailedImpl implements _Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(NepseIndexModel nepseIndex,
-            List<TopGainersModel> topGainers, List<TopLosersModel> topLosers)?
+    TResult Function(
+            NepseIndexModel nepseIndex,
+            List<NepseTimeSeriesData> nepseTimeSeriesData,
+            List<TopGainersModel> topGainers,
+            List<TopLosersModel> topLosers)?
         loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),

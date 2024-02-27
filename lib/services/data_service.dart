@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/core/error/failures.dart';
+import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
@@ -23,6 +24,23 @@ class DataService {
       final response = await scrapper.fetchStockData();
       final shareInfoList = ShareInfoList.fromMap(response);
       return Right(shareInfoList.shareInfoList ?? []);
+    } catch (e) {
+      debugPrint(e.toString());
+      return Left(
+        Failure.scrapFailure(
+          failureMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  Future<Either<Failure, List<NepseTimeSeriesData>>>
+      fetchNepseTimeSeriesData() async {
+    try {
+      final response = await scrapper.fetchNepsePriceHistory();
+      final timeSeriesList = NepseTimeSeriesDataResponse.fromJson(
+          response['price_history'] as List<Map<String, dynamic>>);
+      return Right(timeSeriesList.nepseTimeSeriesDataList ?? []);
     } catch (e) {
       debugPrint(e.toString());
       return Left(
