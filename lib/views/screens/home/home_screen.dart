@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/blocs/home/home_bloc.dart';
+import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
 import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
+import 'package:share_portfolio/services/scrapper.dart';
 import 'package:share_portfolio/views/screens/home/nepse_index_screen.dart';
 import 'package:share_portfolio/views/widgets/share_info_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -21,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    getIt<Scrapper>().fetchNepsePriceHistory();
     context.read<HomeBloc>().add(
           const HomeEvent.loadHome(),
         );

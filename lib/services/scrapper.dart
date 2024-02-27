@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
@@ -5,6 +7,33 @@ import 'package:share_portfolio/core/constants/constants.dart';
 
 @LazySingleton()
 class Scrapper {
+  Future<Map<String, dynamic>> fetchNepsePriceHistory() async {
+    final url = Uri.parse(URLConstants.NEPSE_PRICE_HISTORY_URL);
+    final response = await http.get(url);
+    final html = parse(response.body);
+    final historyData =
+        html.querySelector("#ctl00_ContentPlaceHolder1_divData")!;
+    final historyDataRow = historyData.querySelectorAll('tr');
+    List<Map<String, dynamic>> historyDataMapList = [];
+    for (var row in historyDataRow) {
+      final rowData = row.querySelectorAll('td');
+      log(rowData.toString());
+      Map<String, dynamic> individualMap = {};
+      if (rowData.isNotEmpty) {
+        individualMap['date'] = rowData[1].text.toString();
+        individualMap['index'] = rowData[2].text.toString();
+        individualMap['pointChange'] = rowData[3].text.toString();
+        individualMap['percentageChange'] = rowData[4].text.toString();
+      }
+      historyDataMapList.add(individualMap);
+    }
+    historyDataMapList.removeAt(0);
+
+    return {
+      "price_history": historyDataMapList,
+    };
+  }
+
   Future<Map<String, dynamic>> fetchStockData() async {
     final url = Uri.parse(URLConstants.SCRAP_URL);
     final response = await http.get(url);
