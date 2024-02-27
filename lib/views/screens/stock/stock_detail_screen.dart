@@ -187,15 +187,15 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
               ],
               isCurved: true,
               color: double.parse(widget.change.replaceAll(',', '')) >= 0
-                  ? AppColors.greenColor
-                  : AppColors.redColor,
+                  ? AppColors.green
+                  : AppColors.red,
               barWidth: 2,
               dotData: FlDotData(show: false),
               belowBarData: BarAreaData(
                 show: true,
                 color: double.parse(widget.change.replaceAll(',', '')) >= 0
-                    ? AppColors.greenColor.withOpacity(0.8)
-                    : AppColors.redColor.withOpacity(0.8),
+                    ? AppColors.green.withOpacity(0.8)
+                    : AppColors.red.withOpacity(0.8),
               ),
             ),
           ],
@@ -225,8 +225,8 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
               color: double.parse(widget.change) == 0
                   ? Colors.white
                   : double.parse(widget.change) >= 0
-                      ? AppColors.greenColor
-                      : AppColors.redColor,
+                      ? AppColors.green
+                      : AppColors.red,
             ),
           ),
         ],

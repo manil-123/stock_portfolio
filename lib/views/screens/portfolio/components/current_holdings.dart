@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
 
 class CurrentHoldings extends StatelessWidget {
   final double totalProfitLoss;
@@ -54,12 +55,12 @@ class CurrentHoldings extends StatelessWidget {
                             : totalProfitLoss > 0
                                 ? const Icon(
                                     Icons.arrow_upward,
-                                    color: AppColors.greenColor,
+                                    color: AppColors.green,
                                     size: 20,
                                   )
                                 : const Icon(
                                     Icons.arrow_downward,
-                                    color: AppColors.redColor,
+                                    color: AppColors.red,
                                     size: 20,
                                   ),
                         Text(
@@ -68,8 +69,8 @@ class CurrentHoldings extends StatelessWidget {
                               color: totalProfitLoss == 0
                                   ? Colors.white
                                   : totalProfitLoss > 0
-                                      ? AppColors.greenColor
-                                      : AppColors.redColor,
+                                      ? AppColors.green
+                                      : AppColors.red,
                               fontSize: 16.0),
                         ),
                       ],

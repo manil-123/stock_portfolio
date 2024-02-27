@@ -49,7 +49,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: AppColors.whiteBackgroundColor,
+        backgroundColor: AppColors.whiteBackground,
         appBar: AppBar(
           title: const Text('Add Details'),
         ),

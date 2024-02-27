@@ -20,7 +20,7 @@ SnackBar _getErrorWidget(String errorMessage) {
       errorMessage,
       style: const TextStyle(color: Colors.white, fontSize: 14),
     ),
-    backgroundColor: AppColors.redColor,
+    backgroundColor: AppColors.red,
     behavior: SnackBarBehavior.floating,
     elevation: 0,
     action: SnackBarAction(

@@ -18,9 +18,15 @@ class Scrapper {
       Map<String, dynamic> individualMap = {};
       if (rowData.isNotEmpty) {
         individualMap['date'] = rowData[1].text.toString();
-        individualMap['index'] = rowData[2].text.toString();
-        individualMap['pointChange'] = rowData[3].text.toString();
-        individualMap['percentageChange'] = rowData[4].text.toString();
+        individualMap['index'] = double.parse(
+          rowData[2].text.toString().replaceAll(',', ''),
+        );
+        individualMap['pointChange'] = double.parse(
+          rowData[3].text.toString().replaceAll('%', ''),
+        );
+        individualMap['percentageChange'] = double.parse(
+          rowData[4].text.toString().replaceAll('%', ''),
+        );
       }
       historyDataMapList.add(individualMap);
     }

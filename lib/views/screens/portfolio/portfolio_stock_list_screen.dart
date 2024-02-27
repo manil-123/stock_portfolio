@@ -232,9 +232,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
           return Text(
             'Rs. ${(snapshot.data! * stockData.quantity).toStringAsFixed(1)}',
             style: TextStyle(
-              color: snapshot.data! > 0.0
-                  ? AppColors.greenColor
-                  : AppColors.redColor,
+              color: snapshot.data! > 0.0 ? AppColors.green : AppColors.red,
               fontSize: 14,
             ),
           );

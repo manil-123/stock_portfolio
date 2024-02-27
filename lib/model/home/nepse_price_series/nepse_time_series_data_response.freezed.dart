@@ -20,11 +20,10 @@ NepseTimeSeriesData _$NepseTimeSeriesDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NepseTimeSeriesData {
-  String get companyName => throw _privateConstructorUsedError;
-  String get symbol => throw _privateConstructorUsedError;
-  String get ltp => throw _privateConstructorUsedError;
-  String get change => throw _privateConstructorUsedError;
-  String get quantity => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
+  double? get index => throw _privateConstructorUsedError;
+  double? get pointChange => throw _privateConstructorUsedError;
+  double? get percentageChange => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,11 +38,10 @@ abstract class $NepseTimeSeriesDataCopyWith<$Res> {
       _$NepseTimeSeriesDataCopyWithImpl<$Res, NepseTimeSeriesData>;
   @useResult
   $Res call(
-      {String companyName,
-      String symbol,
-      String ltp,
-      String change,
-      String quantity});
+      {String? date,
+      double? index,
+      double? pointChange,
+      double? percentageChange});
 }
 
 /// @nodoc
@@ -59,33 +57,28 @@ class _$NepseTimeSeriesDataCopyWithImpl<$Res, $Val extends NepseTimeSeriesData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? companyName = null,
-    Object? symbol = null,
-    Object? ltp = null,
-    Object? change = null,
-    Object? quantity = null,
+    Object? date = freezed,
+    Object? index = freezed,
+    Object? pointChange = freezed,
+    Object? percentageChange = freezed,
   }) {
     return _then(_value.copyWith(
-      companyName: null == companyName
-          ? _value.companyName
-          : companyName // ignore: cast_nullable_to_non_nullable
-              as String,
-      symbol: null == symbol
-          ? _value.symbol
-          : symbol // ignore: cast_nullable_to_non_nullable
-              as String,
-      ltp: null == ltp
-          ? _value.ltp
-          : ltp // ignore: cast_nullable_to_non_nullable
-              as String,
-      change: null == change
-          ? _value.change
-          : change // ignore: cast_nullable_to_non_nullable
-              as String,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as String,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      index: freezed == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as double?,
+      pointChange: freezed == pointChange
+          ? _value.pointChange
+          : pointChange // ignore: cast_nullable_to_non_nullable
+              as double?,
+      percentageChange: freezed == percentageChange
+          ? _value.percentageChange
+          : percentageChange // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -99,11 +92,10 @@ abstract class _$$NepseTimeSeriesDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String companyName,
-      String symbol,
-      String ltp,
-      String change,
-      String quantity});
+      {String? date,
+      double? index,
+      double? pointChange,
+      double? percentageChange});
 }
 
 /// @nodoc
@@ -117,33 +109,28 @@ class __$$NepseTimeSeriesDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? companyName = null,
-    Object? symbol = null,
-    Object? ltp = null,
-    Object? change = null,
-    Object? quantity = null,
+    Object? date = freezed,
+    Object? index = freezed,
+    Object? pointChange = freezed,
+    Object? percentageChange = freezed,
   }) {
     return _then(_$NepseTimeSeriesDataImpl(
-      companyName: null == companyName
-          ? _value.companyName
-          : companyName // ignore: cast_nullable_to_non_nullable
-              as String,
-      symbol: null == symbol
-          ? _value.symbol
-          : symbol // ignore: cast_nullable_to_non_nullable
-              as String,
-      ltp: null == ltp
-          ? _value.ltp
-          : ltp // ignore: cast_nullable_to_non_nullable
-              as String,
-      change: null == change
-          ? _value.change
-          : change // ignore: cast_nullable_to_non_nullable
-              as String,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as String,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      index: freezed == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as double?,
+      pointChange: freezed == pointChange
+          ? _value.pointChange
+          : pointChange // ignore: cast_nullable_to_non_nullable
+              as double?,
+      percentageChange: freezed == percentageChange
+          ? _value.percentageChange
+          : percentageChange // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -152,29 +139,26 @@ class __$$NepseTimeSeriesDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NepseTimeSeriesDataImpl implements _NepseTimeSeriesData {
   const _$NepseTimeSeriesDataImpl(
-      {required this.companyName,
-      required this.symbol,
-      required this.ltp,
-      required this.change,
-      required this.quantity});
+      {required this.date,
+      required this.index,
+      required this.pointChange,
+      required this.percentageChange});
 
   factory _$NepseTimeSeriesDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$NepseTimeSeriesDataImplFromJson(json);
 
   @override
-  final String companyName;
+  final String? date;
   @override
-  final String symbol;
+  final double? index;
   @override
-  final String ltp;
+  final double? pointChange;
   @override
-  final String change;
-  @override
-  final String quantity;
+  final double? percentageChange;
 
   @override
   String toString() {
-    return 'NepseTimeSeriesData(companyName: $companyName, symbol: $symbol, ltp: $ltp, change: $change, quantity: $quantity)';
+    return 'NepseTimeSeriesData(date: $date, index: $index, pointChange: $pointChange, percentageChange: $percentageChange)';
   }
 
   @override
@@ -182,19 +166,18 @@ class _$NepseTimeSeriesDataImpl implements _NepseTimeSeriesData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NepseTimeSeriesDataImpl &&
-            (identical(other.companyName, companyName) ||
-                other.companyName == companyName) &&
-            (identical(other.symbol, symbol) || other.symbol == symbol) &&
-            (identical(other.ltp, ltp) || other.ltp == ltp) &&
-            (identical(other.change, change) || other.change == change) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.index, index) || other.index == index) &&
+            (identical(other.pointChange, pointChange) ||
+                other.pointChange == pointChange) &&
+            (identical(other.percentageChange, percentageChange) ||
+                other.percentageChange == percentageChange));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, companyName, symbol, ltp, change, quantity);
+      Object.hash(runtimeType, date, index, pointChange, percentageChange);
 
   @JsonKey(ignore: true)
   @override
@@ -213,25 +196,22 @@ class _$NepseTimeSeriesDataImpl implements _NepseTimeSeriesData {
 
 abstract class _NepseTimeSeriesData implements NepseTimeSeriesData {
   const factory _NepseTimeSeriesData(
-      {required final String companyName,
-      required final String symbol,
-      required final String ltp,
-      required final String change,
-      required final String quantity}) = _$NepseTimeSeriesDataImpl;
+      {required final String? date,
+      required final double? index,
+      required final double? pointChange,
+      required final double? percentageChange}) = _$NepseTimeSeriesDataImpl;
 
   factory _NepseTimeSeriesData.fromJson(Map<String, dynamic> json) =
       _$NepseTimeSeriesDataImpl.fromJson;
 
   @override
-  String get companyName;
+  String? get date;
   @override
-  String get symbol;
+  double? get index;
   @override
-  String get ltp;
+  double? get pointChange;
   @override
-  String get change;
-  @override
-  String get quantity;
+  double? get percentageChange;
   @override
   @JsonKey(ignore: true)
   _$$NepseTimeSeriesDataImplCopyWith<_$NepseTimeSeriesDataImpl> get copyWith =>

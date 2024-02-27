@@ -21,11 +21,10 @@ class NepseTimeSeriesDataResponse {
 @freezed
 class NepseTimeSeriesData with _$NepseTimeSeriesData {
   const factory NepseTimeSeriesData({
-    required String companyName,
-    required String symbol,
-    required String ltp,
-    required String change,
-    required String quantity,
+    required String? date,
+    required double? index,
+    required double? pointChange,
+    required double? percentageChange,
   }) = _NepseTimeSeriesData;
 
   factory NepseTimeSeriesData.fromJson(Map<String, dynamic> json) =>

@@ -15,3 +15,6 @@ ThemeData get appTheme => ThemeData(
         bodySmall: TextStyle(),
       ).apply(bodyColor: Colors.white),
     );
+
+const TextStyle greyTextStyle = TextStyle(color: Color(0xFF79787D));
+const TextStyle whiteTextStyle = TextStyle(color: Colors.white);

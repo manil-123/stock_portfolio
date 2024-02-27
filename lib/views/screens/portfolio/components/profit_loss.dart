@@ -66,8 +66,8 @@ class ProfitLoss extends StatelessWidget {
                         color: profitLossPercent == 0
                             ? Colors.white
                             : profitLossPercent > 0
-                                ? AppColors.greenColor
-                                : AppColors.redColor,
+                                ? AppColors.green
+                                : AppColors.red,
                       ),
                     ),
                   )
@@ -106,8 +106,8 @@ class ProfitLoss extends StatelessWidget {
                             color: dailyProfitLoss == 0
                                 ? Colors.white
                                 : dailyProfitLoss < 0
-                                    ? AppColors.redColor
-                                    : AppColors.greenColor,
+                                    ? AppColors.red
+                                    : AppColors.green,
                             fontSize: 20.0),
                       ),
                       const SizedBox(
@@ -122,12 +122,12 @@ class ProfitLoss extends StatelessWidget {
                           : dailyProfitLoss > 0
                               ? const Icon(
                                   Icons.arrow_upward,
-                                  color: AppColors.greenColor,
+                                  color: AppColors.green,
                                   size: 20,
                                 )
                               : const Icon(
                                   Icons.arrow_downward,
-                                  color: AppColors.redColor,
+                                  color: AppColors.red,
                                   size: 20,
                                 ),
                     ],

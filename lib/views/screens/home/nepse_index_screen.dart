@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
+import 'package:share_portfolio/views/widgets/fl_timeseries_chart.dart';
 
 class NepseIndexScreen extends StatelessWidget {
   const NepseIndexScreen({Key? key, required this.timeSeriesData})
@@ -32,10 +33,10 @@ class NepseIndexScreen extends StatelessWidget {
               _buildContainer("-8.0"),
             ],
           ),
-          Text(
-            timeSeriesData.length.toString(),
-            style: TextStyle(fontSize: 18.0),
-          ),
+          const SizedBox(height: 16),
+          AspectRatio(
+              aspectRatio: 327 / 164,
+              child: FlTimeSeriesChart(seriesData: timeSeriesData)),
         ],
       ),
     );

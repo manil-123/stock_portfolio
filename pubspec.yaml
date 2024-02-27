@@ -37,7 +37,7 @@ dependencies:
   # Value equality
   equatable: ^2.0.5
   # Chart
-  fl_chart: ^0.62.0
+  fl_chart: ^0.64.0
   # State management
   flutter_bloc: ^8.0.1
   # Custom snackbar
