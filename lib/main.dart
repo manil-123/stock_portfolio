@@ -11,7 +11,7 @@ import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cu
 import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
 import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
 import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart';
-import 'package:share_portfolio/injection.dart';
+import 'package:share_portfolio/core/di/injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

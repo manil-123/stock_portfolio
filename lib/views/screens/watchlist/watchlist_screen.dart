@@ -5,7 +5,7 @@ import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cu
 import 'package:share_portfolio/blocs/watchlist/load_watchlist/load_watchlist_cubit.dart';
 import 'package:share_portfolio/blocs/watchlist/remove_from_watchlist/remove_from_watchlist_cubit.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
-import 'package:share_portfolio/injection.dart';
+import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 
 class WatchlistScreen extends StatelessWidget {

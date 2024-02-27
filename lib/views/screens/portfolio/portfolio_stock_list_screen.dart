@@ -10,7 +10,7 @@ import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
-import 'package:share_portfolio/injection.dart';
+import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 
 class PortfolioStockListScreen extends StatefulWidget {

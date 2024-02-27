@@ -8,6 +8,9 @@ class URLConstants {
       "https://warm-cove-81937.herokuapp.com/index";
 
   static const String SCRAP_URL = "https://merolagani.com/LatestMarket.aspx";
+
+  static const String NEPSE_PRICE_HISTORY_URL =
+      "https://merolagani.com/Indices.aspx";
 }
 
 enum MarketEnum { IPO, SECONDARY }
