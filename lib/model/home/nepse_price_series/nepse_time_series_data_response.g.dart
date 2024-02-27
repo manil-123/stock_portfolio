@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'top_losers_model.dart';
+part of 'nepse_time_series_data_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TopLosersModelImpl _$$TopLosersModelImplFromJson(Map<String, dynamic> json) =>
-    _$TopLosersModelImpl(
+_$NepseTimeSeriesDataImpl _$$NepseTimeSeriesDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$NepseTimeSeriesDataImpl(
       companyName: json['companyName'] as String,
       symbol: json['symbol'] as String,
       ltp: json['ltp'] as String,
@@ -15,8 +16,8 @@ _$TopLosersModelImpl _$$TopLosersModelImplFromJson(Map<String, dynamic> json) =>
       quantity: json['quantity'] as String,
     );
 
-Map<String, dynamic> _$$TopLosersModelImplToJson(
-        _$TopLosersModelImpl instance) =>
+Map<String, dynamic> _$$NepseTimeSeriesDataImplToJson(
+        _$NepseTimeSeriesDataImpl instance) =>
     <String, dynamic>{
       'companyName': instance.companyName,
       'symbol': instance.symbol,

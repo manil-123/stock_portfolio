@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'top_gainers_model.dart';
+part of 'nepse_time_series_data_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-TopGainersModel _$TopGainersModelFromJson(Map<String, dynamic> json) {
-  return _TopGainersModel.fromJson(json);
+NepseTimeSeriesData _$NepseTimeSeriesDataFromJson(Map<String, dynamic> json) {
+  return _NepseTimeSeriesData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TopGainersModel {
+mixin _$NepseTimeSeriesData {
   String get companyName => throw _privateConstructorUsedError;
   String get symbol => throw _privateConstructorUsedError;
   String get ltp => throw _privateConstructorUsedError;
@@ -28,15 +28,15 @@ mixin _$TopGainersModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TopGainersModelCopyWith<TopGainersModel> get copyWith =>
+  $NepseTimeSeriesDataCopyWith<NepseTimeSeriesData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TopGainersModelCopyWith<$Res> {
-  factory $TopGainersModelCopyWith(
-          TopGainersModel value, $Res Function(TopGainersModel) then) =
-      _$TopGainersModelCopyWithImpl<$Res, TopGainersModel>;
+abstract class $NepseTimeSeriesDataCopyWith<$Res> {
+  factory $NepseTimeSeriesDataCopyWith(
+          NepseTimeSeriesData value, $Res Function(NepseTimeSeriesData) then) =
+      _$NepseTimeSeriesDataCopyWithImpl<$Res, NepseTimeSeriesData>;
   @useResult
   $Res call(
       {String companyName,
@@ -47,9 +47,9 @@ abstract class $TopGainersModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TopGainersModelCopyWithImpl<$Res, $Val extends TopGainersModel>
-    implements $TopGainersModelCopyWith<$Res> {
-  _$TopGainersModelCopyWithImpl(this._value, this._then);
+class _$NepseTimeSeriesDataCopyWithImpl<$Res, $Val extends NepseTimeSeriesData>
+    implements $NepseTimeSeriesDataCopyWith<$Res> {
+  _$NepseTimeSeriesDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -91,11 +91,11 @@ class _$TopGainersModelCopyWithImpl<$Res, $Val extends TopGainersModel>
 }
 
 /// @nodoc
-abstract class _$$TopGainersModelImplCopyWith<$Res>
-    implements $TopGainersModelCopyWith<$Res> {
-  factory _$$TopGainersModelImplCopyWith(_$TopGainersModelImpl value,
-          $Res Function(_$TopGainersModelImpl) then) =
-      __$$TopGainersModelImplCopyWithImpl<$Res>;
+abstract class _$$NepseTimeSeriesDataImplCopyWith<$Res>
+    implements $NepseTimeSeriesDataCopyWith<$Res> {
+  factory _$$NepseTimeSeriesDataImplCopyWith(_$NepseTimeSeriesDataImpl value,
+          $Res Function(_$NepseTimeSeriesDataImpl) then) =
+      __$$NepseTimeSeriesDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,11 +107,11 @@ abstract class _$$TopGainersModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TopGainersModelImplCopyWithImpl<$Res>
-    extends _$TopGainersModelCopyWithImpl<$Res, _$TopGainersModelImpl>
-    implements _$$TopGainersModelImplCopyWith<$Res> {
-  __$$TopGainersModelImplCopyWithImpl(
-      _$TopGainersModelImpl _value, $Res Function(_$TopGainersModelImpl) _then)
+class __$$NepseTimeSeriesDataImplCopyWithImpl<$Res>
+    extends _$NepseTimeSeriesDataCopyWithImpl<$Res, _$NepseTimeSeriesDataImpl>
+    implements _$$NepseTimeSeriesDataImplCopyWith<$Res> {
+  __$$NepseTimeSeriesDataImplCopyWithImpl(_$NepseTimeSeriesDataImpl _value,
+      $Res Function(_$NepseTimeSeriesDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +123,7 @@ class __$$TopGainersModelImplCopyWithImpl<$Res>
     Object? change = null,
     Object? quantity = null,
   }) {
-    return _then(_$TopGainersModelImpl(
+    return _then(_$NepseTimeSeriesDataImpl(
       companyName: null == companyName
           ? _value.companyName
           : companyName // ignore: cast_nullable_to_non_nullable
@@ -150,16 +150,16 @@ class __$$TopGainersModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TopGainersModelImpl implements _TopGainersModel {
-  const _$TopGainersModelImpl(
+class _$NepseTimeSeriesDataImpl implements _NepseTimeSeriesData {
+  const _$NepseTimeSeriesDataImpl(
       {required this.companyName,
       required this.symbol,
       required this.ltp,
       required this.change,
       required this.quantity});
 
-  factory _$TopGainersModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TopGainersModelImplFromJson(json);
+  factory _$NepseTimeSeriesDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NepseTimeSeriesDataImplFromJson(json);
 
   @override
   final String companyName;
@@ -174,14 +174,14 @@ class _$TopGainersModelImpl implements _TopGainersModel {
 
   @override
   String toString() {
-    return 'TopGainersModel(companyName: $companyName, symbol: $symbol, ltp: $ltp, change: $change, quantity: $quantity)';
+    return 'NepseTimeSeriesData(companyName: $companyName, symbol: $symbol, ltp: $ltp, change: $change, quantity: $quantity)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TopGainersModelImpl &&
+            other is _$NepseTimeSeriesDataImpl &&
             (identical(other.companyName, companyName) ||
                 other.companyName == companyName) &&
             (identical(other.symbol, symbol) || other.symbol == symbol) &&
@@ -199,28 +199,28 @@ class _$TopGainersModelImpl implements _TopGainersModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TopGainersModelImplCopyWith<_$TopGainersModelImpl> get copyWith =>
-      __$$TopGainersModelImplCopyWithImpl<_$TopGainersModelImpl>(
+  _$$NepseTimeSeriesDataImplCopyWith<_$NepseTimeSeriesDataImpl> get copyWith =>
+      __$$NepseTimeSeriesDataImplCopyWithImpl<_$NepseTimeSeriesDataImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TopGainersModelImplToJson(
+    return _$$NepseTimeSeriesDataImplToJson(
       this,
     );
   }
 }
 
-abstract class _TopGainersModel implements TopGainersModel {
-  const factory _TopGainersModel(
+abstract class _NepseTimeSeriesData implements NepseTimeSeriesData {
+  const factory _NepseTimeSeriesData(
       {required final String companyName,
       required final String symbol,
       required final String ltp,
       required final String change,
-      required final String quantity}) = _$TopGainersModelImpl;
+      required final String quantity}) = _$NepseTimeSeriesDataImpl;
 
-  factory _TopGainersModel.fromJson(Map<String, dynamic> json) =
-      _$TopGainersModelImpl.fromJson;
+  factory _NepseTimeSeriesData.fromJson(Map<String, dynamic> json) =
+      _$NepseTimeSeriesDataImpl.fromJson;
 
   @override
   String get companyName;
@@ -234,6 +234,6 @@ abstract class _TopGainersModel implements TopGainersModel {
   String get quantity;
   @override
   @JsonKey(ignore: true)
-  _$$TopGainersModelImplCopyWith<_$TopGainersModelImpl> get copyWith =>
+  _$$NepseTimeSeriesDataImplCopyWith<_$NepseTimeSeriesDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'top_losers_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TopLosersModel _$TopLosersModelFromJson(Map<String, dynamic> json) {
   return _TopLosersModel.fromJson(json);
@@ -91,11 +91,11 @@ class _$TopLosersModelCopyWithImpl<$Res, $Val extends TopLosersModel>
 }
 
 /// @nodoc
-abstract class _$$_TopLosersModelCopyWith<$Res>
+abstract class _$$TopLosersModelImplCopyWith<$Res>
     implements $TopLosersModelCopyWith<$Res> {
-  factory _$$_TopLosersModelCopyWith(
-          _$_TopLosersModel value, $Res Function(_$_TopLosersModel) then) =
-      __$$_TopLosersModelCopyWithImpl<$Res>;
+  factory _$$TopLosersModelImplCopyWith(_$TopLosersModelImpl value,
+          $Res Function(_$TopLosersModelImpl) then) =
+      __$$TopLosersModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,11 +107,11 @@ abstract class _$$_TopLosersModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TopLosersModelCopyWithImpl<$Res>
-    extends _$TopLosersModelCopyWithImpl<$Res, _$_TopLosersModel>
-    implements _$$_TopLosersModelCopyWith<$Res> {
-  __$$_TopLosersModelCopyWithImpl(
-      _$_TopLosersModel _value, $Res Function(_$_TopLosersModel) _then)
+class __$$TopLosersModelImplCopyWithImpl<$Res>
+    extends _$TopLosersModelCopyWithImpl<$Res, _$TopLosersModelImpl>
+    implements _$$TopLosersModelImplCopyWith<$Res> {
+  __$$TopLosersModelImplCopyWithImpl(
+      _$TopLosersModelImpl _value, $Res Function(_$TopLosersModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +123,7 @@ class __$$_TopLosersModelCopyWithImpl<$Res>
     Object? change = null,
     Object? quantity = null,
   }) {
-    return _then(_$_TopLosersModel(
+    return _then(_$TopLosersModelImpl(
       companyName: null == companyName
           ? _value.companyName
           : companyName // ignore: cast_nullable_to_non_nullable
@@ -150,16 +150,16 @@ class __$$_TopLosersModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TopLosersModel implements _TopLosersModel {
-  const _$_TopLosersModel(
+class _$TopLosersModelImpl implements _TopLosersModel {
+  const _$TopLosersModelImpl(
       {required this.companyName,
       required this.symbol,
       required this.ltp,
       required this.change,
       required this.quantity});
 
-  factory _$_TopLosersModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TopLosersModelFromJson(json);
+  factory _$TopLosersModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TopLosersModelImplFromJson(json);
 
   @override
   final String companyName;
@@ -178,10 +178,10 @@ class _$_TopLosersModel implements _TopLosersModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TopLosersModel &&
+            other is _$TopLosersModelImpl &&
             (identical(other.companyName, companyName) ||
                 other.companyName == companyName) &&
             (identical(other.symbol, symbol) || other.symbol == symbol) &&
@@ -199,12 +199,13 @@ class _$_TopLosersModel implements _TopLosersModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TopLosersModelCopyWith<_$_TopLosersModel> get copyWith =>
-      __$$_TopLosersModelCopyWithImpl<_$_TopLosersModel>(this, _$identity);
+  _$$TopLosersModelImplCopyWith<_$TopLosersModelImpl> get copyWith =>
+      __$$TopLosersModelImplCopyWithImpl<_$TopLosersModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TopLosersModelToJson(
+    return _$$TopLosersModelImplToJson(
       this,
     );
   }
@@ -216,10 +217,10 @@ abstract class _TopLosersModel implements TopLosersModel {
       required final String symbol,
       required final String ltp,
       required final String change,
-      required final String quantity}) = _$_TopLosersModel;
+      required final String quantity}) = _$TopLosersModelImpl;
 
   factory _TopLosersModel.fromJson(Map<String, dynamic> json) =
-      _$_TopLosersModel.fromJson;
+      _$TopLosersModelImpl.fromJson;
 
   @override
   String get companyName;
@@ -233,6 +234,6 @@ abstract class _TopLosersModel implements TopLosersModel {
   String get quantity;
   @override
   @JsonKey(ignore: true)
-  _$$_TopLosersModelCopyWith<_$_TopLosersModel> get copyWith =>
+  _$$TopLosersModelImplCopyWith<_$TopLosersModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

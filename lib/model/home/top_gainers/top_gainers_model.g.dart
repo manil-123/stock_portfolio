@@ -6,8 +6,9 @@ part of 'top_gainers_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TopGainersModel _$$_TopGainersModelFromJson(Map<String, dynamic> json) =>
-    _$_TopGainersModel(
+_$TopGainersModelImpl _$$TopGainersModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TopGainersModelImpl(
       companyName: json['companyName'] as String,
       symbol: json['symbol'] as String,
       ltp: json['ltp'] as String,
@@ -15,7 +16,8 @@ _$_TopGainersModel _$$_TopGainersModelFromJson(Map<String, dynamic> json) =>
       quantity: json['quantity'] as String,
     );
 
-Map<String, dynamic> _$$_TopGainersModelToJson(_$_TopGainersModel instance) =>
+Map<String, dynamic> _$$TopGainersModelImplToJson(
+        _$TopGainersModelImpl instance) =>
     <String, dynamic>{
       'companyName': instance.companyName,
       'symbol': instance.symbol,

@@ -12,7 +12,7 @@ part of 'local_stock_data_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 LocalStockDataModel _$LocalStockDataModelFromJson(Map<String, dynamic> json) {
   return _LocalStockDataModel.fromJson(json);
@@ -98,11 +98,11 @@ class _$LocalStockDataModelCopyWithImpl<$Res, $Val extends LocalStockDataModel>
 }
 
 /// @nodoc
-abstract class _$$_LocalStockDataModelCopyWith<$Res>
+abstract class _$$LocalStockDataModelImplCopyWith<$Res>
     implements $LocalStockDataModelCopyWith<$Res> {
-  factory _$$_LocalStockDataModelCopyWith(_$_LocalStockDataModel value,
-          $Res Function(_$_LocalStockDataModel) then) =
-      __$$_LocalStockDataModelCopyWithImpl<$Res>;
+  factory _$$LocalStockDataModelImplCopyWith(_$LocalStockDataModelImpl value,
+          $Res Function(_$LocalStockDataModelImpl) then) =
+      __$$LocalStockDataModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -115,11 +115,11 @@ abstract class _$$_LocalStockDataModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LocalStockDataModelCopyWithImpl<$Res>
-    extends _$LocalStockDataModelCopyWithImpl<$Res, _$_LocalStockDataModel>
-    implements _$$_LocalStockDataModelCopyWith<$Res> {
-  __$$_LocalStockDataModelCopyWithImpl(_$_LocalStockDataModel _value,
-      $Res Function(_$_LocalStockDataModel) _then)
+class __$$LocalStockDataModelImplCopyWithImpl<$Res>
+    extends _$LocalStockDataModelCopyWithImpl<$Res, _$LocalStockDataModelImpl>
+    implements _$$LocalStockDataModelImplCopyWith<$Res> {
+  __$$LocalStockDataModelImplCopyWithImpl(_$LocalStockDataModelImpl _value,
+      $Res Function(_$LocalStockDataModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -132,7 +132,7 @@ class __$$_LocalStockDataModelCopyWithImpl<$Res>
     Object? quantity = null,
     Object? price = null,
   }) {
-    return _then(_$_LocalStockDataModel(
+    return _then(_$LocalStockDataModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -163,8 +163,8 @@ class __$$_LocalStockDataModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LocalStockDataModel implements _LocalStockDataModel {
-  const _$_LocalStockDataModel(
+class _$LocalStockDataModelImpl implements _LocalStockDataModel {
+  const _$LocalStockDataModelImpl(
       {this.id,
       required this.scrip,
       required this.companyName,
@@ -172,8 +172,8 @@ class _$_LocalStockDataModel implements _LocalStockDataModel {
       required this.quantity,
       required this.price});
 
-  factory _$_LocalStockDataModel.fromJson(Map<String, dynamic> json) =>
-      _$$_LocalStockDataModelFromJson(json);
+  factory _$LocalStockDataModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LocalStockDataModelImplFromJson(json);
 
   @override
   final int? id;
@@ -194,10 +194,10 @@ class _$_LocalStockDataModel implements _LocalStockDataModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LocalStockDataModel &&
+            other is _$LocalStockDataModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.scrip, scrip) || other.scrip == scrip) &&
             (identical(other.companyName, companyName) ||
@@ -217,13 +217,13 @@ class _$_LocalStockDataModel implements _LocalStockDataModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LocalStockDataModelCopyWith<_$_LocalStockDataModel> get copyWith =>
-      __$$_LocalStockDataModelCopyWithImpl<_$_LocalStockDataModel>(
+  _$$LocalStockDataModelImplCopyWith<_$LocalStockDataModelImpl> get copyWith =>
+      __$$LocalStockDataModelImplCopyWithImpl<_$LocalStockDataModelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LocalStockDataModelToJson(
+    return _$$LocalStockDataModelImplToJson(
       this,
     );
   }
@@ -236,10 +236,10 @@ abstract class _LocalStockDataModel implements LocalStockDataModel {
       required final String companyName,
       required final String sectorName,
       required final int quantity,
-      required final double price}) = _$_LocalStockDataModel;
+      required final double price}) = _$LocalStockDataModelImpl;
 
   factory _LocalStockDataModel.fromJson(Map<String, dynamic> json) =
-      _$_LocalStockDataModel.fromJson;
+      _$LocalStockDataModelImpl.fromJson;
 
   @override
   int? get id;
@@ -255,6 +255,6 @@ abstract class _LocalStockDataModel implements LocalStockDataModel {
   double get price;
   @override
   @JsonKey(ignore: true)
-  _$$_LocalStockDataModelCopyWith<_$_LocalStockDataModel> get copyWith =>
+  _$$LocalStockDataModelImplCopyWith<_$LocalStockDataModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

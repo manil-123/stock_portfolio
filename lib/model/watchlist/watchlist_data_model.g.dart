@@ -6,9 +6,9 @@ part of 'watchlist_data_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_WatchlistDataModel _$$_WatchlistDataModelFromJson(
+_$WatchlistDataModelImpl _$$WatchlistDataModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_WatchlistDataModel(
+    _$WatchlistDataModelImpl(
       id: json['id'] as int?,
       symbol: json['symbol'] as String,
       companyName: json['companyName'] as String,
@@ -16,8 +16,8 @@ _$_WatchlistDataModel _$$_WatchlistDataModelFromJson(
       price: (json['price'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_WatchlistDataModelToJson(
-        _$_WatchlistDataModel instance) =>
+Map<String, dynamic> _$$WatchlistDataModelImplToJson(
+        _$WatchlistDataModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'symbol': instance.symbol,

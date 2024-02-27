@@ -6,9 +6,9 @@ part of 'local_stock_data_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LocalStockDataModel _$$_LocalStockDataModelFromJson(
+_$LocalStockDataModelImpl _$$LocalStockDataModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_LocalStockDataModel(
+    _$LocalStockDataModelImpl(
       id: json['id'] as int?,
       scrip: json['scrip'] as String,
       companyName: json['companyName'] as String,
@@ -17,8 +17,8 @@ _$_LocalStockDataModel _$$_LocalStockDataModelFromJson(
       price: (json['price'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_LocalStockDataModelToJson(
-        _$_LocalStockDataModel instance) =>
+Map<String, dynamic> _$$LocalStockDataModelImplToJson(
+        _$LocalStockDataModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'scrip': instance.scrip,

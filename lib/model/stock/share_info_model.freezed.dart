@@ -12,7 +12,7 @@ part of 'share_info_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ShareInfoModel _$ShareInfoModelFromJson(Map<String, dynamic> json) {
   return _ShareInfoModel.fromJson(json);
@@ -80,22 +80,22 @@ class _$ShareInfoModelCopyWithImpl<$Res, $Val extends ShareInfoModel>
 }
 
 /// @nodoc
-abstract class _$$_ShareInfoModelCopyWith<$Res>
+abstract class _$$ShareInfoModelImplCopyWith<$Res>
     implements $ShareInfoModelCopyWith<$Res> {
-  factory _$$_ShareInfoModelCopyWith(
-          _$_ShareInfoModel value, $Res Function(_$_ShareInfoModel) then) =
-      __$$_ShareInfoModelCopyWithImpl<$Res>;
+  factory _$$ShareInfoModelImplCopyWith(_$ShareInfoModelImpl value,
+          $Res Function(_$ShareInfoModelImpl) then) =
+      __$$ShareInfoModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String companyName, String symbol, String ltp, String change});
 }
 
 /// @nodoc
-class __$$_ShareInfoModelCopyWithImpl<$Res>
-    extends _$ShareInfoModelCopyWithImpl<$Res, _$_ShareInfoModel>
-    implements _$$_ShareInfoModelCopyWith<$Res> {
-  __$$_ShareInfoModelCopyWithImpl(
-      _$_ShareInfoModel _value, $Res Function(_$_ShareInfoModel) _then)
+class __$$ShareInfoModelImplCopyWithImpl<$Res>
+    extends _$ShareInfoModelCopyWithImpl<$Res, _$ShareInfoModelImpl>
+    implements _$$ShareInfoModelImplCopyWith<$Res> {
+  __$$ShareInfoModelImplCopyWithImpl(
+      _$ShareInfoModelImpl _value, $Res Function(_$ShareInfoModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -106,7 +106,7 @@ class __$$_ShareInfoModelCopyWithImpl<$Res>
     Object? ltp = null,
     Object? change = null,
   }) {
-    return _then(_$_ShareInfoModel(
+    return _then(_$ShareInfoModelImpl(
       companyName: null == companyName
           ? _value.companyName
           : companyName // ignore: cast_nullable_to_non_nullable
@@ -129,15 +129,15 @@ class __$$_ShareInfoModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ShareInfoModel implements _ShareInfoModel {
-  const _$_ShareInfoModel(
+class _$ShareInfoModelImpl implements _ShareInfoModel {
+  const _$ShareInfoModelImpl(
       {required this.companyName,
       required this.symbol,
       required this.ltp,
       required this.change});
 
-  factory _$_ShareInfoModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ShareInfoModelFromJson(json);
+  factory _$ShareInfoModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ShareInfoModelImplFromJson(json);
 
   @override
   final String companyName;
@@ -154,10 +154,10 @@ class _$_ShareInfoModel implements _ShareInfoModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShareInfoModel &&
+            other is _$ShareInfoModelImpl &&
             (identical(other.companyName, companyName) ||
                 other.companyName == companyName) &&
             (identical(other.symbol, symbol) || other.symbol == symbol) &&
@@ -173,12 +173,13 @@ class _$_ShareInfoModel implements _ShareInfoModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShareInfoModelCopyWith<_$_ShareInfoModel> get copyWith =>
-      __$$_ShareInfoModelCopyWithImpl<_$_ShareInfoModel>(this, _$identity);
+  _$$ShareInfoModelImplCopyWith<_$ShareInfoModelImpl> get copyWith =>
+      __$$ShareInfoModelImplCopyWithImpl<_$ShareInfoModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ShareInfoModelToJson(
+    return _$$ShareInfoModelImplToJson(
       this,
     );
   }
@@ -189,10 +190,10 @@ abstract class _ShareInfoModel implements ShareInfoModel {
       {required final String companyName,
       required final String symbol,
       required final String ltp,
-      required final String change}) = _$_ShareInfoModel;
+      required final String change}) = _$ShareInfoModelImpl;
 
   factory _ShareInfoModel.fromJson(Map<String, dynamic> json) =
-      _$_ShareInfoModel.fromJson;
+      _$ShareInfoModelImpl.fromJson;
 
   @override
   String get companyName;
@@ -204,6 +205,6 @@ abstract class _ShareInfoModel implements ShareInfoModel {
   String get change;
   @override
   @JsonKey(ignore: true)
-  _$$_ShareInfoModelCopyWith<_$_ShareInfoModel> get copyWith =>
+  _$$ShareInfoModelImplCopyWith<_$ShareInfoModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
