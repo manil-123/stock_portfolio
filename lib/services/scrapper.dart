@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
@@ -17,7 +15,6 @@ class Scrapper {
     List<Map<String, dynamic>> historyDataMapList = [];
     for (var row in historyDataRow) {
       final rowData = row.querySelectorAll('td');
-      log(rowData.toString());
       Map<String, dynamic> individualMap = {};
       if (rowData.isNotEmpty) {
         individualMap['date'] = rowData[1].text.toString();
