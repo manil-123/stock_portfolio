@@ -52,6 +52,7 @@ dependencies:
   http: ^0.13.6
   injectable: ^2.1.0
   # json serialization
+  intl: ^0.18.1
   json_annotation: ^4.8.0
   # local authentication
   local_auth: ^2.1.6

@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
 import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
 
@@ -18,8 +19,27 @@ class FlTimeSeriesChart extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: LineChart(
-            _lineChartData(),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 8,
+                child: LineChart(
+                  _lineChartData(),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: getRightWidgets().map((element) {
+                    return Text(
+                      element,
+                      style: indicatorTextStyle,
+                    );
+                  }).toList(),
+                ),
+              )
+            ],
           ),
         ),
         const SizedBox(
@@ -41,8 +61,47 @@ class FlTimeSeriesChart extends StatelessWidget {
     );
   }
 
+  List<String> getRightWidgets() {
+    List<String> uniquePrices = [];
+
+    /// maximum index within the [TimeSeriesData] list
+    final maxPrice = seriesData
+            .reduce((maxData, data) =>
+                data.index! > maxData.index! ? data : maxData)
+            .index ??
+        0;
+
+    /// minimum index within the [TimeSeriesData] list
+    final minPrice = seriesData
+            .reduce((maxData, data) =>
+                data.index! < maxData.index! ? data : maxData)
+            .index ??
+        0;
+
+    /// set minY below 1% of minPrice
+    final minY =
+        double.parse((minPrice - (minPrice * 0.01)).toStringAsFixed(0));
+
+    /// set maxY above 1% of minPrice
+    final maxY =
+        double.parse((maxPrice + (maxPrice * 0.01)).toStringAsFixed(0));
+
+    final difference = (maxY - minY) / 3;
+
+    uniquePrices.add(minY.toStringAsFixed(0));
+    uniquePrices.add((minY + difference).toStringAsFixed(0));
+    uniquePrices.add((maxY - difference).toStringAsFixed(0));
+    uniquePrices.add(maxY.toStringAsFixed(0));
+    return uniquePrices.reversed.toList();
+  }
+
   List<String> getBottomWidgets() {
-    return ["1", "2", "3", "4"];
+    final uniqueDates = seriesData
+        .map((data) => DateFormat.MMM()
+            .format(DateTime.parse(data.date!.replaceAll('/', '-'))))
+        .toSet()
+        .toList();
+    return uniqueDates;
   }
 
   final List<Color> gradientColors = [
@@ -52,20 +111,27 @@ class FlTimeSeriesChart extends StatelessWidget {
   ];
 
   LineChartData _lineChartData() {
-    /// maximum closing price within the [TimeSeriesData] list
-    // final maxPrice = seriesData
-    //     .reduce((maxData, data) => data.close > maxData.close ? data : maxData)
-    //     .close;
+    // maximum index within the [TimeSeriesData] list
+    final maxPrice = seriesData
+            .reduce((maxData, data) =>
+                data.index! > maxData.index! ? data : maxData)
+            .index ??
+        0;
 
-    // /// minimum closing price within the [TimeSeriesData] list
-    // final minPrice = seriesData
-    //     .reduce((maxData, data) => data.close < maxData.close ? data : maxData)
-    //     .close;
+    // minimum index within the [TimeSeriesData] list
+    final minPrice = seriesData
+            .reduce((maxData, data) =>
+                data.index! < maxData.index! ? data : maxData)
+            .index ??
+        0;
 
-    // final hInterval = (maxPrice - minPrice) < 0.001
-    //     ? (maxPrice - minPrice)
-    //     : (maxPrice - minPrice) /
-    //         ((selectedGraphOptions == ShareGraphOptions.fiveDay) ? 2 : 4);
+    /// set minY below 1% of minPrice
+    final minY =
+        double.parse((minPrice - (minPrice * 0.01)).toStringAsFixed(0));
+
+    /// set maxY above 1% of minPrice
+    final maxY =
+        double.parse((maxPrice + (maxPrice * 0.01)).toStringAsFixed(0));
 
     // Extracting timestamps and close values from seriesData
     List<FlSpot> spots = seriesData.map((data) {
@@ -79,20 +145,20 @@ class FlTimeSeriesChart extends StatelessWidget {
         show: true,
         drawVerticalLine: false,
         drawHorizontalLine: true,
-        horizontalInterval: 100,
+        horizontalInterval: 50,
         getDrawingHorizontalLine: (value) {
           return const FlLine(
-            color: AppColors.green,
-            strokeWidth: 1,
+            color: AppColors.graphGrey,
+            strokeWidth: 0.2,
           );
         },
       ),
 
       /// set minY below 10% of minPrice
-      minY: 0,
+      minY: minY,
 
       /// set maxY above 10% of minPrice
-      maxY: 3000,
+      maxY: maxY,
 
       lineTouchData: LineTouchData(
         enabled: true,
@@ -113,7 +179,10 @@ class FlTimeSeriesChart extends StatelessWidget {
           return indicators.map(
             (int index) {
               const line = FlLine(
-                  color: AppColors.green, strokeWidth: 1.5, dashArray: [3, 5]);
+                color: AppColors.yellow,
+                strokeWidth: 1.5,
+                dashArray: [3, 5],
+              );
               return const TouchedSpotIndicatorData(
                 line,
                 FlDotData(show: false),
@@ -122,23 +191,20 @@ class FlTimeSeriesChart extends StatelessWidget {
           ).toList();
         },
       ),
-      titlesData: FlTitlesData(
+      titlesData: const FlTitlesData(
         show: true,
-        leftTitles: const AxisTitles(
+        leftTitles: AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        topTitles: const AxisTitles(
+        topTitles: AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        bottomTitles: const AxisTitles(
+        bottomTitles: AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
         rightTitles: AxisTitles(
           sideTitles: SideTitles(
-            showTitles: true,
-            interval: 1,
-            getTitlesWidget: rightTitleWidgets,
-            reservedSize: 42,
+            showTitles: false,
           ),
         ),
       ),

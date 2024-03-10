@@ -45,7 +45,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 nepseIndex: nepseIndex,
                 nepseTimeSeriesData: timeSeriesData.fold(
                   (l) => [],
-                  (timeSeriesDataList) => timeSeriesDataList,
+                  (timeSeriesDataList) => timeSeriesDataList.reversed.toList(),
                 ),
                 topGainers: topGainersList,
                 topLosers: topLosersList,
