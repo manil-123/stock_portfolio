@@ -31,6 +31,7 @@ import 'package:share_portfolio/views/screens/watchlist/watchlist_screen.dart';
         AutoRoute(
           path: Routes.homeScreenRoute,
           name: 'HomeRouter',
+          maintainState: false,
           page: EmptyRouterPage,
           children: [
             AutoRoute(
@@ -45,6 +46,7 @@ import 'package:share_portfolio/views/screens/watchlist/watchlist_screen.dart';
         ),
         AutoRoute(
           path: Routes.stockListScreenRoute,
+          maintainState: false,
           name: 'StockListRouter',
           page: EmptyRouterPage,
           children: [

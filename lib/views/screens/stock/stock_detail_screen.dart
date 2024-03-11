@@ -161,14 +161,14 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
           gridData: FlGridData(
             show: true,
             getDrawingHorizontalLine: (value) {
-              return FlLine(
+              return const FlLine(
                 color: Colors.white,
                 strokeWidth: 0.2,
               );
             },
             drawVerticalLine: true,
             getDrawingVerticalLine: (value) {
-              return FlLine(
+              return const FlLine(
                 color: Colors.white,
                 strokeWidth: 0.2,
               );
@@ -190,7 +190,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                   ? AppColors.green
                   : AppColors.red,
               barWidth: 2,
-              dotData: FlDotData(show: false),
+              dotData: const FlDotData(show: false),
               belowBarData: BarAreaData(
                 show: true,
                 color: double.parse(widget.change.replaceAll(',', '')) >= 0
