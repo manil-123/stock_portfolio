@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
@@ -74,7 +75,10 @@ class _StockListScreenState extends State<StockListScreen> {
                                 shareInfoList:
                                     ShareInfoList(shareInfoList: shareList)));
                       else
-                        showErrorInfo(context, "Unable to search right now");
+                        showErrorInfo(
+                          context,
+                          AppStrings.unableToSearch,
+                        );
                     },
                     icon: const Icon(
                       Icons.search,

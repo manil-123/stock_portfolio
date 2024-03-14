@@ -3,7 +3,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/model/list_data_model.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
@@ -30,6 +32,7 @@ class StockDetailScreen extends StatefulWidget {
 class _StockDetailScreenState extends State<StockDetailScreen> {
   @override
   Widget build(BuildContext context) {
+    final textTheme = PortfolioTheme.textTheme;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -56,21 +59,18 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
               children: [
                 Text(
                   '${widget.companyName}(${widget.symbol})',
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white60,
+                  style: textTheme.bodyMedium!.copyWith(
+                    color: AppColors.white.withOpacity(0.6),
                   ),
                 ),
                 const SizedBox(
                   height: 2.0,
                 ),
                 Text(
-                  'Sector : ${getSector(widget.companyName)}',
-                  style: const TextStyle(
+                  '${AppStrings.sector} : ${getSector(widget.companyName)}',
+                  style: textTheme.bodyMedium!.copyWith(
                     fontSize: 14.0,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white60,
+                    color: AppColors.white.withOpacity(0.6),
                   ),
                 ),
                 const SizedBox(
@@ -80,8 +80,8 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                 const SizedBox(
                   height: 16.0,
                 ),
-                _moreInfo('Last Traded Price', 'Rs. ${widget.ltp}'),
-                _moreInfo('Change Percent', '${widget.change} %'),
+                _moreInfo(AppStrings.lastTradedPrice, 'Rs. ${widget.ltp}'),
+                _moreInfo(AppStrings.changePercent, '${widget.change} %'),
                 const SizedBox(
                   height: 40.0,
                 ),
@@ -108,13 +108,9 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                               ),
                             ),
                             orElse: () {
-                              return const Text(
-                                'ADD TO WATCHLIST',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold),
-                              );
+                              return Text(AppStrings.addToWatchlist,
+                                  style: PortfolioTheme.textTheme.bodyMedium!
+                                      .copyWith(fontWeight: FontWeight.bold));
                             },
                           ),
                         ),
@@ -210,18 +206,10 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+          Text(title, style: PortfolioTheme.textTheme.bodyMedium),
           Text(
             description,
-            style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.w500,
+            style: PortfolioTheme.textTheme.bodyMedium!.copyWith(
               color: double.parse(widget.change) == 0
                   ? Colors.white
                   : double.parse(widget.change) >= 0

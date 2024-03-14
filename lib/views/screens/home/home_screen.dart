@@ -58,6 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
     List<TopGainersModel> topGainers,
     List<TopLosersModel> topLosers,
   ) {
+    final titleTheme = PortfolioTheme.textTheme.titleLarge!.copyWith(
+      fontWeight: FontWeight.bold,
+      fontSize: 24,
+    );
     return RefreshIndicator(
       onRefresh: () async {
         context.read<HomeBloc>().add(
@@ -74,12 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 16,
             ),
-            const Text(
+            Text(
               'Top Gainers',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
+              style: titleTheme,
             ),
             const SizedBox(
               height: 10,
@@ -113,12 +114,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 16,
             ),
-            const Text(
+            Text(
               'Top Losers',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
+              style: titleTheme,
             ),
             const SizedBox(
               height: 10,

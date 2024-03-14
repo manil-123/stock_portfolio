@@ -5,10 +5,10 @@ class LineTitles {
   static getTitleData(double price) {
     return FlTitlesData(
       show: true,
-      topTitles: AxisTitles(
+      topTitles: const AxisTitles(
         sideTitles: SideTitles(showTitles: false),
       ),
-      rightTitles: AxisTitles(
+      rightTitles: const AxisTitles(
         sideTitles: SideTitles(showTitles: false),
       ),
       bottomTitles: AxisTitles(

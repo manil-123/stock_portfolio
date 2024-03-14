@@ -3,34 +3,14 @@ import 'package:share_portfolio/app/theme/app_colors.dart';
 
 class PortfolioTheme {
   static TextTheme textTheme = const TextTheme(
-    displayLarge: TextStyle(
-      fontFamily: "Poppins",
-      fontWeight: FontWeight.w600,
-      fontSize: 40,
-      color: AppColors.white,
-    ),
-    displayMedium: TextStyle(
-      fontFamily: "Poppins",
-      fontSize: 30,
-      fontWeight: FontWeight.w500,
-      color: AppColors.white,
-    ),
-    displaySmall: TextStyle(
-      fontFamily: "Poppins",
-      fontSize: 20,
-      fontWeight: FontWeight.w500,
-      color: AppColors.white,
-    ),
     titleLarge: TextStyle(
       fontFamily: "Poppins",
-      fontSize: 18,
-      height: 20 / 18,
+      fontSize: 20,
       fontWeight: FontWeight.w600,
     ),
     titleMedium: TextStyle(
       fontFamily: "Poppins",
-      fontSize: 16,
-      height: 24 / 16,
+      fontSize: 18,
       fontWeight: FontWeight.w400,
     ),
     titleSmall: TextStyle(
@@ -42,13 +22,13 @@ class PortfolioTheme {
     bodyLarge: TextStyle(
       fontFamily: "Poppins",
       fontSize: 20,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
       color: AppColors.white,
     ),
     bodyMedium: TextStyle(
       fontFamily: "Poppins",
       fontSize: 16,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
       color: AppColors.white,
     ),
     bodySmall: TextStyle(

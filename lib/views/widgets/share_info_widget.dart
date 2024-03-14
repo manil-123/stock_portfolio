@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
 
 class ShareInfoWidget extends StatelessWidget {
   final String companyName;
@@ -15,6 +17,7 @@ class ShareInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = PortfolioTheme.textTheme;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
@@ -33,13 +36,12 @@ class ShareInfoWidget extends StatelessWidget {
                 children: [
                   Text(
                     symbol,
-                    style: const TextStyle(color: Colors.white, fontSize: 18.0),
+                    style: theme.titleMedium,
                   ),
                   Text(
                     companyName,
                     maxLines: 2,
-                    style: const TextStyle(
-                        color: Color(0xFF79787D), fontSize: 12.0),
+                    style: theme.bodySmall!.copyWith(color: AppColors.grey),
                   ),
                 ],
               ),
@@ -49,10 +51,12 @@ class ShareInfoWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                double.parse(ltp.replaceAll(',', '')).toStringAsFixed(1).toString(),
+                  double.parse(ltp.replaceAll(',', ''))
+                      .toStringAsFixed(1)
+                      .toString(),
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
-                  style: const TextStyle(color: Colors.white, fontSize: 18.0),
+                  style: theme.titleMedium,
                 ),
                 Container(
                   height: 32,
@@ -80,7 +84,7 @@ class ShareInfoWidget extends StatelessWidget {
                         ),
                         Text(
                           '${double.parse(change).toStringAsFixed(1)} %',
-                          style: TextStyle(
+                          style: theme.bodySmall!.copyWith(
                               color: double.parse(change) >= 0
                                   ? const Color(0xFF30D059)
                                   : const Color(0xFFF73961),
