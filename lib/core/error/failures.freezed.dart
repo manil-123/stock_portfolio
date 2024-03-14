@@ -20,6 +20,7 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String failureMessage) serverFailure,
+    required TResult Function(String failureMessage) networkFailure,
     required TResult Function(String failureMessage) scrapFailure,
     required TResult Function(String failureMessage) localAuthFailure,
   }) =>
@@ -27,6 +28,7 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String failureMessage)? serverFailure,
+    TResult? Function(String failureMessage)? networkFailure,
     TResult? Function(String failureMessage)? scrapFailure,
     TResult? Function(String failureMessage)? localAuthFailure,
   }) =>
@@ -34,6 +36,7 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String failureMessage)? serverFailure,
+    TResult Function(String failureMessage)? networkFailure,
     TResult Function(String failureMessage)? scrapFailure,
     TResult Function(String failureMessage)? localAuthFailure,
     required TResult orElse(),
@@ -42,6 +45,7 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NetworkFailure value) networkFailure,
     required TResult Function(_ScrapFailure value) scrapFailure,
     required TResult Function(_LocalAuthFailure value) localAuthFailure,
   }) =>
@@ -49,6 +53,7 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NetworkFailure value)? networkFailure,
     TResult? Function(_ScrapFailure value)? scrapFailure,
     TResult? Function(_LocalAuthFailure value)? localAuthFailure,
   }) =>
@@ -56,6 +61,7 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NetworkFailure value)? networkFailure,
     TResult Function(_ScrapFailure value)? scrapFailure,
     TResult Function(_LocalAuthFailure value)? localAuthFailure,
     required TResult orElse(),
@@ -166,6 +172,7 @@ class _$ServerFailureImpl implements _ServerFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String failureMessage) serverFailure,
+    required TResult Function(String failureMessage) networkFailure,
     required TResult Function(String failureMessage) scrapFailure,
     required TResult Function(String failureMessage) localAuthFailure,
   }) {
@@ -176,6 +183,7 @@ class _$ServerFailureImpl implements _ServerFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String failureMessage)? serverFailure,
+    TResult? Function(String failureMessage)? networkFailure,
     TResult? Function(String failureMessage)? scrapFailure,
     TResult? Function(String failureMessage)? localAuthFailure,
   }) {
@@ -186,6 +194,7 @@ class _$ServerFailureImpl implements _ServerFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String failureMessage)? serverFailure,
+    TResult Function(String failureMessage)? networkFailure,
     TResult Function(String failureMessage)? scrapFailure,
     TResult Function(String failureMessage)? localAuthFailure,
     required TResult orElse(),
@@ -200,6 +209,7 @@ class _$ServerFailureImpl implements _ServerFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NetworkFailure value) networkFailure,
     required TResult Function(_ScrapFailure value) scrapFailure,
     required TResult Function(_LocalAuthFailure value) localAuthFailure,
   }) {
@@ -210,6 +220,7 @@ class _$ServerFailureImpl implements _ServerFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NetworkFailure value)? networkFailure,
     TResult? Function(_ScrapFailure value)? scrapFailure,
     TResult? Function(_LocalAuthFailure value)? localAuthFailure,
   }) {
@@ -220,6 +231,7 @@ class _$ServerFailureImpl implements _ServerFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NetworkFailure value)? networkFailure,
     TResult Function(_ScrapFailure value)? scrapFailure,
     TResult Function(_LocalAuthFailure value)? localAuthFailure,
     required TResult orElse(),
@@ -240,6 +252,158 @@ abstract class _ServerFailure implements Failure {
   @override
   @JsonKey(ignore: true)
   _$$ServerFailureImplCopyWith<_$ServerFailureImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$NetworkFailureImplCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
+  factory _$$NetworkFailureImplCopyWith(_$NetworkFailureImpl value,
+          $Res Function(_$NetworkFailureImpl) then) =
+      __$$NetworkFailureImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String failureMessage});
+}
+
+/// @nodoc
+class __$$NetworkFailureImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$NetworkFailureImpl>
+    implements _$$NetworkFailureImplCopyWith<$Res> {
+  __$$NetworkFailureImplCopyWithImpl(
+      _$NetworkFailureImpl _value, $Res Function(_$NetworkFailureImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failureMessage = null,
+  }) {
+    return _then(_$NetworkFailureImpl(
+      failureMessage: null == failureMessage
+          ? _value.failureMessage
+          : failureMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NetworkFailureImpl implements _NetworkFailure {
+  const _$NetworkFailureImpl({required this.failureMessage});
+
+  @override
+  final String failureMessage;
+
+  @override
+  String toString() {
+    return 'Failure.networkFailure(failureMessage: $failureMessage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NetworkFailureImpl &&
+            (identical(other.failureMessage, failureMessage) ||
+                other.failureMessage == failureMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failureMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NetworkFailureImplCopyWith<_$NetworkFailureImpl> get copyWith =>
+      __$$NetworkFailureImplCopyWithImpl<_$NetworkFailureImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String failureMessage) serverFailure,
+    required TResult Function(String failureMessage) networkFailure,
+    required TResult Function(String failureMessage) scrapFailure,
+    required TResult Function(String failureMessage) localAuthFailure,
+  }) {
+    return networkFailure(failureMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String failureMessage)? serverFailure,
+    TResult? Function(String failureMessage)? networkFailure,
+    TResult? Function(String failureMessage)? scrapFailure,
+    TResult? Function(String failureMessage)? localAuthFailure,
+  }) {
+    return networkFailure?.call(failureMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String failureMessage)? serverFailure,
+    TResult Function(String failureMessage)? networkFailure,
+    TResult Function(String failureMessage)? scrapFailure,
+    TResult Function(String failureMessage)? localAuthFailure,
+    required TResult orElse(),
+  }) {
+    if (networkFailure != null) {
+      return networkFailure(failureMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NetworkFailure value) networkFailure,
+    required TResult Function(_ScrapFailure value) scrapFailure,
+    required TResult Function(_LocalAuthFailure value) localAuthFailure,
+  }) {
+    return networkFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NetworkFailure value)? networkFailure,
+    TResult? Function(_ScrapFailure value)? scrapFailure,
+    TResult? Function(_LocalAuthFailure value)? localAuthFailure,
+  }) {
+    return networkFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NetworkFailure value)? networkFailure,
+    TResult Function(_ScrapFailure value)? scrapFailure,
+    TResult Function(_LocalAuthFailure value)? localAuthFailure,
+    required TResult orElse(),
+  }) {
+    if (networkFailure != null) {
+      return networkFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NetworkFailure implements Failure {
+  const factory _NetworkFailure({required final String failureMessage}) =
+      _$NetworkFailureImpl;
+
+  @override
+  String get failureMessage;
+  @override
+  @JsonKey(ignore: true)
+  _$$NetworkFailureImplCopyWith<_$NetworkFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -311,6 +475,7 @@ class _$ScrapFailureImpl implements _ScrapFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String failureMessage) serverFailure,
+    required TResult Function(String failureMessage) networkFailure,
     required TResult Function(String failureMessage) scrapFailure,
     required TResult Function(String failureMessage) localAuthFailure,
   }) {
@@ -321,6 +486,7 @@ class _$ScrapFailureImpl implements _ScrapFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String failureMessage)? serverFailure,
+    TResult? Function(String failureMessage)? networkFailure,
     TResult? Function(String failureMessage)? scrapFailure,
     TResult? Function(String failureMessage)? localAuthFailure,
   }) {
@@ -331,6 +497,7 @@ class _$ScrapFailureImpl implements _ScrapFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String failureMessage)? serverFailure,
+    TResult Function(String failureMessage)? networkFailure,
     TResult Function(String failureMessage)? scrapFailure,
     TResult Function(String failureMessage)? localAuthFailure,
     required TResult orElse(),
@@ -345,6 +512,7 @@ class _$ScrapFailureImpl implements _ScrapFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NetworkFailure value) networkFailure,
     required TResult Function(_ScrapFailure value) scrapFailure,
     required TResult Function(_LocalAuthFailure value) localAuthFailure,
   }) {
@@ -355,6 +523,7 @@ class _$ScrapFailureImpl implements _ScrapFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NetworkFailure value)? networkFailure,
     TResult? Function(_ScrapFailure value)? scrapFailure,
     TResult? Function(_LocalAuthFailure value)? localAuthFailure,
   }) {
@@ -365,6 +534,7 @@ class _$ScrapFailureImpl implements _ScrapFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NetworkFailure value)? networkFailure,
     TResult Function(_ScrapFailure value)? scrapFailure,
     TResult Function(_LocalAuthFailure value)? localAuthFailure,
     required TResult orElse(),
@@ -457,6 +627,7 @@ class _$LocalAuthFailureImpl implements _LocalAuthFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String failureMessage) serverFailure,
+    required TResult Function(String failureMessage) networkFailure,
     required TResult Function(String failureMessage) scrapFailure,
     required TResult Function(String failureMessage) localAuthFailure,
   }) {
@@ -467,6 +638,7 @@ class _$LocalAuthFailureImpl implements _LocalAuthFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String failureMessage)? serverFailure,
+    TResult? Function(String failureMessage)? networkFailure,
     TResult? Function(String failureMessage)? scrapFailure,
     TResult? Function(String failureMessage)? localAuthFailure,
   }) {
@@ -477,6 +649,7 @@ class _$LocalAuthFailureImpl implements _LocalAuthFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String failureMessage)? serverFailure,
+    TResult Function(String failureMessage)? networkFailure,
     TResult Function(String failureMessage)? scrapFailure,
     TResult Function(String failureMessage)? localAuthFailure,
     required TResult orElse(),
@@ -491,6 +664,7 @@ class _$LocalAuthFailureImpl implements _LocalAuthFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_NetworkFailure value) networkFailure,
     required TResult Function(_ScrapFailure value) scrapFailure,
     required TResult Function(_LocalAuthFailure value) localAuthFailure,
   }) {
@@ -501,6 +675,7 @@ class _$LocalAuthFailureImpl implements _LocalAuthFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_NetworkFailure value)? networkFailure,
     TResult? Function(_ScrapFailure value)? scrapFailure,
     TResult? Function(_LocalAuthFailure value)? localAuthFailure,
   }) {
@@ -511,6 +686,7 @@ class _$LocalAuthFailureImpl implements _LocalAuthFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_NetworkFailure value)? networkFailure,
     TResult Function(_ScrapFailure value)? scrapFailure,
     TResult Function(_LocalAuthFailure value)? localAuthFailure,
     required TResult orElse(),
