@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:share_portfolio/core/base/base_repository.dart';
 import 'package:share_portfolio/core/error/failures.dart';
 import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
@@ -17,19 +18,23 @@ abstract class NepseRepository {
 }
 
 @LazySingleton(as: NepseRepository)
-class NepseRepositoryImpl implements NepseRepository {
+class NepseRepositoryImpl extends BaseRepository implements NepseRepository {
   final DataService _dataService;
 
-  NepseRepositoryImpl(this._dataService);
+  NepseRepositoryImpl(this._dataService, super.networkInfo);
   @override
   Future<Either<Failure, List<ShareInfoModel>>> getShareInfoList() async {
-    return await _dataService.fetchShareData();
+    return handleNetworkCall<List<ShareInfoModel>>(
+      call: _dataService.fetchShareData(),
+    );
   }
 
   @override
   Future<Either<Failure, List<NepseTimeSeriesData>>>
       getNepseTimeSeriesData() async {
-    return await _dataService.fetchNepseTimeSeriesData();
+    return handleNetworkCall<List<NepseTimeSeriesData>>(
+      call: _dataService.fetchNepseTimeSeriesData(),
+    );
   }
 
   @override
@@ -39,11 +44,15 @@ class NepseRepositoryImpl implements NepseRepository {
 
   @override
   Future<Either<Failure, List<TopGainersModel>>> getTopGainers() async {
-    return await _dataService.getTopGainers();
+    return handleNetworkCall<List<TopGainersModel>>(
+      call: _dataService.getTopGainers(),
+    );
   }
 
   @override
   Future<Either<Failure, List<TopLosersModel>>> getTopLosers() async {
-    return await _dataService.getTopLosers();
+    return handleNetworkCall<List<TopLosersModel>>(
+      call: _dataService.getTopLosers(),
+    );
   }
 }
