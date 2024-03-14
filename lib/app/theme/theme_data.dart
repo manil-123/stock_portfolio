@@ -48,10 +48,10 @@ class PortfolioTheme {
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.backgroundColor,
     ),
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(),
-      bodyMedium: TextStyle(),
-      bodySmall: TextStyle(),
+    textTheme: TextTheme(
+      bodyLarge: PortfolioTheme.textTheme.bodyLarge,
+      bodyMedium: PortfolioTheme.textTheme.bodyMedium,
+      bodySmall: PortfolioTheme.textTheme.bodySmall,
     ).apply(bodyColor: Colors.white),
   );
 }

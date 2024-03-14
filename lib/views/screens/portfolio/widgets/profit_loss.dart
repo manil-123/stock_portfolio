@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 
 class ProfitLoss extends StatelessWidget {
   final double totalInvestment;
@@ -14,6 +16,7 @@ class ProfitLoss extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = PortfolioTheme.textTheme;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       width: MediaQuery.of(context).size.width,
@@ -24,17 +27,19 @@ class ProfitLoss extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
+                color: AppColors.black,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Total Investment',
+                  Text(
+                    AppStrings.totalInvestment,
                     maxLines: 2,
-                    style: TextStyle(color: Color(0xFF79787D), fontSize: 16.0),
+                    style: textTheme.bodyMedium!.copyWith(
+                      color: AppColors.grey,
+                    ),
                   ),
                   const SizedBox(
                     height: 8,
@@ -42,10 +47,7 @@ class ProfitLoss extends StatelessWidget {
                   Text(
                     "Rs. $totalInvestment",
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                    ),
+                    style: textTheme.bodyLarge,
                   ),
                   const SizedBox(
                     height: 8,
@@ -58,7 +60,7 @@ class ProfitLoss extends StatelessWidget {
                     ),
                     child: Text(
                       profitLossPercent == 0
-                          ? 'No profit/loss'
+                          ? AppStrings.noProfitLoss
                           : (profitLossPercent < 0
                               ? '${profitLossPercent.toStringAsFixed(1)} % loss'
                               : '${profitLossPercent.toStringAsFixed(1)} % profit'),
@@ -82,17 +84,19 @@ class ProfitLoss extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
+                color: AppColors.black,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Daily Profit/Loss',
+                  Text(
+                    AppStrings.dailyProfitLoss,
                     maxLines: 2,
-                    style: TextStyle(color: Color(0xFF79787D), fontSize: 16.0),
+                    style: textTheme.bodyMedium!.copyWith(
+                      color: AppColors.grey,
+                    ),
                   ),
                   const SizedBox(
                     height: 8,
@@ -102,7 +106,7 @@ class ProfitLoss extends StatelessWidget {
                       Text(
                         'Rs. ${dailyProfitLoss.toStringAsFixed(1).replaceAll(RegExp('-'), '')}',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: textTheme.bodyLarge!.copyWith(
                             color: dailyProfitLoss == 0
                                 ? Colors.white
                                 : dailyProfitLoss < 0

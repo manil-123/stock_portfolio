@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -9,11 +10,13 @@ class Welcome extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
+        children: [
           Text(
             'Welcome!',
-            style: TextStyle(
-                color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+            style: PortfolioTheme.textTheme.titleLarge!.copyWith(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           // CircleAvatar(
           //   radius: 26.0,

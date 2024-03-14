@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/blocs/watchlist/load_watchlist/load_watchlist_cubit.dart';
 import 'package:share_portfolio/blocs/watchlist/remove_from_watchlist/remove_from_watchlist_cubit.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
@@ -49,7 +51,7 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Watchlist'),
+        title: const Text(AppStrings.myWatchlist),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -67,8 +69,8 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                   listener: (context, removeFromWatchlistState) {
                     removeFromWatchlistState.whenOrNull(
                       success: () {
-                        showInfo(context,
-                            "Stock removed from watchlist successfully");
+                        showInfo(
+                            context, AppStrings.stocksRemovedFromWatchlist);
                         Future.delayed(Duration.zero, () {
                           _loadWatchlist();
                           getIt<LoadPortfolioCubit>().loadPortfolio();
@@ -83,7 +85,7 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: watchlistDataList.isEmpty
                         ? const Center(
-                            child: Text('No stocks in the watchlist'),
+                            child: Text(AppStrings.noStocksInWatchlist),
                           )
                         : ListView.builder(
                             scrollDirection: Axis.vertical,
@@ -134,7 +136,7 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                     ),
                     Text(
                       '(${watchlistDataModel.sectorName})',
-                      style: const TextStyle(fontSize: 12.0),
+                      style: PortfolioTheme.textTheme.bodySmall,
                     )
                   ],
                 ),
@@ -143,7 +145,7 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                 ),
                 Text(
                   watchlistDataModel.companyName,
-                  style: const TextStyle(fontSize: 14.0),
+                  style: PortfolioTheme.textTheme.titleSmall,
                 ),
               ],
             ),
@@ -179,8 +181,9 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
             children: [
               Text(
                 'Do you want to remove "${watchlistDataModel.symbol}" from watchlist?',
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 18.0),
+                style: PortfolioTheme.textTheme.titleMedium!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -193,8 +196,7 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                     },
                     color: Theme.of(context).colorScheme.secondary,
                     child: const Text(
-                      'Yes',
-                      style: TextStyle(color: Colors.white),
+                      AppStrings.yes,
                     ),
                   ),
                   MaterialButton(
@@ -203,8 +205,7 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                     },
                     color: Theme.of(context).colorScheme.secondary,
                     child: const Text(
-                      'No',
-                      style: TextStyle(color: Colors.white),
+                      AppStrings.no,
                     ),
                   )
                 ],

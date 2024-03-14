@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
 import 'package:share_portfolio/app/theme/theme_data.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 
 class CurrentHoldings extends StatelessWidget {
   final double totalProfitLoss;
@@ -29,7 +30,7 @@ class CurrentHoldings extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
-            'Your Current Holdings',
+            AppStrings.currentHoldings,
             style:
                 PortfolioTheme.textTheme.bodyMedium!.copyWith(fontSize: 20.0),
           ),

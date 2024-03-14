@@ -4,17 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
+import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
-import 'package:share_portfolio/views/screens/portfolio/components/current_holdings.dart';
-import 'package:share_portfolio/views/screens/portfolio/components/profit_loss.dart';
+import 'package:share_portfolio/views/screens/portfolio/widgets/current_holdings.dart';
+import 'package:share_portfolio/views/screens/portfolio/widgets/portfolio_item.dart';
+import 'package:share_portfolio/views/screens/portfolio/widgets/profit_loss.dart';
+import 'package:share_portfolio/views/screens/portfolio/widgets/watchlist_item.dart';
 
-import 'components/welcome.dart';
+import 'widgets/welcome.dart';
 
 class PortfolioScreen extends StatefulWidget {
   const PortfolioScreen({super.key});
@@ -125,9 +130,13 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                           dailyProfitLoss: totalDailyPL,
                         ),
                         _portfolioHeading(localStockDataList),
-                        _portfolioItems(localStockDataList),
+                        PortfolioItemList(
+                          stockList: localStockDataList,
+                        ),
                         _watchlistHeading(watchlistDataList),
-                        _watchlistItems(watchlistDataList),
+                        WatchlistItemList(
+                          watchlist: watchlistDataList,
+                        ),
                         const SizedBox(
                           height: 16.0,
                         )
@@ -140,14 +149,14 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Failed to Load'),
+                    const Text(AppStrings.failedToLoad),
                     const SizedBox(
                       height: 12.0,
                     ),
                     InkWell(
                       onTap: () => _loadPortfolio(),
                       child: const Text(
-                        'Tap to load',
+                        AppStrings.tapToLoad,
                         style: TextStyle(
                           decoration: TextDecoration.underline,
                         ),
@@ -174,9 +183,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
-            'Portfolio',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          Text(
+            AppStrings.portfolio,
+            style: PortfolioTheme.textTheme.titleLarge!
+                .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           GestureDetector(
             onTap: () {
@@ -193,68 +203,11 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                     Icons.add_circle,
                     color: Colors.white,
                   )
-                : const Text(
-                    'View All',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                : Text(
+                    AppStrings.viewAll,
+                    style: PortfolioTheme.textTheme.bodyMedium,
                   ),
           )
-        ],
-      ),
-    );
-  }
-
-  Widget _portfolioItems(List<LocalStockDataModel> stockList) {
-    return stockList.isEmpty
-        ? const SizedBox(
-            height: 16.0,
-          )
-        : Container(
-            margin: const EdgeInsets.symmetric(horizontal: 12.0),
-            padding: const EdgeInsets.symmetric(vertical: 6.0),
-            height: 100,
-            width: double.infinity,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: stockList.take(5).length,
-              itemBuilder: (context, index) {
-                return _portfolioItem(
-                  stockList[index],
-                );
-              },
-            ),
-          );
-  }
-
-  Widget _portfolioItem(LocalStockDataModel stockData) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-      margin: const EdgeInsets.only(right: 12.0),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Row(
-            children: [
-              Text(
-                '${stockData.scrip} ',
-                style: const TextStyle(fontSize: 18.0),
-              ),
-              Text(
-                '(${stockData.sectorName})',
-                style: const TextStyle(fontSize: 12.0),
-              )
-            ],
-          ),
-          _buildStockInfo(stockData),
         ],
       ),
     );
@@ -270,9 +223,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  'My Watchlist',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                Text(
+                  AppStrings.myWatchlist,
+                  style: PortfolioTheme.textTheme.titleLarge!
+                      .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -282,93 +236,14 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   },
                   child: watchlistDataList.isEmpty
                       ? const SizedBox.shrink()
-                      : const Text(
+                      : Text(
                           'View All',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: PortfolioTheme.textTheme.bodyMedium,
                         ),
                 )
               ],
             ),
           );
-  }
-
-  Widget _watchlistItems(List<WatchlistDataModel> watchlist) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12.0),
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
-      height: 100,
-      width: double.infinity,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: watchlist.take(5).length,
-        itemBuilder: (context, index) {
-          return _watchlistItem(
-            watchlist[index],
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _watchlistItem(WatchlistDataModel watchlistDataModel) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-      margin: const EdgeInsets.only(right: 12.0),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Row(
-            children: [
-              Text(
-                '${watchlistDataModel.symbol} ',
-                style: const TextStyle(fontSize: 18.0),
-              ),
-              Text(
-                '(${watchlistDataModel.sectorName})',
-                style: const TextStyle(fontSize: 12.0),
-              )
-            ],
-          ),
-          Text(
-            watchlistDataModel.companyName.length > 30
-                ? watchlistDataModel.companyName.substring(0, 30) + '...'
-                : watchlistDataModel.companyName,
-            style: const TextStyle(fontSize: 14.0),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildStockInfo(LocalStockDataModel stockData) {
-    return FutureBuilder<String?>(
-      future:
-          context.read<LoadPortfolioCubit>().getCompanyPrice(stockData.scrip),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Text(
-            '${stockData.quantity} Shares, LTP: ${snapshot.data}',
-          );
-        } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
-        } else {
-          return Text(
-            '${stockData.quantity} Shares, LTP: Error',
-            style: const TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
-          );
-        }
-      },
-    );
   }
 
   Future<dynamic> showDeleteAlert(
@@ -388,9 +263,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Do you want to delete?',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+              Text(
+                AppStrings.deleteQuestion,
+                style: PortfolioTheme.textTheme.titleMedium!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -400,20 +276,18 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                       getIt<DeleteStockCubit>().deleteStock(localStockData);
                       Navigator.pop(context);
                     },
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: AppColors.black,
                     child: const Text(
-                      'Yes',
-                      style: TextStyle(color: Colors.white),
+                      AppStrings.yes,
                     ),
                   ),
                   MaterialButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: AppColors.black,
                     child: const Text(
-                      'No',
-                      style: TextStyle(color: Colors.white),
+                      AppStrings.no,
                     ),
                   )
                 ],
