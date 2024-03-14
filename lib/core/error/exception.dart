@@ -15,7 +15,7 @@ class NoInternetException implements Exception {
   const NoInternetException();
 }
 
-class CustomFormatException implements Exception {
+class ScrapException implements Exception {
   String exceptionMessage;
-  CustomFormatException(this.exceptionMessage);
+  ScrapException(this.exceptionMessage);
 }

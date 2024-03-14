@@ -2,6 +2,8 @@ import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
+import 'package:share_portfolio/core/error/exception.dart';
 
 @LazySingleton()
 class Scrapper {
@@ -37,9 +39,7 @@ class Scrapper {
         "price_history": historyDataMapList,
       };
     } catch (e) {
-      return {
-        "price_history": <Map<String, dynamic>>[],
-      };
+      throw ScrapException(ErrorMsg.scrapError);
     }
   }
 
@@ -72,9 +72,7 @@ class Scrapper {
         "list": tradingMapList,
       };
     } catch (e) {
-      return {
-        "list": <Map<String, dynamic>>[],
-      };
+      throw ScrapException(ErrorMsg.scrapError);
     }
   }
 
@@ -109,9 +107,7 @@ class Scrapper {
         "top_gainers": topGainersMapList,
       };
     } catch (e) {
-      return {
-        "top_gainers": <Map<String, dynamic>>[],
-      };
+      throw ScrapException(ErrorMsg.scrapError);
     }
   }
 
@@ -146,9 +142,7 @@ class Scrapper {
         "top_losers": topLosersMapList,
       };
     } catch (e) {
-      return {
-        "top_losers": <Map<String, dynamic>>[],
-      };
+      throw ScrapException(ErrorMsg.scrapError);
     }
   }
 }

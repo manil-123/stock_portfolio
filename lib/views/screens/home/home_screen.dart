@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/home/home_bloc.dart';
 import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
@@ -42,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
             failed: (failure) => Center(
               child: Text(
                 failure.failureMessage,
+                style: PortfolioTheme.textTheme.titleSmall,
               ),
             ),
           );

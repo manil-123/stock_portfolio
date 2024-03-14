@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp.router(
         title: 'Stock Portfolio',
         debugShowCheckedModeBanner: false,
-        theme: appTheme,
+        theme: PortfolioTheme.appTheme,
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
       ),

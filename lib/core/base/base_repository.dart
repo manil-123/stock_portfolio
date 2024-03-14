@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
+import 'package:share_portfolio/core/error/exception.dart';
 import 'package:share_portfolio/core/error/failures.dart';
 import 'package:share_portfolio/core/network/network_info.dart';
 import 'package:share_portfolio/core/typedef/typedefs.dart';
@@ -22,6 +23,12 @@ class BaseRepository {
       try {
         final data = await call;
         return Right(data);
+      } on ScrapException catch (e) {
+        return Left(
+          Failure.scrapFailure(
+            failureMessage: e.exceptionMessage,
+          ),
+        );
       } catch (e) {
         return Left(
           Failure.serverFailure(

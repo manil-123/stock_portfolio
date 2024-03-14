@@ -30,7 +30,8 @@ class CurrentHoldings extends StatelessWidget {
         children: [
           Text(
             'Your Current Holdings',
-            style: greyTextStyle.copyWith(fontSize: 20.0),
+            style:
+                PortfolioTheme.textTheme.bodyMedium!.copyWith(fontSize: 20.0),
           ),
           const SizedBox(
             height: 10,
@@ -40,7 +41,8 @@ class CurrentHoldings extends StatelessWidget {
               Expanded(
                 child: Text(
                   'Rs. ${currentValue.toStringAsFixed(1)}',
-                  style: whiteTextStyle.copyWith(fontSize: 28.0),
+                  style: PortfolioTheme.textTheme.bodyMedium!
+                      .copyWith(fontSize: 28.0),
                 ),
               ),
               totalProfitLoss != 0.0
@@ -85,7 +87,8 @@ class CurrentHoldings extends StatelessWidget {
             totalStockCount == 1
                 ? '$totalSharesCount shares of $totalStockCount company'
                 : '$totalSharesCount shares of $totalStockCount companies',
-            style: whiteTextStyle.copyWith(fontSize: 18.0),
+            style:
+                PortfolioTheme.textTheme.bodyMedium!.copyWith(fontSize: 18.0),
           ),
           const SizedBox(
             height: 10,
