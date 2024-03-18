@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/core/theme/app_colors.dart';
 
 class PortfolioTheme {
   static TextTheme textTheme = const TextTheme(

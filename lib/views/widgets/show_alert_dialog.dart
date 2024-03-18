@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:share_portfolio/app/theme/theme_data.dart';
+import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 
 class ShowAlertDialog extends StatelessWidget {

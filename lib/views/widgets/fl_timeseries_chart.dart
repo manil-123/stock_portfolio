@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
 
 const indicatorTextStyle = TextStyle(fontSize: 12);

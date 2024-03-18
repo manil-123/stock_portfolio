@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:share_portfolio/app/theme/app_colors.dart';
-import 'package:share_portfolio/app/theme/theme_data.dart';
+import 'package:share_portfolio/core/theme/app_colors.dart';
+import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 

@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:share_portfolio/app/router/app_router.gr.dart';
-import 'package:share_portfolio/app/theme/theme_data.dart';
+import 'package:share_portfolio/core/router/app_router.gr.dart';
+import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/home/home_bloc.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';

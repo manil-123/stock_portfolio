@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:share_portfolio/app/router/app_router.gr.dart';
-import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/core/router/app_router.gr.dart';
+import 'package:share_portfolio/core/theme/app_colors.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});

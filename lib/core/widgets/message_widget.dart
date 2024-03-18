@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:share_portfolio/app/theme/app_colors.dart';
-import 'package:share_portfolio/app/theme/theme_data.dart';
+import 'package:share_portfolio/core/theme/app_colors.dart';
+import 'package:share_portfolio/core/theme/theme_data.dart';
 
 void showErrorInfo(BuildContext context, String errorMessage) {
   ScaffoldMessenger.of(context).showSnackBar(
