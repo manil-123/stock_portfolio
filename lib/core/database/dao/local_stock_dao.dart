@@ -38,15 +38,15 @@ class LocalStockDao extends DatabaseAccessor<AppDB> with _$LocalStockDaoMixin {
     final oldData =
         await getLocalStockDataByScrip(localStockCompanion.scrip.value);
     if (oldData != null) {
-      final totalQuantity = (double.parse(oldData.quantity) +
-          double.parse(localStockCompanion.quantity.value));
+      final totalQuantity = ((int.parse(oldData.quantity) +
+          int.parse(localStockCompanion.quantity.value)));
       final updatedLocalStockData = LocalStockInfoData(
         scrip: oldData.scrip,
         companyName: oldData.companyName,
         quantity: totalQuantity.toString(),
-        price: ((double.parse(oldData.price) * double.parse(oldData.quantity) +
+        price: ((double.parse(oldData.price) * int.parse(oldData.quantity) +
                     double.parse(localStockCompanion.price.value) *
-                        double.parse(localStockCompanion.quantity.value)) /
+                        int.parse(localStockCompanion.quantity.value)) /
                 totalQuantity)
             .toString(),
         sectorName: localStockCompanion.sectorName.value,

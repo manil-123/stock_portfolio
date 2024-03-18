@@ -55,16 +55,7 @@ class DataService {
       final stockDataList = await _stockDao.getAllStocksData();
 
       if (stockDataList.isNotEmpty) {
-        return stockDataList
-            .map(
-              (data) => ShareInfoModel(
-                companyName: data.companyName,
-                symbol: data.symbol,
-                ltp: data.ltp,
-                change: data.change,
-              ),
-            )
-            .toList();
+        return stockDataList;
       } else {
         rethrow;
       }

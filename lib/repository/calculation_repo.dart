@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
-import 'package:share_portfolio/app/database/share_info_dao.dart';
 import 'package:share_portfolio/core/database/dao/local_stock_dao.dart';
+import 'package:share_portfolio/core/database/dao/stock_dao.dart';
 
 abstract class CalculationRepository {
   Future<String> getLTP(String? scrip);
@@ -17,20 +17,20 @@ abstract class CalculationRepository {
 
 @LazySingleton(as: CalculationRepository)
 class CalculationRepositoryImpl implements CalculationRepository {
-  final ShareInfoListDAO _shareInfoListDAO;
+  final StockDao _stockDao;
   final LocalStockDao _localStockDao;
 
   CalculationRepositoryImpl({
-    required ShareInfoListDAO shareInfoListDAO,
+    required StockDao stockDao,
     required LocalStockDao localStockListDAO,
   })  : _localStockDao = localStockListDAO,
-        _shareInfoListDAO = shareInfoListDAO;
+        _stockDao = stockDao;
 
   @override
   Future<String> getLTP(String? scrip) async {
-    var shareInfoList = await _shareInfoListDAO.getShareInfoList();
-    if (shareInfoList == null) return '0';
-    for (var i in shareInfoList.shareInfoList!) {
+    var shareInfoList = await _stockDao.getAllStocksData();
+    if (shareInfoList.isEmpty) return '0';
+    for (var i in shareInfoList) {
       if (scrip == i.symbol) {
         return i.ltp.replaceAll(RegExp(','), '');
       }
@@ -40,9 +40,9 @@ class CalculationRepositoryImpl implements CalculationRepository {
 
   @override
   Future<String> getChange(String? scrip) async {
-    var shareInfoList = await _shareInfoListDAO.getShareInfoList();
-    if (shareInfoList == null) return '0';
-    for (var i in shareInfoList.shareInfoList!) {
+    var shareInfoList = await _stockDao.getAllStocksData();
+    if (shareInfoList.isEmpty) return '0';
+    for (var i in shareInfoList) {
       if (scrip == i.symbol) {
         return i.change;
       }
