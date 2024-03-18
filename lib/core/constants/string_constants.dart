@@ -37,6 +37,7 @@ class AppStrings {
   static const watchlistFailedToAdd = "Failed to add stock in watchlist";
   static const watchlistFailedToDelete =
       "Failed to delete stock from watchlist";
+
   //*Stocks operation
   static const addDetails = "Add Details";
   static const quantity = "Quantity";
