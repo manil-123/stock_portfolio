@@ -131,7 +131,6 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
       WatchlistDataModel(
         symbol: widget.symbol,
         companyName: widget.companyName,
-        price: double.parse(widget.ltp.replaceAll(',', '')),
         sectorName: getSector(widget.companyName),
       ),
     );

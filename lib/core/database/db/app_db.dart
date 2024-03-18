@@ -9,6 +9,7 @@ import 'package:share_portfolio/core/database/entity/nepse_timeseries_info.dart'
 import 'package:share_portfolio/core/database/entity/stock_info.dart';
 import 'package:share_portfolio/core/database/entity/top_gainers_info.dart';
 import 'package:share_portfolio/core/database/entity/top_losers_info.dart';
+import 'package:share_portfolio/core/database/entity/watchlist_info.dart';
 
 part 'app_db.g.dart';
 
@@ -27,13 +28,14 @@ LazyDatabase _openConnection() {
   TopLosersInfo,
   StockInfo,
   LocalStockInfo,
+  WatchlistInfo,
 ])
 @LazySingleton()
 class AppDB extends _$AppDB {
   AppDB() : super(_openConnection());
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration {
@@ -47,6 +49,9 @@ class AppDB extends _$AppDB {
         }
         if (from < 2) {
           await m.drop(localStockInfo);
+        }
+        if (from < 3) {
+          await m.drop(watchlistInfo);
         }
         await m.createAll();
       },

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 import 'package:share_portfolio/repository/local_stock_repository.dart';
 
@@ -21,22 +22,14 @@ class RemoveFromWatchlistCubit extends Cubit<RemoveFromWatchlistState> {
       const RemoveFromWatchlistState.loading(),
     );
     try {
-      final result =
-          await _localStockRepository.removeFromWatchlist(watchlistDataModel);
-      if (result != 0) {
-        emit(
-          const RemoveFromWatchlistState.success(),
-        );
-      } else {
-        emit(
-          const RemoveFromWatchlistState.failed(
-              errorMessage: "Failed to delete stock from watchlist"),
-        );
-      }
+      await _localStockRepository.removeFromWatchlist(watchlistDataModel);
+      emit(
+        const RemoveFromWatchlistState.success(),
+      );
     } catch (e) {
       emit(
         const RemoveFromWatchlistState.failed(
-            errorMessage: "Failed to delete stock from watchlist"),
+            errorMessage: AppStrings.watchlistFailedToDelete),
       );
     }
   }

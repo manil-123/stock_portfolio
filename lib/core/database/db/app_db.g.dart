@@ -1441,6 +1441,236 @@ class LocalStockInfoCompanion extends UpdateCompanion<LocalStockInfoData> {
   }
 }
 
+class $WatchlistInfoTable extends WatchlistInfo
+    with TableInfo<$WatchlistInfoTable, WatchlistInfoData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $WatchlistInfoTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _symbolMeta = const VerificationMeta('symbol');
+  @override
+  late final GeneratedColumn<String> symbol = GeneratedColumn<String>(
+      'symbol', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _companyNameMeta =
+      const VerificationMeta('companyName');
+  @override
+  late final GeneratedColumn<String> companyName = GeneratedColumn<String>(
+      'company_name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _sectorNameMeta =
+      const VerificationMeta('sectorName');
+  @override
+  late final GeneratedColumn<String> sectorName = GeneratedColumn<String>(
+      'sector_name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [symbol, companyName, sectorName];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'watchlist_info';
+  @override
+  VerificationContext validateIntegrity(Insertable<WatchlistInfoData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('symbol')) {
+      context.handle(_symbolMeta,
+          symbol.isAcceptableOrUnknown(data['symbol']!, _symbolMeta));
+    } else if (isInserting) {
+      context.missing(_symbolMeta);
+    }
+    if (data.containsKey('company_name')) {
+      context.handle(
+          _companyNameMeta,
+          companyName.isAcceptableOrUnknown(
+              data['company_name']!, _companyNameMeta));
+    } else if (isInserting) {
+      context.missing(_companyNameMeta);
+    }
+    if (data.containsKey('sector_name')) {
+      context.handle(
+          _sectorNameMeta,
+          sectorName.isAcceptableOrUnknown(
+              data['sector_name']!, _sectorNameMeta));
+    } else if (isInserting) {
+      context.missing(_sectorNameMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => const {};
+  @override
+  WatchlistInfoData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return WatchlistInfoData(
+      symbol: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}symbol'])!,
+      companyName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}company_name'])!,
+      sectorName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}sector_name'])!,
+    );
+  }
+
+  @override
+  $WatchlistInfoTable createAlias(String alias) {
+    return $WatchlistInfoTable(attachedDatabase, alias);
+  }
+}
+
+class WatchlistInfoData extends DataClass
+    implements Insertable<WatchlistInfoData> {
+  final String symbol;
+  final String companyName;
+  final String sectorName;
+  const WatchlistInfoData(
+      {required this.symbol,
+      required this.companyName,
+      required this.sectorName});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['symbol'] = Variable<String>(symbol);
+    map['company_name'] = Variable<String>(companyName);
+    map['sector_name'] = Variable<String>(sectorName);
+    return map;
+  }
+
+  WatchlistInfoCompanion toCompanion(bool nullToAbsent) {
+    return WatchlistInfoCompanion(
+      symbol: Value(symbol),
+      companyName: Value(companyName),
+      sectorName: Value(sectorName),
+    );
+  }
+
+  factory WatchlistInfoData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return WatchlistInfoData(
+      symbol: serializer.fromJson<String>(json['symbol']),
+      companyName: serializer.fromJson<String>(json['companyName']),
+      sectorName: serializer.fromJson<String>(json['sectorName']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'symbol': serializer.toJson<String>(symbol),
+      'companyName': serializer.toJson<String>(companyName),
+      'sectorName': serializer.toJson<String>(sectorName),
+    };
+  }
+
+  WatchlistInfoData copyWith(
+          {String? symbol, String? companyName, String? sectorName}) =>
+      WatchlistInfoData(
+        symbol: symbol ?? this.symbol,
+        companyName: companyName ?? this.companyName,
+        sectorName: sectorName ?? this.sectorName,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('WatchlistInfoData(')
+          ..write('symbol: $symbol, ')
+          ..write('companyName: $companyName, ')
+          ..write('sectorName: $sectorName')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(symbol, companyName, sectorName);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is WatchlistInfoData &&
+          other.symbol == this.symbol &&
+          other.companyName == this.companyName &&
+          other.sectorName == this.sectorName);
+}
+
+class WatchlistInfoCompanion extends UpdateCompanion<WatchlistInfoData> {
+  final Value<String> symbol;
+  final Value<String> companyName;
+  final Value<String> sectorName;
+  final Value<int> rowid;
+  const WatchlistInfoCompanion({
+    this.symbol = const Value.absent(),
+    this.companyName = const Value.absent(),
+    this.sectorName = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  WatchlistInfoCompanion.insert({
+    required String symbol,
+    required String companyName,
+    required String sectorName,
+    this.rowid = const Value.absent(),
+  })  : symbol = Value(symbol),
+        companyName = Value(companyName),
+        sectorName = Value(sectorName);
+  static Insertable<WatchlistInfoData> custom({
+    Expression<String>? symbol,
+    Expression<String>? companyName,
+    Expression<String>? sectorName,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (symbol != null) 'symbol': symbol,
+      if (companyName != null) 'company_name': companyName,
+      if (sectorName != null) 'sector_name': sectorName,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  WatchlistInfoCompanion copyWith(
+      {Value<String>? symbol,
+      Value<String>? companyName,
+      Value<String>? sectorName,
+      Value<int>? rowid}) {
+    return WatchlistInfoCompanion(
+      symbol: symbol ?? this.symbol,
+      companyName: companyName ?? this.companyName,
+      sectorName: sectorName ?? this.sectorName,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (symbol.present) {
+      map['symbol'] = Variable<String>(symbol.value);
+    }
+    if (companyName.present) {
+      map['company_name'] = Variable<String>(companyName.value);
+    }
+    if (sectorName.present) {
+      map['sector_name'] = Variable<String>(sectorName.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('WatchlistInfoCompanion(')
+          ..write('symbol: $symbol, ')
+          ..write('companyName: $companyName, ')
+          ..write('sectorName: $sectorName, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDB extends GeneratedDatabase {
   _$AppDB(QueryExecutor e) : super(e);
   late final $NepseTimeSeriesInfoTable nepseTimeSeriesInfo =
@@ -1449,6 +1679,7 @@ abstract class _$AppDB extends GeneratedDatabase {
   late final $TopLosersInfoTable topLosersInfo = $TopLosersInfoTable(this);
   late final $StockInfoTable stockInfo = $StockInfoTable(this);
   late final $LocalStockInfoTable localStockInfo = $LocalStockInfoTable(this);
+  late final $WatchlistInfoTable watchlistInfo = $WatchlistInfoTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -1458,6 +1689,7 @@ abstract class _$AppDB extends GeneratedDatabase {
         topGainersInfo,
         topLosersInfo,
         stockInfo,
-        localStockInfo
+        localStockInfo,
+        watchlistInfo
       ];
 }

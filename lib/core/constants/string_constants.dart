@@ -33,6 +33,10 @@ class AppStrings {
   static const noStocksInWatchlist = "No stocks in the watchlist";
   static const stocksRemovedFromWatchlist =
       "Stock removed from watchlist successfully";
+  static const stockAlreadyInWatchlist = "Stock already in the watchlist";
+  static const watchlistFailedToAdd = "Failed to add stock in watchlist";
+  static const watchlistFailedToDelete =
+      "Failed to delete stock from watchlist";
   //*Stocks operation
   static const addDetails = "Add Details";
   static const quantity = "Quantity";

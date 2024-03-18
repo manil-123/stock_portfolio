@@ -12,7 +12,6 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i4;
-import 'package:share_portfolio/app/database/stock_watchlist_dao.dart' as _i12;
 import 'package:share_portfolio/blocs/auth/auth_bloc.dart' as _i15;
 import 'package:share_portfolio/blocs/home/home_bloc.dart' as _i25;
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart'
@@ -36,8 +35,9 @@ import 'package:share_portfolio/core/database/dao/local_stock_dao.dart' as _i7;
 import 'package:share_portfolio/core/database/dao/nepse_timeseries_dao.dart'
     as _i8;
 import 'package:share_portfolio/core/database/dao/stock_dao.dart' as _i11;
-import 'package:share_portfolio/core/database/dao/top_gainers_dao.dart' as _i13;
-import 'package:share_portfolio/core/database/dao/top_losers_dao.dart' as _i14;
+import 'package:share_portfolio/core/database/dao/top_gainers_dao.dart' as _i12;
+import 'package:share_portfolio/core/database/dao/top_losers_dao.dart' as _i13;
+import 'package:share_portfolio/core/database/dao/watchlist_dao.dart' as _i14;
 import 'package:share_portfolio/core/database/db/app_db.dart' as _i3;
 import 'package:share_portfolio/core/di/register_modules.dart' as _i29;
 import 'package:share_portfolio/core/network/network_info.dart' as _i9;
@@ -73,11 +73,12 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i9.NetworkInfoImpl(gh<_i4.InternetConnectionChecker>()));
     gh.lazySingleton<_i10.Scrapper>(() => _i10.Scrapper());
     gh.lazySingleton<_i11.StockDao>(() => _i11.StockDao(gh<_i3.AppDB>()));
-    gh.lazySingleton<_i12.StockWatchlistDAO>(() => _i12.StockWatchlistDAO());
-    gh.lazySingleton<_i13.TopGainersDao>(
-        () => _i13.TopGainersDao(gh<_i3.AppDB>()));
-    gh.lazySingleton<_i14.TopLosersDao>(
-        () => _i14.TopLosersDao(gh<_i3.AppDB>()));
+    gh.lazySingleton<_i12.TopGainersDao>(
+        () => _i12.TopGainersDao(gh<_i3.AppDB>()));
+    gh.lazySingleton<_i13.TopLosersDao>(
+        () => _i13.TopLosersDao(gh<_i3.AppDB>()));
+    gh.lazySingleton<_i14.WatchlistDao>(
+        () => _i14.WatchlistDao(gh<_i3.AppDB>()));
     gh.lazySingleton<_i15.AuthBloc>(
         () => _i15.AuthBloc(gh<_i6.LocalAuthService>()));
     gh.lazySingleton<_i16.CalculationRepository>(
@@ -88,14 +89,14 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i17.DataService>(() => _i17.DataService(
           gh<_i10.Scrapper>(),
           gh<_i8.NepseTimeSeriesDao>(),
-          gh<_i13.TopGainersDao>(),
-          gh<_i14.TopLosersDao>(),
+          gh<_i12.TopGainersDao>(),
+          gh<_i13.TopLosersDao>(),
           gh<_i11.StockDao>(),
         ));
     gh.lazySingleton<_i18.LocalStockRepository>(
         () => _i18.LocalStockRepositoryImpl(
               gh<_i7.LocalStockDao>(),
-              gh<_i12.StockWatchlistDAO>(),
+              gh<_i14.WatchlistDao>(),
             ));
     gh.lazySingleton<_i19.NepseRepository>(() => _i19.NepseRepositoryImpl(
           gh<_i17.DataService>(),

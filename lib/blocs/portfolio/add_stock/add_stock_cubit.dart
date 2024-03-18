@@ -21,17 +21,10 @@ class AddStockCubit extends Cubit<AddStockState> {
       const AddStockState.loading(),
     );
     try {
-      final result =
-          await _localStockRepository.addStockToPortfolio(localStockData);
-      if (result != 0) {
-        emit(
-          const AddStockState.success(),
-        );
-      } else {
-        emit(
-          const AddStockState.failed(),
-        );
-      }
+      await _localStockRepository.addStockToPortfolio(localStockData);
+      emit(
+        const AddStockState.success(),
+      );
     } catch (e) {
       emit(
         const AddStockState.failed(),

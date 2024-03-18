@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 import 'package:share_portfolio/repository/local_stock_repository.dart';
 
@@ -30,13 +31,13 @@ class AddToWatchlistCubit extends Cubit<AddToWatchlistState> {
       } else {
         emit(
           const AddToWatchlistState.failed(
-              errorMessage: "Stock already in the watchlist"),
+              errorMessage: AppStrings.stockAlreadyInWatchlist),
         );
       }
     } catch (e) {
       emit(
         const AddToWatchlistState.failed(
-            errorMessage: "Failed to add stock in watchlist"),
+            errorMessage: AppStrings.watchlistFailedToAdd),
       );
     }
   }

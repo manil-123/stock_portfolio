@@ -61,7 +61,6 @@ class AppRouter extends _i12.RootStackRouter {
       return _i12.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i4.EmptyRouterPage(),
-        maintainState: false,
       );
     },
     PortfolioRouter.name: (routeData) {

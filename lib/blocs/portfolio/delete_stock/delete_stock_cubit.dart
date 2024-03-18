@@ -22,17 +22,11 @@ class DeleteStockCubit extends Cubit<DeleteStockState> {
       const DeleteStockState.loading(),
     );
     try {
-      final result =
-          await _localStockRepository.deleteStockFromPortfolio(localStockData);
-      if (result != 0) {
-        emit(
-          const DeleteStockState.success(),
-        );
-      } else {
-        emit(
-          const DeleteStockState.failed(),
-        );
-      }
+      await _localStockRepository.deleteStockFromPortfolio(localStockData);
+
+      emit(
+        const DeleteStockState.success(),
+      );
     } catch (e) {
       emit(
         const DeleteStockState.failed(),

@@ -10,7 +10,6 @@ class WatchlistDataModel with _$WatchlistDataModel {
     required String symbol,
     required String companyName,
     required String sectorName,
-    required double price,
   }) = _WatchlistDataModel;
 
   factory WatchlistDataModel.fromJson(Map<String, dynamic> json) =>

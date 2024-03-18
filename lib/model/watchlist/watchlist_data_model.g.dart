@@ -13,7 +13,6 @@ _$WatchlistDataModelImpl _$$WatchlistDataModelImplFromJson(
       symbol: json['symbol'] as String,
       companyName: json['companyName'] as String,
       sectorName: json['sectorName'] as String,
-      price: (json['price'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$WatchlistDataModelImplToJson(
@@ -23,5 +22,4 @@ Map<String, dynamic> _$$WatchlistDataModelImplToJson(
       'symbol': instance.symbol,
       'companyName': instance.companyName,
       'sectorName': instance.sectorName,
-      'price': instance.price,
     };
