@@ -13,9 +13,9 @@ import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlis
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
-import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 import 'package:share_portfolio/views/screens/portfolio/widgets/current_holdings.dart';
 import 'package:share_portfolio/views/screens/portfolio/widgets/portfolio_item.dart';
+import 'package:share_portfolio/views/screens/portfolio/widgets/portfolio_watchlist_heading.dart';
 import 'package:share_portfolio/views/screens/portfolio/widgets/profit_loss.dart';
 import 'package:share_portfolio/views/screens/portfolio/widgets/watchlist_item.dart';
 
@@ -129,11 +129,31 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                           profitLossPercent: totalPLPercentage,
                           dailyProfitLoss: totalDailyPL,
                         ),
-                        _portfolioHeading(localStockDataList),
+                        PortfolioWatchlistHeading(
+                          isListEmpty: localStockDataList.isEmpty,
+                          title: AppStrings.portfolio,
+                          onViewAll: () {
+                            localStockDataList.isEmpty
+                                ? context.router.push(
+                                    const AddStocksRoute(),
+                                  )
+                                : context.router.push(
+                                    const PortfolioListRouter(),
+                                  );
+                          },
+                        ),
                         PortfolioItemList(
                           stockList: localStockDataList,
                         ),
-                        _watchlistHeading(watchlistDataList),
+                        PortfolioWatchlistHeading(
+                          isListEmpty: watchlistDataList.isEmpty,
+                          title: AppStrings.myWatchlist,
+                          onViewAll: () {
+                            context.router.push(
+                              const WatchlistRoute(),
+                            );
+                          },
+                        ),
                         WatchlistItemList(
                           watchlist: watchlistDataList,
                         ),
@@ -173,77 +193,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         ),
       ),
     );
-  }
-
-  Widget _portfolioHeading(List<LocalStockDataModel> localStockDataList) {
-    return Padding(
-      padding:
-          const EdgeInsets.only(left: 20.0, right: 20.0, top: 16, bottom: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            AppStrings.portfolio,
-            style: PortfolioTheme.textTheme.titleLarge!
-                .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
-          ),
-          GestureDetector(
-            onTap: () {
-              localStockDataList.isEmpty
-                  ? context.router.push(
-                      const AddStocksRoute(),
-                    )
-                  : context.router.push(
-                      const PortfolioListRouter(),
-                    );
-            },
-            child: localStockDataList.isEmpty
-                ? const Icon(
-                    Icons.add_circle,
-                    color: Colors.white,
-                  )
-                : Text(
-                    AppStrings.viewAll,
-                    style: PortfolioTheme.textTheme.bodyMedium,
-                  ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _watchlistHeading(List<WatchlistDataModel> watchlistDataList) {
-    return watchlistDataList.isEmpty
-        ? const SizedBox.shrink()
-        : Padding(
-            padding: const EdgeInsets.only(
-                left: 20.0, right: 20.0, top: 16, bottom: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  AppStrings.myWatchlist,
-                  style: PortfolioTheme.textTheme.titleLarge!
-                      .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    context.router.push(
-                      const WatchlistRoute(),
-                    );
-                  },
-                  child: watchlistDataList.isEmpty
-                      ? const SizedBox.shrink()
-                      : Text(
-                          'View All',
-                          style: PortfolioTheme.textTheme.bodyMedium,
-                        ),
-                )
-              ],
-            ),
-          );
   }
 
   Future<dynamic> showDeleteAlert(
