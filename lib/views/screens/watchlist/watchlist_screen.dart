@@ -9,6 +9,7 @@ import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
+import 'package:share_portfolio/views/screens/portfolio/widgets/watchlist_item.dart';
 
 class WatchlistScreen extends StatelessWidget {
   const WatchlistScreen({super.key});
@@ -93,7 +94,17 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                             shrinkWrap: true,
                             itemCount: watchlistDataList.length,
                             itemBuilder: (context, index) {
-                              return _watchlistItem(watchlistDataList[index]);
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 12.0, bottom: 12.0),
+                                child: WatchlistItem(
+                                  watchlistDataModel: watchlistDataList[index],
+                                  onDeleteWatchlistItem: () {
+                                    showDeleteAlert(
+                                        context, watchlistDataList[index]);
+                                  },
+                                ),
+                              );
                             },
                           ),
                   ),
@@ -168,8 +179,6 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
       context: ctx,
       builder: (ctx) => AlertDialog(
         content: Container(
-          width: 280.0,
-          height: 100,
           decoration: const BoxDecoration(
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.all(
@@ -178,12 +187,17 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 'Do you want to remove "${watchlistDataModel.symbol}" from watchlist?',
+                textAlign: TextAlign.center,
                 style: PortfolioTheme.textTheme.titleMedium!.copyWith(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                 ),
+              ),
+              const SizedBox(
+                height: 8,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -195,17 +209,19 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                       Navigator.pop(ctx);
                     },
                     color: Theme.of(context).colorScheme.secondary,
-                    child: const Text(
+                    child: Text(
                       AppStrings.yes,
+                      style: PortfolioTheme.textTheme.titleSmall,
                     ),
                   ),
                   MaterialButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pop(ctx);
                     },
                     color: Theme.of(context).colorScheme.secondary,
-                    child: const Text(
+                    child: Text(
                       AppStrings.no,
+                      style: PortfolioTheme.textTheme.titleSmall,
                     ),
                   )
                 ],

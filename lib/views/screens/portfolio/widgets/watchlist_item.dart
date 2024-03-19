@@ -25,6 +25,7 @@ class WatchlistItemList extends StatelessWidget {
         itemBuilder: (context, index) {
           return WatchlistItem(
             watchlistDataModel: watchlist[index],
+            onDeleteWatchlistItem: null,
           );
         },
       ),
@@ -33,9 +34,14 @@ class WatchlistItemList extends StatelessWidget {
 }
 
 class WatchlistItem extends StatelessWidget {
-  const WatchlistItem({super.key, required this.watchlistDataModel});
+  const WatchlistItem({
+    super.key,
+    required this.watchlistDataModel,
+    required this.onDeleteWatchlistItem,
+  });
 
   final WatchlistDataModel watchlistDataModel;
+  final VoidCallback? onDeleteWatchlistItem;
 
   @override
   Widget build(BuildContext context) {
@@ -46,28 +52,42 @@ class WatchlistItem extends StatelessWidget {
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                '${watchlistDataModel.symbol} ',
-                style: PortfolioTheme.textTheme.titleMedium,
+              Row(
+                children: [
+                  Text(
+                    '${watchlistDataModel.symbol} ',
+                    style: PortfolioTheme.textTheme.titleMedium,
+                  ),
+                  Text(
+                    '(${watchlistDataModel.sectorName})',
+                    style: PortfolioTheme.textTheme.bodySmall,
+                  )
+                ],
               ),
               Text(
-                '(${watchlistDataModel.sectorName})',
-                style: PortfolioTheme.textTheme.bodySmall,
-              )
+                watchlistDataModel.companyName.length > 30
+                    ? watchlistDataModel.companyName.substring(0, 30) + '...'
+                    : watchlistDataModel.companyName,
+                style: PortfolioTheme.textTheme.titleSmall,
+              ),
             ],
           ),
-          Text(
-            watchlistDataModel.companyName.length > 30
-                ? watchlistDataModel.companyName.substring(0, 30) + '...'
-                : watchlistDataModel.companyName,
-            style: PortfolioTheme.textTheme.titleSmall,
-          ),
+          onDeleteWatchlistItem != null
+              ? InkWell(
+                  onTap: onDeleteWatchlistItem,
+                  child: const Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
+                )
+              : const SizedBox.shrink(),
         ],
       ),
     );
