@@ -27,62 +27,21 @@ class PortfolioStockListScreen extends StatefulWidget {
 }
 
 class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
-  StreamSubscription? _deleteStockStreamSubscription;
-  StreamSubscription? _addStockStreamSubscription;
-
   void _loadPortfolio() {
     context.read<LoadPortfolioStockListCubit>().loadStocksList();
-  }
-
-  void _listenForDeleteOperation() async {
-    _deleteStockStreamSubscription =
-        getIt<DeleteStockCubit>().stream.listen((state) {
-      state.whenOrNull(
-        success: () {
-          showInfo(context, "Stock deleted successfully");
-          _loadPortfolio();
-        },
-        failed: () {
-          showErrorInfo(context, "Failed to delete stock");
-        },
-      );
-    });
-  }
-
-  void _listenForAddOperation() async {
-    _addStockStreamSubscription = getIt<AddStockCubit>().stream.listen((state) {
-      state.whenOrNull(
-        success: () {
-          _loadPortfolio();
-        },
-      );
-    });
   }
 
   @override
   void initState() {
     super.initState();
     _loadPortfolio();
-    _listenForDeleteOperation();
-    _listenForAddOperation();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    if (_deleteStockStreamSubscription != null) {
-      _deleteStockStreamSubscription!.cancel();
-    }
-    if (_addStockStreamSubscription != null) {
-      _addStockStreamSubscription!.cancel();
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Portfolio Stock List'),
+        title: const Text(AppStrings.portfolioStockList),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.router.pop(),
@@ -102,45 +61,71 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         onRefresh: () async {
           _loadPortfolio();
         },
-        child: BlocBuilder<LoadPortfolioStockListCubit,
-            LoadPortfolioStockListState>(
-          builder: (context, state) {
-            return state.maybeWhen(
-              loading: () => const SpinKitPulsingGrid(
-                color: Colors.white,
-              ),
-              loaded: (localStockDataList) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: localStockDataList.length,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onLongPress: () {
-                          showDeleteAlert(
-                            context,
-                            localStockDataList[index],
-                          );
-                        },
-                        child: _portfolioItem(localStockDataList[index]),
-                      );
-                    },
-                  ),
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<AddStockCubit, AddStockState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  success: () {
+                    _loadPortfolio();
+                  },
                 );
               },
-              failed: () => const Center(
-                child: SizedBox(
-                  child: Text(AppStrings.failedToLoad),
-                ),
-              ),
-              orElse: () {
-                return Container();
+            ),
+            BlocListener<DeleteStockCubit, DeleteStockState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  success: () {
+                    showInfo(context, AppStrings.stockDeletedSuccessfully);
+                    _loadPortfolio();
+                  },
+                  failed: () {
+                    showErrorInfo(context, AppStrings.failedToDeleteStock);
+                  },
+                );
               },
-            );
-          },
+            ),
+          ],
+          child: BlocBuilder<LoadPortfolioStockListCubit,
+              LoadPortfolioStockListState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                loading: () => const SpinKitPulsingGrid(
+                  color: Colors.white,
+                ),
+                loaded: (localStockDataList) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: localStockDataList.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onLongPress: () {
+                            showDeleteAlert(
+                              context,
+                              localStockDataList[index],
+                            );
+                          },
+                          child: _portfolioItem(localStockDataList[index]),
+                        );
+                      },
+                    ),
+                  );
+                },
+                failed: () => const Center(
+                  child: SizedBox(
+                    child: Text(AppStrings.failedToLoad),
+                  ),
+                ),
+                orElse: () {
+                  return Container();
+                },
+              );
+            },
+          ),
         ),
       ),
     );

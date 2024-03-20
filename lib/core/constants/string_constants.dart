@@ -18,6 +18,7 @@ class AppStrings {
 
   //*Portfolio
   static const portfolio = "Portfolio";
+  static const portfolioStockList = "Portfolio Stock List";
   static const currentHoldings = "Your Current Holdings";
   static const dailyProfitLoss = "Daily Profit/Loss";
   static const noProfitLoss = "No profit/loss";
@@ -30,7 +31,7 @@ class AppStrings {
   static const noStocksInWatchlist = "No stocks in the watchlist";
   static const stocksRemovedFromWatchlist =
       "Stock removed from watchlist successfully";
-  //*Add stocks
+  //*Stocks operation
   static const addDetails = "Add Details";
   static const quantity = "Quantity";
   static const price = "Price";
@@ -41,6 +42,8 @@ class AppStrings {
   static const enterCompanyName = "Enter Company Name";
   static const stockAddedSuccessfully = "Stock added Successfully";
   static const failedToAddStock = "Failed to add stock";
+  static const stockDeletedSuccessfully = "Stock deleted successfully";
+  static const failedToDeleteStock = "Failed to delete stock";
 }
 
 class ValidationStrings {
