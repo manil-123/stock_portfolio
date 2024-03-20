@@ -6,6 +6,7 @@ import 'package:share_portfolio/app/theme/app_colors.dart';
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
@@ -51,17 +52,17 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
       child: Scaffold(
         backgroundColor: AppColors.whiteBackground,
         appBar: AppBar(
-          title: const Text('Add Details'),
+          title: const Text(AppStrings.addDetails),
         ),
         body: BlocListener<AddStockCubit, AddStockState>(
           listener: (context, state) {
             state.whenOrNull(
               success: () {
-                showInfo(context, "Stock added Successfully");
+                showInfo(context, AppStrings.stockAddedSuccessfully);
                 Navigator.pop(context);
               },
               failed: () {
-                showErrorInfo(context, "Failed to add stock");
+                showErrorInfo(context, AppStrings.failedToAddStock);
               },
             );
           },
@@ -83,7 +84,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                   selectedMarket,
                 ),
                 orElse: () => const Center(
-                  child: Text('Failed to load portfolio'),
+                  child: Text(AppStrings.failedToLoadPortfolio),
                 ),
               );
             },
@@ -118,13 +119,13 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               controller: _scripNameController,
               readOnly: true,
               validator: (String? val) {
-                if (val!.isEmpty) return "Scrip field should not be empty";
+                if (val!.isEmpty) return ValidationStrings.scripFieldValidation;
                 return null;
               },
-              labelText: 'Scrip',
+              labelText: AppStrings.scrip,
             ),
             RadioListTile(
-              title: const Text('IPO'),
+              title: const Text(AppStrings.ipo),
               value: MarketEnum.IPO,
               groupValue: selectedMarket,
               onChanged: (MarketEnum? newValue) {
@@ -133,7 +134,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               },
             ),
             RadioListTile(
-              title: const Text('Secondary'),
+              title: const Text(AppStrings.secondary),
               value: MarketEnum.SECONDARY,
               groupValue: selectedMarket,
               onChanged: (MarketEnum? newValue) {
@@ -146,8 +147,9 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                   controller: _quantityController,
                   validator: (String? val) {
                     if (val!.isEmpty)
-                      return "Quantity field should not be empty";
-                    else if (int.parse(val) == 0) return "Quantity cannot be 0";
+                      return ValidationStrings.quantityFieldValidation;
+                    else if (int.parse(val) == 0)
+                      return ValidationStrings.quantityZeroValidation;
                     return null;
                   },
                   keyboardType:
@@ -155,7 +157,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                   inputFormatter: <TextInputFormatter>[
                     FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
                   ],
-                  labelText: 'Quantity',
+                  labelText: AppStrings.quantity,
                 ),
                 const SizedBox(
                   height: 20,
@@ -165,9 +167,9 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                   readOnly: selectedMarket == MarketEnum.IPO ? true : false,
                   validator: (String? val) {
                     if (val!.isEmpty)
-                      return "Price field should not be empty";
+                      return ValidationStrings.priceFieldValidation;
                     else if (double.parse(val) == 0.0)
-                      return "Price cannot be 0";
+                      return ValidationStrings.priceZeroValidation;
                     return null;
                   },
                   keyboardType:
@@ -175,7 +177,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                   inputFormatter: <TextInputFormatter>[
                     FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))
                   ],
-                  labelText: 'Price',
+                  labelText: AppStrings.price,
                 ),
               ],
             ),
@@ -196,7 +198,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                           color: Colors.white,
                         ),
                         orElse: () => const Text(
-                          'ADD',
+                          AppStrings.add,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -214,7 +216,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
 
   void _addStock() {
     if (_companyNameController.text.isEmpty) {
-      showErrorInfo(context, "Please select a company");
+      showErrorInfo(context, ValidationStrings.selectCompanyValidation);
     }
     if (_formKey.currentState!.validate()) {
       var sectorName = context
@@ -238,7 +240,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
       suggestions: companyNames,
       clearOnSubmit: false,
       decoration: InputDecoration(
-        labelText: 'Enter Company Name',
+        labelText: AppStrings.enterCompanyName,
         labelStyle: TextStyle(
           color: Theme.of(context).primaryColor,
         ),

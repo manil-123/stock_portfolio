@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_portfolio/app/theme/app_colors.dart';
 import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
 
@@ -75,7 +76,9 @@ class WatchlistItem extends StatelessWidget {
                 watchlistDataModel.companyName.length > 30
                     ? watchlistDataModel.companyName.substring(0, 30) + '...'
                     : watchlistDataModel.companyName,
-                style: PortfolioTheme.textTheme.titleSmall,
+                style: PortfolioTheme.textTheme.bodySmall!.copyWith(
+                  color: AppColors.grey,
+                ),
               ),
             ],
           ),

@@ -22,6 +22,7 @@ class AppStrings {
   static const dailyProfitLoss = "Daily Profit/Loss";
   static const noProfitLoss = "No profit/loss";
   static const totalInvestment = "Total Investment";
+  static const failedToLoadPortfolio = "Failed to load portfolio";
 
   //*Watchlist
   static const myWatchlist = "My Watchlist";
@@ -29,4 +30,24 @@ class AppStrings {
   static const noStocksInWatchlist = "No stocks in the watchlist";
   static const stocksRemovedFromWatchlist =
       "Stock removed from watchlist successfully";
+  //*Add stocks
+  static const addDetails = "Add Details";
+  static const quantity = "Quantity";
+  static const price = "Price";
+  static const scrip = "Scrip";
+  static const ipo = "IPO";
+  static const secondary = "Secondary";
+  static const add = "ADD";
+  static const enterCompanyName = "Enter Company Name";
+  static const stockAddedSuccessfully = "Stock added Successfully";
+  static const failedToAddStock = "Failed to add stock";
+}
+
+class ValidationStrings {
+  static const selectCompanyValidation = "Please select a company";
+  static const priceFieldValidation = "Price field should not be empty";
+  static const priceZeroValidation = "Price cannot be 0";
+  static const quantityFieldValidation = "Quantity field should not be empty";
+  static const quantityZeroValidation = "Quantity cannot be 0";
+  static const scripFieldValidation = "Scrip field should not be empty";
 }

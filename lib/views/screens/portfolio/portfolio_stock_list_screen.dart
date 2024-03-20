@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/app/theme/app_colors.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
@@ -163,10 +164,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
               children: [
                 Text(
                   stockData.scrip,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                  ),
+                  style: PortfolioTheme.textTheme.titleMedium,
                 ),
                 const SizedBox(height: 10),
                 _buildStockInfo(stockData),
@@ -195,9 +193,8 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
             '${stockData.quantity} Shares, LTP: ${snapshot.data}',
-            style: const TextStyle(
-              color: Color(0xFF79787D),
-              fontSize: 12.0,
+            style: PortfolioTheme.textTheme.bodySmall!.copyWith(
+              color: AppColors.grey,
             ),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
@@ -205,9 +202,8 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         } else {
           return Text(
             '${stockData.quantity} Shares, LTP: Error',
-            style: const TextStyle(
-              color: Color(0xFF79787D),
-              fontSize: 12.0,
+            style: PortfolioTheme.textTheme.bodySmall!.copyWith(
+              color: AppColors.grey,
             ),
           );
         }
@@ -223,14 +219,16 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
             'Rs.${(stockData.quantity * double.parse(snapshot.data!)).toStringAsFixed(1)}',
-            style: const TextStyle(color: Colors.white, fontSize: 14),
+            style: PortfolioTheme.textTheme.titleSmall!
+                .copyWith(fontWeight: FontWeight.w500),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else {
-          return const Text(
+          return Text(
             ' Error',
-            style: TextStyle(color: Colors.white, fontSize: 14),
+            style: PortfolioTheme.textTheme.titleSmall!
+                .copyWith(fontWeight: FontWeight.w500),
           );
         }
       },
@@ -244,17 +242,18 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
             'Rs. ${(snapshot.data! * stockData.quantity).toStringAsFixed(1)}',
-            style: TextStyle(
+            style: PortfolioTheme.textTheme.titleSmall!.copyWith(
               color: snapshot.data! > 0.0 ? AppColors.green : AppColors.red,
-              fontSize: 14,
+              fontWeight: FontWeight.w500,
             ),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else {
-          return const Text(
+          return Text(
             ' Error',
-            style: TextStyle(color: Colors.white, fontSize: 14),
+            style: PortfolioTheme.textTheme.titleSmall!
+                .copyWith(fontWeight: FontWeight.w500),
           );
         }
       },
@@ -266,7 +265,8 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
     return showDialog(
       context: context,
       builder: (ctx) => ShowAlertDialog(
-        title: 'Do you want to delete ${localStockData.scrip}?',
+        title:
+            'Do you want to remove "${localStockData.scrip}" from Portfolio?',
         onSuccess: () {
           getIt<DeleteStockCubit>().deleteStock(localStockData);
           Navigator.pop(ctx);

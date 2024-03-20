@@ -80,6 +80,9 @@ class PortfolioItem extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.done) {
                 return Text(
                   '${stockData.quantity} Shares, LTP: ${snapshot.data}',
+                  style: PortfolioTheme.textTheme.bodySmall!.copyWith(
+                    color: AppColors.grey,
+                  ),
                 );
               } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CircularProgressIndicator();
