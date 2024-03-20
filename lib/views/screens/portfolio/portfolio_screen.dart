@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
-import 'package:share_portfolio/app/theme/app_colors.dart';
-import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/di/injection.dart';
-import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/views/screens/portfolio/widgets/current_holdings.dart';
 import 'package:share_portfolio/views/screens/portfolio/widgets/portfolio_item.dart';
 import 'package:share_portfolio/views/screens/portfolio/widgets/portfolio_watchlist_heading.dart';
@@ -131,6 +128,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         ),
                         PortfolioWatchlistHeading(
                           isListEmpty: localStockDataList.isEmpty,
+                          isPortfolio: true,
                           title: AppStrings.portfolio,
                           onViewAll: () {
                             localStockDataList.isEmpty
@@ -190,59 +188,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               },
             );
           },
-        ),
-      ),
-    );
-  }
-
-  Future<dynamic> showDeleteAlert(
-      BuildContext context, LocalStockDataModel localStockData) {
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: Container(
-          width: 280.0,
-          height: 100,
-          decoration: const BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.all(
-              Radius.circular(32.0),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                AppStrings.deleteQuestion,
-                style: PortfolioTheme.textTheme.titleMedium!
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  MaterialButton(
-                    onPressed: () {
-                      getIt<DeleteStockCubit>().deleteStock(localStockData);
-                      Navigator.pop(context);
-                    },
-                    color: AppColors.black,
-                    child: const Text(
-                      AppStrings.yes,
-                    ),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    color: AppColors.black,
-                    child: const Text(
-                      AppStrings.no,
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
         ),
       ),
     );

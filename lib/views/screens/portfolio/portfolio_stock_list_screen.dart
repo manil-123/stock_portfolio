@@ -9,9 +9,11 @@ import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
+import 'package:share_portfolio/views/widgets/show_alert_dialog.dart';
 
 class PortfolioStockListScreen extends StatefulWidget {
   const PortfolioStockListScreen({
@@ -129,7 +131,9 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                 );
               },
               failed: () => const Center(
-                child: SizedBox(child: Text('Failed to Load')),
+                child: SizedBox(
+                  child: Text(AppStrings.failedToLoad),
+                ),
               ),
               orElse: () {
                 return Container();
@@ -159,7 +163,10 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
               children: [
                 Text(
                   stockData.scrip,
-                  style: const TextStyle(color: Colors.white, fontSize: 20.0),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 _buildStockInfo(stockData),
@@ -188,14 +195,20 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         if (snapshot.connectionState == ConnectionState.done) {
           return Text(
             '${stockData.quantity} Shares, LTP: ${snapshot.data}',
-            style: const TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
+            style: const TextStyle(
+              color: Color(0xFF79787D),
+              fontSize: 12.0,
+            ),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else {
           return Text(
             '${stockData.quantity} Shares, LTP: Error',
-            style: const TextStyle(color: Color(0xFF79787D), fontSize: 12.0),
+            style: const TextStyle(
+              color: Color(0xFF79787D),
+              fontSize: 12.0,
+            ),
           );
         }
       },
@@ -252,52 +265,15 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
       BuildContext context, LocalStockDataModel localStockData) {
     return showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        content: Container(
-          width: 280.0,
-          height: 100,
-          decoration: const BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.all(
-              Radius.circular(32.0),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Do you want to delete?',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  MaterialButton(
-                    onPressed: () {
-                      getIt<DeleteStockCubit>().deleteStock(localStockData);
-                      Navigator.pop(context);
-                    },
-                    color: Theme.of(context).colorScheme.secondary,
-                    child: const Text(
-                      'Yes',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    color: Theme.of(context).colorScheme.secondary,
-                    child: const Text(
-                      'No',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
+      builder: (ctx) => ShowAlertDialog(
+        title: 'Do you want to delete ${localStockData.scrip}?',
+        onSuccess: () {
+          getIt<DeleteStockCubit>().deleteStock(localStockData);
+          Navigator.pop(ctx);
+        },
+        onCancel: () {
+          Navigator.pop(ctx);
+        },
       ),
     );
   }
