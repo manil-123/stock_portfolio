@@ -3,12 +3,13 @@ import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/database/db/app_db.dart';
 import 'package:share_portfolio/core/database/entity/nepse_timeseries_info.dart';
 
-part 'nepse_dao.g.dart';
+part 'nepse_timeseries_dao.g.dart';
 
 @DriftAccessor(tables: [NepseTimeSeriesInfo])
 @LazySingleton()
-class NepseDao extends DatabaseAccessor<AppDB> with _$NepseDaoMixin {
-  NepseDao(AppDB db) : super(db);
+class NepseTimeSeriesDao extends DatabaseAccessor<AppDB>
+    with _$NepseTimeSeriesDaoMixin {
+  NepseTimeSeriesDao(AppDB db) : super(db);
 
   Future<List<NepseTimeSeriesInfoData>> getAllNepseData() {
     return (select(nepseTimeSeriesInfo)).get();
@@ -29,7 +30,7 @@ class NepseDao extends DatabaseAccessor<AppDB> with _$NepseDaoMixin {
     );
   }
 
-  Future deleteNepseInfo() async {
+  Future deleteAll() async {
     return (delete(nepseTimeSeriesInfo)).go();
   }
 }

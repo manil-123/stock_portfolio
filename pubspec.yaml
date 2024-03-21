@@ -36,6 +36,7 @@ dependencies:
   dartz: ^0.10.1  
   # Database
   drift: ^2.9.0
+  sqlite3_flutter_libs: ^0.5.15
   # Value equality
   equatable: ^2.0.5
   # Chart

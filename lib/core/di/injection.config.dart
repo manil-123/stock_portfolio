@@ -34,7 +34,8 @@ import 'package:share_portfolio/blocs/watchlist/load_watchlist/load_watchlist_cu
     as _i26;
 import 'package:share_portfolio/blocs/watchlist/remove_from_watchlist/remove_from_watchlist_cubit.dart'
     as _i18;
-import 'package:share_portfolio/core/database/dao/nepse_dao.dart' as _i8;
+import 'package:share_portfolio/core/database/dao/nepse_timeseries_dao.dart'
+    as _i8;
 import 'package:share_portfolio/core/database/db/app_db.dart' as _i3;
 import 'package:share_portfolio/core/di/register_modules.dart' as _i27;
 import 'package:share_portfolio/core/network/network_info.dart' as _i9;
@@ -63,7 +64,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i5.LoadAddStockCubit>(() => _i5.LoadAddStockCubit());
     gh.lazySingleton<_i6.LocalAuthService>(() => _i6.LocalAuthService());
     gh.lazySingleton<_i7.LocalStockListDAO>(() => _i7.LocalStockListDAO());
-    gh.lazySingleton<_i8.NepseDao>(() => _i8.NepseDao(gh<_i3.AppDB>()));
+    gh.lazySingleton<_i8.NepseTimeSeriesDao>(
+        () => _i8.NepseTimeSeriesDao(gh<_i3.AppDB>()));
     gh.lazySingleton<_i9.NetworkInfo>(
         () => _i9.NetworkInfoImpl(gh<_i4.InternetConnectionChecker>()));
     gh.lazySingleton<_i10.Scrapper>(() => _i10.Scrapper());
@@ -76,8 +78,10 @@ extension GetItInjectableX on _i1.GetIt {
               shareInfoListDAO: gh<_i11.ShareInfoListDAO>(),
               localStockListDAO: gh<_i7.LocalStockListDAO>(),
             ));
-    gh.lazySingleton<_i15.DataService>(
-        () => _i15.DataService(gh<_i10.Scrapper>()));
+    gh.lazySingleton<_i15.DataService>(() => _i15.DataService(
+          gh<_i10.Scrapper>(),
+          gh<_i8.NepseTimeSeriesDao>(),
+        ));
     gh.lazySingleton<_i16.LocalStockRepository>(
         () => _i16.LocalStockRepositoryImpl(
               gh<_i7.LocalStockListDAO>(),

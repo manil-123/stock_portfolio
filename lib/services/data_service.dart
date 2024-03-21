@@ -1,7 +1,10 @@
+import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
+import 'package:share_portfolio/core/database/dao/nepse_timeseries_dao.dart';
+import 'package:share_portfolio/core/database/db/app_db.dart';
 import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
@@ -15,8 +18,9 @@ import 'dart:async';
 @LazySingleton()
 class DataService {
   final Scrapper scrapper;
+  final NepseTimeSeriesDao _nepseTimeSeriesDao;
 
-  DataService(this.scrapper);
+  DataService(this.scrapper, this._nepseTimeSeriesDao);
   Future<List<ShareInfoModel>> fetchShareData() async {
     final response = await scrapper.fetchStockData();
     final shareInfoList = ShareInfoList.fromMap(response);
@@ -24,10 +28,32 @@ class DataService {
   }
 
   Future<List<NepseTimeSeriesData>> fetchNepseTimeSeriesData() async {
-    final response = await scrapper.fetchNepsePriceHistory();
-    final timeSeriesList = NepseTimeSeriesDataResponse.fromJson(
-        response['price_history'] as List<Map<String, dynamic>>);
-    return timeSeriesList.nepseTimeSeriesDataList ?? [];
+    try {
+      final response = await scrapper.fetchNepsePriceHistory();
+      final timeSeriesList = NepseTimeSeriesDataResponse.fromJson(
+          response['price_history'] as List<Map<String, dynamic>>);
+      //* Store Nepse TimeSeries data after deleting all previous records
+      _nepseTimeSeriesDao.deleteAll();
+      for (var item in timeSeriesList.nepseTimeSeriesDataList!) {
+        _nepseTimeSeriesDao.insertNepseInfo(
+          NepseTimeSeriesInfoCompanion(
+            date: Value(item.date ?? ''),
+            index: Value(
+              item.index.toString(),
+            ),
+            pointChange: Value(
+              item.pointChange.toString(),
+            ),
+            percentageChange: Value(
+              item.pointChange.toString(),
+            ),
+          ),
+        );
+      }
+      return timeSeriesList.nepseTimeSeriesDataList ?? [];
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<NepseIndexModel> getNepseIndex() async {

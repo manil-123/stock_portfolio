@@ -24,7 +24,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(
         const HomeState.loading(),
       );
-      NepseIndexModel nepseIndex = await _nepseRepo.getNepseIndex();
+      // NepseIndexModel nepseIndex = await _nepseRepo.getNepseIndex();
       final timeSeriesData = await _nepseRepo.getNepseTimeSeriesData();
       final topGainersListResponse = await _nepseRepo.getTopGainers();
       final topLosersListResponse = await _nepseRepo.getTopLosers();
@@ -42,7 +42,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           }, (topLosersList) {
             emit(
               HomeState.loaded(
-                nepseIndex: nepseIndex,
+                nepseIndex: NepseIndexModel(),
                 nepseTimeSeriesData: timeSeriesData.fold(
                   (l) => [],
                   (timeSeriesDataList) => timeSeriesDataList.reversed.toList(),
