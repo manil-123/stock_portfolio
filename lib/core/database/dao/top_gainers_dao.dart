@@ -19,7 +19,7 @@ class TopGainersDao extends DatabaseAccessor<AppDB> with _$TopGainersDaoMixin {
       into(topGainersInfo)
           .insert(topGainersInfoData, mode: InsertMode.insertOrReplace);
 
-  Future updateNepseInfo(
+  Future updateTopGainerInfo(
       TopGainersInfoCompanion topGainersInfoData, String symbol) async {
     return (update(topGainersInfo)..where((t) => t.symbol.equals(symbol)))
         .write(

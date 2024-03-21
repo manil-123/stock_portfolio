@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -30,6 +32,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final topLosersListResponse = await _nepseRepo.getTopLosers();
       topGainersListResponse.fold(
         (failure) {
+          log(failure.toString());
           emit(
             HomeState.failed(failure: failure),
           );

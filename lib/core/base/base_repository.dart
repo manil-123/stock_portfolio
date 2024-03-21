@@ -19,26 +19,26 @@ class BaseRepository {
   EitherResponse<T> handleNetworkCall<T>({
     required Future<T> call,
   }) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final data = await call;
-        return Right(data);
-      } on ScrapException catch (e) {
-        return Left(
-          Failure.scrapFailure(
-            failureMessage: e.exceptionMessage,
-          ),
-        );
-      } catch (e) {
-        return Left(
-          Failure.serverFailure(
-            failureMessage: e.toString(),
-          ),
-        );
-      }
-    } else {
+    try {
+      final data = await call;
+      return Right(data);
+    } on ScrapException catch (e) {
+      return Left(
+        Failure.scrapFailure(
+          failureMessage: e.exceptionMessage,
+        ),
+      );
+    } on NoInternetException {
       return const Left(
-        Failure.networkFailure(failureMessage: ErrorMsg.noInternetConnection),
+        Failure.networkFailure(
+          failureMessage: ErrorMsg.noInternetConnection,
+        ),
+      );
+    } catch (e) {
+      return Left(
+        Failure.serverFailure(
+          failureMessage: e.toString(),
+        ),
       );
     }
   }

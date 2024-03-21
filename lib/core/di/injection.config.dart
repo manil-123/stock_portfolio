@@ -87,6 +87,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i17.DataService>(() => _i17.DataService(
           gh<_i10.Scrapper>(),
           gh<_i8.NepseTimeSeriesDao>(),
+          gh<_i13.TopGainersDao>(),
+          gh<_i14.TopLosersDao>(),
         ));
     gh.lazySingleton<_i18.LocalStockRepository>(
         () => _i18.LocalStockRepositoryImpl(

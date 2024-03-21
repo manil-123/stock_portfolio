@@ -10,16 +10,15 @@ part 'top_losers_dao.g.dart';
 class TopLosersDao extends DatabaseAccessor<AppDB> with _$TopLosersDaoMixin {
   TopLosersDao(AppDB db) : super(db);
 
-  Future<List<TopLosersInfoData>> getAllTopGainersData() {
+  Future<List<TopLosersInfoData>> getAllTopLosersData() {
     return (select(topLosersInfo)).get();
   }
 
-  Future insertTopGainersInfo(
-          Insertable<TopLosersInfoData> topLosersInfoData) =>
+  Future insertTopLosersInfo(Insertable<TopLosersInfoData> topLosersInfoData) =>
       into(topLosersInfo)
           .insert(topLosersInfoData, mode: InsertMode.insertOrReplace);
 
-  Future updateNepseInfo(
+  Future updateTopLosersInfo(
       TopLosersInfoCompanion topLosersInfoData, String symbol) async {
     return (update(topLosersInfo)..where((t) => t.symbol.equals(symbol))).write(
       topLosersInfoData,
