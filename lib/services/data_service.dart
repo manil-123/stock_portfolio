@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/core/database/dao/nepse_timeseries_dao.dart';
+import 'package:share_portfolio/core/database/dao/stock_dao.dart';
 import 'package:share_portfolio/core/database/dao/top_gainers_dao.dart';
 import 'package:share_portfolio/core/database/dao/top_losers_dao.dart';
 import 'package:share_portfolio/core/database/db/app_db.dart';
@@ -23,14 +24,51 @@ class DataService {
   final NepseTimeSeriesDao _nepseTimeSeriesDao;
   final TopGainersDao _topGainersDao;
   final TopLosersDao _topLosersDao;
+  final StockDao _stockDao;
 
-  DataService(this.scrapper, this._nepseTimeSeriesDao, this._topGainersDao,
-      this._topLosersDao);
+  DataService(
+    this.scrapper,
+    this._nepseTimeSeriesDao,
+    this._topGainersDao,
+    this._topLosersDao,
+    this._stockDao,
+  );
 
   Future<List<ShareInfoModel>> fetchShareData() async {
-    final response = await scrapper.fetchStockData();
-    final shareInfoList = ShareInfoList.fromMap(response);
-    return shareInfoList.shareInfoList ?? [];
+    try {
+      final response = await scrapper.fetchStockData();
+      final shareInfoList = ShareInfoList.fromMap(response);
+      //* Store Nepse Stock data after deleting all previous records
+      _stockDao.deleteAll();
+      for (var item in shareInfoList.shareInfoList!) {
+        _stockDao.insertStockInfo(
+          StockInfoCompanion(
+            symbol: Value(item.symbol),
+            companyName: Value(item.companyName),
+            ltp: Value(item.ltp),
+            change: Value(item.change),
+          ),
+        );
+      }
+      return shareInfoList.shareInfoList ?? [];
+    } catch (e) {
+      final stockDataList = await _stockDao.getAllStocksData();
+
+      if (stockDataList.isNotEmpty) {
+        return stockDataList
+            .map(
+              (data) => ShareInfoModel(
+                companyName: data.companyName,
+                symbol: data.symbol,
+                ltp: data.ltp,
+                change: data.change,
+              ),
+            )
+            .toList();
+      } else {
+        rethrow;
+      }
+    }
   }
 
   Future<List<NepseTimeSeriesData>> fetchNepseTimeSeriesData() async {
@@ -119,11 +157,12 @@ class DataService {
         return topGainersDataList
             .map(
               (data) => TopGainersModel(
-                  companyName: data.companyName,
-                  symbol: data.symbol,
-                  ltp: data.ltp,
-                  change: data.change,
-                  quantity: data.quantity),
+                companyName: data.companyName,
+                symbol: data.symbol,
+                ltp: data.ltp,
+                change: data.change,
+                quantity: data.quantity,
+              ),
             )
             .toList();
       } else {
@@ -158,11 +197,12 @@ class DataService {
         return topLosersDataList
             .map(
               (data) => TopLosersModel(
-                  companyName: data.companyName,
-                  symbol: data.symbol,
-                  ltp: data.ltp,
-                  change: data.change,
-                  quantity: data.quantity),
+                companyName: data.companyName,
+                symbol: data.symbol,
+                ltp: data.ltp,
+                change: data.change,
+                quantity: data.quantity,
+              ),
             )
             .toList();
       } else {

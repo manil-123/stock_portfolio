@@ -876,16 +876,277 @@ class TopLosersInfoCompanion extends UpdateCompanion<TopLosersInfoData> {
   }
 }
 
+class $StockInfoTable extends StockInfo
+    with TableInfo<$StockInfoTable, StockInfoData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $StockInfoTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _symbolMeta = const VerificationMeta('symbol');
+  @override
+  late final GeneratedColumn<String> symbol = GeneratedColumn<String>(
+      'symbol', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _companyNameMeta =
+      const VerificationMeta('companyName');
+  @override
+  late final GeneratedColumn<String> companyName = GeneratedColumn<String>(
+      'company_name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _ltpMeta = const VerificationMeta('ltp');
+  @override
+  late final GeneratedColumn<String> ltp = GeneratedColumn<String>(
+      'ltp', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _changeMeta = const VerificationMeta('change');
+  @override
+  late final GeneratedColumn<String> change = GeneratedColumn<String>(
+      'change', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [symbol, companyName, ltp, change];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'stock_info';
+  @override
+  VerificationContext validateIntegrity(Insertable<StockInfoData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('symbol')) {
+      context.handle(_symbolMeta,
+          symbol.isAcceptableOrUnknown(data['symbol']!, _symbolMeta));
+    } else if (isInserting) {
+      context.missing(_symbolMeta);
+    }
+    if (data.containsKey('company_name')) {
+      context.handle(
+          _companyNameMeta,
+          companyName.isAcceptableOrUnknown(
+              data['company_name']!, _companyNameMeta));
+    } else if (isInserting) {
+      context.missing(_companyNameMeta);
+    }
+    if (data.containsKey('ltp')) {
+      context.handle(
+          _ltpMeta, ltp.isAcceptableOrUnknown(data['ltp']!, _ltpMeta));
+    } else if (isInserting) {
+      context.missing(_ltpMeta);
+    }
+    if (data.containsKey('change')) {
+      context.handle(_changeMeta,
+          change.isAcceptableOrUnknown(data['change']!, _changeMeta));
+    } else if (isInserting) {
+      context.missing(_changeMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => const {};
+  @override
+  StockInfoData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return StockInfoData(
+      symbol: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}symbol'])!,
+      companyName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}company_name'])!,
+      ltp: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}ltp'])!,
+      change: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}change'])!,
+    );
+  }
+
+  @override
+  $StockInfoTable createAlias(String alias) {
+    return $StockInfoTable(attachedDatabase, alias);
+  }
+}
+
+class StockInfoData extends DataClass implements Insertable<StockInfoData> {
+  final String symbol;
+  final String companyName;
+  final String ltp;
+  final String change;
+  const StockInfoData(
+      {required this.symbol,
+      required this.companyName,
+      required this.ltp,
+      required this.change});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['symbol'] = Variable<String>(symbol);
+    map['company_name'] = Variable<String>(companyName);
+    map['ltp'] = Variable<String>(ltp);
+    map['change'] = Variable<String>(change);
+    return map;
+  }
+
+  StockInfoCompanion toCompanion(bool nullToAbsent) {
+    return StockInfoCompanion(
+      symbol: Value(symbol),
+      companyName: Value(companyName),
+      ltp: Value(ltp),
+      change: Value(change),
+    );
+  }
+
+  factory StockInfoData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return StockInfoData(
+      symbol: serializer.fromJson<String>(json['symbol']),
+      companyName: serializer.fromJson<String>(json['companyName']),
+      ltp: serializer.fromJson<String>(json['ltp']),
+      change: serializer.fromJson<String>(json['change']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'symbol': serializer.toJson<String>(symbol),
+      'companyName': serializer.toJson<String>(companyName),
+      'ltp': serializer.toJson<String>(ltp),
+      'change': serializer.toJson<String>(change),
+    };
+  }
+
+  StockInfoData copyWith(
+          {String? symbol, String? companyName, String? ltp, String? change}) =>
+      StockInfoData(
+        symbol: symbol ?? this.symbol,
+        companyName: companyName ?? this.companyName,
+        ltp: ltp ?? this.ltp,
+        change: change ?? this.change,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('StockInfoData(')
+          ..write('symbol: $symbol, ')
+          ..write('companyName: $companyName, ')
+          ..write('ltp: $ltp, ')
+          ..write('change: $change')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(symbol, companyName, ltp, change);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is StockInfoData &&
+          other.symbol == this.symbol &&
+          other.companyName == this.companyName &&
+          other.ltp == this.ltp &&
+          other.change == this.change);
+}
+
+class StockInfoCompanion extends UpdateCompanion<StockInfoData> {
+  final Value<String> symbol;
+  final Value<String> companyName;
+  final Value<String> ltp;
+  final Value<String> change;
+  final Value<int> rowid;
+  const StockInfoCompanion({
+    this.symbol = const Value.absent(),
+    this.companyName = const Value.absent(),
+    this.ltp = const Value.absent(),
+    this.change = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  StockInfoCompanion.insert({
+    required String symbol,
+    required String companyName,
+    required String ltp,
+    required String change,
+    this.rowid = const Value.absent(),
+  })  : symbol = Value(symbol),
+        companyName = Value(companyName),
+        ltp = Value(ltp),
+        change = Value(change);
+  static Insertable<StockInfoData> custom({
+    Expression<String>? symbol,
+    Expression<String>? companyName,
+    Expression<String>? ltp,
+    Expression<String>? change,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (symbol != null) 'symbol': symbol,
+      if (companyName != null) 'company_name': companyName,
+      if (ltp != null) 'ltp': ltp,
+      if (change != null) 'change': change,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  StockInfoCompanion copyWith(
+      {Value<String>? symbol,
+      Value<String>? companyName,
+      Value<String>? ltp,
+      Value<String>? change,
+      Value<int>? rowid}) {
+    return StockInfoCompanion(
+      symbol: symbol ?? this.symbol,
+      companyName: companyName ?? this.companyName,
+      ltp: ltp ?? this.ltp,
+      change: change ?? this.change,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (symbol.present) {
+      map['symbol'] = Variable<String>(symbol.value);
+    }
+    if (companyName.present) {
+      map['company_name'] = Variable<String>(companyName.value);
+    }
+    if (ltp.present) {
+      map['ltp'] = Variable<String>(ltp.value);
+    }
+    if (change.present) {
+      map['change'] = Variable<String>(change.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('StockInfoCompanion(')
+          ..write('symbol: $symbol, ')
+          ..write('companyName: $companyName, ')
+          ..write('ltp: $ltp, ')
+          ..write('change: $change, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDB extends GeneratedDatabase {
   _$AppDB(QueryExecutor e) : super(e);
   late final $NepseTimeSeriesInfoTable nepseTimeSeriesInfo =
       $NepseTimeSeriesInfoTable(this);
   late final $TopGainersInfoTable topGainersInfo = $TopGainersInfoTable(this);
   late final $TopLosersInfoTable topLosersInfo = $TopLosersInfoTable(this);
+  late final $StockInfoTable stockInfo = $StockInfoTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [nepseTimeSeriesInfo, topGainersInfo, topLosersInfo];
+      [nepseTimeSeriesInfo, topGainersInfo, topLosersInfo, stockInfo];
 }

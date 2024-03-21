@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
@@ -38,6 +40,8 @@ class Scrapper {
       return {
         "price_history": historyDataMapList,
       };
+    } on SocketException {
+      throw const NoInternetException();
     } catch (e) {
       throw ScrapException(ErrorMsg.scrapError);
     }
@@ -71,6 +75,8 @@ class Scrapper {
       return {
         "list": tradingMapList,
       };
+    } on SocketException {
+      throw const NoInternetException();
     } catch (e) {
       throw ScrapException(ErrorMsg.scrapError);
     }
@@ -106,6 +112,8 @@ class Scrapper {
       return {
         "top_gainers": topGainersMapList,
       };
+    } on SocketException {
+      throw const NoInternetException();
     } catch (e) {
       throw ScrapException(ErrorMsg.scrapError);
     }
@@ -141,6 +149,8 @@ class Scrapper {
       return {
         "top_losers": topLosersMapList,
       };
+    } on SocketException {
+      throw const NoInternetException();
     } catch (e) {
       throw ScrapException(ErrorMsg.scrapError);
     }

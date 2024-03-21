@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_portfolio/core/database/entity/nepse_timeseries_info.dart';
+import 'package:share_portfolio/core/database/entity/stock_info.dart';
 import 'package:share_portfolio/core/database/entity/top_gainers_info.dart';
 import 'package:share_portfolio/core/database/entity/top_losers_info.dart';
 
@@ -23,13 +24,14 @@ LazyDatabase _openConnection() {
   NepseTimeSeriesInfo,
   TopGainersInfo,
   TopLosersInfo,
+  StockInfo,
 ])
 @LazySingleton()
 class AppDB extends _$AppDB {
   AppDB() : super(_openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration {
@@ -38,6 +40,9 @@ class AppDB extends _$AppDB {
         await m.createAll();
       },
       onUpgrade: (m, from, to) async {
+        if (from < 2) {
+          await m.drop(stockInfo);
+        }
         await m.createAll();
       },
     );
