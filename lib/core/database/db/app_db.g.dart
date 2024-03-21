@@ -1136,6 +1136,311 @@ class StockInfoCompanion extends UpdateCompanion<StockInfoData> {
   }
 }
 
+class $LocalStockInfoTable extends LocalStockInfo
+    with TableInfo<$LocalStockInfoTable, LocalStockInfoData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $LocalStockInfoTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _scripMeta = const VerificationMeta('scrip');
+  @override
+  late final GeneratedColumn<String> scrip = GeneratedColumn<String>(
+      'scrip', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _companyNameMeta =
+      const VerificationMeta('companyName');
+  @override
+  late final GeneratedColumn<String> companyName = GeneratedColumn<String>(
+      'company_name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _sectorNameMeta =
+      const VerificationMeta('sectorName');
+  @override
+  late final GeneratedColumn<String> sectorName = GeneratedColumn<String>(
+      'sector_name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _quantityMeta =
+      const VerificationMeta('quantity');
+  @override
+  late final GeneratedColumn<String> quantity = GeneratedColumn<String>(
+      'quantity', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _priceMeta = const VerificationMeta('price');
+  @override
+  late final GeneratedColumn<String> price = GeneratedColumn<String>(
+      'price', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [scrip, companyName, sectorName, quantity, price];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'local_stock_info';
+  @override
+  VerificationContext validateIntegrity(Insertable<LocalStockInfoData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('scrip')) {
+      context.handle(
+          _scripMeta, scrip.isAcceptableOrUnknown(data['scrip']!, _scripMeta));
+    } else if (isInserting) {
+      context.missing(_scripMeta);
+    }
+    if (data.containsKey('company_name')) {
+      context.handle(
+          _companyNameMeta,
+          companyName.isAcceptableOrUnknown(
+              data['company_name']!, _companyNameMeta));
+    } else if (isInserting) {
+      context.missing(_companyNameMeta);
+    }
+    if (data.containsKey('sector_name')) {
+      context.handle(
+          _sectorNameMeta,
+          sectorName.isAcceptableOrUnknown(
+              data['sector_name']!, _sectorNameMeta));
+    } else if (isInserting) {
+      context.missing(_sectorNameMeta);
+    }
+    if (data.containsKey('quantity')) {
+      context.handle(_quantityMeta,
+          quantity.isAcceptableOrUnknown(data['quantity']!, _quantityMeta));
+    } else if (isInserting) {
+      context.missing(_quantityMeta);
+    }
+    if (data.containsKey('price')) {
+      context.handle(
+          _priceMeta, price.isAcceptableOrUnknown(data['price']!, _priceMeta));
+    } else if (isInserting) {
+      context.missing(_priceMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => const {};
+  @override
+  LocalStockInfoData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return LocalStockInfoData(
+      scrip: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}scrip'])!,
+      companyName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}company_name'])!,
+      sectorName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}sector_name'])!,
+      quantity: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}quantity'])!,
+      price: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}price'])!,
+    );
+  }
+
+  @override
+  $LocalStockInfoTable createAlias(String alias) {
+    return $LocalStockInfoTable(attachedDatabase, alias);
+  }
+}
+
+class LocalStockInfoData extends DataClass
+    implements Insertable<LocalStockInfoData> {
+  final String scrip;
+  final String companyName;
+  final String sectorName;
+  final String quantity;
+  final String price;
+  const LocalStockInfoData(
+      {required this.scrip,
+      required this.companyName,
+      required this.sectorName,
+      required this.quantity,
+      required this.price});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['scrip'] = Variable<String>(scrip);
+    map['company_name'] = Variable<String>(companyName);
+    map['sector_name'] = Variable<String>(sectorName);
+    map['quantity'] = Variable<String>(quantity);
+    map['price'] = Variable<String>(price);
+    return map;
+  }
+
+  LocalStockInfoCompanion toCompanion(bool nullToAbsent) {
+    return LocalStockInfoCompanion(
+      scrip: Value(scrip),
+      companyName: Value(companyName),
+      sectorName: Value(sectorName),
+      quantity: Value(quantity),
+      price: Value(price),
+    );
+  }
+
+  factory LocalStockInfoData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return LocalStockInfoData(
+      scrip: serializer.fromJson<String>(json['scrip']),
+      companyName: serializer.fromJson<String>(json['companyName']),
+      sectorName: serializer.fromJson<String>(json['sectorName']),
+      quantity: serializer.fromJson<String>(json['quantity']),
+      price: serializer.fromJson<String>(json['price']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'scrip': serializer.toJson<String>(scrip),
+      'companyName': serializer.toJson<String>(companyName),
+      'sectorName': serializer.toJson<String>(sectorName),
+      'quantity': serializer.toJson<String>(quantity),
+      'price': serializer.toJson<String>(price),
+    };
+  }
+
+  LocalStockInfoData copyWith(
+          {String? scrip,
+          String? companyName,
+          String? sectorName,
+          String? quantity,
+          String? price}) =>
+      LocalStockInfoData(
+        scrip: scrip ?? this.scrip,
+        companyName: companyName ?? this.companyName,
+        sectorName: sectorName ?? this.sectorName,
+        quantity: quantity ?? this.quantity,
+        price: price ?? this.price,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('LocalStockInfoData(')
+          ..write('scrip: $scrip, ')
+          ..write('companyName: $companyName, ')
+          ..write('sectorName: $sectorName, ')
+          ..write('quantity: $quantity, ')
+          ..write('price: $price')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(scrip, companyName, sectorName, quantity, price);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is LocalStockInfoData &&
+          other.scrip == this.scrip &&
+          other.companyName == this.companyName &&
+          other.sectorName == this.sectorName &&
+          other.quantity == this.quantity &&
+          other.price == this.price);
+}
+
+class LocalStockInfoCompanion extends UpdateCompanion<LocalStockInfoData> {
+  final Value<String> scrip;
+  final Value<String> companyName;
+  final Value<String> sectorName;
+  final Value<String> quantity;
+  final Value<String> price;
+  final Value<int> rowid;
+  const LocalStockInfoCompanion({
+    this.scrip = const Value.absent(),
+    this.companyName = const Value.absent(),
+    this.sectorName = const Value.absent(),
+    this.quantity = const Value.absent(),
+    this.price = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  LocalStockInfoCompanion.insert({
+    required String scrip,
+    required String companyName,
+    required String sectorName,
+    required String quantity,
+    required String price,
+    this.rowid = const Value.absent(),
+  })  : scrip = Value(scrip),
+        companyName = Value(companyName),
+        sectorName = Value(sectorName),
+        quantity = Value(quantity),
+        price = Value(price);
+  static Insertable<LocalStockInfoData> custom({
+    Expression<String>? scrip,
+    Expression<String>? companyName,
+    Expression<String>? sectorName,
+    Expression<String>? quantity,
+    Expression<String>? price,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (scrip != null) 'scrip': scrip,
+      if (companyName != null) 'company_name': companyName,
+      if (sectorName != null) 'sector_name': sectorName,
+      if (quantity != null) 'quantity': quantity,
+      if (price != null) 'price': price,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  LocalStockInfoCompanion copyWith(
+      {Value<String>? scrip,
+      Value<String>? companyName,
+      Value<String>? sectorName,
+      Value<String>? quantity,
+      Value<String>? price,
+      Value<int>? rowid}) {
+    return LocalStockInfoCompanion(
+      scrip: scrip ?? this.scrip,
+      companyName: companyName ?? this.companyName,
+      sectorName: sectorName ?? this.sectorName,
+      quantity: quantity ?? this.quantity,
+      price: price ?? this.price,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (scrip.present) {
+      map['scrip'] = Variable<String>(scrip.value);
+    }
+    if (companyName.present) {
+      map['company_name'] = Variable<String>(companyName.value);
+    }
+    if (sectorName.present) {
+      map['sector_name'] = Variable<String>(sectorName.value);
+    }
+    if (quantity.present) {
+      map['quantity'] = Variable<String>(quantity.value);
+    }
+    if (price.present) {
+      map['price'] = Variable<String>(price.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('LocalStockInfoCompanion(')
+          ..write('scrip: $scrip, ')
+          ..write('companyName: $companyName, ')
+          ..write('sectorName: $sectorName, ')
+          ..write('quantity: $quantity, ')
+          ..write('price: $price, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDB extends GeneratedDatabase {
   _$AppDB(QueryExecutor e) : super(e);
   late final $NepseTimeSeriesInfoTable nepseTimeSeriesInfo =
@@ -1143,10 +1448,16 @@ abstract class _$AppDB extends GeneratedDatabase {
   late final $TopGainersInfoTable topGainersInfo = $TopGainersInfoTable(this);
   late final $TopLosersInfoTable topLosersInfo = $TopLosersInfoTable(this);
   late final $StockInfoTable stockInfo = $StockInfoTable(this);
+  late final $LocalStockInfoTable localStockInfo = $LocalStockInfoTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [nepseTimeSeriesInfo, topGainersInfo, topLosersInfo, stockInfo];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [
+        nepseTimeSeriesInfo,
+        topGainersInfo,
+        topLosersInfo,
+        stockInfo,
+        localStockInfo
+      ];
 }

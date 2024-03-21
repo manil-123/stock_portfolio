@@ -1,7 +1,9 @@
+import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
-import 'package:share_portfolio/app/database/local_stock_dao.dart';
 import 'package:share_portfolio/app/database/share_info_dao.dart';
 import 'package:share_portfolio/app/database/stock_watchlist_dao.dart';
+import 'package:share_portfolio/core/database/dao/local_stock_dao.dart';
+import 'package:share_portfolio/core/database/db/app_db.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
@@ -19,19 +21,19 @@ abstract class LocalStockRepository {
 
 @LazySingleton(as: LocalStockRepository)
 class LocalStockRepositoryImpl implements LocalStockRepository {
-  final LocalStockListDAO _localStockListDAO;
+  final LocalStockDao _localStockDao;
   final StockWatchlistDAO _stockWatchlistDAO;
   final ShareInfoListDAO _shareInfoListDAO;
 
   LocalStockRepositoryImpl(
-    this._localStockListDAO,
+    this._localStockDao,
     this._stockWatchlistDAO,
     this._shareInfoListDAO,
   );
 
   @override
   Future<List<LocalStockDataModel>> getLocalStockList() async {
-    final localStockList = await _localStockListDAO.getLocalStockList() ?? [];
+    final localStockList = await _localStockDao.getAllStocksData();
     return localStockList;
   }
 
@@ -51,13 +53,25 @@ class LocalStockRepositoryImpl implements LocalStockRepository {
 
   @override
   Future<int> addStockToPortfolio(LocalStockDataModel localStockData) async {
-    return await _localStockListDAO.insert(localStockData);
+    return await _localStockDao.insertStockInfo(
+      LocalStockInfoCompanion(
+        scrip: Value(localStockData.scrip),
+        companyName: Value(localStockData.companyName),
+        sectorName: Value(localStockData.sectorName),
+        quantity: Value(
+          localStockData.quantity.toString(),
+        ),
+        price: Value(
+          localStockData.price.toString(),
+        ),
+      ),
+    );
   }
 
   @override
   Future<int> deleteStockFromPortfolio(
       LocalStockDataModel localStockData) async {
-    return await _localStockListDAO.delete(localStockData);
+    return await _localStockDao.deleteSingle(localStockData.scrip);
   }
 
   @override

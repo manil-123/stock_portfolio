@@ -4,6 +4,7 @@ import 'package:drift/native.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:share_portfolio/core/database/entity/local_stock_info.dart';
 import 'package:share_portfolio/core/database/entity/nepse_timeseries_info.dart';
 import 'package:share_portfolio/core/database/entity/stock_info.dart';
 import 'package:share_portfolio/core/database/entity/top_gainers_info.dart';
@@ -25,13 +26,14 @@ LazyDatabase _openConnection() {
   TopGainersInfo,
   TopLosersInfo,
   StockInfo,
+  LocalStockInfo,
 ])
 @LazySingleton()
 class AppDB extends _$AppDB {
   AppDB() : super(_openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration {
@@ -42,6 +44,9 @@ class AppDB extends _$AppDB {
       onUpgrade: (m, from, to) async {
         if (from < 2) {
           await m.drop(stockInfo);
+        }
+        if (from < 2) {
+          await m.drop(localStockInfo);
         }
         await m.createAll();
       },

@@ -12,7 +12,6 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i4;
-import 'package:share_portfolio/app/database/local_stock_dao.dart' as _i7;
 import 'package:share_portfolio/app/database/share_info_dao.dart' as _i11;
 import 'package:share_portfolio/app/database/stock_watchlist_dao.dart' as _i13;
 import 'package:share_portfolio/blocs/auth/auth_bloc.dart' as _i16;
@@ -34,6 +33,7 @@ import 'package:share_portfolio/blocs/watchlist/load_watchlist/load_watchlist_cu
     as _i29;
 import 'package:share_portfolio/blocs/watchlist/remove_from_watchlist/remove_from_watchlist_cubit.dart'
     as _i21;
+import 'package:share_portfolio/core/database/dao/local_stock_dao.dart' as _i7;
 import 'package:share_portfolio/core/database/dao/nepse_timeseries_dao.dart'
     as _i8;
 import 'package:share_portfolio/core/database/dao/stock_dao.dart' as _i12;
@@ -66,7 +66,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => registerModules.connectionChecker);
     gh.factory<_i5.LoadAddStockCubit>(() => _i5.LoadAddStockCubit());
     gh.lazySingleton<_i6.LocalAuthService>(() => _i6.LocalAuthService());
-    gh.lazySingleton<_i7.LocalStockListDAO>(() => _i7.LocalStockListDAO());
+    gh.lazySingleton<_i7.LocalStockDao>(
+        () => _i7.LocalStockDao(gh<_i3.AppDB>()));
     gh.lazySingleton<_i8.NepseTimeSeriesDao>(
         () => _i8.NepseTimeSeriesDao(gh<_i3.AppDB>()));
     gh.lazySingleton<_i9.NetworkInfo>(
@@ -84,7 +85,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i17.CalculationRepository>(
         () => _i17.CalculationRepositoryImpl(
               shareInfoListDAO: gh<_i11.ShareInfoListDAO>(),
-              localStockListDAO: gh<_i7.LocalStockListDAO>(),
+              localStockListDAO: gh<_i7.LocalStockDao>(),
             ));
     gh.lazySingleton<_i18.DataService>(() => _i18.DataService(
           gh<_i10.Scrapper>(),
@@ -95,7 +96,7 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.lazySingleton<_i19.LocalStockRepository>(
         () => _i19.LocalStockRepositoryImpl(
-              gh<_i7.LocalStockListDAO>(),
+              gh<_i7.LocalStockDao>(),
               gh<_i13.StockWatchlistDAO>(),
               gh<_i11.ShareInfoListDAO>(),
             ));
