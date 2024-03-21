@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
 import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/home/home_bloc.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
@@ -79,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 16,
             ),
             Text(
-              'Top Gainers',
+              AppStrings.topGainers,
               style: titleTheme,
             ),
             const SizedBox(
@@ -115,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 16,
             ),
             Text(
-              'Top Losers',
+              AppStrings.topLosers,
               style: titleTheme,
             ),
             const SizedBox(

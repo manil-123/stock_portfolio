@@ -15,6 +15,8 @@ class AppStrings {
   static const changePercent = "Change Percen";
   static const unableToSearch = "Unable to search right now";
   static const deleteQuestion = "Do you want to delete?";
+  static const topGainers = "Top Gainers";
+  static const topLosers = "Top Losers";
 
   //*Portfolio
   static const portfolio = "Portfolio";

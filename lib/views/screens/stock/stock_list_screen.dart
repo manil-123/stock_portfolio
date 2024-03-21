@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/app/router/app_router.gr.dart';
+import 'package:share_portfolio/app/theme/theme_data.dart';
 import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
@@ -43,6 +44,7 @@ class _StockListScreenState extends State<StockListScreen> {
               failed: (failure) => Center(
                 child: Text(
                   failure.failureMessage,
+                  style: PortfolioTheme.textTheme.titleSmall,
                 ),
               ),
             );

@@ -5,6 +5,8 @@ import 'package:injectable/injectable.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_portfolio/core/database/entity/nepse_timeseries_info.dart';
+import 'package:share_portfolio/core/database/entity/top_gainers_info.dart';
+import 'package:share_portfolio/core/database/entity/top_losers_info.dart';
 
 part 'app_db.g.dart';
 
@@ -19,6 +21,8 @@ LazyDatabase _openConnection() {
 
 @DriftDatabase(tables: [
   NepseTimeSeriesInfo,
+  TopGainersInfo,
+  TopLosersInfo,
 ])
 @LazySingleton()
 class AppDB extends _$AppDB {

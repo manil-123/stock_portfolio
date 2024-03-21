@@ -52,7 +52,23 @@ class DataService {
       }
       return timeSeriesList.nepseTimeSeriesDataList ?? [];
     } catch (e) {
-      rethrow;
+      final nepseTimeSeriesDataList =
+          await _nepseTimeSeriesDao.getAllNepseData();
+
+      if (nepseTimeSeriesDataList.isNotEmpty) {
+        return nepseTimeSeriesDataList
+            .map(
+              (data) => NepseTimeSeriesData(
+                date: data.date,
+                index: double.parse(data.index),
+                pointChange: double.parse(data.pointChange),
+                percentageChange: double.parse(data.percentageChange),
+              ),
+            )
+            .toList();
+      } else {
+        rethrow;
+      }
     }
   }
 
