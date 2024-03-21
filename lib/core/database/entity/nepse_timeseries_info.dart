@@ -1,7 +1,6 @@
 import 'package:drift/drift.dart';
 
-class NepseInfo extends Table {
-  TextColumn get id => text()();
+class NepseTimeSeriesInfo extends Table {
   TextColumn get date => text()();
   TextColumn get index => text()();
   TextColumn get pointChange => text()();
@@ -9,6 +8,6 @@ class NepseInfo extends Table {
 
   @override
   List<String> get customConstraints => [
-        'PRIMARY KEY (id), UNIQUE (date)',
+        'PRIMARY KEY (date)',
       ];
 }

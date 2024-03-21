@@ -3,17 +3,12 @@
 part of 'app_db.dart';
 
 // ignore_for_file: type=lint
-class $NepseInfoTable extends NepseInfo
-    with TableInfo<$NepseInfoTable, NepseInfoData> {
+class $NepseTimeSeriesInfoTable extends NepseTimeSeriesInfo
+    with TableInfo<$NepseTimeSeriesInfoTable, NepseTimeSeriesInfoData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $NepseInfoTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<String> id = GeneratedColumn<String>(
-      'id', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+  $NepseTimeSeriesInfoTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _dateMeta = const VerificationMeta('date');
   @override
   late final GeneratedColumn<String> date = GeneratedColumn<String>(
@@ -38,22 +33,18 @@ class $NepseInfoTable extends NepseInfo
       type: DriftSqlType.string, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
-      [id, date, index, pointChange, percentageChange];
+      [date, index, pointChange, percentageChange];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'nepse_info';
+  static const String $name = 'nepse_time_series_info';
   @override
-  VerificationContext validateIntegrity(Insertable<NepseInfoData> instance,
+  VerificationContext validateIntegrity(
+      Insertable<NepseTimeSeriesInfoData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    } else if (isInserting) {
-      context.missing(_idMeta);
-    }
     if (data.containsKey('date')) {
       context.handle(
           _dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
@@ -88,11 +79,10 @@ class $NepseInfoTable extends NepseInfo
   @override
   Set<GeneratedColumn> get $primaryKey => const {};
   @override
-  NepseInfoData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  NepseTimeSeriesInfoData map(Map<String, dynamic> data,
+      {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return NepseInfoData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+    return NepseTimeSeriesInfoData(
       date: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}date'])!,
       index: attachedDatabase.typeMapping
@@ -105,27 +95,25 @@ class $NepseInfoTable extends NepseInfo
   }
 
   @override
-  $NepseInfoTable createAlias(String alias) {
-    return $NepseInfoTable(attachedDatabase, alias);
+  $NepseTimeSeriesInfoTable createAlias(String alias) {
+    return $NepseTimeSeriesInfoTable(attachedDatabase, alias);
   }
 }
 
-class NepseInfoData extends DataClass implements Insertable<NepseInfoData> {
-  final String id;
+class NepseTimeSeriesInfoData extends DataClass
+    implements Insertable<NepseTimeSeriesInfoData> {
   final String date;
   final String index;
   final String pointChange;
   final String percentageChange;
-  const NepseInfoData(
-      {required this.id,
-      required this.date,
+  const NepseTimeSeriesInfoData(
+      {required this.date,
       required this.index,
       required this.pointChange,
       required this.percentageChange});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    map['id'] = Variable<String>(id);
     map['date'] = Variable<String>(date);
     map['index'] = Variable<String>(index);
     map['point_change'] = Variable<String>(pointChange);
@@ -133,9 +121,8 @@ class NepseInfoData extends DataClass implements Insertable<NepseInfoData> {
     return map;
   }
 
-  NepseInfoCompanion toCompanion(bool nullToAbsent) {
-    return NepseInfoCompanion(
-      id: Value(id),
+  NepseTimeSeriesInfoCompanion toCompanion(bool nullToAbsent) {
+    return NepseTimeSeriesInfoCompanion(
       date: Value(date),
       index: Value(index),
       pointChange: Value(pointChange),
@@ -143,11 +130,10 @@ class NepseInfoData extends DataClass implements Insertable<NepseInfoData> {
     );
   }
 
-  factory NepseInfoData.fromJson(Map<String, dynamic> json,
+  factory NepseTimeSeriesInfoData.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return NepseInfoData(
-      id: serializer.fromJson<String>(json['id']),
+    return NepseTimeSeriesInfoData(
       date: serializer.fromJson<String>(json['date']),
       index: serializer.fromJson<String>(json['index']),
       pointChange: serializer.fromJson<String>(json['pointChange']),
@@ -158,7 +144,6 @@ class NepseInfoData extends DataClass implements Insertable<NepseInfoData> {
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'id': serializer.toJson<String>(id),
       'date': serializer.toJson<String>(date),
       'index': serializer.toJson<String>(index),
       'pointChange': serializer.toJson<String>(pointChange),
@@ -166,14 +151,12 @@ class NepseInfoData extends DataClass implements Insertable<NepseInfoData> {
     };
   }
 
-  NepseInfoData copyWith(
-          {String? id,
-          String? date,
+  NepseTimeSeriesInfoData copyWith(
+          {String? date,
           String? index,
           String? pointChange,
           String? percentageChange}) =>
-      NepseInfoData(
-        id: id ?? this.id,
+      NepseTimeSeriesInfoData(
         date: date ?? this.date,
         index: index ?? this.index,
         pointChange: pointChange ?? this.pointChange,
@@ -181,8 +164,7 @@ class NepseInfoData extends DataClass implements Insertable<NepseInfoData> {
       );
   @override
   String toString() {
-    return (StringBuffer('NepseInfoData(')
-          ..write('id: $id, ')
+    return (StringBuffer('NepseTimeSeriesInfoData(')
           ..write('date: $date, ')
           ..write('index: $index, ')
           ..write('pointChange: $pointChange, ')
@@ -192,48 +174,42 @@ class NepseInfoData extends DataClass implements Insertable<NepseInfoData> {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, date, index, pointChange, percentageChange);
+  int get hashCode => Object.hash(date, index, pointChange, percentageChange);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is NepseInfoData &&
-          other.id == this.id &&
+      (other is NepseTimeSeriesInfoData &&
           other.date == this.date &&
           other.index == this.index &&
           other.pointChange == this.pointChange &&
           other.percentageChange == this.percentageChange);
 }
 
-class NepseInfoCompanion extends UpdateCompanion<NepseInfoData> {
-  final Value<String> id;
+class NepseTimeSeriesInfoCompanion
+    extends UpdateCompanion<NepseTimeSeriesInfoData> {
   final Value<String> date;
   final Value<String> index;
   final Value<String> pointChange;
   final Value<String> percentageChange;
   final Value<int> rowid;
-  const NepseInfoCompanion({
-    this.id = const Value.absent(),
+  const NepseTimeSeriesInfoCompanion({
     this.date = const Value.absent(),
     this.index = const Value.absent(),
     this.pointChange = const Value.absent(),
     this.percentageChange = const Value.absent(),
     this.rowid = const Value.absent(),
   });
-  NepseInfoCompanion.insert({
-    required String id,
+  NepseTimeSeriesInfoCompanion.insert({
     required String date,
     required String index,
     required String pointChange,
     required String percentageChange,
     this.rowid = const Value.absent(),
-  })  : id = Value(id),
-        date = Value(date),
+  })  : date = Value(date),
         index = Value(index),
         pointChange = Value(pointChange),
         percentageChange = Value(percentageChange);
-  static Insertable<NepseInfoData> custom({
-    Expression<String>? id,
+  static Insertable<NepseTimeSeriesInfoData> custom({
     Expression<String>? date,
     Expression<String>? index,
     Expression<String>? pointChange,
@@ -241,7 +217,6 @@ class NepseInfoCompanion extends UpdateCompanion<NepseInfoData> {
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
-      if (id != null) 'id': id,
       if (date != null) 'date': date,
       if (index != null) 'index': index,
       if (pointChange != null) 'point_change': pointChange,
@@ -250,15 +225,13 @@ class NepseInfoCompanion extends UpdateCompanion<NepseInfoData> {
     });
   }
 
-  NepseInfoCompanion copyWith(
-      {Value<String>? id,
-      Value<String>? date,
+  NepseTimeSeriesInfoCompanion copyWith(
+      {Value<String>? date,
       Value<String>? index,
       Value<String>? pointChange,
       Value<String>? percentageChange,
       Value<int>? rowid}) {
-    return NepseInfoCompanion(
-      id: id ?? this.id,
+    return NepseTimeSeriesInfoCompanion(
       date: date ?? this.date,
       index: index ?? this.index,
       pointChange: pointChange ?? this.pointChange,
@@ -270,9 +243,6 @@ class NepseInfoCompanion extends UpdateCompanion<NepseInfoData> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<String>(id.value);
-    }
     if (date.present) {
       map['date'] = Variable<String>(date.value);
     }
@@ -293,8 +263,7 @@ class NepseInfoCompanion extends UpdateCompanion<NepseInfoData> {
 
   @override
   String toString() {
-    return (StringBuffer('NepseInfoCompanion(')
-          ..write('id: $id, ')
+    return (StringBuffer('NepseTimeSeriesInfoCompanion(')
           ..write('date: $date, ')
           ..write('index: $index, ')
           ..write('pointChange: $pointChange, ')
@@ -307,10 +276,11 @@ class NepseInfoCompanion extends UpdateCompanion<NepseInfoData> {
 
 abstract class _$AppDB extends GeneratedDatabase {
   _$AppDB(QueryExecutor e) : super(e);
-  late final $NepseInfoTable nepseInfo = $NepseInfoTable(this);
+  late final $NepseTimeSeriesInfoTable nepseTimeSeriesInfo =
+      $NepseTimeSeriesInfoTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [nepseInfo];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [nepseTimeSeriesInfo];
 }

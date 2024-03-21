@@ -3,6 +3,7 @@
 part of 'nepse_dao.dart';
 
 // ignore_for_file: type=lint
-mixin _$UserDaoMixin on DatabaseAccessor<AppDB> {
-  $NepseInfoTable get nepseInfo => attachedDatabase.nepseInfo;
+mixin _$NepseDaoMixin on DatabaseAccessor<AppDB> {
+  $NepseTimeSeriesInfoTable get nepseTimeSeriesInfo =>
+      attachedDatabase.nepseTimeSeriesInfo;
 }

@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:injectable/injectable.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:share_portfolio/core/database/entity/nepse_info.dart';
+import 'package:share_portfolio/core/database/entity/nepse_timeseries_info.dart';
 
 part 'app_db.g.dart';
 
@@ -17,8 +18,9 @@ LazyDatabase _openConnection() {
 }
 
 @DriftDatabase(tables: [
-  NepseInfo,
+  NepseTimeSeriesInfo,
 ])
+@LazySingleton()
 class AppDB extends _$AppDB {
   AppDB() : super(_openConnection());
 
