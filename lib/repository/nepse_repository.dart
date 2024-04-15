@@ -21,7 +21,9 @@ abstract class NepseRepository {
 class NepseRepositoryImpl extends BaseRepository implements NepseRepository {
   final DataService _dataService;
 
-  NepseRepositoryImpl(this._dataService, super.networkInfo);
+  NepseRepositoryImpl(
+    this._dataService,
+  );
   @override
   Future<Either<Failure, List<StockInfoModel>>> getStockInfoList() async {
     return handleNetworkCall<List<StockInfoModel>>(

@@ -99,10 +99,8 @@ extension GetItInjectableX on _i1.GetIt {
               gh<_i7.LocalStockDao>(),
               gh<_i14.WatchlistDao>(),
             ));
-    gh.lazySingleton<_i19.NepseRepository>(() => _i19.NepseRepositoryImpl(
-          gh<_i17.DataService>(),
-          gh<_i9.NetworkInfo>(),
-        ));
+    gh.lazySingleton<_i19.NepseRepository>(
+        () => _i19.NepseRepositoryImpl(gh<_i17.DataService>()));
     gh.factory<_i20.RemoveFromWatchlistCubit>(
         () => _i20.RemoveFromWatchlistCubit(gh<_i18.LocalStockRepository>()));
     gh.lazySingleton<_i21.StockListBloc>(

@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/error/exception.dart';
 import 'package:share_portfolio/core/error/failures.dart';
-import 'package:share_portfolio/core/network/network_info.dart';
 import 'package:share_portfolio/core/typedef/typedefs.dart';
 
 /// {@template base_repository}
@@ -11,9 +10,7 @@ import 'package:share_portfolio/core/typedef/typedefs.dart';
 /// Methods should return EitherResponse.
 /// {@endtemplate}
 class BaseRepository {
-  BaseRepository(this.networkInfo);
-
-  final NetworkInfo networkInfo;
+  BaseRepository();
 
   /// [T] is Return type for [EitherResponse]
   EitherResponse<T> handleNetworkCall<T>({
