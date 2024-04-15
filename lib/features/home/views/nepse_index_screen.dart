@@ -36,7 +36,7 @@ class NepseIndexScreen extends StatelessWidget {
           const SizedBox(height: 16),
           timeSeriesData.isNotEmpty
               ? AspectRatio(
-                  aspectRatio: 327 / 164,
+                  aspectRatio: 3,
                   child: FlTimeSeriesChart(
                     seriesData: timeSeriesData,
                   ),
