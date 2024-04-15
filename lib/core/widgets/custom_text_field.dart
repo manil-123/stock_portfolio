@@ -31,9 +31,8 @@ class CustomTextFormField extends StatelessWidget {
       inputFormatters: inputFormatter,
       readOnly: readOnly ?? false,
       enabled: enabled ?? true,
-      style: const TextStyle(
-        fontSize: 14,
-      ),
+      style: PortfolioTheme.textTheme.bodyMedium!
+          .copyWith(color: AppColors.primary),
       decoration: InputDecoration(
         isDense: true,
         labelText: labelText,

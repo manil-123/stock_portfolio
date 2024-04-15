@@ -249,6 +249,8 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
       key: companyNameKey,
       suggestions: companyNames,
       clearOnSubmit: false,
+      style: PortfolioTheme.textTheme.bodyMedium!
+          .copyWith(color: AppColors.primary),
       decoration: InputDecoration(
         labelText: AppStrings.enterCompanyName,
         labelStyle: PortfolioTheme.textTheme.bodyMedium!

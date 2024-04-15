@@ -17,21 +17,10 @@ import 'package:share_portfolio/features/portfolio/widgets/watchlist_item.dart';
 import '../widgets/welcome.dart';
 
 @RoutePage()
-class PortfolioScreen extends StatefulWidget {
+class PortfolioScreen extends StatelessWidget {
   const PortfolioScreen({super.key});
 
-  @override
-  State<PortfolioScreen> createState() => _PortfolioScreenState();
-}
-
-class _PortfolioScreenState extends State<PortfolioScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _loadPortfolio();
-  }
-
-  void _loadPortfolio() {
+  void _loadPortfolio(BuildContext context) {
     context.read<LoadPortfolioCubit>().loadPortfolio();
   }
 
@@ -40,7 +29,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
-          _loadPortfolio();
+          _loadPortfolio(context);
         },
         child: MultiBlocListener(
           listeners: [
@@ -48,7 +37,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               listener: (context, state) {
                 state.whenOrNull(
                   success: () {
-                    _loadPortfolio();
+                    _loadPortfolio(context);
                   },
                 );
               },
@@ -57,7 +46,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               listener: (context, state) {
                 state.whenOrNull(
                   success: () {
-                    _loadPortfolio();
+                    _loadPortfolio(context);
                   },
                 );
               },
@@ -66,7 +55,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
               listener: (context, state) {
                 state.whenOrNull(
                   success: () {
-                    _loadPortfolio();
+                    _loadPortfolio(context);
                   },
                 );
               },
@@ -152,7 +141,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         height: 12.0,
                       ),
                       InkWell(
-                        onTap: () => _loadPortfolio(),
+                        onTap: () => _loadPortfolio(context),
                         child: const Text(
                           AppStrings.tapToLoad,
                           style: TextStyle(

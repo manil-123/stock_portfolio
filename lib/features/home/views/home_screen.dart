@@ -14,21 +14,8 @@ import 'package:share_portfolio/core/widgets/share_info_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 @RoutePage()
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<HomeBloc>().add(
-          const HomeEvent.loadHome(),
-        );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +28,13 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
             ),
             loaded: (nepseIndex, timeSeriesData, topGainers, topLosers) =>
-                _homeLoaded(nepseIndex, timeSeriesData, topGainers, topLosers),
+                _homeLoaded(
+              nepseIndex,
+              timeSeriesData,
+              topGainers,
+              topLosers,
+              context,
+            ),
             failed: (failure) => Center(
               child: Text(
                 failure.failureMessage,
@@ -59,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
     List<NepseTimeSeriesData> timeSeriesData,
     List<TopGainersModel> topGainers,
     List<TopLosersModel> topLosers,
+    BuildContext context,
   ) {
     final titleTheme = PortfolioTheme.textTheme.titleLarge!.copyWith(
       fontWeight: FontWeight.bold,

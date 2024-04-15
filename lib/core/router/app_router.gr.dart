@@ -74,7 +74,7 @@ abstract class $AppRouter extends _i15.RootStackRouter {
     HomeWrapperRoute.name: (routeData) {
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.HomeWrapperScreen(),
+        child: _i15.WrappedRoute(child: const _i6.HomeWrapperScreen()),
       );
     },
     PortfolioRoute.name: (routeData) {
@@ -92,7 +92,7 @@ abstract class $AppRouter extends _i15.RootStackRouter {
     PortfolioWrapperRoute.name: (routeData) {
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.PortfolioWrapperScreen(),
+        child: _i15.WrappedRoute(child: const _i9.PortfolioWrapperScreen()),
       );
     },
     SplashRoute.name: (routeData) {
@@ -123,7 +123,7 @@ abstract class $AppRouter extends _i15.RootStackRouter {
     StockListWrapperRoute.name: (routeData) {
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i13.StockListWrapperScreen(),
+        child: _i15.WrappedRoute(child: const _i13.StockListWrapperScreen()),
       );
     },
     WatchlistRoute.name: (routeData) {
