@@ -38,7 +38,7 @@ class _AuthScreenState extends State<AuthScreen> {
             submitting: () {},
             success: () {
               context.router.replace(
-                const DashboardRoute(),
+                const DashboardWrapperRoute(),
               );
             },
             failed: (failure) {

@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen>
     _animationController.forward();
     Timer(const Duration(seconds: 3), () {
       context.router.replace(
-        const DashboardRoute(),
+        const DashboardWrapperRoute(),
       );
     });
   }
