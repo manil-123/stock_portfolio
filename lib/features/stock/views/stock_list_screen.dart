@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart';
@@ -13,21 +14,8 @@ import 'package:share_portfolio/features/portfolio/widgets/my_search_delegate.da
 import 'package:share_portfolio/core/widgets/share_info_widget.dart';
 
 @RoutePage()
-class StockListScreen extends StatefulWidget {
+class StockListScreen extends StatelessWidget {
   const StockListScreen({super.key});
-
-  @override
-  State<StockListScreen> createState() => _StockListScreenState();
-}
-
-class _StockListScreenState extends State<StockListScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<StockListBloc>().add(
-          const StockListEvent.loadShareList(),
-        );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +29,9 @@ class _StockListScreenState extends State<StockListScreen> {
               loading: () => const SpinKitPulsingGrid(
                 color: Colors.white,
               ),
-              loaded: (shareList) => _shareListLoaded(shareList),
+              loaded: (shareList) => _ShareListLoaded(
+                shareList: shareList,
+              ),
               failed: (failure) => Center(
                 child: Text(
                   failure.failureMessage,
@@ -54,8 +44,17 @@ class _StockListScreenState extends State<StockListScreen> {
       ),
     );
   }
+}
 
-  Widget _shareListLoaded(List<StockInfoModel> shareList) {
+class _ShareListLoaded extends StatelessWidget {
+  const _ShareListLoaded({
+    required this.shareList,
+  });
+
+  final List<StockInfoModel> shareList;
+
+  @override
+  Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
         context.read<StockListBloc>().add(
@@ -63,57 +62,65 @@ class _StockListScreenState extends State<StockListScreen> {
             );
       },
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                    onPressed: () async {
-                      if (shareList.isNotEmpty)
-                        showSearch(
-                            context: context,
-                            delegate: MySearchDelegate(
-                                shareInfoList:
-                                    StockInfoList(shareInfoList: shareList)));
-                      else
-                        showErrorInfo(
-                          context,
-                          AppStrings.unableToSearch,
-                        );
+        child: ResponsiveBuilder(builder: (context, sizingInformation) {
+          return Padding(
+            padding:
+                sizingInformation.deviceScreenType == DeviceScreenType.desktop
+                    ? const EdgeInsets.all(30.0)
+                    : const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: IconButton(
+                        onPressed: () async {
+                          if (shareList.isNotEmpty)
+                            showSearch(
+                                context: context,
+                                delegate: MySearchDelegate(
+                                    shareInfoList: StockInfoList(
+                                        shareInfoList: shareList)));
+                          else
+                            showErrorInfo(
+                              context,
+                              AppStrings.unableToSearch,
+                            );
+                        },
+                        icon: const Icon(
+                          Icons.search,
+                          color: Colors.white,
+                          size: 30,
+                        )),
+                  ),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: shareList.length,
+                  itemBuilder: (context, index) => InkWell(
+                    onTap: () {
+                      context.router.push(
+                        StockDetailRoute(
+                          companyName: shareList[index].companyName,
+                          symbol: shareList[index].symbol,
+                          ltp: shareList[index].ltp,
+                          change: shareList[index].change,
+                        ),
+                      );
                     },
-                    icon: const Icon(
-                      Icons.search,
-                      color: Colors.white,
-                      size: 30,
-                    )),
-              ),
+                    child: ShareInfoWidget(
+                        companyName: shareList[index].companyName,
+                        symbol: shareList[index].symbol,
+                        ltp: shareList[index].ltp,
+                        change: shareList[index].change),
+                  ),
+                ),
+              ],
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: shareList.length,
-              itemBuilder: (context, index) => InkWell(
-                onTap: () {
-                  context.router.push(
-                    StockDetailRoute(
-                      companyName: shareList[index].companyName,
-                      symbol: shareList[index].symbol,
-                      ltp: shareList[index].ltp,
-                      change: shareList[index].change,
-                    ),
-                  );
-                },
-                child: ShareInfoWidget(
-                    companyName: shareList[index].companyName,
-                    symbol: shareList[index].symbol,
-                    ltp: shareList[index].ltp,
-                    change: shareList[index].change),
-              ),
-            ),
-          ],
-        ),
+          );
+        }),
       ),
     );
   }

@@ -25,7 +25,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
         if (sizingInformation.deviceScreenType == DeviceScreenType.desktop) {
           return const WebDashboardScreen();
         }
-
         if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
           return WillPopScope(
             onWillPop: () async {
