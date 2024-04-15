@@ -103,21 +103,20 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i19.NepseRepositoryImpl(gh<_i17.DataService>()));
     gh.factory<_i20.RemoveFromWatchlistCubit>(
         () => _i20.RemoveFromWatchlistCubit(gh<_i18.LocalStockRepository>()));
-    gh.lazySingleton<_i21.StockListBloc>(
+    gh.factory<_i21.StockListBloc>(
         () => _i21.StockListBloc(gh<_i19.NepseRepository>()));
-    gh.lazySingleton<_i22.AddStockCubit>(
+    gh.factory<_i22.AddStockCubit>(
         () => _i22.AddStockCubit(gh<_i18.LocalStockRepository>()));
     gh.lazySingleton<_i23.AddToWatchlistCubit>(
         () => _i23.AddToWatchlistCubit(gh<_i18.LocalStockRepository>()));
-    gh.lazySingleton<_i24.DeleteStockCubit>(
+    gh.factory<_i24.DeleteStockCubit>(
         () => _i24.DeleteStockCubit(gh<_i18.LocalStockRepository>()));
-    gh.lazySingleton<_i25.HomeBloc>(
-        () => _i25.HomeBloc(gh<_i19.NepseRepository>()));
-    gh.lazySingleton<_i26.LoadPortfolioCubit>(() => _i26.LoadPortfolioCubit(
+    gh.factory<_i25.HomeBloc>(() => _i25.HomeBloc(gh<_i19.NepseRepository>()));
+    gh.factory<_i26.LoadPortfolioCubit>(() => _i26.LoadPortfolioCubit(
           gh<_i18.LocalStockRepository>(),
           gh<_i16.CalculationRepository>(),
         ));
-    gh.lazySingleton<_i27.LoadPortfolioStockListCubit>(() =>
+    gh.factory<_i27.LoadPortfolioStockListCubit>(() =>
         _i27.LoadPortfolioStockListCubit(gh<_i18.LocalStockRepository>()));
     gh.factory<_i28.LoadWatchlistCubit>(
         () => _i28.LoadWatchlistCubit(gh<_i18.LocalStockRepository>()));

@@ -9,7 +9,7 @@ import 'package:share_portfolio/repository/local_stock_repository.dart';
 part 'load_portfolio_state.dart';
 part 'load_portfolio_cubit.freezed.dart';
 
-@LazySingleton()
+@Injectable()
 class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
   final LocalStockRepository _localStockRepository;
   final CalculationRepository _calculationRepo;

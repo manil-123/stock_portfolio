@@ -7,7 +7,7 @@ import 'package:share_portfolio/repository/local_stock_repository.dart';
 part 'add_stock_state.dart';
 part 'add_stock_cubit.freezed.dart';
 
-@LazySingleton()
+@Injectable()
 class AddStockCubit extends Cubit<AddStockState> {
   final LocalStockRepository _localStockRepository;
   AddStockCubit(

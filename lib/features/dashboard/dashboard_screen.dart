@@ -23,7 +23,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       builder: (context, sizingInformation) {
         // Check the sizing information here and return your UI
         if (sizingInformation.deviceScreenType == DeviceScreenType.desktop) {
-          return const WebDashboardScreen();
+          return WebDashboardScreen();
         }
         if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
           return WillPopScope(
@@ -90,7 +90,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           );
         }
 
-        return const WebDashboardScreen();
+        return WebDashboardScreen();
       },
     );
   }

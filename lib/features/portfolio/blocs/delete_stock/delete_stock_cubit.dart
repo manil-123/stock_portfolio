@@ -7,7 +7,7 @@ import 'package:share_portfolio/repository/local_stock_repository.dart';
 part 'delete_stock_state.dart';
 part 'delete_stock_cubit.freezed.dart';
 
-@LazySingleton()
+@Injectable()
 class DeleteStockCubit extends Cubit<DeleteStockState> {
   final LocalStockRepository _localStockRepository;
 

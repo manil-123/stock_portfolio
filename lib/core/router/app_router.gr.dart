@@ -62,7 +62,7 @@ abstract class $AppRouter extends _i15.RootStackRouter {
     DashboardWrapperRoute.name: (routeData) {
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.DashboardWrapperScreen(),
+        child: _i15.WrappedRoute(child: const _i4.DashboardWrapperScreen()),
       );
     },
     HomeRoute.name: (routeData) {

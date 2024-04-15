@@ -9,7 +9,7 @@ part 'stock_list_event.dart';
 part 'stock_list_state.dart';
 part 'stock_list_bloc.freezed.dart';
 
-@LazySingleton()
+@Injectable()
 class StockListBloc extends Bloc<StockListEvent, StockListState> {
   final NepseRepository _nepseRepo;
   StockListBloc(
