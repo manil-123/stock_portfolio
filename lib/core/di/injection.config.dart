@@ -20,7 +20,7 @@ import 'package:share_portfolio/core/database/dao/top_gainers_dao.dart' as _i12;
 import 'package:share_portfolio/core/database/dao/top_losers_dao.dart' as _i13;
 import 'package:share_portfolio/core/database/dao/watchlist_dao.dart' as _i14;
 import 'package:share_portfolio/core/database/db/app_db.dart' as _i3;
-import 'package:share_portfolio/core/di/register_modules.dart' as _i29;
+import 'package:share_portfolio/core/di/register_modules.dart' as _i30;
 import 'package:share_portfolio/core/network/network_info.dart' as _i9;
 import 'package:share_portfolio/features/auth/blocs/auth_bloc.dart' as _i15;
 import 'package:share_portfolio/features/home/blocs/home_bloc.dart' as _i25;
@@ -28,18 +28,20 @@ import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cub
     as _i22;
 import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart'
     as _i24;
+import 'package:share_portfolio/features/portfolio/blocs/import_stock/import_stock_cubit.dart'
+    as _i26;
 import 'package:share_portfolio/features/portfolio/blocs/load_add_stocks/load_add_stock_cubit.dart'
     as _i5;
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart'
-    as _i26;
-import 'package:share_portfolio/features/portfolio/blocs/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart'
     as _i27;
+import 'package:share_portfolio/features/portfolio/blocs/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart'
+    as _i28;
 import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart'
     as _i21;
 import 'package:share_portfolio/features/watchlist/blocs/add_to_watchlist/add_to_watchlist_cubit.dart'
     as _i23;
 import 'package:share_portfolio/features/watchlist/blocs/load_watchlist/load_watchlist_cubit.dart'
-    as _i28;
+    as _i29;
 import 'package:share_portfolio/features/watchlist/blocs/remove_from_watchlist/remove_from_watchlist_cubit.dart'
     as _i20;
 import 'package:share_portfolio/repository/calculation_repo.dart' as _i16;
@@ -112,16 +114,18 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i24.DeleteStockCubit>(
         () => _i24.DeleteStockCubit(gh<_i18.LocalStockRepository>()));
     gh.factory<_i25.HomeBloc>(() => _i25.HomeBloc(gh<_i19.NepseRepository>()));
-    gh.factory<_i26.LoadPortfolioCubit>(() => _i26.LoadPortfolioCubit(
+    gh.factory<_i26.ImportStockCubit>(
+        () => _i26.ImportStockCubit(gh<_i18.LocalStockRepository>()));
+    gh.factory<_i27.LoadPortfolioCubit>(() => _i27.LoadPortfolioCubit(
           gh<_i18.LocalStockRepository>(),
           gh<_i16.CalculationRepository>(),
         ));
-    gh.factory<_i27.LoadPortfolioStockListCubit>(() =>
-        _i27.LoadPortfolioStockListCubit(gh<_i18.LocalStockRepository>()));
-    gh.factory<_i28.LoadWatchlistCubit>(
-        () => _i28.LoadWatchlistCubit(gh<_i18.LocalStockRepository>()));
+    gh.factory<_i28.LoadPortfolioStockListCubit>(() =>
+        _i28.LoadPortfolioStockListCubit(gh<_i18.LocalStockRepository>()));
+    gh.factory<_i29.LoadWatchlistCubit>(
+        () => _i29.LoadWatchlistCubit(gh<_i18.LocalStockRepository>()));
     return this;
   }
 }
 
-class _$RegisterModules extends _i29.RegisterModules {}
+class _$RegisterModules extends _i30.RegisterModules {}

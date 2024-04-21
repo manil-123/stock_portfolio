@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/import_stock/import_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
@@ -31,6 +32,9 @@ class PortfolioWrapperScreen extends AutoRouter implements AutoRouteWrapper {
         BlocProvider(
           create: (context) => getIt<DeleteStockCubit>(),
         ),
+        BlocProvider(
+          create: (context) => getIt<ImportStockCubit>(),
+        )
       ],
       child: this,
     );
