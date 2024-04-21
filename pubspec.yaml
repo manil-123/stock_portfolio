@@ -40,6 +40,9 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.15
   # Value equality
   equatable: ^2.0.5
+  # Handle excel files
+  excel: ^4.0.3
+  file_picker: ^8.0.0
   # Chart
   fl_chart: ^0.64.0
   # State management

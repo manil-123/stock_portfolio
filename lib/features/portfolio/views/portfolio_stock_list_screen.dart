@@ -55,7 +55,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
           IconButton(
             onPressed: () {
               context.router.push(
-                const AddStocksRoute(),
+                const ImportStocksRoute(),
               );
             },
             icon: const Icon(Icons.add_circle),

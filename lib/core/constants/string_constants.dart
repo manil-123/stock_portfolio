@@ -40,6 +40,7 @@ class AppStrings {
 
   //*Stocks operation
   static const addDetails = "Add Details";
+  static const importStocks = "Import Stocks";
   static const quantity = "Quantity";
   static const price = "Price";
   static const scrip = "Scrip";
@@ -51,6 +52,7 @@ class AppStrings {
   static const failedToAddStock = "Failed to add stock";
   static const stockDeletedSuccessfully = "Stock deleted successfully";
   static const failedToDeleteStock = "Failed to delete stock";
+  static const clickToImportExcelFile = "Click here to import excel file";
 }
 
 class ValidationStrings {

@@ -48,6 +48,7 @@ class AppRouter extends $AppRouter {
                     AutoRoute(page: PortfolioRoute.page, initial: true),
                     AutoRoute(page: PortfolioStockListRoute.page),
                     AutoRoute(page: AddStocksRoute.page),
+                    AutoRoute(page: ImportStocksRoute.page),
                   ],
                 ),
               ],
