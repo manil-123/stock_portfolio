@@ -20,7 +20,7 @@ class ImportStockCubit extends Cubit<GenericState<ImportStockState>> {
           const GenericState.initial(),
         );
 
-  void importStocks(FilePickerResult pickedFile) async {
+  void importFile(FilePickerResult pickedFile) async {
     emit(
       const GenericState.loading(),
     );
@@ -43,14 +43,25 @@ class ImportStockCubit extends Cubit<GenericState<ImportStockState>> {
         }
       }
     }
+    emit(
+      GenericState.success(
+        ImportStockState(
+          fileName: pickedFile.files.single.name,
+          excelDataList: excelDataModelList,
+        ),
+      ),
+    );
+  }
+
+  void importStocks(List<ExcelStockDataModel> excelDataList) async {
     final result =
-        await _localStockRepository.importExcelToPortfolio(excelDataModelList);
+        await _localStockRepository.importExcelToPortfolio(excelDataList);
     if (result != 0) {
       emit(
         GenericState.success(
           ImportStockState(
-            fileName: pickedFile.files.single.name,
-            excelDataList: excelDataModelList,
+            fileName: '',
+            excelDataList: excelDataList,
           ),
         ),
       );

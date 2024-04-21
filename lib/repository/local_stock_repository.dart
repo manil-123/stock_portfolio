@@ -127,9 +127,9 @@ class LocalStockRepositoryImpl implements LocalStockRepository {
         );
         log(localStockData.toJson().toString());
       }
-      return 0;
-    } catch (e) {
       return 1;
+    } catch (e) {
+      return 0;
     }
   }
 
