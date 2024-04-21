@@ -5,5 +5,5 @@ class ImportStockState with _$ImportStockState {
   const factory ImportStockState.initial() = _Initial;
   const factory ImportStockState.loading() = _Loading;
   const factory ImportStockState.success() = _Success;
-  const factory ImportStockState.failed() = _Failed;
+  const factory ImportStockState.failed(String message) = _Failed;
 }

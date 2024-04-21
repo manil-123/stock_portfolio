@@ -3,6 +3,7 @@ import 'package:excel/excel.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/features/portfolio/models/excel_stock_data/excel_stock_data_model.dart';
 import 'package:share_portfolio/repository/local_stock_repository.dart';
 
@@ -18,7 +19,10 @@ class ImportStockCubit extends Cubit<ImportStockState> {
           const ImportStockState.initial(),
         );
 
-  void importStocks(FilePickerResult pickedFile) {
+  void importStocks(FilePickerResult pickedFile) async {
+    emit(
+      const ImportStockState.loading(),
+    );
     var bytes = pickedFile.files.single.bytes;
     var excel = Excel.decodeBytes(bytes!);
     final excelDataModelList = <ExcelStockDataModel>[];
@@ -37,6 +41,17 @@ class ImportStockCubit extends Cubit<ImportStockState> {
           excelDataModelList.add(excelDataModel);
         }
       }
+    }
+    final result =
+        await _localStockRepository.importExcelToPortfolio(excelDataModelList);
+    if (result != 0) {
+      emit(
+        const ImportStockState.success(),
+      );
+    } else {
+      emit(
+        const ImportStockState.failed(ErrorMsg.failedToImportData),
+      );
     }
   }
 }
