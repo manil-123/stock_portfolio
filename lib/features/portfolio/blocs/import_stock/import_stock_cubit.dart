@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
+import 'package:share_portfolio/core/state/generic_state.dart';
 import 'package:share_portfolio/features/portfolio/models/excel_stock_data/excel_stock_data_model.dart';
 import 'package:share_portfolio/repository/local_stock_repository.dart';
 
@@ -11,17 +12,17 @@ part 'import_stock_state.dart';
 part 'import_stock_cubit.freezed.dart';
 
 @Injectable()
-class ImportStockCubit extends Cubit<ImportStockState> {
+class ImportStockCubit extends Cubit<GenericState<ImportStockState>> {
   final LocalStockRepository _localStockRepository;
   ImportStockCubit(
     this._localStockRepository,
   ) : super(
-          const ImportStockState.initial(),
+          const GenericState.initial(),
         );
 
   void importStocks(FilePickerResult pickedFile) async {
     emit(
-      const ImportStockState.loading(),
+      const GenericState.loading(),
     );
     var bytes = pickedFile.files.single.bytes;
     var excel = Excel.decodeBytes(bytes!);
@@ -46,11 +47,16 @@ class ImportStockCubit extends Cubit<ImportStockState> {
         await _localStockRepository.importExcelToPortfolio(excelDataModelList);
     if (result != 0) {
       emit(
-        const ImportStockState.success(),
+        GenericState.success(
+          ImportStockState(
+            fileName: pickedFile.files.single.name,
+            excelDataList: excelDataModelList,
+          ),
+        ),
       );
     } else {
       emit(
-        const ImportStockState.failed(ErrorMsg.failedToImportData),
+        const GenericState.error(message: ErrorMsg.failedToImportData),
       );
     }
   }

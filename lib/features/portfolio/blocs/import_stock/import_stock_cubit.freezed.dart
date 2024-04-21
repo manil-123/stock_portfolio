@@ -16,55 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ImportStockState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String message) failed,
-  }) =>
+  String get fileName => throw _privateConstructorUsedError;
+  List<ExcelStockDataModel> get excelDataList =>
       throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String message)? failed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String message)? failed,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failed value) failed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failed value)? failed,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failed value)? failed,
-    required TResult orElse(),
-  }) =>
+
+  @JsonKey(ignore: true)
+  $ImportStockStateCopyWith<ImportStockState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -73,6 +30,8 @@ abstract class $ImportStockStateCopyWith<$Res> {
   factory $ImportStockStateCopyWith(
           ImportStockState value, $Res Function(ImportStockState) then) =
       _$ImportStockStateCopyWithImpl<$Res, ImportStockState>;
+  @useResult
+  $Res call({String fileName, List<ExcelStockDataModel> excelDataList});
 }
 
 /// @nodoc
@@ -84,491 +43,122 @@ class _$ImportStockStateCopyWithImpl<$Res, $Val extends ImportStockState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fileName = null,
+    Object? excelDataList = null,
+  }) {
+    return _then(_value.copyWith(
+      fileName: null == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      excelDataList: null == excelDataList
+          ? _value.excelDataList
+          : excelDataList // ignore: cast_nullable_to_non_nullable
+              as List<ExcelStockDataModel>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ImportStockStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
+abstract class _$$ImportStockStateImplCopyWith<$Res>
+    implements $ImportStockStateCopyWith<$Res> {
+  factory _$$ImportStockStateImplCopyWith(_$ImportStockStateImpl value,
+          $Res Function(_$ImportStockStateImpl) then) =
+      __$$ImportStockStateImplCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'ImportStockState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String message) failed,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String message)? failed,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String message)? failed,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failed value) failed,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failed value)? failed,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failed value)? failed,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements ImportStockState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ImportStockStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
-
-  @override
-  String toString() {
-    return 'ImportStockState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String message) failed,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String message)? failed,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String message)? failed,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failed value) failed,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failed value)? failed,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failed value)? failed,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loading implements ImportStockState {
-  const factory _Loading() = _$LoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$ImportStockStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
-
-  @override
-  String toString() {
-    return 'ImportStockState.success()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String message) failed,
-  }) {
-    return success();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String message)? failed,
-  }) {
-    return success?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String message)? failed,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failed value) failed,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failed value)? failed,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failed value)? failed,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Success implements ImportStockState {
-  const factory _Success() = _$SuccessImpl;
-}
-
-/// @nodoc
-abstract class _$$FailedImplCopyWith<$Res> {
-  factory _$$FailedImplCopyWith(
-          _$FailedImpl value, $Res Function(_$FailedImpl) then) =
-      __$$FailedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({String fileName, List<ExcelStockDataModel> excelDataList});
 }
 
 /// @nodoc
-class __$$FailedImplCopyWithImpl<$Res>
-    extends _$ImportStockStateCopyWithImpl<$Res, _$FailedImpl>
-    implements _$$FailedImplCopyWith<$Res> {
-  __$$FailedImplCopyWithImpl(
-      _$FailedImpl _value, $Res Function(_$FailedImpl) _then)
+class __$$ImportStockStateImplCopyWithImpl<$Res>
+    extends _$ImportStockStateCopyWithImpl<$Res, _$ImportStockStateImpl>
+    implements _$$ImportStockStateImplCopyWith<$Res> {
+  __$$ImportStockStateImplCopyWithImpl(_$ImportStockStateImpl _value,
+      $Res Function(_$ImportStockStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? fileName = null,
+    Object? excelDataList = null,
   }) {
-    return _then(_$FailedImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+    return _then(_$ImportStockStateImpl(
+      fileName: null == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
               as String,
+      excelDataList: null == excelDataList
+          ? _value._excelDataList
+          : excelDataList // ignore: cast_nullable_to_non_nullable
+              as List<ExcelStockDataModel>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$FailedImpl implements _Failed {
-  const _$FailedImpl(this.message);
+class _$ImportStockStateImpl implements _ImportStockState {
+  _$ImportStockStateImpl(
+      {required this.fileName,
+      required final List<ExcelStockDataModel> excelDataList})
+      : _excelDataList = excelDataList;
 
   @override
-  final String message;
+  final String fileName;
+  final List<ExcelStockDataModel> _excelDataList;
+  @override
+  List<ExcelStockDataModel> get excelDataList {
+    if (_excelDataList is EqualUnmodifiableListView) return _excelDataList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_excelDataList);
+  }
 
   @override
   String toString() {
-    return 'ImportStockState.failed(message: $message)';
+    return 'ImportStockState(fileName: $fileName, excelDataList: $excelDataList)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FailedImpl &&
-            (identical(other.message, message) || other.message == message));
+            other is _$ImportStockStateImpl &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            const DeepCollectionEquality()
+                .equals(other._excelDataList, _excelDataList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, fileName,
+      const DeepCollectionEquality().hash(_excelDataList));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FailedImplCopyWith<_$FailedImpl> get copyWith =>
-      __$$FailedImplCopyWithImpl<_$FailedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(String message) failed,
-  }) {
-    return failed(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(String message)? failed,
-  }) {
-    return failed?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(String message)? failed,
-    required TResult orElse(),
-  }) {
-    if (failed != null) {
-      return failed(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failed value) failed,
-  }) {
-    return failed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failed value)? failed,
-  }) {
-    return failed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failed value)? failed,
-    required TResult orElse(),
-  }) {
-    if (failed != null) {
-      return failed(this);
-    }
-    return orElse();
-  }
+  _$$ImportStockStateImplCopyWith<_$ImportStockStateImpl> get copyWith =>
+      __$$ImportStockStateImplCopyWithImpl<_$ImportStockStateImpl>(
+          this, _$identity);
 }
 
-abstract class _Failed implements ImportStockState {
-  const factory _Failed(final String message) = _$FailedImpl;
+abstract class _ImportStockState implements ImportStockState {
+  factory _ImportStockState(
+          {required final String fileName,
+          required final List<ExcelStockDataModel> excelDataList}) =
+      _$ImportStockStateImpl;
 
-  String get message;
+  @override
+  String get fileName;
+  @override
+  List<ExcelStockDataModel> get excelDataList;
+  @override
   @JsonKey(ignore: true)
-  _$$FailedImplCopyWith<_$FailedImpl> get copyWith =>
+  _$$ImportStockStateImplCopyWith<_$ImportStockStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
