@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
-import 'package:share_portfolio/model/stock/share_info_list.dart';
-import 'package:share_portfolio/model/stock/share_info_model.dart';
+import 'package:share_portfolio/model/stock/stock_info_list.dart';
+import 'package:share_portfolio/model/stock/stock_info_model.dart';
 import 'package:share_portfolio/core/widgets/share_info_widget.dart';
 
 class MySearchDelegate extends SearchDelegate {
-  final ShareInfoList? shareInfoList;
+  final StockInfoList? shareInfoList;
 
   MySearchDelegate({this.shareInfoList});
 
@@ -53,7 +53,7 @@ class MySearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<ShareInfoModel> suggestions =
+    List<StockInfoModel> suggestions =
         shareInfoList!.shareInfoList!.where((element) {
       final result = element.companyName.toLowerCase();
       final input = query.toLowerCase();
@@ -86,7 +86,7 @@ class MySearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<ShareInfoModel> suggestions =
+    List<StockInfoModel> suggestions =
         shareInfoList!.shareInfoList!.where((element) {
       final result = element.companyName.toLowerCase();
       final input = query.toLowerCase();

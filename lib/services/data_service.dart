@@ -11,11 +11,11 @@ import 'package:share_portfolio/core/database/db/app_db.dart';
 import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
 import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/model/nepse_index_model.dart';
-import 'package:share_portfolio/model/stock/share_info_list.dart';
+import 'package:share_portfolio/model/stock/stock_info_list.dart';
 import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
 import 'package:share_portfolio/services/scrapper.dart';
 import 'dart:convert';
-import '../model/stock/share_info_model.dart';
+import '../model/stock/stock_info_model.dart';
 import 'dart:async';
 
 @LazySingleton()
@@ -34,10 +34,10 @@ class DataService {
     this._stockDao,
   );
 
-  Future<List<ShareInfoModel>> fetchShareData() async {
+  Future<List<StockInfoModel>> fetchShareData() async {
     try {
       final response = await scrapper.fetchStockData();
-      final shareInfoList = ShareInfoList.fromMap(response);
+      final shareInfoList = StockInfoList.fromMap(response);
       //* Store Nepse Stock data after deleting all previous records
       _stockDao.deleteAll();
       for (var item in shareInfoList.shareInfoList!) {

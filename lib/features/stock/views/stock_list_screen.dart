@@ -7,8 +7,8 @@ import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
-import 'package:share_portfolio/model/stock/share_info_list.dart';
-import 'package:share_portfolio/model/stock/share_info_model.dart';
+import 'package:share_portfolio/model/stock/stock_info_list.dart';
+import 'package:share_portfolio/model/stock/stock_info_model.dart';
 import 'package:share_portfolio/features/portfolio/widgets/my_search_delegate.dart';
 import 'package:share_portfolio/core/widgets/share_info_widget.dart';
 
@@ -54,7 +54,7 @@ class _StockListScreenState extends State<StockListScreen> {
     );
   }
 
-  Widget _shareListLoaded(List<ShareInfoModel> shareList) {
+  Widget _shareListLoaded(List<StockInfoModel> shareList) {
     return RefreshIndicator(
       onRefresh: () async {
         context.read<StockListBloc>().add(
@@ -75,7 +75,7 @@ class _StockListScreenState extends State<StockListScreen> {
                             context: context,
                             delegate: MySearchDelegate(
                                 shareInfoList:
-                                    ShareInfoList(shareInfoList: shareList)));
+                                    StockInfoList(shareInfoList: shareList)));
                       else
                         showErrorInfo(
                           context,

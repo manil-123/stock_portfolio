@@ -2,7 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/database/db/app_db.dart';
 import 'package:share_portfolio/core/database/entity/stock_info.dart';
-import 'package:share_portfolio/model/stock/share_info_model.dart';
+import 'package:share_portfolio/model/stock/stock_info_model.dart';
 
 part 'stock_dao.g.dart';
 
@@ -11,11 +11,11 @@ part 'stock_dao.g.dart';
 class StockDao extends DatabaseAccessor<AppDB> with _$StockDaoMixin {
   StockDao(AppDB db) : super(db);
 
-  Future<List<ShareInfoModel>> getAllStocksData() async {
+  Future<List<StockInfoModel>> getAllStocksData() async {
     final stockInfoDataList = await (select(stockInfo)).get();
     return stockInfoDataList
         .map(
-          (data) => ShareInfoModel(
+          (data) => StockInfoModel(
             companyName: data.companyName,
             symbol: data.symbol,
             ltp: data.ltp,

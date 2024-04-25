@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'share_info_model.dart';
+part of 'stock_info_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ShareInfoModelImpl _$$ShareInfoModelImplFromJson(Map<String, dynamic> json) =>
-    _$ShareInfoModelImpl(
+_$StockInfoModelImpl _$$StockInfoModelImplFromJson(Map<String, dynamic> json) =>
+    _$StockInfoModelImpl(
       companyName: json['companyName'] as String,
       symbol: json['symbol'] as String,
       ltp: json['ltp'] as String,
       change: json['change'] as String,
     );
 
-Map<String, dynamic> _$$ShareInfoModelImplToJson(
-        _$ShareInfoModelImpl instance) =>
+Map<String, dynamic> _$$StockInfoModelImplToJson(
+        _$StockInfoModelImpl instance) =>
     <String, dynamic>{
       'companyName': instance.companyName,
       'symbol': instance.symbol,

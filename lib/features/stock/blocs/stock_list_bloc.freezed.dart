@@ -170,7 +170,7 @@ mixin _$StockListState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ShareInfoModel> shareList) loaded,
+    required TResult Function(List<StockInfoModel> shareList) loaded,
     required TResult Function(Failure failure) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -178,7 +178,7 @@ mixin _$StockListState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ShareInfoModel> shareList)? loaded,
+    TResult? Function(List<StockInfoModel> shareList)? loaded,
     TResult? Function(Failure failure)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -186,7 +186,7 @@ mixin _$StockListState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ShareInfoModel> shareList)? loaded,
+    TResult Function(List<StockInfoModel> shareList)? loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) =>
@@ -276,7 +276,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ShareInfoModel> shareList) loaded,
+    required TResult Function(List<StockInfoModel> shareList) loaded,
     required TResult Function(Failure failure) failed,
   }) {
     return initial();
@@ -287,7 +287,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ShareInfoModel> shareList)? loaded,
+    TResult? Function(List<StockInfoModel> shareList)? loaded,
     TResult? Function(Failure failure)? failed,
   }) {
     return initial?.call();
@@ -298,7 +298,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ShareInfoModel> shareList)? loaded,
+    TResult Function(List<StockInfoModel> shareList)? loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
@@ -390,7 +390,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ShareInfoModel> shareList) loaded,
+    required TResult Function(List<StockInfoModel> shareList) loaded,
     required TResult Function(Failure failure) failed,
   }) {
     return loading();
@@ -401,7 +401,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ShareInfoModel> shareList)? loaded,
+    TResult? Function(List<StockInfoModel> shareList)? loaded,
     TResult? Function(Failure failure)? failed,
   }) {
     return loading?.call();
@@ -412,7 +412,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ShareInfoModel> shareList)? loaded,
+    TResult Function(List<StockInfoModel> shareList)? loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
@@ -470,7 +470,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ShareInfoModel> shareList});
+  $Res call({List<StockInfoModel> shareList});
 }
 
 /// @nodoc
@@ -490,7 +490,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
       shareList: null == shareList
           ? _value._shareList
           : shareList // ignore: cast_nullable_to_non_nullable
-              as List<ShareInfoModel>,
+              as List<StockInfoModel>,
     ));
   }
 }
@@ -498,12 +498,12 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required final List<ShareInfoModel> shareList})
+  const _$LoadedImpl({required final List<StockInfoModel> shareList})
       : _shareList = shareList;
 
-  final List<ShareInfoModel> _shareList;
+  final List<StockInfoModel> _shareList;
   @override
-  List<ShareInfoModel> get shareList {
+  List<StockInfoModel> get shareList {
     if (_shareList is EqualUnmodifiableListView) return _shareList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_shareList);
@@ -538,7 +538,7 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ShareInfoModel> shareList) loaded,
+    required TResult Function(List<StockInfoModel> shareList) loaded,
     required TResult Function(Failure failure) failed,
   }) {
     return loaded(shareList);
@@ -549,7 +549,7 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ShareInfoModel> shareList)? loaded,
+    TResult? Function(List<StockInfoModel> shareList)? loaded,
     TResult? Function(Failure failure)? failed,
   }) {
     return loaded?.call(shareList);
@@ -560,7 +560,7 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ShareInfoModel> shareList)? loaded,
+    TResult Function(List<StockInfoModel> shareList)? loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {
@@ -609,10 +609,10 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements StockListState {
-  const factory _Loaded({required final List<ShareInfoModel> shareList}) =
+  const factory _Loaded({required final List<StockInfoModel> shareList}) =
       _$LoadedImpl;
 
-  List<ShareInfoModel> get shareList;
+  List<StockInfoModel> get shareList;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -694,7 +694,7 @@ class _$FailedImpl implements _Failed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ShareInfoModel> shareList) loaded,
+    required TResult Function(List<StockInfoModel> shareList) loaded,
     required TResult Function(Failure failure) failed,
   }) {
     return failed(failure);
@@ -705,7 +705,7 @@ class _$FailedImpl implements _Failed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ShareInfoModel> shareList)? loaded,
+    TResult? Function(List<StockInfoModel> shareList)? loaded,
     TResult? Function(Failure failure)? failed,
   }) {
     return failed?.call(failure);
@@ -716,7 +716,7 @@ class _$FailedImpl implements _Failed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ShareInfoModel> shareList)? loaded,
+    TResult Function(List<StockInfoModel> shareList)? loaded,
     TResult Function(Failure failure)? failed,
     required TResult orElse(),
   }) {

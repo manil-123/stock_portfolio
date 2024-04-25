@@ -7,10 +7,10 @@ import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/services/data_service.dart';
 import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
 import '../model/nepse_index_model.dart';
-import '../model/stock/share_info_model.dart';
+import '../model/stock/stock_info_model.dart';
 
 abstract class NepseRepository {
-  Future<Either<Failure, List<ShareInfoModel>>> getShareInfoList();
+  Future<Either<Failure, List<StockInfoModel>>> getStockInfoList();
   Future<Either<Failure, List<NepseTimeSeriesData>>> getNepseTimeSeriesData();
   Future<NepseIndexModel> getNepseIndex();
   Future<Either<Failure, List<TopGainersModel>>> getTopGainers();
@@ -23,8 +23,8 @@ class NepseRepositoryImpl extends BaseRepository implements NepseRepository {
 
   NepseRepositoryImpl(this._dataService, super.networkInfo);
   @override
-  Future<Either<Failure, List<ShareInfoModel>>> getShareInfoList() async {
-    return handleNetworkCall<List<ShareInfoModel>>(
+  Future<Either<Failure, List<StockInfoModel>>> getStockInfoList() async {
+    return handleNetworkCall<List<StockInfoModel>>(
       call: _dataService.fetchShareData(),
     );
   }
