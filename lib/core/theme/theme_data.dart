@@ -45,8 +45,10 @@ class PortfolioTheme {
     colorScheme: ColorScheme.fromSwatch().copyWith(
       secondary: AppColors.black,
     ),
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       backgroundColor: AppColors.backgroundColor,
+      titleTextStyle: PortfolioTheme.textTheme.bodyMedium,
+      iconTheme: const IconThemeData(color: AppColors.white),
     ),
     textTheme: TextTheme(
       bodyLarge: PortfolioTheme.textTheme.bodyLarge,

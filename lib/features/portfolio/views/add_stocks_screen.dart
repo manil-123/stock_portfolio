@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
+import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
@@ -124,7 +125,11 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               labelText: AppStrings.scrip,
             ),
             RadioListTile(
-              title: const Text(AppStrings.ipo),
+              title: Text(
+                AppStrings.ipo,
+                style: PortfolioTheme.textTheme.bodyMedium!
+                    .copyWith(color: AppColors.primary),
+              ),
               value: MarketEnum.IPO,
               groupValue: selectedMarket,
               onChanged: (MarketEnum? newValue) {
@@ -133,7 +138,11 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               },
             ),
             RadioListTile(
-              title: const Text(AppStrings.secondary),
+              title: Text(
+                AppStrings.secondary,
+                style: PortfolioTheme.textTheme.bodyMedium!
+                    .copyWith(color: AppColors.primary),
+              ),
               value: MarketEnum.SECONDARY,
               groupValue: selectedMarket,
               onChanged: (MarketEnum? newValue) {
@@ -240,9 +249,8 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
       clearOnSubmit: false,
       decoration: InputDecoration(
         labelText: AppStrings.enterCompanyName,
-        labelStyle: TextStyle(
-          color: Theme.of(context).primaryColor,
-        ),
+        labelStyle: PortfolioTheme.textTheme.bodyMedium!
+            .copyWith(color: AppColors.primary),
         focusedBorder: OutlineInputBorder(
           borderSide:
               BorderSide(color: Theme.of(context).primaryColor, width: 1.0),

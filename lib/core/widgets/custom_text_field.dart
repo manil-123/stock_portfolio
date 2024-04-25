@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_portfolio/core/theme/app_colors.dart';
+import 'package:share_portfolio/core/theme/theme_data.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
@@ -39,9 +41,8 @@ class CustomTextFormField extends StatelessWidget {
           minWidth: 0, // Set minimum width to zero
           minHeight: 0, // Set minimum height to zero
         ),
-        labelStyle: TextStyle(
-          color: Theme.of(context).primaryColor,
-        ),
+        labelStyle: PortfolioTheme.textTheme.bodyMedium!
+            .copyWith(color: AppColors.primary),
         focusedBorder: OutlineInputBorder(
           borderSide:
               BorderSide(color: Theme.of(context).primaryColor, width: 1.0),

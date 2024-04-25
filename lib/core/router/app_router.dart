@@ -31,7 +31,7 @@ import 'package:share_portfolio/features/watchlist/views/watchlist_screen.dart';
         AutoRoute(
           path: Routes.homeScreenRoute,
           name: 'HomeRouter',
-          maintainState: false,
+          maintainState: true,
           page: EmptyRouterPage,
           children: [
             AutoRoute(
