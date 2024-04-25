@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
-import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
+import 'package:share_portfolio/features/watchlist/models/watchlist_data_model.dart';
 
 class WatchlistItemList extends StatelessWidget {
   const WatchlistItemList({

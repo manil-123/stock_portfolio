@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/error/failures.dart';
-import 'package:share_portfolio/model/stock/stock_info_model.dart';
+import 'package:share_portfolio/features/stock/models/stock_info_model.dart';
 import 'package:share_portfolio/repository/nepse_repository.dart';
 
 part 'stock_list_event.dart';

@@ -1,13 +1,11 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/error/failures.dart';
-import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
-import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
-import 'package:share_portfolio/model/nepse_index_model.dart';
-import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
+import 'package:share_portfolio/features/home/models/nepse_price_series/nepse_time_series_data_response.dart';
+import 'package:share_portfolio/features/home/models/top_gainers/top_gainers_model.dart';
+import 'package:share_portfolio/core/model/nepse_index_model.dart';
+import 'package:share_portfolio/features/home/models/top_losers/top_losers_model.dart';
 import 'package:share_portfolio/repository/nepse_repository.dart';
 
 part 'home_event.dart';
@@ -32,7 +30,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final topLosersListResponse = await _nepseRepo.getTopLosers();
       topGainersListResponse.fold(
         (failure) {
-          log(failure.toString());
           emit(
             HomeState.failed(failure: failure),
           );

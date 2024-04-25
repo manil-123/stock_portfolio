@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
-import 'package:share_portfolio/model/list_data_model.dart';
+import 'package:share_portfolio/core/model/list_data_model.dart';
 
 part 'load_add_stock_state.dart';
 part 'load_add_stock_cubit.freezed.dart';

@@ -7,8 +7,8 @@ import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
-import 'package:share_portfolio/model/stock/stock_info_list.dart';
-import 'package:share_portfolio/model/stock/stock_info_model.dart';
+import 'package:share_portfolio/features/stock/models/stock_info_list.dart';
+import 'package:share_portfolio/features/stock/models/stock_info_model.dart';
 import 'package:share_portfolio/features/portfolio/widgets/my_search_delegate.dart';
 import 'package:share_portfolio/core/widgets/share_info_widget.dart';
 

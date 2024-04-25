@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
-import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
+import 'package:share_portfolio/features/portfolio/models/local_stock_data_model.dart';
 
 class PortfolioItemList extends StatelessWidget {
   const PortfolioItemList({

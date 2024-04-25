@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
+import 'package:share_portfolio/features/home/models/nepse_price_series/nepse_time_series_data_response.dart';
 import 'package:share_portfolio/core/widgets/fl_timeseries_chart.dart';
 
 class NepseIndexScreen extends StatelessWidget {

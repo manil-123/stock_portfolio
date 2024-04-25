@@ -8,7 +8,7 @@ import 'package:share_portfolio/features/portfolio/blocs/load_add_stocks/load_ad
 import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
-import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
+import 'package:share_portfolio/features/portfolio/models/local_stock_data_model.dart';
 import 'package:share_portfolio/core/widgets/custom_text_field.dart';
 
 class AddStocksScreen extends StatefulWidget {

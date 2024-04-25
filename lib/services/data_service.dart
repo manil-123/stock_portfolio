@@ -8,14 +8,14 @@ import 'package:share_portfolio/core/database/dao/stock_dao.dart';
 import 'package:share_portfolio/core/database/dao/top_gainers_dao.dart';
 import 'package:share_portfolio/core/database/dao/top_losers_dao.dart';
 import 'package:share_portfolio/core/database/db/app_db.dart';
-import 'package:share_portfolio/model/home/nepse_price_series/nepse_time_series_data_response.dart';
-import 'package:share_portfolio/model/home/top_gainers/top_gainers_model.dart';
-import 'package:share_portfolio/model/nepse_index_model.dart';
-import 'package:share_portfolio/model/stock/stock_info_list.dart';
-import 'package:share_portfolio/model/home/top_losers/top_losers_model.dart';
+import 'package:share_portfolio/features/home/models/nepse_price_series/nepse_time_series_data_response.dart';
+import 'package:share_portfolio/features/home/models/top_gainers/top_gainers_model.dart';
+import 'package:share_portfolio/core/model/nepse_index_model.dart';
+import 'package:share_portfolio/features/stock/models/stock_info_list.dart';
+import 'package:share_portfolio/features/home/models/top_losers/top_losers_model.dart';
 import 'package:share_portfolio/services/scrapper.dart';
 import 'dart:convert';
-import '../model/stock/stock_info_model.dart';
+import '../features/stock/models/stock_info_model.dart';
 import 'dart:async';
 
 @LazySingleton()

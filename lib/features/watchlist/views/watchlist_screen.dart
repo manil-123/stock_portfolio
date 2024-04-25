@@ -7,7 +7,7 @@ import 'package:share_portfolio/features/watchlist/blocs/remove_from_watchlist/r
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/di/injection.dart';
-import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
+import 'package:share_portfolio/features/watchlist/models/watchlist_data_model.dart';
 import 'package:share_portfolio/features/portfolio/widgets/watchlist_item.dart';
 import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
 
