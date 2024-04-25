@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/router/app_router.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/watchlist/blocs/add_to_watchlist/add_to_watchlist_cubit.dart';
@@ -35,12 +36,17 @@ class _MyAppState extends State<MyApp> {
           create: (context) => getIt<AddToWatchlistCubit>(),
         ),
       ],
-      child: MaterialApp.router(
-        title: 'Stock Portfolio',
-        debugShowCheckedModeBanner: false,
-        theme: PortfolioTheme.appTheme,
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
+      child: ScreenUtilInit(
+        designSize: const Size(392, 737),
+        builder: (_, context) {
+          return MaterialApp.router(
+            title: 'Stock Portfolio',
+            debugShowCheckedModeBanner: false,
+            theme: PortfolioTheme.appTheme,
+            routerDelegate: _appRouter.delegate(),
+            routeInformationParser: _appRouter.defaultRouteParser(),
+          );
+        },
       ),
     );
   }

@@ -45,6 +45,7 @@ dependencies:
   # State management
   flutter_bloc: ^8.1.5
   flutter_hooks: ^0.20.5
+  flutter_screenutil: ^5.9.0
   # Custom snackbar
   fluttertoast: ^8.2.1
   freezed_annotation: ^2.2.0
