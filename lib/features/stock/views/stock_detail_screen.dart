@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
-import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart';
+import 'package:share_portfolio/features/watchlist/blocs/add_to_watchlist/add_to_watchlist_cubit.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/model/list_data_model.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
-import 'package:share_portfolio/views/screens/stock/components/line_titles.dart';
+import 'package:share_portfolio/features/stock/components/line_titles.dart';
 
 class StockDetailScreen extends StatefulWidget {
   final String companyName;

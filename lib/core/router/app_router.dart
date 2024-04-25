@@ -2,15 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:share_portfolio/core/constants/routes.dart';
 import 'package:share_portfolio/splash_screen.dart';
-import 'package:share_portfolio/views/screens/auth/auth_screen.dart';
-import 'package:share_portfolio/views/screens/dashboard/dashboard_screen.dart';
-import 'package:share_portfolio/views/screens/home/home_screen.dart';
-import 'package:share_portfolio/views/screens/portfolio/add_stocks_screen.dart';
-import 'package:share_portfolio/views/screens/portfolio/portfolio_screen.dart';
-import 'package:share_portfolio/views/screens/portfolio/portfolio_stock_list_screen.dart';
-import 'package:share_portfolio/views/screens/stock/stock_detail_screen.dart';
-import 'package:share_portfolio/views/screens/stock/stock_list_screen.dart';
-import 'package:share_portfolio/views/screens/watchlist/watchlist_screen.dart';
+import 'package:share_portfolio/features/auth/views/auth_screen.dart';
+import 'package:share_portfolio/features/dashboard/dashboard_screen.dart';
+import 'package:share_portfolio/features/home/views/home_screen.dart';
+import 'package:share_portfolio/features/portfolio/views/add_stocks_screen.dart';
+import 'package:share_portfolio/features/portfolio/views/portfolio_screen.dart';
+import 'package:share_portfolio/features/portfolio/views/portfolio_stock_list_screen.dart';
+import 'package:share_portfolio/features/stock/views/stock_detail_screen.dart';
+import 'package:share_portfolio/features/stock/views/stock_list_screen.dart';
+import 'package:share_portfolio/features/watchlist/views/watchlist_screen.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Screen,Route',

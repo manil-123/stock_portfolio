@@ -15,16 +15,17 @@ import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:auto_route/empty_router_widgets.dart' as _i4;
 import 'package:flutter/material.dart' as _i13;
 
+import '../../features/auth/views/auth_screen.dart' as _i2;
+import '../../features/dashboard/dashboard_screen.dart' as _i3;
+import '../../features/home/views/home_screen.dart' as _i5;
+import '../../features/portfolio/views/add_stocks_screen.dart' as _i9;
+import '../../features/portfolio/views/portfolio_screen.dart' as _i8;
+import '../../features/portfolio/views/portfolio_stock_list_screen.dart'
+    as _i11;
+import '../../features/stock/views/stock_detail_screen.dart' as _i6;
+import '../../features/stock/views/stock_list_screen.dart' as _i7;
+import '../../features/watchlist/views/watchlist_screen.dart' as _i10;
 import '../../splash_screen.dart' as _i1;
-import '../../views/screens/auth/auth_screen.dart' as _i2;
-import '../../views/screens/dashboard/dashboard_screen.dart' as _i3;
-import '../../views/screens/home/home_screen.dart' as _i5;
-import '../../views/screens/portfolio/add_stocks_screen.dart' as _i9;
-import '../../views/screens/portfolio/portfolio_screen.dart' as _i8;
-import '../../views/screens/portfolio/portfolio_stock_list_screen.dart' as _i11;
-import '../../views/screens/stock/stock_detail_screen.dart' as _i6;
-import '../../views/screens/stock/stock_list_screen.dart' as _i7;
-import '../../views/screens/watchlist/watchlist_screen.dart' as _i10;
 
 class AppRouter extends _i12.RootStackRouter {
   AppRouter([_i13.GlobalKey<_i13.NavigatorState>? navigatorKey])

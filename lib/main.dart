@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
-import 'package:share_portfolio/blocs/auth/auth_bloc.dart';
-import 'package:share_portfolio/blocs/home/home_bloc.dart';
-import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
-import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
-import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart';
-import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
-import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
-import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
-import 'package:share_portfolio/blocs/watchlist/add_to_watchlist/add_to_watchlist_cubit.dart';
+import 'package:share_portfolio/features/home/blocs/home_bloc.dart';
+import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/load_add_stocks/load_add_stock_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
+import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart';
+import 'package:share_portfolio/features/watchlist/blocs/add_to_watchlist/add_to_watchlist_cubit.dart';
 import 'package:share_portfolio/core/di/injection.dart';
+
+import 'features/auth/blocs/auth_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,9 +36,9 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<ShareListBloc>()
+          create: (context) => getIt<StockListBloc>()
             ..add(
-              const ShareListEvent.loadShareList(),
+              const StockListEvent.loadShareList(),
             ),
         ),
         BlocProvider(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
-import 'package:share_portfolio/views/widgets/share_info_widget.dart';
+import 'package:share_portfolio/core/widgets/share_info_widget.dart';
 
 class MySearchDelegate extends SearchDelegate {
   final ShareInfoList? shareInfoList;

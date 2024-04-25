@@ -6,15 +6,15 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
-import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
-import 'package:share_portfolio/blocs/portfolio/delete_stock/delete_stock_cubit.dart';
-import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
-import 'package:share_portfolio/blocs/portfolio/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
-import 'package:share_portfolio/views/widgets/show_alert_dialog.dart';
+import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
 
 class PortfolioStockListScreen extends StatefulWidget {
   const PortfolioStockListScreen({

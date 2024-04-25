@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:share_portfolio/blocs/portfolio/load_portfolio/load_portfolio_cubit.dart';
-import 'package:share_portfolio/blocs/watchlist/load_watchlist/load_watchlist_cubit.dart';
-import 'package:share_portfolio/blocs/watchlist/remove_from_watchlist/remove_from_watchlist_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
+import 'package:share_portfolio/features/watchlist/blocs/load_watchlist/load_watchlist_cubit.dart';
+import 'package:share_portfolio/features/watchlist/blocs/remove_from_watchlist/remove_from_watchlist_cubit.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/model/watchlist/watchlist_data_model.dart';
-import 'package:share_portfolio/views/screens/portfolio/widgets/watchlist_item.dart';
-import 'package:share_portfolio/views/widgets/show_alert_dialog.dart';
+import 'package:share_portfolio/features/portfolio/widgets/watchlist_item.dart';
+import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
 
 class WatchlistScreen extends StatelessWidget {
   const WatchlistScreen({super.key});

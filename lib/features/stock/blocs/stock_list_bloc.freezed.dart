@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'share_list_bloc.dart';
+part of 'stock_list_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ShareListEvent {
+mixin _$StockListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadShareList,
@@ -51,16 +51,16 @@ mixin _$ShareListEvent {
 }
 
 /// @nodoc
-abstract class $ShareListEventCopyWith<$Res> {
-  factory $ShareListEventCopyWith(
-          ShareListEvent value, $Res Function(ShareListEvent) then) =
-      _$ShareListEventCopyWithImpl<$Res, ShareListEvent>;
+abstract class $StockListEventCopyWith<$Res> {
+  factory $StockListEventCopyWith(
+          StockListEvent value, $Res Function(StockListEvent) then) =
+      _$StockListEventCopyWithImpl<$Res, StockListEvent>;
 }
 
 /// @nodoc
-class _$ShareListEventCopyWithImpl<$Res, $Val extends ShareListEvent>
-    implements $ShareListEventCopyWith<$Res> {
-  _$ShareListEventCopyWithImpl(this._value, this._then);
+class _$StockListEventCopyWithImpl<$Res, $Val extends StockListEvent>
+    implements $StockListEventCopyWith<$Res> {
+  _$StockListEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -77,7 +77,7 @@ abstract class _$$LoadShareListImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadShareListImplCopyWithImpl<$Res>
-    extends _$ShareListEventCopyWithImpl<$Res, _$LoadShareListImpl>
+    extends _$StockListEventCopyWithImpl<$Res, _$LoadShareListImpl>
     implements _$$LoadShareListImplCopyWith<$Res> {
   __$$LoadShareListImplCopyWithImpl(
       _$LoadShareListImpl _value, $Res Function(_$LoadShareListImpl) _then)
@@ -91,7 +91,7 @@ class _$LoadShareListImpl implements _LoadShareList {
 
   @override
   String toString() {
-    return 'ShareListEvent.loadShareList()';
+    return 'StockListEvent.loadShareList()';
   }
 
   @override
@@ -160,12 +160,12 @@ class _$LoadShareListImpl implements _LoadShareList {
   }
 }
 
-abstract class _LoadShareList implements ShareListEvent {
+abstract class _LoadShareList implements StockListEvent {
   const factory _LoadShareList() = _$LoadShareListImpl;
 }
 
 /// @nodoc
-mixin _$ShareListState {
+mixin _$StockListState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -219,16 +219,16 @@ mixin _$ShareListState {
 }
 
 /// @nodoc
-abstract class $ShareListStateCopyWith<$Res> {
-  factory $ShareListStateCopyWith(
-          ShareListState value, $Res Function(ShareListState) then) =
-      _$ShareListStateCopyWithImpl<$Res, ShareListState>;
+abstract class $StockListStateCopyWith<$Res> {
+  factory $StockListStateCopyWith(
+          StockListState value, $Res Function(StockListState) then) =
+      _$StockListStateCopyWithImpl<$Res, StockListState>;
 }
 
 /// @nodoc
-class _$ShareListStateCopyWithImpl<$Res, $Val extends ShareListState>
-    implements $ShareListStateCopyWith<$Res> {
-  _$ShareListStateCopyWithImpl(this._value, this._then);
+class _$StockListStateCopyWithImpl<$Res, $Val extends StockListState>
+    implements $StockListStateCopyWith<$Res> {
+  _$StockListStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -245,7 +245,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ShareListStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$StockListStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -259,7 +259,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'ShareListState.initial()';
+    return 'StockListState.initial()';
   }
 
   @override
@@ -346,7 +346,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements ShareListState {
+abstract class _Initial implements StockListState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -359,7 +359,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ShareListStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$StockListStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -373,7 +373,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'ShareListState.loading()';
+    return 'StockListState.loading()';
   }
 
   @override
@@ -460,7 +460,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements ShareListState {
+abstract class _Loading implements StockListState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -475,7 +475,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$ShareListStateCopyWithImpl<$Res, _$LoadedImpl>
+    extends _$StockListStateCopyWithImpl<$Res, _$LoadedImpl>
     implements _$$LoadedImplCopyWith<$Res> {
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
@@ -511,7 +511,7 @@ class _$LoadedImpl implements _Loaded {
 
   @override
   String toString() {
-    return 'ShareListState.loaded(shareList: $shareList)';
+    return 'StockListState.loaded(shareList: $shareList)';
   }
 
   @override
@@ -608,7 +608,7 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements ShareListState {
+abstract class _Loaded implements StockListState {
   const factory _Loaded({required final List<ShareInfoModel> shareList}) =
       _$LoadedImpl;
 
@@ -631,7 +631,7 @@ abstract class _$$FailedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailedImplCopyWithImpl<$Res>
-    extends _$ShareListStateCopyWithImpl<$Res, _$FailedImpl>
+    extends _$StockListStateCopyWithImpl<$Res, _$FailedImpl>
     implements _$$FailedImplCopyWith<$Res> {
   __$$FailedImplCopyWithImpl(
       _$FailedImpl _value, $Res Function(_$FailedImpl) _then)
@@ -669,7 +669,7 @@ class _$FailedImpl implements _Failed {
 
   @override
   String toString() {
-    return 'ShareListState.failed(failure: $failure)';
+    return 'StockListState.failed(failure: $failure)';
   }
 
   @override
@@ -764,7 +764,7 @@ class _$FailedImpl implements _Failed {
   }
 }
 
-abstract class _Failed implements ShareListState {
+abstract class _Failed implements StockListState {
   const factory _Failed({required final Failure failure}) = _$FailedImpl;
 
   Failure get failure;

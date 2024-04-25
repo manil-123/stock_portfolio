@@ -5,30 +5,30 @@ import 'package:share_portfolio/core/error/failures.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
 import 'package:share_portfolio/repository/nepse_repository.dart';
 
-part 'share_list_event.dart';
-part 'share_list_state.dart';
-part 'share_list_bloc.freezed.dart';
+part 'stock_list_event.dart';
+part 'stock_list_state.dart';
+part 'stock_list_bloc.freezed.dart';
 
 @LazySingleton()
-class ShareListBloc extends Bloc<ShareListEvent, ShareListState> {
+class StockListBloc extends Bloc<StockListEvent, StockListState> {
   final NepseRepository _nepseRepo;
-  ShareListBloc(
+  StockListBloc(
     this._nepseRepo,
   ) : super(
-          const ShareListState.initial(),
+          const StockListState.initial(),
         ) {
     on<_LoadShareList>((event, emit) async {
       emit(
-        const ShareListState.loading(),
+        const StockListState.loading(),
       );
       final shareListResponse = await _nepseRepo.getShareInfoList();
       shareListResponse.fold((failure) {
         emit(
-          ShareListState.failed(failure: failure),
+          StockListState.failed(failure: failure),
         );
       }, (shareList) {
         emit(
-          ShareListState.loaded(shareList: shareList),
+          StockListState.loaded(shareList: shareList),
         );
       });
     });

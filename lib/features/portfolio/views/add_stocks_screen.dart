@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
-import 'package:share_portfolio/blocs/portfolio/add_stock/add_stock_cubit.dart';
-import 'package:share_portfolio/blocs/portfolio/load_add_stocks/load_add_stock_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/core/constants/constants.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/model/local_stock_data/local_stock_data_model.dart';
-import 'package:share_portfolio/views/widgets/custom_text_field.dart';
+import 'package:share_portfolio/core/widgets/custom_text_field.dart';
 
 class AddStocksScreen extends StatefulWidget {
   const AddStocksScreen({

@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
-import 'package:share_portfolio/blocs/share_list/share_list_bloc.dart';
+import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/model/stock/share_info_list.dart';
 import 'package:share_portfolio/model/stock/share_info_model.dart';
-import 'package:share_portfolio/views/screens/portfolio/widgets/my_search_delegate.dart';
-import 'package:share_portfolio/views/widgets/share_info_widget.dart';
+import 'package:share_portfolio/features/portfolio/widgets/my_search_delegate.dart';
+import 'package:share_portfolio/core/widgets/share_info_widget.dart';
 
 class StockListScreen extends StatefulWidget {
   const StockListScreen({super.key});
@@ -23,8 +23,8 @@ class _StockListScreenState extends State<StockListScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<ShareListBloc>().add(
-          const ShareListEvent.loadShareList(),
+    context.read<StockListBloc>().add(
+          const StockListEvent.loadShareList(),
         );
   }
 
@@ -33,7 +33,7 @@ class _StockListScreenState extends State<StockListScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
-        child: BlocBuilder<ShareListBloc, ShareListState>(
+        child: BlocBuilder<StockListBloc, StockListState>(
           builder: (context, state) {
             return state.when(
               initial: () => Container(),
@@ -57,8 +57,8 @@ class _StockListScreenState extends State<StockListScreen> {
   Widget _shareListLoaded(List<ShareInfoModel> shareList) {
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<ShareListBloc>().add(
-              const ShareListEvent.loadShareList(),
+        context.read<StockListBloc>().add(
+              const StockListEvent.loadShareList(),
             );
       },
       child: SingleChildScrollView(
