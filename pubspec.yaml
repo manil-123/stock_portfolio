@@ -32,6 +32,7 @@ dependencies:
   autocomplete_textfield_ns: ^2.0.0
   # Navigator
   auto_route: ^5.0.3
+  ffi: ^2.1.0
   # Functional programming thingies
   dartz: ^0.10.1  
   # Database
