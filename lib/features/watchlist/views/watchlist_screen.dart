@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -11,6 +12,7 @@ import 'package:share_portfolio/features/watchlist/models/watchlist_data_model.d
 import 'package:share_portfolio/features/portfolio/widgets/watchlist_item.dart';
 import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
 
+@RoutePage()
 class WatchlistScreen extends StatelessWidget {
   const WatchlistScreen({super.key});
 

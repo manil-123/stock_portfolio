@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:share_portfolio/core/router/app_router.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 
+@RoutePage()
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
@@ -40,9 +42,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       },
       child: AutoTabsScaffold(
         routes: const [
-          HomeRouter(),
-          StockListRouter(),
-          PortfolioRouter(),
+          HomeWrapperRoute(),
+          StockListWrapperRoute(),
+          PortfolioWrapperRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
           return BottomNavigationBar(

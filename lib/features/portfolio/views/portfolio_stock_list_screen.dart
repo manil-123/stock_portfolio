@@ -16,6 +16,7 @@ import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/features/portfolio/models/local_stock_data_model.dart';
 import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
 
+@RoutePage()
 class PortfolioStockListScreen extends StatefulWidget {
   const PortfolioStockListScreen({
     super.key,

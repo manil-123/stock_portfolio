@@ -16,6 +16,7 @@ import 'package:share_portfolio/features/portfolio/widgets/watchlist_item.dart';
 
 import '../widgets/welcome.dart';
 
+@RoutePage()
 class PortfolioScreen extends StatefulWidget {
   const PortfolioScreen({super.key});
 
@@ -115,7 +116,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                                       const AddStocksRoute(),
                                     )
                                   : context.router.push(
-                                      const PortfolioListRouter(),
+                                      const PortfolioStockListRoute(),
                                     );
                             },
                           ),

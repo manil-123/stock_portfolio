@@ -50,6 +50,10 @@ class PortfolioTheme {
       titleTextStyle: PortfolioTheme.textTheme.bodyMedium,
       iconTheme: const IconThemeData(color: AppColors.white),
     ),
+    dialogTheme: const DialogTheme(
+      backgroundColor: AppColors.scaffoldBackgroundColor,
+      surfaceTintColor: AppColors.scaffoldBackgroundColor,
+    ),
     textTheme: TextTheme(
       bodyLarge: PortfolioTheme.textTheme.bodyLarge,
       bodyMedium: PortfolioTheme.textTheme.bodyMedium,

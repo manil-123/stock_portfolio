@@ -1,86 +1,111 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i12;
-import 'package:auto_route/empty_router_widgets.dart' as _i4;
-import 'package:flutter/material.dart' as _i13;
-
-import '../../features/auth/views/auth_screen.dart' as _i2;
-import '../../features/dashboard/dashboard_screen.dart' as _i3;
-import '../../features/home/views/home_screen.dart' as _i5;
-import '../../features/portfolio/views/add_stocks_screen.dart' as _i9;
-import '../../features/portfolio/views/portfolio_screen.dart' as _i8;
-import '../../features/portfolio/views/portfolio_stock_list_screen.dart'
+import 'package:auto_route/auto_route.dart' as _i15;
+import 'package:flutter/material.dart' as _i16;
+import 'package:share_portfolio/features/auth/views/auth_screen.dart' as _i2;
+import 'package:share_portfolio/features/dashboard/dashboard_screen.dart'
+    as _i3;
+import 'package:share_portfolio/features/dashboard/dashboard_wrapper_screen.dart'
+    as _i4;
+import 'package:share_portfolio/features/home/views/home_screen.dart' as _i5;
+import 'package:share_portfolio/features/home/views/home_wrapper_screen.dart'
+    as _i6;
+import 'package:share_portfolio/features/portfolio/views/add_stocks_screen.dart'
+    as _i1;
+import 'package:share_portfolio/features/portfolio/views/portfolio_screen.dart'
+    as _i7;
+import 'package:share_portfolio/features/portfolio/views/portfolio_stock_list_screen.dart'
+    as _i8;
+import 'package:share_portfolio/features/portfolio/views/portfolio_wrapper_screen.dart'
+    as _i9;
+import 'package:share_portfolio/features/stock/views/stock_detail_screen.dart'
     as _i11;
-import '../../features/stock/views/stock_detail_screen.dart' as _i6;
-import '../../features/stock/views/stock_list_screen.dart' as _i7;
-import '../../features/watchlist/views/watchlist_screen.dart' as _i10;
-import '../../splash_screen.dart' as _i1;
+import 'package:share_portfolio/features/stock/views/stock_list_screen.dart'
+    as _i12;
+import 'package:share_portfolio/features/stock/views/stock_list_wrapper_screen.dart'
+    as _i13;
+import 'package:share_portfolio/features/watchlist/views/watchlist_screen.dart'
+    as _i14;
+import 'package:share_portfolio/splash_screen.dart' as _i10;
 
-class AppRouter extends _i12.RootStackRouter {
-  AppRouter([_i13.GlobalKey<_i13.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+abstract class $AppRouter extends _i15.RootStackRouter {
+  $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i12.PageFactory> pagesMap = {
-    SplashRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+  final Map<String, _i15.PageFactory> pagesMap = {
+    AddStocksRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.SplashScreen(),
+        child: const _i1.AddStocksScreen(),
       );
     },
     AuthRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.AuthScreen(),
       );
     },
     DashboardRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.DashboardScreen(),
       );
     },
-    HomeRouter.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+    DashboardWrapperRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.EmptyRouterPage(),
-        maintainState: false,
-      );
-    },
-    StockListRouter.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i4.EmptyRouterPage(),
-      );
-    },
-    PortfolioRouter.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i4.EmptyRouterPage(),
+        child: const _i4.DashboardWrapperScreen(),
       );
     },
     HomeRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i5.HomeScreen(),
       );
     },
+    HomeWrapperRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i6.HomeWrapperScreen(),
+      );
+    },
+    PortfolioRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i7.PortfolioScreen(),
+      );
+    },
+    PortfolioStockListRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i8.PortfolioStockListScreen(),
+      );
+    },
+    PortfolioWrapperRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i9.PortfolioWrapperScreen(),
+      );
+    },
+    SplashRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i10.SplashScreen(),
+      );
+    },
     StockDetailRoute.name: (routeData) {
       final args = routeData.argsAs<StockDetailRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i6.StockDetailScreen(
+        child: _i11.StockDetailScreen(
           key: args.key,
           companyName: args.companyName,
           symbol: args.symbol,
@@ -90,235 +115,178 @@ class AppRouter extends _i12.RootStackRouter {
       );
     },
     StockListRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.StockListScreen(),
+        child: const _i12.StockListScreen(),
       );
     },
-    PortfolioRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+    StockListWrapperRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.PortfolioScreen(),
-      );
-    },
-    PortfolioListRouter.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i4.EmptyRouterPage(),
-      );
-    },
-    AddStocksRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i9.AddStocksScreen(),
+        child: const _i13.StockListWrapperScreen(),
       );
     },
     WatchlistRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i10.WatchlistScreen(),
-      );
-    },
-    PortfolioStockListRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i11.PortfolioStockListScreen(),
+        child: const _i14.WatchlistScreen(),
       );
     },
   };
-
-  @override
-  List<_i12.RouteConfig> get routes => [
-        _i12.RouteConfig(
-          SplashRoute.name,
-          path: '/',
-        ),
-        _i12.RouteConfig(
-          AuthRoute.name,
-          path: '/authScreen',
-        ),
-        _i12.RouteConfig(
-          DashboardRoute.name,
-          path: '/dashboardScreen',
-          children: [
-            _i12.RouteConfig(
-              HomeRouter.name,
-              path: 'homeScreen',
-              parent: DashboardRoute.name,
-              children: [
-                _i12.RouteConfig(
-                  HomeRoute.name,
-                  path: '',
-                  parent: HomeRouter.name,
-                ),
-                _i12.RouteConfig(
-                  StockDetailRoute.name,
-                  path: 'stockDetailScreen',
-                  parent: HomeRouter.name,
-                ),
-              ],
-            ),
-            _i12.RouteConfig(
-              StockListRouter.name,
-              path: 'stockListScreen',
-              parent: DashboardRoute.name,
-              children: [
-                _i12.RouteConfig(
-                  StockListRoute.name,
-                  path: '',
-                  parent: StockListRouter.name,
-                ),
-                _i12.RouteConfig(
-                  StockDetailRoute.name,
-                  path: 'stockDetailScreen',
-                  parent: StockListRouter.name,
-                ),
-              ],
-            ),
-            _i12.RouteConfig(
-              PortfolioRouter.name,
-              path: 'portfolioScreen',
-              parent: DashboardRoute.name,
-              children: [
-                _i12.RouteConfig(
-                  PortfolioRoute.name,
-                  path: '',
-                  parent: PortfolioRouter.name,
-                ),
-                _i12.RouteConfig(
-                  PortfolioListRouter.name,
-                  path: 'portfolioStockListScreen',
-                  parent: PortfolioRouter.name,
-                  children: [
-                    _i12.RouteConfig(
-                      PortfolioStockListRoute.name,
-                      path: '',
-                      parent: PortfolioListRouter.name,
-                    ),
-                    _i12.RouteConfig(
-                      AddStocksRoute.name,
-                      path: 'addStocksScreen',
-                      parent: PortfolioListRouter.name,
-                    ),
-                  ],
-                ),
-                _i12.RouteConfig(
-                  AddStocksRoute.name,
-                  path: 'addStocksScreen',
-                  parent: PortfolioRouter.name,
-                ),
-                _i12.RouteConfig(
-                  WatchlistRoute.name,
-                  path: 'watchlistScreen',
-                  parent: PortfolioRouter.name,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ];
 }
 
 /// generated route for
-/// [_i1.SplashScreen]
-class SplashRoute extends _i12.PageRouteInfo<void> {
-  const SplashRoute()
+/// [_i1.AddStocksScreen]
+class AddStocksRoute extends _i15.PageRouteInfo<void> {
+  const AddStocksRoute({List<_i15.PageRouteInfo>? children})
       : super(
-          SplashRoute.name,
-          path: '/',
+          AddStocksRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'SplashRoute';
+  static const String name = 'AddStocksRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.AuthScreen]
-class AuthRoute extends _i12.PageRouteInfo<void> {
-  const AuthRoute()
+class AuthRoute extends _i15.PageRouteInfo<void> {
+  const AuthRoute({List<_i15.PageRouteInfo>? children})
       : super(
           AuthRoute.name,
-          path: '/authScreen',
+          initialChildren: children,
         );
 
   static const String name = 'AuthRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i3.DashboardScreen]
-class DashboardRoute extends _i12.PageRouteInfo<void> {
-  const DashboardRoute({List<_i12.PageRouteInfo>? children})
+class DashboardRoute extends _i15.PageRouteInfo<void> {
+  const DashboardRoute({List<_i15.PageRouteInfo>? children})
       : super(
           DashboardRoute.name,
-          path: '/dashboardScreen',
           initialChildren: children,
         );
 
   static const String name = 'DashboardRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i4.EmptyRouterPage]
-class HomeRouter extends _i12.PageRouteInfo<void> {
-  const HomeRouter({List<_i12.PageRouteInfo>? children})
+/// [_i4.DashboardWrapperScreen]
+class DashboardWrapperRoute extends _i15.PageRouteInfo<void> {
+  const DashboardWrapperRoute({List<_i15.PageRouteInfo>? children})
       : super(
-          HomeRouter.name,
-          path: 'homeScreen',
+          DashboardWrapperRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'HomeRouter';
-}
+  static const String name = 'DashboardWrapperRoute';
 
-/// generated route for
-/// [_i4.EmptyRouterPage]
-class StockListRouter extends _i12.PageRouteInfo<void> {
-  const StockListRouter({List<_i12.PageRouteInfo>? children})
-      : super(
-          StockListRouter.name,
-          path: 'stockListScreen',
-          initialChildren: children,
-        );
-
-  static const String name = 'StockListRouter';
-}
-
-/// generated route for
-/// [_i4.EmptyRouterPage]
-class PortfolioRouter extends _i12.PageRouteInfo<void> {
-  const PortfolioRouter({List<_i12.PageRouteInfo>? children})
-      : super(
-          PortfolioRouter.name,
-          path: 'portfolioScreen',
-          initialChildren: children,
-        );
-
-  static const String name = 'PortfolioRouter';
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i5.HomeScreen]
-class HomeRoute extends _i12.PageRouteInfo<void> {
-  const HomeRoute()
+class HomeRoute extends _i15.PageRouteInfo<void> {
+  const HomeRoute({List<_i15.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
-          path: '',
+          initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.StockDetailScreen]
-class StockDetailRoute extends _i12.PageRouteInfo<StockDetailRouteArgs> {
+/// [_i6.HomeWrapperScreen]
+class HomeWrapperRoute extends _i15.PageRouteInfo<void> {
+  const HomeWrapperRoute({List<_i15.PageRouteInfo>? children})
+      : super(
+          HomeWrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeWrapperRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i7.PortfolioScreen]
+class PortfolioRoute extends _i15.PageRouteInfo<void> {
+  const PortfolioRoute({List<_i15.PageRouteInfo>? children})
+      : super(
+          PortfolioRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PortfolioRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i8.PortfolioStockListScreen]
+class PortfolioStockListRoute extends _i15.PageRouteInfo<void> {
+  const PortfolioStockListRoute({List<_i15.PageRouteInfo>? children})
+      : super(
+          PortfolioStockListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PortfolioStockListRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i9.PortfolioWrapperScreen]
+class PortfolioWrapperRoute extends _i15.PageRouteInfo<void> {
+  const PortfolioWrapperRoute({List<_i15.PageRouteInfo>? children})
+      : super(
+          PortfolioWrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PortfolioWrapperRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i10.SplashScreen]
+class SplashRoute extends _i15.PageRouteInfo<void> {
+  const SplashRoute({List<_i15.PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i11.StockDetailScreen]
+class StockDetailRoute extends _i15.PageRouteInfo<StockDetailRouteArgs> {
   StockDetailRoute({
-    _i13.Key? key,
+    _i16.Key? key,
     required String companyName,
     required String symbol,
     required String ltp,
     required String change,
+    List<_i15.PageRouteInfo>? children,
   }) : super(
           StockDetailRoute.name,
-          path: 'stockDetailScreen',
           args: StockDetailRouteArgs(
             key: key,
             companyName: companyName,
@@ -326,9 +294,13 @@ class StockDetailRoute extends _i12.PageRouteInfo<StockDetailRouteArgs> {
             ltp: ltp,
             change: change,
           ),
+          initialChildren: children,
         );
 
   static const String name = 'StockDetailRoute';
+
+  static const _i15.PageInfo<StockDetailRouteArgs> page =
+      _i15.PageInfo<StockDetailRouteArgs>(name);
 }
 
 class StockDetailRouteArgs {
@@ -340,7 +312,7 @@ class StockDetailRouteArgs {
     required this.change,
   });
 
-  final _i13.Key? key;
+  final _i16.Key? key;
 
   final String companyName;
 
@@ -357,74 +329,43 @@ class StockDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i7.StockListScreen]
-class StockListRoute extends _i12.PageRouteInfo<void> {
-  const StockListRoute()
+/// [_i12.StockListScreen]
+class StockListRoute extends _i15.PageRouteInfo<void> {
+  const StockListRoute({List<_i15.PageRouteInfo>? children})
       : super(
           StockListRoute.name,
-          path: '',
-        );
-
-  static const String name = 'StockListRoute';
-}
-
-/// generated route for
-/// [_i8.PortfolioScreen]
-class PortfolioRoute extends _i12.PageRouteInfo<void> {
-  const PortfolioRoute()
-      : super(
-          PortfolioRoute.name,
-          path: '',
-        );
-
-  static const String name = 'PortfolioRoute';
-}
-
-/// generated route for
-/// [_i4.EmptyRouterPage]
-class PortfolioListRouter extends _i12.PageRouteInfo<void> {
-  const PortfolioListRouter({List<_i12.PageRouteInfo>? children})
-      : super(
-          PortfolioListRouter.name,
-          path: 'portfolioStockListScreen',
           initialChildren: children,
         );
 
-  static const String name = 'PortfolioListRouter';
+  static const String name = 'StockListRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i9.AddStocksScreen]
-class AddStocksRoute extends _i12.PageRouteInfo<void> {
-  const AddStocksRoute()
+/// [_i13.StockListWrapperScreen]
+class StockListWrapperRoute extends _i15.PageRouteInfo<void> {
+  const StockListWrapperRoute({List<_i15.PageRouteInfo>? children})
       : super(
-          AddStocksRoute.name,
-          path: 'addStocksScreen',
+          StockListWrapperRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'AddStocksRoute';
+  static const String name = 'StockListWrapperRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i10.WatchlistScreen]
-class WatchlistRoute extends _i12.PageRouteInfo<void> {
-  const WatchlistRoute()
+/// [_i14.WatchlistScreen]
+class WatchlistRoute extends _i15.PageRouteInfo<void> {
+  const WatchlistRoute({List<_i15.PageRouteInfo>? children})
       : super(
           WatchlistRoute.name,
-          path: 'watchlistScreen',
+          initialChildren: children,
         );
 
   static const String name = 'WatchlistRoute';
-}
 
-/// generated route for
-/// [_i11.PortfolioStockListScreen]
-class PortfolioStockListRoute extends _i12.PageRouteInfo<void> {
-  const PortfolioStockListRoute()
-      : super(
-          PortfolioStockListRoute.name,
-          path: '',
-        );
-
-  static const String name = 'PortfolioStockListRoute';
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }

@@ -13,6 +13,7 @@ import 'package:share_portfolio/features/home/views/nepse_index_screen.dart';
 import 'package:share_portfolio/core/widgets/share_info_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+@RoutePage()
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 

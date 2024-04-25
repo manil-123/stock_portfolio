@@ -12,6 +12,7 @@ import 'package:share_portfolio/features/stock/models/stock_info_model.dart';
 import 'package:share_portfolio/features/portfolio/widgets/my_search_delegate.dart';
 import 'package:share_portfolio/core/widgets/share_info_widget.dart';
 
+@RoutePage()
 class StockListScreen extends StatefulWidget {
   const StockListScreen({super.key});
 

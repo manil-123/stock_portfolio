@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:autocomplete_textfield_ns/autocomplete_textfield_ns.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +13,7 @@ import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/features/portfolio/models/local_stock_data_model.dart';
 import 'package:share_portfolio/core/widgets/custom_text_field.dart';
 
+@RoutePage()
 class AddStocksScreen extends StatefulWidget {
   const AddStocksScreen({
     Key? key,
