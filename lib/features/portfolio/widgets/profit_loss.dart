@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
@@ -18,17 +19,17 @@ class ProfitLoss extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = PortfolioTheme.textTheme;
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: 8.h),
       width: MediaQuery.of(context).size.width,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
               decoration: BoxDecoration(
                 color: AppColors.black,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.r),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,22 +42,18 @@ class ProfitLoss extends StatelessWidget {
                       color: AppColors.grey,
                     ),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  8.verticalSpace,
                   Text(
                     "Rs. $totalInvestment",
                     textAlign: TextAlign.center,
                     style: textTheme.bodyLarge,
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  8.verticalSpace,
                   Container(
-                    padding: const EdgeInsets.all(15),
+                    padding: EdgeInsets.all(16.r),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(25),
+                      borderRadius: BorderRadius.circular(25.r),
                     ),
                     child: Text(
                       profitLossPercent == 0
@@ -77,12 +74,10 @@ class ProfitLoss extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            width: 10,
-          ),
+          12.horizontalSpace,
           Expanded(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
               decoration: BoxDecoration(
                 color: AppColors.black,
                 borderRadius: BorderRadius.circular(20),
@@ -98,9 +93,7 @@ class ProfitLoss extends StatelessWidget {
                       color: AppColors.grey,
                     ),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  8.verticalSpace,
                   Row(
                     children: [
                       Text(
@@ -136,9 +129,7 @@ class ProfitLoss extends StatelessWidget {
                                 ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                  8.verticalSpace,
                 ],
               ),
             ),

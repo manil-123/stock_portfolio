@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:share_portfolio/core/router/app_router.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
@@ -64,23 +65,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   selectedFontSize: 12.0,
                   currentIndex: tabsRouter.activeIndex,
                   onTap: tabsRouter.setActiveIndex,
-                  items: const [
+                  items: [
                     BottomNavigationBarItem(
                         icon: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Icon(Icons.grid_view_rounded),
+                          padding: EdgeInsets.all(4.r),
+                          child: const Icon(Icons.grid_view_rounded),
                         ),
                         label: 'Home'),
                     BottomNavigationBarItem(
                         icon: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Icon(Icons.published_with_changes),
+                          padding: EdgeInsets.all(4.r),
+                          child: const Icon(Icons.published_with_changes),
                         ),
                         label: 'Market'),
                     BottomNavigationBarItem(
                         icon: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: Icon(Icons.density_medium),
+                          padding: EdgeInsets.all(4.r),
+                          child: const Icon(Icons.density_medium),
                         ),
                         label: 'Portfolio'),
                   ],

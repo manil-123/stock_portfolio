@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
@@ -79,77 +79,69 @@ class PortfolioScreen extends StatelessWidget {
                   localStockDataList,
                   watchlistDataList,
                 ) {
-                  return ResponsiveBuilder(
-                      builder: (context, sizingInformation) {
-                    return SafeArea(
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding: sizingInformation.deviceScreenType ==
-                                  DeviceScreenType.desktop
-                              ? const EdgeInsets.all(30.0)
-                              : const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 12),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Welcome(),
-                              CurrentHoldings(
-                                totalProfitLoss: totalProfiLoss,
-                                currentValue: currentValue,
-                                totalSharesCount: totalShares,
-                                totalStockCount: totalStock,
-                              ),
-                              ProfitLoss(
-                                totalInvestment: totalInvestment,
-                                profitLossPercent: totalPLPercentage,
-                                dailyProfitLoss: totalDailyPL,
-                              ),
-                              PortfolioWatchlistHeading(
-                                isListEmpty: localStockDataList.isEmpty,
-                                isPortfolio: true,
-                                title: AppStrings.portfolio,
-                                onViewAll: () {
-                                  localStockDataList.isEmpty
-                                      ? context.router.push(
-                                          const AddStocksRoute(),
-                                        )
-                                      : context.router.push(
-                                          const PortfolioStockListRoute(),
-                                        );
-                                },
-                              ),
-                              PortfolioItemList(
-                                stockList: localStockDataList,
-                              ),
-                              PortfolioWatchlistHeading(
-                                isListEmpty: watchlistDataList.isEmpty,
-                                title: AppStrings.myWatchlist,
-                                onViewAll: () {
-                                  context.router.push(
-                                    const WatchlistRoute(),
-                                  );
-                                },
-                              ),
-                              WatchlistItemList(
-                                watchlist: watchlistDataList,
-                              ),
-                              const SizedBox(
-                                height: 16.0,
-                              )
-                            ],
-                          ),
+                  return SafeArea(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 24.h),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Welcome(),
+                            CurrentHoldings(
+                              totalProfitLoss: totalProfiLoss,
+                              currentValue: currentValue,
+                              totalSharesCount: totalShares,
+                              totalStockCount: totalStock,
+                            ),
+                            ProfitLoss(
+                              totalInvestment: totalInvestment,
+                              profitLossPercent: totalPLPercentage,
+                              dailyProfitLoss: totalDailyPL,
+                            ),
+                            PortfolioWatchlistHeading(
+                              isListEmpty: localStockDataList.isEmpty,
+                              isPortfolio: true,
+                              title: AppStrings.portfolio,
+                              onViewAll: () {
+                                localStockDataList.isEmpty
+                                    ? context.router.push(
+                                        const AddStocksRoute(),
+                                      )
+                                    : context.router.push(
+                                        const PortfolioStockListRoute(),
+                                      );
+                              },
+                            ),
+                            PortfolioItemList(
+                              stockList: localStockDataList,
+                            ),
+                            PortfolioWatchlistHeading(
+                              isListEmpty: watchlistDataList.isEmpty,
+                              title: AppStrings.myWatchlist,
+                              onViewAll: () {
+                                context.router.push(
+                                  const WatchlistRoute(),
+                                );
+                              },
+                            ),
+                            WatchlistItemList(
+                              watchlist: watchlistDataList,
+                            ),
+                            16.verticalSpace,
+                          ],
                         ),
                       ),
-                    );
-                  });
+                    ),
+                  );
                 },
                 failed: () => Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(AppStrings.failedToLoad),
-                      const SizedBox(
-                        height: 12.0,
+                      SizedBox(
+                        height: 12.h,
                       ),
                       InkWell(
                         onTap: () => _loadPortfolio(context),

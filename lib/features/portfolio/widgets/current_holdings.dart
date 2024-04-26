@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
@@ -19,11 +20,11 @@ class CurrentHoldings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+      margin: EdgeInsets.symmetric(vertical: 12.h),
+      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,18 +33,16 @@ class CurrentHoldings extends StatelessWidget {
           Text(
             AppStrings.currentHoldings,
             style:
-                PortfolioTheme.textTheme.bodyMedium!.copyWith(fontSize: 20.0),
+                PortfolioTheme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          8.verticalSpace,
           Row(
             children: [
               Expanded(
                 child: Text(
                   'Rs. ${currentValue.toStringAsFixed(1)}',
                   style: PortfolioTheme.textTheme.bodyMedium!
-                      .copyWith(fontSize: 28.0),
+                      .copyWith(fontSize: 28.sp),
                 ),
               ),
               totalProfitLoss != 0.0
@@ -81,9 +80,7 @@ class CurrentHoldings extends StatelessWidget {
                   : const SizedBox.shrink()
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          8.verticalSpace,
           Text(
             totalStockCount == 1
                 ? '$totalSharesCount shares of $totalStockCount company'
@@ -91,9 +88,7 @@ class CurrentHoldings extends StatelessWidget {
             style:
                 PortfolioTheme.textTheme.bodyMedium!.copyWith(fontSize: 18.0),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          8.verticalSpace,
         ],
       ),
     );

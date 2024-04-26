@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 
@@ -22,8 +23,7 @@ class PortfolioWatchlistHeading extends StatelessWidget {
       return const SizedBox.shrink();
     }
     return Padding(
-      padding:
-          const EdgeInsets.only(left: 20.0, right: 20.0, top: 16, bottom: 8.0),
+      padding: EdgeInsets.only(top: 16.h, bottom: 8.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,7 +31,7 @@ class PortfolioWatchlistHeading extends StatelessWidget {
           Text(
             title,
             style: PortfolioTheme.textTheme.titleLarge!
-                .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
+                .copyWith(fontSize: 22.sp, fontWeight: FontWeight.bold),
           ),
           GestureDetector(
             onTap: onViewAll,

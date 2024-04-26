@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/watchlist/models/watchlist_data_model.dart';
@@ -14,9 +15,8 @@ class WatchlistItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12.0),
-      padding: const EdgeInsets.symmetric(vertical: 6.0),
-      height: 100,
+      padding: EdgeInsets.symmetric(vertical: 6.h),
+      height: 80.h,
       width: double.infinity,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -47,11 +47,11 @@ class WatchlistItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-      margin: const EdgeInsets.only(right: 12.0),
+      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 12.w),
+      margin: EdgeInsets.only(right: 12.w),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
@@ -96,7 +97,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                 ),
                 loaded: (localStockDataList) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    padding: EdgeInsets.symmetric(vertical: 8.h),
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       physics: const NeverScrollableScrollPhysics(),
@@ -134,11 +135,11 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
 
   Widget _portfolioItem(LocalStockDataModel stockData) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+      margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.h),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -152,7 +153,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                   stockData.scrip,
                   style: PortfolioTheme.textTheme.titleMedium,
                 ),
-                const SizedBox(height: 10),
+                10.verticalSpace,
                 _buildStockInfo(stockData),
               ],
             ),
@@ -162,7 +163,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildStockPrice(stockData),
-              const SizedBox(height: 10),
+              10.verticalSpace,
               _buildStockDifference(stockData),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 
 class Welcome extends StatelessWidget {
@@ -6,24 +7,21 @@ class Welcome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Welcome!',
-            style: PortfolioTheme.textTheme.titleLarge!.copyWith(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Welcome!',
+          style: PortfolioTheme.textTheme.titleLarge!.copyWith(
+            fontSize: 30.sp,
+            fontWeight: FontWeight.bold,
           ),
-          // CircleAvatar(
-          //   radius: 26.0,
-          //   backgroundImage: AssetImage('assets/images/user.png'),
-          // ),
-        ],
-      ),
+        ),
+        // CircleAvatar(
+        //   radius: 26.0,
+        //   backgroundImage: AssetImage('assets/images/user.png'),
+        // ),
+      ],
     );
   }
 }

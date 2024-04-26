@@ -3,6 +3,7 @@ import 'package:autocomplete_textfield_ns/autocomplete_textfield_ns.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
@@ -104,19 +105,17 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
     MarketEnum selectedMarket,
   ) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12.0,
-        vertical: 10,
+      padding: EdgeInsets.symmetric(
+        horizontal: 16.w,
+        vertical: 16.h,
       ),
       child: Form(
         key: _formKey,
         child: ListView(
           children: [
-            const SizedBox(height: 12),
+            8.verticalSpace,
             buildAutoCompleteTextField(companyNames, scripCompanyNameMap),
-            const SizedBox(
-              height: 15,
-            ),
+            16.verticalSpace,
             CustomTextFormField(
               controller: _scripNameController,
               readOnly: true,
@@ -151,49 +150,41 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                 context.read<LoadAddStockCubit>().selectMarket(newValue!);
               },
             ),
-            Column(
-              children: [
-                CustomTextFormField(
-                  controller: _quantityController,
-                  validator: (String? val) {
-                    if (val!.isEmpty)
-                      return ValidationStrings.quantityFieldValidation;
-                    else if (int.parse(val) == 0)
-                      return ValidationStrings.quantityZeroValidation;
-                    return null;
-                  },
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: false),
-                  inputFormatter: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                  ],
-                  labelText: AppStrings.quantity,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomTextFormField(
-                  controller: _priceController,
-                  readOnly: selectedMarket == MarketEnum.IPO ? true : false,
-                  validator: (String? val) {
-                    if (val!.isEmpty)
-                      return ValidationStrings.priceFieldValidation;
-                    else if (double.parse(val) == 0.0)
-                      return ValidationStrings.priceZeroValidation;
-                    return null;
-                  },
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  inputFormatter: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))
-                  ],
-                  labelText: AppStrings.price,
-                ),
+            CustomTextFormField(
+              controller: _quantityController,
+              validator: (String? val) {
+                if (val!.isEmpty)
+                  return ValidationStrings.quantityFieldValidation;
+                else if (int.parse(val) == 0)
+                  return ValidationStrings.quantityZeroValidation;
+                return null;
+              },
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: false),
+              inputFormatter: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
               ],
+              labelText: AppStrings.quantity,
             ),
-            const SizedBox(
-              height: 20,
+            16.verticalSpace,
+            CustomTextFormField(
+              controller: _priceController,
+              readOnly: selectedMarket == MarketEnum.IPO ? true : false,
+              validator: (String? val) {
+                if (val!.isEmpty)
+                  return ValidationStrings.priceFieldValidation;
+                else if (double.parse(val) == 0.0)
+                  return ValidationStrings.priceZeroValidation;
+                return null;
+              },
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+              inputFormatter: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))
+              ],
+              labelText: AppStrings.price,
             ),
+            24.verticalSpace,
             BlocBuilder<AddStockCubit, AddStockState>(
               builder: (context, addStockState) {
                 return ElevatedButton(
@@ -202,16 +193,16 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
                   child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12.0),
+                      padding: EdgeInsets.symmetric(vertical: 12.h),
                       child: addStockState.maybeMap(
                         loading: (value) => const CircularProgressIndicator(
                           color: Colors.white,
                         ),
-                        orElse: () => const Text(
+                        orElse: () => Text(
                           AppStrings.add,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18,
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.bold),
                         ),
                       )),
@@ -293,7 +284,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
           Text(
             item,
             maxLines: 2,
-            style: const TextStyle(fontSize: 14, color: Colors.black),
+            style: TextStyle(fontSize: 14.sp, color: Colors.black),
           )
         ],
       ),
