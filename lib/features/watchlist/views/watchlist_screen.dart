@@ -4,13 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
+import 'package:share_portfolio/features/watchlist/blocs/add_to_watchlist/add_to_watchlist_cubit.dart';
 import 'package:share_portfolio/features/watchlist/blocs/load_watchlist/load_watchlist_cubit.dart';
 import 'package:share_portfolio/features/watchlist/blocs/remove_from_watchlist/remove_from_watchlist_cubit.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/features/watchlist/models/watchlist_data_model.dart';
-import 'package:share_portfolio/features/portfolio/widgets/watchlist_item.dart';
+import 'package:share_portfolio/features/watchlist/widgets/watchlist_item.dart';
 import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
 
 @RoutePage()
@@ -34,23 +35,38 @@ class WatchlistScreen extends StatelessWidget {
                 color: Colors.white,
               ),
               loaded: (watchlistDataList) {
-                return BlocListener<RemoveFromWatchlistCubit,
-                    RemoveFromWatchlistState>(
-                  listener: (context, removeFromWatchlistState) {
-                    removeFromWatchlistState.whenOrNull(
-                      success: () {
-                        showInfo(
-                            context, AppStrings.stocksRemovedFromWatchlist);
-                        Future.delayed(Duration.zero, () {
-                          context.read<LoadWatchlistCubit>().loadWatchlist();
-                          getIt<LoadPortfolioCubit>().loadPortfolio();
-                        });
+                return MultiBlocListener(
+                  listeners: [
+                    BlocListener<AddToWatchlistCubit, AddToWatchlistState>(
+                      listener: (context, state) {
+                        state.whenOrNull(
+                          success: () {
+                            context.read<LoadWatchlistCubit>().loadWatchlist();
+                          },
+                        );
                       },
-                      failed: (errorMessage) {
-                        showErrorInfo(context, errorMessage);
+                    ),
+                    BlocListener<RemoveFromWatchlistCubit,
+                        RemoveFromWatchlistState>(
+                      listener: (context, removeFromWatchlistState) {
+                        removeFromWatchlistState.whenOrNull(
+                          success: () {
+                            showInfo(
+                                context, AppStrings.stocksRemovedFromWatchlist);
+                            Future.delayed(Duration.zero, () {
+                              context
+                                  .read<LoadWatchlistCubit>()
+                                  .loadWatchlist();
+                              getIt<LoadPortfolioCubit>().loadPortfolio();
+                            });
+                          },
+                          failed: (errorMessage) {
+                            showErrorInfo(context, errorMessage);
+                          },
+                        );
                       },
-                    );
-                  },
+                    ),
+                  ],
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.h),
                     child: watchlistDataList.isEmpty
@@ -63,17 +79,12 @@ class WatchlistScreen extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: watchlistDataList.length,
                             itemBuilder: (context, index) {
-                              return Container(
-                                height: 80.h,
-                                padding:
-                                    EdgeInsets.only(left: 12.w, bottom: 12.h),
-                                child: WatchlistItem(
-                                  watchlistDataModel: watchlistDataList[index],
-                                  onDeleteWatchlistItem: () {
-                                    showDeleteAlert(
-                                        context, watchlistDataList[index]);
-                                  },
-                                ),
+                              return WatchlistItem(
+                                watchlistDataModel: watchlistDataList[index],
+                                onDeleteWatchlistItem: () {
+                                  showDeleteAlert(
+                                      context, watchlistDataList[index]);
+                                },
                               );
                             },
                           ),

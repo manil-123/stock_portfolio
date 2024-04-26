@@ -7,7 +7,6 @@ import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
-import 'package:share_portfolio/features/watchlist/blocs/add_to_watchlist/add_to_watchlist_cubit.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/features/portfolio/widgets/current_holdings.dart';
 import 'package:share_portfolio/features/portfolio/widgets/portfolio_item.dart';
@@ -51,15 +50,6 @@ class PortfolioScreen extends StatelessWidget {
                 );
               },
             ),
-            BlocListener<AddToWatchlistCubit, AddToWatchlistState>(
-              listener: (context, state) {
-                state.whenOrNull(
-                  success: () {
-                    _loadPortfolio(context);
-                  },
-                );
-              },
-            ),
           ],
           child: BlocBuilder<LoadPortfolioCubit, LoadPortfolioState>(
             builder: (context, state) {
@@ -76,7 +66,6 @@ class PortfolioScreen extends StatelessWidget {
                   totalPLPercentage,
                   totalDailyPL,
                   localStockDataList,
-                  watchlistDataList,
                 ) {
                   return SafeArea(
                     child: SingleChildScrollView(

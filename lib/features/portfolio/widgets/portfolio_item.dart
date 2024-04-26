@@ -77,8 +77,8 @@ class PortfolioItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 12.w),
-      margin: EdgeInsets.only(bottom: 12.w),
-      height: 80.h,
+      margin: EdgeInsets.only(bottom: 16.w),
+      height: 70.h,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(12.r),

@@ -130,7 +130,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
 
   Widget _portfolioItem(LocalStockDataModel stockData) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+      margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
       padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.h),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
