@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/features/portfolio/models/local_stock_data_model.dart';
+import 'package:share_portfolio/features/portfolio/models/pie_chart_data_model.dart';
 import 'package:share_portfolio/repository/calculation_repo.dart';
 import 'package:share_portfolio/repository/local_stock_repository.dart';
 
@@ -35,6 +36,7 @@ class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
       final currentValue = await _calculationRepo.getCurrentValue();
       final totalPLPercentage = await _calculationRepo.profitLossPercentage();
       final dailyPL = await _calculationRepo.getTotalDailyProfitLoss();
+      final pieChartDataList = await _localStockRepository.getPieChartData();
       emit(
         LoadPortfolioState.loaded(
           totalInvestment: totalInvestment,
@@ -45,6 +47,7 @@ class LoadPortfolioCubit extends Cubit<LoadPortfolioState> {
           totalPLPercentage: totalPLPercentage,
           totalDailyPL: dailyPL,
           localStockDataList: localStockList,
+          pieChartDataList: pieChartDataList,
         ),
       );
     } catch (e) {

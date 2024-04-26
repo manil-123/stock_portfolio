@@ -13,13 +13,18 @@ import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/features/portfolio/models/local_stock_data_model.dart';
 import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
+import 'package:share_portfolio/features/portfolio/models/pie_chart_data_model.dart';
+import 'package:share_portfolio/features/portfolio/widgets/portfolio_pie_chart.dart';
 import 'package:share_portfolio/features/portfolio/widgets/portfolio_item.dart';
 
 @RoutePage()
 class PortfolioStockListScreen extends StatefulWidget {
   const PortfolioStockListScreen({
     super.key,
+    required this.pieChartDataList,
   });
+
+  final List<PieChartDataModel> pieChartDataList;
 
   @override
   State<PortfolioStockListScreen> createState() =>
@@ -95,25 +100,32 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                 ),
                 loaded: (localStockDataList) {
                   return SingleChildScrollView(
-                    child: ListView.builder(
-                      itemCount: localStockDataList.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 12.w, vertical: 12.h),
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onLongPress: () {
-                            showDeleteAlert(
-                              context,
-                              localStockDataList[index],
+                    child: Column(
+                      children: [
+                        PortfolioPieChart(
+                          pieChartDataList: widget.pieChartDataList,
+                        ),
+                        ListView.builder(
+                          itemCount: localStockDataList.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.w, vertical: 12.h),
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onLongPress: () {
+                                showDeleteAlert(
+                                  context,
+                                  localStockDataList[index],
+                                );
+                              },
+                              child: PortfolioItem(
+                                stockData: localStockDataList[index],
+                              ),
                             );
                           },
-                          child: PortfolioItem(
-                            stockData: localStockDataList[index],
-                          ),
-                        );
-                      },
+                        ),
+                      ],
                     ),
                   );
                 },

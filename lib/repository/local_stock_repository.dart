@@ -4,6 +4,7 @@ import 'package:share_portfolio/core/database/dao/local_stock_dao.dart';
 import 'package:share_portfolio/core/database/dao/watchlist_dao.dart';
 import 'package:share_portfolio/core/database/db/app_db.dart';
 import 'package:share_portfolio/features/portfolio/models/local_stock_data_model.dart';
+import 'package:share_portfolio/features/portfolio/models/pie_chart_data_model.dart';
 import 'package:share_portfolio/features/watchlist/models/watchlist_data_model.dart';
 
 abstract class LocalStockRepository {
@@ -13,6 +14,7 @@ abstract class LocalStockRepository {
   Future<void> deleteStockFromPortfolio(LocalStockDataModel localStockData);
   Future<int> addToWatchlist(WatchlistDataModel watchlistDataModel);
   Future<void> removeFromWatchlist(WatchlistDataModel watchlistDataModel);
+  Future<List<PieChartDataModel>> getPieChartData();
 }
 
 @LazySingleton(as: LocalStockRepository)
@@ -86,5 +88,36 @@ class LocalStockRepositoryImpl implements LocalStockRepository {
     return await _watchlistDao.deleteSingle(
       watchlistDataModel.symbol,
     );
+  }
+
+  @override
+  Future<List<PieChartDataModel>> getPieChartData() async {
+    final localStockList = await _localStockDao.getAllStocksData();
+    final sectorsList =
+        localStockList.map((stock) => stock.sectorName).toList();
+    Map<String, int> sectorCount = await countSectors(sectorsList);
+
+    final List<PieChartDataModel> pieChartDataModelList = [];
+    sectorCount.forEach((sector, count) {
+      pieChartDataModelList.add(
+        PieChartDataModel(
+            sectorName: sector, value: (count / sectorsList.length) * 100),
+      );
+    });
+    return pieChartDataModelList;
+  }
+
+  Future<Map<String, int>> countSectors(List<String> sectorsList) async {
+    Map<String, int> sectorCount = {};
+
+    // Count the occurrences of each sector
+    for (String sector in sectorsList) {
+      if (sectorCount.containsKey(sector)) {
+        sectorCount[sector] = sectorCount[sector]! + 1;
+      } else {
+        sectorCount[sector] = 1;
+      }
+    }
+    return sectorCount;
   }
 }

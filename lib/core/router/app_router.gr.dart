@@ -18,6 +18,8 @@ import 'package:share_portfolio/features/dashboard/dashboard_wrapper_screen.dart
 import 'package:share_portfolio/features/home/views/home_screen.dart' as _i5;
 import 'package:share_portfolio/features/home/views/home_wrapper_screen.dart'
     as _i6;
+import 'package:share_portfolio/features/portfolio/models/pie_chart_data_model.dart'
+    as _i18;
 import 'package:share_portfolio/features/portfolio/views/add_stocks_screen.dart'
     as _i1;
 import 'package:share_portfolio/features/portfolio/views/portfolio_screen.dart'
@@ -86,9 +88,13 @@ abstract class $AppRouter extends _i16.RootStackRouter {
       );
     },
     PortfolioStockListRoute.name: (routeData) {
+      final args = routeData.argsAs<PortfolioStockListRouteArgs>();
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.PortfolioStockListScreen(),
+        child: _i8.PortfolioStockListScreen(
+          key: args.key,
+          pieChartDataList: args.pieChartDataList,
+        ),
       );
     },
     PortfolioWrapperRoute.name: (routeData) {
@@ -244,16 +250,41 @@ class PortfolioRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.PortfolioStockListScreen]
-class PortfolioStockListRoute extends _i16.PageRouteInfo<void> {
-  const PortfolioStockListRoute({List<_i16.PageRouteInfo>? children})
-      : super(
+class PortfolioStockListRoute
+    extends _i16.PageRouteInfo<PortfolioStockListRouteArgs> {
+  PortfolioStockListRoute({
+    _i17.Key? key,
+    required List<_i18.PieChartDataModel> pieChartDataList,
+    List<_i16.PageRouteInfo>? children,
+  }) : super(
           PortfolioStockListRoute.name,
+          args: PortfolioStockListRouteArgs(
+            key: key,
+            pieChartDataList: pieChartDataList,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'PortfolioStockListRoute';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static const _i16.PageInfo<PortfolioStockListRouteArgs> page =
+      _i16.PageInfo<PortfolioStockListRouteArgs>(name);
+}
+
+class PortfolioStockListRouteArgs {
+  const PortfolioStockListRouteArgs({
+    this.key,
+    required this.pieChartDataList,
+  });
+
+  final _i17.Key? key;
+
+  final List<_i18.PieChartDataModel> pieChartDataList;
+
+  @override
+  String toString() {
+    return 'PortfolioStockListRouteArgs{key: $key, pieChartDataList: $pieChartDataList}';
+  }
 }
 
 /// generated route for
