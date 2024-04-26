@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_portfolio/core/constants/string_constants.dart';
+import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
@@ -20,21 +23,44 @@ class PortfolioItemList extends StatelessWidget {
         ? SizedBox(
             height: 16.h,
           )
-        : Container(
-            padding: EdgeInsets.symmetric(vertical: 6.h),
-            height: 80.h,
-            width: double.infinity,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: stockList.take(5).length,
-              itemBuilder: (context, index) {
-                return PortfolioItem(
-                  stockData: stockList[index],
-                );
-              },
-            ),
+        : Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 6.h),
+                width: double.infinity,
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: stockList.take(5).length,
+                  itemBuilder: (context, index) {
+                    return PortfolioItem(
+                      stockData: stockList[index],
+                    );
+                  },
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  context.router.push(
+                    const PortfolioStockListRoute(),
+                  );
+                },
+                child: Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 24.w, vertical: 8.h),
+                  decoration: BoxDecoration(
+                    color: AppColors.whiteBackground,
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: Text(
+                    AppStrings.viewAll,
+                    style: PortfolioTheme.textTheme.bodyMedium!
+                        .copyWith(color: AppColors.primary),
+                  ),
+                ),
+              )
+            ],
           );
   }
 }
@@ -51,7 +77,8 @@ class PortfolioItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 12.w),
-      margin: EdgeInsets.only(right: 12.w),
+      margin: EdgeInsets.only(bottom: 12.w),
+      height: 80.h,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(12.r),

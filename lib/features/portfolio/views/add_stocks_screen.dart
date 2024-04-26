@@ -129,7 +129,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               title: Text(
                 AppStrings.ipo,
                 style: PortfolioTheme.textTheme.bodyMedium!
-                    .copyWith(color: AppColors.primary),
+                    .copyWith(color: AppColors.primary, fontSize: 14.sp),
               ),
               value: MarketEnum.IPO,
               groupValue: selectedMarket,
@@ -142,7 +142,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               title: Text(
                 AppStrings.secondary,
                 style: PortfolioTheme.textTheme.bodyMedium!
-                    .copyWith(color: AppColors.primary),
+                    .copyWith(color: AppColors.primary, fontSize: 14.sp),
               ),
               value: MarketEnum.SECONDARY,
               groupValue: selectedMarket,
@@ -241,11 +241,11 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
       suggestions: companyNames,
       clearOnSubmit: false,
       style: PortfolioTheme.textTheme.bodyMedium!
-          .copyWith(color: AppColors.primary),
+          .copyWith(color: AppColors.primary, fontSize: 14.sp),
       decoration: InputDecoration(
         labelText: AppStrings.enterCompanyName,
         labelStyle: PortfolioTheme.textTheme.bodyMedium!
-            .copyWith(color: AppColors.primary),
+            .copyWith(color: AppColors.primary, fontSize: 14.sp),
         focusedBorder: OutlineInputBorder(
           borderSide:
               BorderSide(color: Theme.of(context).primaryColor, width: 1.0),

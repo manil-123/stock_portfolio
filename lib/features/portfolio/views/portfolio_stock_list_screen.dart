@@ -96,25 +96,20 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                   color: Colors.white,
                 ),
                 loaded: (localStockDataList) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.h),
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: localStockDataList.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onLongPress: () {
-                            showDeleteAlert(
-                              context,
-                              localStockDataList[index],
-                            );
-                          },
-                          child: _portfolioItem(localStockDataList[index]),
-                        );
-                      },
-                    ),
+                  return ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: localStockDataList.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onLongPress: () {
+                          showDeleteAlert(
+                            context,
+                            localStockDataList[index],
+                          );
+                        },
+                        child: _portfolioItem(localStockDataList[index]),
+                      );
+                    },
                   );
                 },
                 failed: () => const Center(

@@ -13,7 +13,6 @@ import 'package:share_portfolio/features/portfolio/widgets/current_holdings.dart
 import 'package:share_portfolio/features/portfolio/widgets/portfolio_item.dart';
 import 'package:share_portfolio/features/portfolio/widgets/portfolio_watchlist_heading.dart';
 import 'package:share_portfolio/features/portfolio/widgets/profit_loss.dart';
-import 'package:share_portfolio/features/portfolio/widgets/watchlist_item.dart';
 
 import '../widgets/welcome.dart';
 
@@ -100,33 +99,15 @@ class PortfolioScreen extends StatelessWidget {
                               dailyProfitLoss: totalDailyPL,
                             ),
                             PortfolioWatchlistHeading(
-                              isListEmpty: localStockDataList.isEmpty,
-                              isPortfolio: true,
                               title: AppStrings.portfolio,
                               onViewAll: () {
-                                localStockDataList.isEmpty
-                                    ? context.router.push(
-                                        const AddStocksRoute(),
-                                      )
-                                    : context.router.push(
-                                        const PortfolioStockListRoute(),
-                                      );
+                                context.router.push(
+                                  const AddStocksRoute(),
+                                );
                               },
                             ),
                             PortfolioItemList(
                               stockList: localStockDataList,
-                            ),
-                            PortfolioWatchlistHeading(
-                              isListEmpty: watchlistDataList.isEmpty,
-                              title: AppStrings.myWatchlist,
-                              onViewAll: () {
-                                context.router.push(
-                                  const WatchlistRoute(),
-                                );
-                              },
-                            ),
-                            WatchlistItemList(
-                              watchlist: watchlistDataList,
                             ),
                             16.verticalSpace,
                           ],
