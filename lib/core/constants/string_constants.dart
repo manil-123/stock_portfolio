@@ -12,7 +12,7 @@ class AppStrings {
   static const viewAll = "View All";
   static const sector = "Sector";
   static const lastTradedPrice = "Last Traded Price";
-  static const changePercent = "Change Percen";
+  static const changePercent = "Change Percentage";
   static const unableToSearch = "Unable to search right now";
   static const deleteQuestion = "Do you want to delete?";
   static const topGainers = "Top Gainers";

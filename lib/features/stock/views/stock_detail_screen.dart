@@ -19,6 +19,7 @@ class StockDetailScreen extends StatefulWidget {
   final String symbol;
   final String ltp;
   final String change;
+  final bool? showAddToWatchlist;
 
   const StockDetailScreen({
     super.key,
@@ -26,6 +27,7 @@ class StockDetailScreen extends StatefulWidget {
     required this.symbol,
     required this.ltp,
     required this.change,
+    this.showAddToWatchlist = true,
   });
 
   @override
@@ -80,39 +82,44 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                 _moreInfo(AppStrings.lastTradedPrice, 'Rs. ${widget.ltp}'),
                 _moreInfo(AppStrings.changePercent, '${widget.change} %'),
                 40.verticalSpace,
-                Center(
-                  child: BlocBuilder<AddToWatchlistCubit, AddToWatchlistState>(
-                    builder: (context, addToWatchlistState) {
-                      return ElevatedButton(
-                        onPressed: () => _addToWatchlist(),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 12.h,
-                            horizontal: 16.w,
-                          ),
-                          child: addToWatchlistState.maybeMap(
-                            loading: (value) => SizedBox(
-                              height: 20.h,
-                              width: 20.w,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2.w,
-                                color: Colors.white,
+                widget.showAddToWatchlist!
+                    ? Center(
+                        child: BlocBuilder<AddToWatchlistCubit,
+                            AddToWatchlistState>(
+                          builder: (context, addToWatchlistState) {
+                            return ElevatedButton(
+                              onPressed: () => _addToWatchlist(),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black,
                               ),
-                            ),
-                            orElse: () {
-                              return Text(AppStrings.addToWatchlist,
-                                  style: PortfolioTheme.textTheme.bodyMedium!
-                                      .copyWith(fontWeight: FontWeight.bold));
-                            },
-                          ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 12.h,
+                                  horizontal: 16.w,
+                                ),
+                                child: addToWatchlistState.maybeMap(
+                                  loading: (value) => SizedBox(
+                                    height: 20.h,
+                                    width: 20.w,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2.w,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  orElse: () {
+                                    return Text(AppStrings.addToWatchlist,
+                                        style: PortfolioTheme
+                                            .textTheme.bodyMedium!
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold));
+                                  },
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
-                ),
+                      )
+                    : const SizedBox.shrink(),
               ],
             ),
           ),

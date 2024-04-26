@@ -19,47 +19,13 @@ class WatchlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<LoadWatchlistCubit>(
-          create: (_) => getIt<LoadWatchlistCubit>(),
-        ),
-        BlocProvider<RemoveFromWatchlistCubit>(
-          create: (_) => getIt<RemoveFromWatchlistCubit>(),
-        ),
-      ],
-      child: const WatchlistContentScreen(),
-    );
-  }
-}
-
-class WatchlistContentScreen extends StatefulWidget {
-  const WatchlistContentScreen({super.key});
-
-  @override
-  State<WatchlistContentScreen> createState() => _WatchlistContentScreenState();
-}
-
-class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _loadWatchlist();
-  }
-
-  void _loadWatchlist() {
-    context.read<LoadWatchlistCubit>().loadWatchlist();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.myWatchlist),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          _loadWatchlist();
+          context.read<LoadWatchlistCubit>().loadWatchlist();
         },
         child: BlocBuilder<LoadWatchlistCubit, LoadWatchlistState>(
           builder: (context, state) {
@@ -76,7 +42,7 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
                         showInfo(
                             context, AppStrings.stocksRemovedFromWatchlist);
                         Future.delayed(Duration.zero, () {
-                          _loadWatchlist();
+                          context.read<LoadWatchlistCubit>().loadWatchlist();
                           getIt<LoadPortfolioCubit>().loadPortfolio();
                         });
                       },
@@ -128,9 +94,9 @@ class _WatchlistContentScreenState extends State<WatchlistContentScreen> {
   }
 
   Future<dynamic> showDeleteAlert(
-      BuildContext ctx, WatchlistDataModel watchlistDataModel) {
+      BuildContext context, WatchlistDataModel watchlistDataModel) {
     return showDialog(
-      context: ctx,
+      context: context,
       builder: (ctx) => ShowAlertDialog(
           title:
               'Do you want to remove "${watchlistDataModel.symbol}" from watchlist?',

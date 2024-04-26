@@ -36,12 +36,18 @@ class AppRouter extends $AppRouter {
                   ],
                 ),
                 AutoRoute(
+                  page: WatchlistWrapperRoute.page,
+                  children: [
+                    AutoRoute(page: WatchlistRoute.page, initial: true),
+                    AutoRoute(page: StockDetailRoute.page),
+                  ],
+                ),
+                AutoRoute(
                   page: PortfolioWrapperRoute.page,
                   children: [
                     AutoRoute(page: PortfolioRoute.page, initial: true),
                     AutoRoute(page: PortfolioStockListRoute.page),
                     AutoRoute(page: AddStocksRoute.page),
-                    AutoRoute(page: WatchlistRoute.page),
                   ],
                 ),
               ],

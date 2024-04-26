@@ -6,6 +6,7 @@ import 'package:share_portfolio/core/router/app_router.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/features/dashboard/web_dashboard_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class DashboardScreen extends StatefulWidget {
@@ -54,6 +55,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               routes: const [
                 HomeWrapperRoute(),
                 StockListWrapperRoute(),
+                WatchlistWrapperRoute(),
                 PortfolioWrapperRoute(),
               ],
               bottomNavigationBuilder: (_, tabsRouter) {
@@ -78,6 +80,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: const Icon(Icons.published_with_changes),
                         ),
                         label: 'Market'),
+                    BottomNavigationBarItem(
+                        icon: Padding(
+                          padding: EdgeInsets.all(4.r),
+                          child: SvgPicture.asset(
+                            'assets/icons/watchlist.svg',
+                            colorFilter: ColorFilter.mode(
+                                tabsRouter.activeIndex == 2
+                                    ? AppColors.whiteBackground
+                                    : Colors.grey.withOpacity(0.8),
+                                BlendMode.srcIn),
+                          ),
+                        ),
+                        label: 'Watchlist'),
                     BottomNavigationBarItem(
                         icon: Padding(
                           padding: EdgeInsets.all(4.r),
