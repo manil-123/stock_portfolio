@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
+import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
@@ -76,9 +76,8 @@ class PortfolioItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 12.w),
-      margin: EdgeInsets.only(bottom: 16.w),
-      height: 70.h,
+      margin: EdgeInsets.symmetric(vertical: 8.h),
+      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.h),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(12.r),
@@ -99,32 +98,87 @@ class PortfolioItem extends StatelessWidget {
               )
             ],
           ),
-          FutureBuilder<String?>(
-            future: context
-                .read<LoadPortfolioCubit>()
-                .getCompanyPrice(stockData.scrip),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return Text(
-                  '${stockData.quantity} Shares, LTP: ${snapshot.data}',
-                  style: PortfolioTheme.textTheme.bodySmall!.copyWith(
-                    color: AppColors.grey,
-                  ),
-                );
-              } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              } else {
-                return Text(
-                  '${stockData.quantity} Shares, LTP: Error',
-                  style: PortfolioTheme.textTheme.bodySmall!.copyWith(
-                    color: AppColors.grey,
-                  ),
-                );
-              }
-            },
-          ),
+          10.verticalSpace,
+          _buildStockInfo(stockData),
+          10.verticalSpace,
+          _buildStockPrice(stockData),
+          10.verticalSpace,
+          _buildStockDifference(stockData),
         ],
       ),
+    );
+  }
+
+  Widget _buildStockInfo(LocalStockDataModel stockData) {
+    return FutureBuilder<String?>(
+      future: getIt<LoadPortfolioCubit>().getCompanyPrice(stockData.scrip),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Text(
+            '${stockData.quantity} Shares, LTP: ${snapshot.data}',
+            style: PortfolioTheme.textTheme.bodySmall!.copyWith(
+              color: AppColors.grey,
+            ),
+          );
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else {
+          return Text(
+            '${stockData.quantity} Shares, LTP: Error',
+            style: PortfolioTheme.textTheme.bodySmall!.copyWith(
+              color: AppColors.grey,
+            ),
+          );
+        }
+      },
+    );
+  }
+
+  Widget _buildStockPrice(LocalStockDataModel stockData) {
+    return FutureBuilder<String?>(
+      future: getIt<LoadPortfolioCubit>().getCompanyPrice(stockData.scrip),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Text(
+            'Total Investment:- Rs.${(stockData.quantity * double.parse(snapshot.data!)).toStringAsFixed(1)}',
+            style: PortfolioTheme.textTheme.titleSmall!
+                .copyWith(fontWeight: FontWeight.w500),
+          );
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else {
+          return Text(
+            ' Error',
+            style: PortfolioTheme.textTheme.titleSmall!
+                .copyWith(fontWeight: FontWeight.w500),
+          );
+        }
+      },
+    );
+  }
+
+  Widget _buildStockDifference(LocalStockDataModel stockData) {
+    return FutureBuilder<double?>(
+      future: getIt<LoadPortfolioCubit>().getLTPDiff(stockData.scrip),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Text(
+            'Total Profit/Loss:- Rs. ${(snapshot.data! * stockData.quantity).toStringAsFixed(1)}',
+            style: PortfolioTheme.textTheme.titleSmall!.copyWith(
+              color: snapshot.data! > 0.0 ? AppColors.green : AppColors.red,
+              fontWeight: FontWeight.w500,
+            ),
+          );
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else {
+          return Text(
+            ' Error',
+            style: PortfolioTheme.textTheme.titleSmall!
+                .copyWith(fontWeight: FontWeight.w500),
+          );
+        }
+      },
     );
   }
 }

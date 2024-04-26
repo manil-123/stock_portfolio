@@ -98,6 +98,7 @@ class MySearchDelegate extends SearchDelegate {
       backgroundColor: Theme.of(context).primaryColor,
       body: ListView.builder(
         itemCount: suggestions.length,
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
         itemBuilder: ((context, index) {
           return InkWell(
             onTap: () {
