@@ -1,39 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 
 class PortfolioTheme {
-  static TextTheme textTheme = const TextTheme(
+  static TextTheme textTheme = TextTheme(
     titleLarge: TextStyle(
       fontFamily: "Poppins",
-      fontSize: 20,
+      fontSize: 20.sp,
       fontWeight: FontWeight.w600,
     ),
     titleMedium: TextStyle(
       fontFamily: "Poppins",
-      fontSize: 18,
+      fontSize: 18.sp,
       fontWeight: FontWeight.w400,
     ),
     titleSmall: TextStyle(
       fontFamily: "Poppins",
-      fontSize: 14,
+      fontSize: 14.sp,
       fontWeight: FontWeight.w400,
       color: AppColors.white,
     ),
     bodyLarge: TextStyle(
       fontFamily: "Poppins",
-      fontSize: 20,
+      fontSize: 20.sp,
       fontWeight: FontWeight.w500,
       color: AppColors.white,
     ),
     bodyMedium: TextStyle(
       fontFamily: "Poppins",
-      fontSize: 16,
+      fontSize: 16.sp,
       fontWeight: FontWeight.w500,
       color: AppColors.white,
     ),
     bodySmall: TextStyle(
       fontFamily: "Poppins",
-      fontSize: 12,
+      fontSize: 12.sp,
       fontWeight: FontWeight.w400,
       color: AppColors.white,
     ),

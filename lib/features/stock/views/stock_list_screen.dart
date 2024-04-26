@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart';
@@ -62,65 +62,62 @@ class _ShareListLoaded extends StatelessWidget {
             );
       },
       child: SingleChildScrollView(
-        child: ResponsiveBuilder(builder: (context, sizingInformation) {
-          return Padding(
-            padding:
-                sizingInformation.deviceScreenType == DeviceScreenType.desktop
-                    ? const EdgeInsets.all(30.0)
-                    : const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: IconButton(
-                        onPressed: () async {
-                          if (shareList.isNotEmpty)
-                            showSearch(
-                                context: context,
-                                delegate: MySearchDelegate(
-                                    shareInfoList: StockInfoList(
-                                        shareInfoList: shareList)));
-                          else
-                            showErrorInfo(
-                              context,
-                              AppStrings.unableToSearch,
-                            );
-                        },
-                        icon: const Icon(
-                          Icons.search,
-                          color: Colors.white,
-                          size: 30,
-                        )),
-                  ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: EdgeInsets.all(8.r),
+                  child: IconButton(
+                      onPressed: () async {
+                        if (shareList.isNotEmpty)
+                          showSearch(
+                            context: context,
+                            delegate: MySearchDelegate(
+                              shareInfoList:
+                                  StockInfoList(shareInfoList: shareList),
+                            ),
+                          );
+                        else
+                          showErrorInfo(
+                            context,
+                            AppStrings.unableToSearch,
+                          );
+                      },
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                        size: 30.r,
+                      )),
                 ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: shareList.length,
-                  itemBuilder: (context, index) => InkWell(
-                    onTap: () {
-                      context.router.push(
-                        StockDetailRoute(
-                          companyName: shareList[index].companyName,
-                          symbol: shareList[index].symbol,
-                          ltp: shareList[index].ltp,
-                          change: shareList[index].change,
-                        ),
-                      );
-                    },
-                    child: ShareInfoWidget(
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: shareList.length,
+                itemBuilder: (context, index) => InkWell(
+                  onTap: () {
+                    context.router.push(
+                      StockDetailRoute(
                         companyName: shareList[index].companyName,
                         symbol: shareList[index].symbol,
                         ltp: shareList[index].ltp,
-                        change: shareList[index].change),
-                  ),
+                        change: shareList[index].change,
+                      ),
+                    );
+                  },
+                  child: ShareInfoWidget(
+                      companyName: shareList[index].companyName,
+                      symbol: shareList[index].symbol,
+                      ltp: shareList[index].ltp,
+                      change: shareList[index].change),
                 ),
-              ],
-            ),
-          );
-        }),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 
@@ -19,13 +20,13 @@ class ShareInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = PortfolioTheme.textTheme;
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: 8.h),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.r),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -46,6 +47,7 @@ class ShareInfoWidget extends StatelessWidget {
                 ],
               ),
             ),
+            6.horizontalSpace,
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,8 +61,8 @@ class ShareInfoWidget extends StatelessWidget {
                   style: theme.titleMedium,
                 ),
                 Container(
-                  height: 32,
-                  width: 80,
+                  height: 24.h,
+                  width: 80.w,
                   decoration: BoxDecoration(
                     color: double.parse(change) >= 0
                         ? const Color(0xFF0E3F1A)
@@ -77,11 +79,9 @@ class ShareInfoWidget extends StatelessWidget {
                           color: double.parse(change) >= 0
                               ? const Color(0xFF30D059)
                               : const Color(0xFFF73961),
-                          size: 14,
+                          size: 14.r,
                         ),
-                        const SizedBox(
-                          width: 6,
-                        ),
+                        6.horizontalSpace,
                         Text(
                           '${double.parse(change).toStringAsFixed(1)} %',
                           style: theme.bodySmall!.copyWith(

@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/watchlist/blocs/add_to_watchlist/add_to_watchlist_cubit.dart';
@@ -54,7 +55,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
           );
         },
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.r),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,28 +66,20 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                     color: AppColors.white.withOpacity(0.6),
                   ),
                 ),
-                const SizedBox(
-                  height: 2.0,
-                ),
+                2.verticalSpace,
                 Text(
                   '${AppStrings.sector} : ${getSector(widget.companyName)}',
                   style: textTheme.bodyMedium!.copyWith(
-                    fontSize: 14.0,
+                    fontSize: 14.sp,
                     color: AppColors.white.withOpacity(0.6),
                   ),
                 ),
-                const SizedBox(
-                  height: 16.0,
-                ),
+                16.verticalSpace,
                 _chartContainer(),
-                const SizedBox(
-                  height: 16.0,
-                ),
+                16.verticalSpace,
                 _moreInfo(AppStrings.lastTradedPrice, 'Rs. ${widget.ltp}'),
                 _moreInfo(AppStrings.changePercent, '${widget.change} %'),
-                const SizedBox(
-                  height: 40.0,
-                ),
+                40.verticalSpace,
                 Center(
                   child: BlocBuilder<AddToWatchlistCubit, AddToWatchlistState>(
                     builder: (context, addToWatchlistState) {
@@ -96,16 +89,16 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                           backgroundColor: Colors.black,
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 12.0,
-                            horizontal: 16.0,
+                          padding: EdgeInsets.symmetric(
+                            vertical: 12.h,
+                            horizontal: 16.w,
                           ),
                           child: addToWatchlistState.maybeMap(
-                            loading: (value) => const SizedBox(
-                              height: 20,
-                              width: 20,
+                            loading: (value) => SizedBox(
+                              height: 20.h,
+                              width: 20.w,
                               child: CircularProgressIndicator(
-                                strokeWidth: 2.0,
+                                strokeWidth: 2.w,
                                 color: Colors.white,
                               ),
                             ),
@@ -141,10 +134,10 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
   Widget _chartContainer() {
     return Container(
       height: MediaQuery.of(context).size.height * 0.4,
-      padding: const EdgeInsets.all(12.0),
+      padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
         color: Colors.black,
-        borderRadius: BorderRadius.circular(6.0),
+        borderRadius: BorderRadius.circular(6.r),
       ),
       child: LineChart(
         LineChartData(
@@ -203,7 +196,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
 
   Widget _moreInfo(String title, String description) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding: EdgeInsets.only(top: 8.h),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
