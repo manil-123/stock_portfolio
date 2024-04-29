@@ -1,11 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
+import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
+import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/features/portfolio/models/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/features/portfolio/models/pie_chart_data_model.dart';
@@ -85,28 +88,46 @@ class PortfolioItem extends StatelessWidget {
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(12.r),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Row(
         children: [
-          Row(
-            children: [
-              Text(
-                '${stockData.scrip} ',
-                style: PortfolioTheme.textTheme.titleMedium,
-              ),
-              Text(
-                '(${stockData.sectorName})',
-                style: PortfolioTheme.textTheme.bodySmall,
-              )
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      '${stockData.scrip} ',
+                      style: PortfolioTheme.textTheme.titleMedium,
+                    ),
+                    Text(
+                      '(${stockData.sectorName})',
+                      style: PortfolioTheme.textTheme.bodySmall,
+                    )
+                  ],
+                ),
+                10.verticalSpace,
+                _buildStockInfo(stockData),
+                10.verticalSpace,
+                _buildStockPrice(stockData),
+                10.verticalSpace,
+                _buildStockDifference(stockData),
+              ],
+            ),
           ),
-          10.verticalSpace,
-          _buildStockInfo(stockData),
-          10.verticalSpace,
-          _buildStockPrice(stockData),
-          10.verticalSpace,
-          _buildStockDifference(stockData),
+          InkWell(
+            onTap: () {
+              showDeleteAlert(
+                context,
+                stockData,
+              );
+            },
+            child: const Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+          )
         ],
       ),
     );
@@ -182,6 +203,24 @@ class PortfolioItem extends StatelessWidget {
           );
         }
       },
+    );
+  }
+
+  Future<dynamic> showDeleteAlert(
+      BuildContext context, LocalStockDataModel localStockData) {
+    return showDialog(
+      context: context,
+      builder: (ctx) => ShowAlertDialog(
+        title:
+            'Do you want to remove "${localStockData.scrip}" from Portfolio?',
+        onSuccess: () {
+          context.read<DeleteStockCubit>().deleteStock(localStockData);
+          Navigator.pop(ctx);
+        },
+        onCancel: () {
+          Navigator.pop(ctx);
+        },
+      ),
     );
   }
 }

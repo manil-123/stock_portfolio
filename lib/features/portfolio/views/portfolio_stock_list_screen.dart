@@ -129,16 +129,8 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                           padding: EdgeInsets.symmetric(
                               horizontal: 12.w, vertical: 12.h),
                           itemBuilder: (context, index) {
-                            return InkWell(
-                              onLongPress: () {
-                                showDeleteAlert(
-                                  context,
-                                  localStockDataList[index],
-                                );
-                              },
-                              child: PortfolioItem(
-                                stockData: localStockDataList[index],
-                              ),
+                            return PortfolioItem(
+                              stockData: localStockDataList[index],
                             );
                           },
                         ),

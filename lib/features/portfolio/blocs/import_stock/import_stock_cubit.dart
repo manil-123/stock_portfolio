@@ -71,4 +71,10 @@ class ImportStockCubit extends Cubit<GenericState<ImportStockState>> {
       );
     }
   }
+
+  void initialize() {
+    emit(
+      const GenericState.initial(),
+    );
+  }
 }

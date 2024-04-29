@@ -21,6 +21,13 @@ class ImportStocksScreen extends StatelessWidget {
       backgroundColor: AppColors.whiteBackground,
       appBar: AppBar(
         title: const Text(AppStrings.importStocks),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            context.read<ImportStockCubit>().initialize();
+            context.router.maybePop();
+          },
+        ),
       ),
       body: BlocConsumer<ImportStockCubit, GenericState<ImportStockState>>(
         listener: (context, state) {
@@ -28,8 +35,9 @@ class ImportStocksScreen extends StatelessWidget {
             orElse: () {},
             success: (data) {
               if (data.fileName.isEmpty) {
-                context.router.pop();
+                context.read<ImportStockCubit>().initialize();
                 showInfo(context, AppStrings.importSuccessful);
+                context.router.maybePop();
               }
             },
           );
