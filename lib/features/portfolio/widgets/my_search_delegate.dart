@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/features/stock/models/stock_info_list.dart';
 import 'package:share_portfolio/features/stock/models/stock_info_model.dart';
@@ -15,9 +14,9 @@ class MySearchDelegate extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return theme.copyWith(
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         // Use this to change the query's text style
-        titleLarge: TextStyle(fontSize: 18.sp, color: Colors.white),
+        titleLarge: TextStyle(fontSize: 18, color: Colors.white),
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: const Color(0xFF000000),
@@ -98,7 +97,7 @@ class MySearchDelegate extends SearchDelegate {
       backgroundColor: Theme.of(context).primaryColor,
       body: ListView.builder(
         itemCount: suggestions.length,
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         itemBuilder: ((context, index) {
           return InkWell(
             onTap: () {

@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/di/injection.dart';
+import 'package:share_portfolio/core/extensions/int_extension.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
@@ -23,13 +23,11 @@ class PortfolioItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return stockList.isEmpty
-        ? SizedBox(
-            height: 16.h,
-          )
+        ? 16.verticalSpace
         : Column(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 6.h),
+                padding: const EdgeInsets.symmetric(vertical: 6),
                 width: double.infinity,
                 child: ListView.builder(
                   scrollDirection: Axis.vertical,
@@ -51,10 +49,10 @@ class PortfolioItemList extends StatelessWidget {
                 },
                 child: Container(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 24.w, vertical: 8.h),
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                   decoration: BoxDecoration(
                     color: AppColors.whiteBackground,
-                    borderRadius: BorderRadius.circular(12.r),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     AppStrings.viewAll,
@@ -79,11 +77,11 @@ class PortfolioItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.h),
-      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.h),
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         children: [

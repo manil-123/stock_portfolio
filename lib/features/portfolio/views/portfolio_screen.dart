@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:share_portfolio/core/extensions/int_extension.dart';
 import 'package:share_portfolio/core/state/generic_state.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
@@ -83,8 +83,8 @@ class PortfolioScreen extends StatelessWidget {
                   return SafeArea(
                     child: SingleChildScrollView(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 24.h),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 24),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -128,9 +128,7 @@ class PortfolioScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(AppStrings.failedToLoad),
-                      SizedBox(
-                        height: 12.h,
-                      ),
+                      12.verticalSpace,
                       InkWell(
                         onTap: () => _loadPortfolio(context),
                         child: const Text(

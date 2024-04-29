@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 
@@ -26,14 +25,14 @@ class DrawerItem extends StatelessWidget {
       child: Container(
         width: double.maxFinite,
         color: isSelected ? AppColors.white : Colors.transparent,
-        padding: EdgeInsets.symmetric(
-          vertical: 50.h,
+        padding: const EdgeInsets.symmetric(
+          vertical: 50,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.all(4.r),
+              padding: const EdgeInsets.all(4),
               child: Icon(
                 iconData,
                 size: 40,

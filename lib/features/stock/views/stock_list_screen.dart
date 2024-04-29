@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
@@ -63,13 +62,13 @@ class _ShareListLoaded extends StatelessWidget {
       },
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Column(
             children: [
               Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
-                  padding: EdgeInsets.all(8.r),
+                  padding: const EdgeInsets.all(8),
                   child: IconButton(
                       onPressed: () async {
                         if (shareList.isNotEmpty)
@@ -86,10 +85,10 @@ class _ShareListLoaded extends StatelessWidget {
                             AppStrings.unableToSearch,
                           );
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.search,
                         color: Colors.white,
-                        size: 30.r,
+                        size: 30,
                       )),
                 ),
               ),

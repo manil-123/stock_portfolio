@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_portfolio/core/extensions/int_extension.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
@@ -19,17 +19,17 @@ class ProfitLoss extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = PortfolioTheme.textTheme;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.h),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       width: MediaQuery.of(context).size.width,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               decoration: BoxDecoration(
                 color: AppColors.black,
-                borderRadius: BorderRadius.circular(20.r),
+                borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,10 +50,10 @@ class ProfitLoss extends StatelessWidget {
                   ),
                   8.verticalSpace,
                   Container(
-                    padding: EdgeInsets.all(16.r),
+                    padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(25.r),
+                      borderRadius: BorderRadius.circular(25),
                     ),
                     child: Text(
                       profitLossPercent == 0
@@ -77,7 +77,7 @@ class ProfitLoss extends StatelessWidget {
           12.horizontalSpace,
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               decoration: BoxDecoration(
                 color: AppColors.black,
                 borderRadius: BorderRadius.circular(20),

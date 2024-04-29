@@ -3,7 +3,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/watchlist/blocs/add_to_watchlist/add_to_watchlist_cubit.dart';
@@ -12,6 +11,7 @@ import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/model/list_data_model.dart';
 import 'package:share_portfolio/features/watchlist/models/watchlist_data_model.dart';
 import 'package:share_portfolio/features/stock/components/line_titles.dart';
+import 'package:share_portfolio/core/extensions/int_extension.dart';
 
 @RoutePage()
 class StockDetailScreen extends StatefulWidget {
@@ -57,7 +57,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
           );
         },
         child: Padding(
-          padding: EdgeInsets.all(16.r),
+          padding: const EdgeInsets.all(16),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +72,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                 Text(
                   '${AppStrings.sector} : ${getSector(widget.companyName)}',
                   style: textTheme.bodyMedium!.copyWith(
-                    fontSize: 14.sp,
+                    fontSize: 14,
                     color: AppColors.white.withOpacity(0.6),
                   ),
                 ),
@@ -93,16 +93,16 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
                                 backgroundColor: Colors.black,
                               ),
                               child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 12.h,
-                                  horizontal: 16.w,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12,
+                                  horizontal: 16,
                                 ),
                                 child: addToWatchlistState.maybeMap(
-                                  loading: (value) => SizedBox(
-                                    height: 20.h,
-                                    width: 20.w,
+                                  loading: (value) => const SizedBox(
+                                    height: 20,
+                                    width: 20,
                                     child: CircularProgressIndicator(
-                                      strokeWidth: 2.w,
+                                      strokeWidth: 2,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -141,10 +141,10 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
   Widget _chartContainer() {
     return Container(
       height: MediaQuery.of(context).size.height * 0.4,
-      padding: EdgeInsets.all(12.r),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.black,
-        borderRadius: BorderRadius.circular(6.r),
+        borderRadius: BorderRadius.circular(6),
       ),
       child: LineChart(
         LineChartData(
@@ -203,7 +203,7 @@ class _StockDetailScreenState extends State<StockDetailScreen> {
 
   Widget _moreInfo(String title, String description) {
     return Padding(
-      padding: EdgeInsets.only(top: 8.h),
+      padding: const EdgeInsets.only(top: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

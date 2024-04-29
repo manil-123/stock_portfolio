@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/state/generic_state.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
@@ -44,7 +43,7 @@ class ImportStocksScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
             child: Column(
               children: [
                 InkWell(
@@ -62,10 +61,10 @@ class ImportStocksScreen extends StatelessWidget {
                   },
                   child: Container(
                     width: double.maxFinite,
-                    height: 200.h,
+                    height: 200,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(color: AppColors.primary, width: 2.w),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: AppColors.primary, width: 2),
                     ),
                     child: Center(
                       child: state.maybeWhen(

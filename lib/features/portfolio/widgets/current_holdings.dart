@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_portfolio/core/extensions/int_extension.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
@@ -20,11 +20,11 @@ class CurrentHoldings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 12.h),
-      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
+      margin: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,8 +32,7 @@ class CurrentHoldings extends StatelessWidget {
         children: [
           Text(
             AppStrings.currentHoldings,
-            style:
-                PortfolioTheme.textTheme.bodyMedium!.copyWith(fontSize: 20.sp),
+            style: PortfolioTheme.textTheme.bodyMedium!.copyWith(fontSize: 20),
           ),
           8.verticalSpace,
           Row(
@@ -42,7 +41,7 @@ class CurrentHoldings extends StatelessWidget {
                 child: Text(
                   'Rs. ${currentValue.toStringAsFixed(1)}',
                   style: PortfolioTheme.textTheme.bodyMedium!
-                      .copyWith(fontSize: 28.sp),
+                      .copyWith(fontSize: 28),
                 ),
               ),
               totalProfitLoss != 0.0

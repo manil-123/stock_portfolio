@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 
@@ -42,7 +41,7 @@ class CustomTextFormField extends StatelessWidget {
           minHeight: 0, // Set minimum height to zero
         ),
         labelStyle: PortfolioTheme.textTheme.bodyMedium!
-            .copyWith(color: AppColors.primary, fontSize: 14.sp),
+            .copyWith(color: AppColors.primary, fontSize: 14),
         focusedBorder: OutlineInputBorder(
           borderSide:
               BorderSide(color: Theme.of(context).primaryColor, width: 1.0),

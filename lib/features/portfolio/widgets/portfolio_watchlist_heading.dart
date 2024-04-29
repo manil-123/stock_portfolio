@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 
 class PortfolioWatchlistHeading extends StatelessWidget {
@@ -15,7 +14,7 @@ class PortfolioWatchlistHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 16.h, bottom: 8.h),
+      padding: const EdgeInsets.only(top: 16, bottom: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,7 +22,7 @@ class PortfolioWatchlistHeading extends StatelessWidget {
           Text(
             title,
             style: PortfolioTheme.textTheme.titleLarge!
-                .copyWith(fontSize: 22.sp, fontWeight: FontWeight.bold),
+                .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           GestureDetector(
             onTap: onViewAll,

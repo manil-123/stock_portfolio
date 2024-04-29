@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/core/state/generic_state.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
@@ -136,8 +135,8 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                                     loadedState.localStockDataList.length,
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 12.w, vertical: 12.h),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 12),
                                 itemBuilder: (context, index) {
                                   return PortfolioItem(
                                     stockData:

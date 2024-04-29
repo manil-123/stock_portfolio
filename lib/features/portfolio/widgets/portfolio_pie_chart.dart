@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_portfolio/core/extensions/int_extension.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/features/portfolio/models/pie_chart_data_model.dart';
 
@@ -15,8 +15,8 @@ class PortfolioPieChart extends HookWidget {
     final touchedIndex = useState(-1);
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      height: 300.h,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      height: 300,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -39,7 +39,7 @@ class PortfolioPieChart extends HookWidget {
                   show: false,
                 ),
                 sectionsSpace: 0,
-                centerSpaceRadius: 40.r,
+                centerSpaceRadius: 40,
                 sections: showingSections(touchedIndex.value),
               ),
             ),
@@ -49,20 +49,20 @@ class PortfolioPieChart extends HookWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: pieChartDataList.map((model) {
               return Padding(
-                padding: EdgeInsets.only(bottom: 4.h),
+                padding: const EdgeInsets.only(bottom: 4),
                 child: Row(
                   children: [
                     Container(
-                      height: 10.h,
-                      width: 10.h,
+                      height: 10,
+                      width: 10,
                       color: getPieChartColor(model.sectorName),
                     ),
                     8.horizontalSpace,
                     Flexible(
                       child: Text(
                         model.sectorName,
-                        style: TextStyle(
-                          fontSize: 10.sp,
+                        style: const TextStyle(
+                          fontSize: 10,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -80,8 +80,8 @@ class PortfolioPieChart extends HookWidget {
   List<PieChartSectionData> showingSections(int touchedIndex) {
     return List.generate(pieChartDataList.length, (index) {
       final isTouched = index == touchedIndex;
-      final fontSize = 12.sp;
-      final radius = isTouched ? 60.r : 50.r;
+      const fontSize = 12.0;
+      final radius = isTouched ? 60.0 : 50.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
       return PieChartSectionData(
         color: getPieChartColor(pieChartDataList[index].sectorName),
@@ -90,7 +90,7 @@ class PortfolioPieChart extends HookWidget {
             ? pieChartDataList[index].sectorName
             : '${pieChartDataList[index].value.toStringAsFixed(0)}%',
         radius: radius,
-        titleStyle: TextStyle(
+        titleStyle: const TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
           shadows: shadows,

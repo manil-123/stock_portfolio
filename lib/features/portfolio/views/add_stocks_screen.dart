@@ -3,7 +3,7 @@ import 'package:autocomplete_textfield_ns/autocomplete_textfield_ns.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_portfolio/core/extensions/int_extension.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
@@ -105,9 +105,9 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
     MarketEnum selectedMarket,
   ) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.w,
-        vertical: 16.h,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 16,
       ),
       child: Form(
         key: _formKey,
@@ -129,7 +129,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               title: Text(
                 AppStrings.ipo,
                 style: PortfolioTheme.textTheme.bodyMedium!
-                    .copyWith(color: AppColors.primary, fontSize: 14.sp),
+                    .copyWith(color: AppColors.primary, fontSize: 14),
               ),
               value: MarketEnum.IPO,
               groupValue: selectedMarket,
@@ -142,7 +142,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
               title: Text(
                 AppStrings.secondary,
                 style: PortfolioTheme.textTheme.bodyMedium!
-                    .copyWith(color: AppColors.primary, fontSize: 14.sp),
+                    .copyWith(color: AppColors.primary, fontSize: 14),
               ),
               value: MarketEnum.SECONDARY,
               groupValue: selectedMarket,
@@ -193,16 +193,16 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
                     backgroundColor: Theme.of(context).primaryColor,
                   ),
                   child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12.h),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       child: addStockState.maybeMap(
                         loading: (value) => const CircularProgressIndicator(
                           color: Colors.white,
                         ),
-                        orElse: () => Text(
+                        orElse: () => const Text(
                           AppStrings.add,
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18.sp,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold),
                         ),
                       )),
@@ -241,11 +241,11 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
       suggestions: companyNames,
       clearOnSubmit: false,
       style: PortfolioTheme.textTheme.bodyMedium!
-          .copyWith(color: AppColors.primary, fontSize: 14.sp),
+          .copyWith(color: AppColors.primary, fontSize: 14),
       decoration: InputDecoration(
         labelText: AppStrings.enterCompanyName,
         labelStyle: PortfolioTheme.textTheme.bodyMedium!
-            .copyWith(color: AppColors.primary, fontSize: 14.sp),
+            .copyWith(color: AppColors.primary, fontSize: 14),
         focusedBorder: OutlineInputBorder(
           borderSide:
               BorderSide(color: Theme.of(context).primaryColor, width: 1.0),
@@ -284,7 +284,7 @@ class _AddStocksScreenState extends State<AddStocksScreen> {
           Text(
             item,
             maxLines: 2,
-            style: TextStyle(fontSize: 14.sp, color: Colors.black),
+            style: const TextStyle(fontSize: 14, color: Colors.black),
           )
         ],
       ),

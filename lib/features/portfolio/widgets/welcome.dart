@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 
 class Welcome extends StatelessWidget {
@@ -13,7 +12,7 @@ class Welcome extends StatelessWidget {
         Text(
           'Welcome!',
           style: PortfolioTheme.textTheme.titleLarge!.copyWith(
-            fontSize: 30.sp,
+            fontSize: 30,
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_portfolio/core/extensions/int_extension.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 
@@ -20,13 +20,13 @@ class ShareInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = PortfolioTheme.textTheme;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.h),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -61,8 +61,8 @@ class ShareInfoWidget extends StatelessWidget {
                   style: theme.titleMedium,
                 ),
                 Container(
-                  height: 24.h,
-                  width: 80.w,
+                  height: 24,
+                  width: 80,
                   decoration: BoxDecoration(
                     color: double.parse(change) >= 0
                         ? const Color(0xFF0E3F1A)
@@ -79,7 +79,7 @@ class ShareInfoWidget extends StatelessWidget {
                           color: double.parse(change) >= 0
                               ? const Color(0xFF30D059)
                               : const Color(0xFFF73961),
-                          size: 14.r,
+                          size: 14,
                         ),
                         6.horizontalSpace,
                         Text(

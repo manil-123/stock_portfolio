@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
@@ -39,22 +38,22 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(
-        height: height ?? 58.h,
+        height: height ?? 58,
         width: double.infinity,
       ),
       child: ElevatedButton(
         onPressed: (isDisabled ?? false) ? null : onPressed,
         statesController: MaterialStatesController(),
         style: ElevatedButton.styleFrom(
-          elevation: 0.h,
+          elevation: 0,
           backgroundColor: color,
           disabledBackgroundColor: AppColors.grey,
           padding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
             side: hasBorder
-                ? BorderSide(color: AppColors.green, width: 1.r)
+                ? const BorderSide(color: AppColors.green, width: 1)
                 : BorderSide.none,
-            borderRadius: borderRadius ?? BorderRadius.circular(14.r),
+            borderRadius: borderRadius ?? BorderRadius.circular(14),
           ),
         ),
         child: centerAlignWidget
@@ -108,7 +107,7 @@ class IconTextRow extends StatelessWidget {
       children: [
         if (prefixWidget != null)
           Padding(
-            padding: EdgeInsets.only(left: 16.w),
+            padding: const EdgeInsets.only(left: 16),
             child: prefixWidget!,
           ),
         Padding(
@@ -120,13 +119,13 @@ class IconTextRow extends StatelessWidget {
                       ? AppColors.primary
                       : textColor ?? AppColors.white,
                   fontWeight: FontWeight.w600,
-                  fontSize: 16.sp,
+                  fontSize: 16,
                 ),
           ),
         ),
         if (suffixWidget != null)
           Padding(
-            padding: EdgeInsets.only(right: 10.w),
+            padding: const EdgeInsets.only(right: 10),
             child: suffixWidget!,
           ),
       ],
