@@ -57,6 +57,7 @@ class AppStrings {
   static const import = "Import";
   static const addManually = "Add manually";
   static const importExcelFiles = "Import Excel Files";
+  static const importSuccessful = "Portfolio imported successfully";
 }
 
 class ValidationStrings {

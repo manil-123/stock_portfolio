@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:share_portfolio/core/state/generic_state.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
+import 'package:share_portfolio/features/portfolio/blocs/import_stock/import_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
-import 'package:share_portfolio/core/di/injection.dart';
 import 'package:share_portfolio/features/portfolio/models/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
 import 'package:share_portfolio/features/portfolio/models/pie_chart_data_model.dart';
@@ -49,7 +50,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         title: const Text(AppStrings.portfolioStockList),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.router.pop(),
+          onPressed: () => context.router.maybePop(),
         ),
         actions: [
           IconButton(
@@ -91,6 +92,17 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
                   },
                   failed: () {
                     showErrorInfo(context, AppStrings.failedToDeleteStock);
+                  },
+                );
+              },
+            ),
+
+            /// Reload portfolio while importing stocks from excel files
+            BlocListener<ImportStockCubit, GenericState<ImportStockState>>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  success: (_) {
+                    _loadPortfolio();
                   },
                 );
               },
@@ -158,7 +170,7 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
         title:
             'Do you want to remove "${localStockData.scrip}" from Portfolio?',
         onSuccess: () {
-          getIt<DeleteStockCubit>().deleteStock(localStockData);
+          context.read<DeleteStockCubit>().deleteStock(localStockData);
           Navigator.pop(ctx);
         },
         onCancel: () {
