@@ -59,6 +59,34 @@ class LocalStockDao extends DatabaseAccessor<AppDB> with _$LocalStockDaoMixin {
     }
   }
 
+  /// This method to be called for [Sell] Transaction type to update quantity and price
+  Future modifyStockInfo(Insertable<LocalStockInfoData> newData) async {
+    final localStockCompanion = newData as LocalStockInfoCompanion;
+    final oldData =
+        await getLocalStockDataByScrip(localStockCompanion.scrip.value);
+    if (oldData != null) {
+      /// total stocks quantity
+      int oldQuantity = int.parse(oldData.quantity);
+      final oldPrice = double.parse(oldData.price);
+      int sellQuantity = int.parse(localStockCompanion.quantity.value);
+
+      if (oldQuantity < sellQuantity) {
+        return;
+      }
+
+      /// [WACC] or average price remains unchanged for sell Transaction Type.
+      final updatedLocalStockData = LocalStockInfoData(
+        scrip: oldData.scrip,
+        companyName: oldData.companyName,
+        quantity: (oldQuantity - sellQuantity).toString(),
+        price: oldPrice.toString(),
+        sectorName: localStockCompanion.sectorName.value,
+      );
+      return into(localStockInfo)
+          .insert(updatedLocalStockData, mode: InsertMode.insertOrReplace);
+    }
+  }
+
   Future updateStockInfo(
       LocalStockInfoCompanion localStockInfoData, String symbol) async {
     return (update(localStockInfo)..where((t) => t.scrip.equals(symbol))).write(

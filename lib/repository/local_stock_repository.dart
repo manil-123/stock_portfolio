@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
+import 'package:share_portfolio/core/constants/enums.dart';
 import 'package:share_portfolio/core/database/dao/local_stock_dao.dart';
 import 'package:share_portfolio/core/database/dao/watchlist_dao.dart';
 import 'package:share_portfolio/core/database/db/app_db.dart';
@@ -124,12 +125,29 @@ class LocalStockRepositoryImpl implements LocalStockRepository {
           quantity: excelData.quantity,
           price: excelData.price,
         );
-        addStockToPortfolio(localStockData);
+        if (excelData.transactionTpe == TransactionType.Buy.name) {
+          await addStockToPortfolio(localStockData);
+        } else {
+          await _localStockDao.modifyStockInfo(
+            LocalStockInfoCompanion(
+              scrip: Value(localStockData.scrip),
+              companyName: Value(localStockData.companyName),
+              sectorName: Value(localStockData.sectorName),
+              quantity: Value(localStockData.quantity.toString()),
+              price: Value(localStockData.price.toString()),
+            ),
+          );
+        }
       }
       return 1;
     } catch (e) {
       return 0;
     }
+  }
+
+  @override
+  Future<void> deleteAllStocks() async {
+    return await _localStockDao.deleteAll();
   }
 
   Future<Map<String, int>> countSectors(List<String> sectorsList) async {
@@ -144,10 +162,5 @@ class LocalStockRepositoryImpl implements LocalStockRepository {
       }
     }
     return sectorCount;
-  }
-
-  @override
-  Future<void> deleteAllStocks() async {
-    return await _localStockDao.deleteAll();
   }
 }
