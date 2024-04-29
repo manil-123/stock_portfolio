@@ -72,18 +72,14 @@ class HomeScreen extends StatelessWidget {
                   timeSeriesData: timeSeriesData,
                 ),
                 30.verticalSpace,
-                Row(
+                Column(
                   children: [
-                    Expanded(
-                      child: TopGainersList(
-                        topGainers: topGainers,
-                      ),
+                    TopGainersList(
+                      topGainers: topGainers,
                     ),
                     24.horizontalSpace,
-                    Expanded(
-                      child: TopLosersList(
-                        topLosers: topLosers,
-                      ),
+                    TopLosersList(
+                      topLosers: topLosers,
                     ),
                   ],
                 ),
