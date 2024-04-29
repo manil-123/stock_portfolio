@@ -14,6 +14,7 @@ abstract class LocalStockRepository {
   Future<List<WatchlistDataModel>> getStockWatchlist();
   Future<void> addStockToPortfolio(LocalStockDataModel localStockData);
   Future<void> deleteStockFromPortfolio(LocalStockDataModel localStockData);
+  Future<void> deleteAllStocks();
   Future<int> addToWatchlist(WatchlistDataModel watchlistDataModel);
   Future<void> removeFromWatchlist(WatchlistDataModel watchlistDataModel);
   Future<List<PieChartDataModel>> getPieChartData();
@@ -143,5 +144,10 @@ class LocalStockRepositoryImpl implements LocalStockRepository {
       }
     }
     return sectorCount;
+  }
+
+  @override
+  Future<void> deleteAllStocks() async {
+    return await _localStockDao.deleteAll();
   }
 }

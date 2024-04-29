@@ -11,7 +11,6 @@ import 'package:share_portfolio/features/portfolio/blocs/import_stock/import_sto
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
-import 'package:share_portfolio/features/portfolio/models/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
 import 'package:share_portfolio/features/portfolio/widgets/portfolio_pie_chart.dart';
 import 'package:share_portfolio/features/portfolio/widgets/portfolio_item.dart';
@@ -49,6 +48,12 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
           onPressed: () => context.router.maybePop(),
         ),
         actions: [
+          IconButton(
+            onPressed: () {
+              deleteAll(context);
+            },
+            icon: const Icon(Icons.delete),
+          ),
           IconButton(
             onPressed: () {
               showDialog(
@@ -160,15 +165,15 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
     );
   }
 
-  Future<dynamic> showDeleteAlert(
-      BuildContext context, LocalStockDataModel localStockData) {
+  Future<dynamic> deleteAll(
+    BuildContext context,
+  ) {
     return showDialog(
       context: context,
       builder: (ctx) => ShowAlertDialog(
-        title:
-            'Do you want to remove "${localStockData.scrip}" from Portfolio?',
+        title: AppStrings.removeAllStocks,
         onSuccess: () {
-          context.read<DeleteStockCubit>().deleteStock(localStockData);
+          context.read<DeleteStockCubit>().deleteAllStocks();
           Navigator.pop(ctx);
         },
         onCancel: () {

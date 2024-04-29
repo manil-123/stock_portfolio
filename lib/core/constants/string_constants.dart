@@ -61,6 +61,8 @@ class AppStrings {
   static const addManually = "Add manually";
   static const importExcelFiles = "Import Excel Files";
   static const importSuccessful = "Portfolio imported successfully";
+  static const removeAllStocks =
+      "Do you want to remove all stocks from Portfolio?";
 }
 
 class ValidationStrings {

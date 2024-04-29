@@ -33,4 +33,20 @@ class DeleteStockCubit extends Cubit<DeleteStockState> {
       );
     }
   }
+
+  void deleteAllStocks() async {
+    emit(
+      const DeleteStockState.loading(),
+    );
+    try {
+      await _localStockRepository.deleteAllStocks();
+      emit(
+        const DeleteStockState.success(),
+      );
+    } catch (e) {
+      emit(
+        const DeleteStockState.failed(),
+      );
+    }
+  }
 }
