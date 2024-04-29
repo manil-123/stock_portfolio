@@ -28,8 +28,7 @@ mixin _$LoadPortfolioState {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)
+            List<LocalStockDataModel> localStockDataList)
         loaded,
     required TResult Function() failed,
   }) =>
@@ -46,8 +45,7 @@ mixin _$LoadPortfolioState {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)?
+            List<LocalStockDataModel> localStockDataList)?
         loaded,
     TResult? Function()? failed,
   }) =>
@@ -64,8 +62,7 @@ mixin _$LoadPortfolioState {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)?
+            List<LocalStockDataModel> localStockDataList)?
         loaded,
     TResult Function()? failed,
     required TResult orElse(),
@@ -164,8 +161,7 @@ class _$InitialImpl implements _Initial {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)
+            List<LocalStockDataModel> localStockDataList)
         loaded,
     required TResult Function() failed,
   }) {
@@ -185,8 +181,7 @@ class _$InitialImpl implements _Initial {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)?
+            List<LocalStockDataModel> localStockDataList)?
         loaded,
     TResult? Function()? failed,
   }) {
@@ -206,8 +201,7 @@ class _$InitialImpl implements _Initial {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)?
+            List<LocalStockDataModel> localStockDataList)?
         loaded,
     TResult Function()? failed,
     required TResult orElse(),
@@ -308,8 +302,7 @@ class _$LoadingImpl implements _Loading {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)
+            List<LocalStockDataModel> localStockDataList)
         loaded,
     required TResult Function() failed,
   }) {
@@ -329,8 +322,7 @@ class _$LoadingImpl implements _Loading {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)?
+            List<LocalStockDataModel> localStockDataList)?
         loaded,
     TResult? Function()? failed,
   }) {
@@ -350,8 +342,7 @@ class _$LoadingImpl implements _Loading {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)?
+            List<LocalStockDataModel> localStockDataList)?
         loaded,
     TResult Function()? failed,
     required TResult orElse(),
@@ -418,8 +409,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
       double currentValue,
       double totalPLPercentage,
       double totalDailyPL,
-      List<LocalStockDataModel> localStockDataList,
-      List<PieChartDataModel> pieChartDataList});
+      List<LocalStockDataModel> localStockDataList});
 }
 
 /// @nodoc
@@ -441,7 +431,6 @@ class __$$LoadedImplCopyWithImpl<$Res>
     Object? totalPLPercentage = null,
     Object? totalDailyPL = null,
     Object? localStockDataList = null,
-    Object? pieChartDataList = null,
   }) {
     return _then(_$LoadedImpl(
       totalInvestment: null == totalInvestment
@@ -476,10 +465,6 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value._localStockDataList
           : localStockDataList // ignore: cast_nullable_to_non_nullable
               as List<LocalStockDataModel>,
-      pieChartDataList: null == pieChartDataList
-          ? _value._pieChartDataList
-          : pieChartDataList // ignore: cast_nullable_to_non_nullable
-              as List<PieChartDataModel>,
     ));
   }
 }
@@ -495,10 +480,8 @@ class _$LoadedImpl implements _Loaded {
       required this.currentValue,
       required this.totalPLPercentage,
       required this.totalDailyPL,
-      required final List<LocalStockDataModel> localStockDataList,
-      required final List<PieChartDataModel> pieChartDataList})
-      : _localStockDataList = localStockDataList,
-        _pieChartDataList = pieChartDataList;
+      required final List<LocalStockDataModel> localStockDataList})
+      : _localStockDataList = localStockDataList;
 
   @override
   final double totalInvestment;
@@ -523,18 +506,9 @@ class _$LoadedImpl implements _Loaded {
     return EqualUnmodifiableListView(_localStockDataList);
   }
 
-  final List<PieChartDataModel> _pieChartDataList;
-  @override
-  List<PieChartDataModel> get pieChartDataList {
-    if (_pieChartDataList is EqualUnmodifiableListView)
-      return _pieChartDataList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pieChartDataList);
-  }
-
   @override
   String toString() {
-    return 'LoadPortfolioState.loaded(totalInvestment: $totalInvestment, totalShares: $totalShares, totalStock: $totalStock, totalProfiLoss: $totalProfiLoss, currentValue: $currentValue, totalPLPercentage: $totalPLPercentage, totalDailyPL: $totalDailyPL, localStockDataList: $localStockDataList, pieChartDataList: $pieChartDataList)';
+    return 'LoadPortfolioState.loaded(totalInvestment: $totalInvestment, totalShares: $totalShares, totalStock: $totalStock, totalProfiLoss: $totalProfiLoss, currentValue: $currentValue, totalPLPercentage: $totalPLPercentage, totalDailyPL: $totalDailyPL, localStockDataList: $localStockDataList)';
   }
 
   @override
@@ -557,9 +531,7 @@ class _$LoadedImpl implements _Loaded {
             (identical(other.totalDailyPL, totalDailyPL) ||
                 other.totalDailyPL == totalDailyPL) &&
             const DeepCollectionEquality()
-                .equals(other._localStockDataList, _localStockDataList) &&
-            const DeepCollectionEquality()
-                .equals(other._pieChartDataList, _pieChartDataList));
+                .equals(other._localStockDataList, _localStockDataList));
   }
 
   @override
@@ -572,8 +544,7 @@ class _$LoadedImpl implements _Loaded {
       currentValue,
       totalPLPercentage,
       totalDailyPL,
-      const DeepCollectionEquality().hash(_localStockDataList),
-      const DeepCollectionEquality().hash(_pieChartDataList));
+      const DeepCollectionEquality().hash(_localStockDataList));
 
   @JsonKey(ignore: true)
   @override
@@ -594,21 +565,12 @@ class _$LoadedImpl implements _Loaded {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)
+            List<LocalStockDataModel> localStockDataList)
         loaded,
     required TResult Function() failed,
   }) {
-    return loaded(
-        totalInvestment,
-        totalShares,
-        totalStock,
-        totalProfiLoss,
-        currentValue,
-        totalPLPercentage,
-        totalDailyPL,
-        localStockDataList,
-        pieChartDataList);
+    return loaded(totalInvestment, totalShares, totalStock, totalProfiLoss,
+        currentValue, totalPLPercentage, totalDailyPL, localStockDataList);
   }
 
   @override
@@ -624,8 +586,7 @@ class _$LoadedImpl implements _Loaded {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)?
+            List<LocalStockDataModel> localStockDataList)?
         loaded,
     TResult? Function()? failed,
   }) {
@@ -637,8 +598,7 @@ class _$LoadedImpl implements _Loaded {
         currentValue,
         totalPLPercentage,
         totalDailyPL,
-        localStockDataList,
-        pieChartDataList);
+        localStockDataList);
   }
 
   @override
@@ -654,23 +614,14 @@ class _$LoadedImpl implements _Loaded {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)?
+            List<LocalStockDataModel> localStockDataList)?
         loaded,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(
-          totalInvestment,
-          totalShares,
-          totalStock,
-          totalProfiLoss,
-          currentValue,
-          totalPLPercentage,
-          totalDailyPL,
-          localStockDataList,
-          pieChartDataList);
+      return loaded(totalInvestment, totalShares, totalStock, totalProfiLoss,
+          currentValue, totalPLPercentage, totalDailyPL, localStockDataList);
     }
     return orElse();
   }
@@ -715,15 +666,15 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements LoadPortfolioState {
   const factory _Loaded(
-      {required final double totalInvestment,
-      required final int totalShares,
-      required final int totalStock,
-      required final double totalProfiLoss,
-      required final double currentValue,
-      required final double totalPLPercentage,
-      required final double totalDailyPL,
-      required final List<LocalStockDataModel> localStockDataList,
-      required final List<PieChartDataModel> pieChartDataList}) = _$LoadedImpl;
+          {required final double totalInvestment,
+          required final int totalShares,
+          required final int totalStock,
+          required final double totalProfiLoss,
+          required final double currentValue,
+          required final double totalPLPercentage,
+          required final double totalDailyPL,
+          required final List<LocalStockDataModel> localStockDataList}) =
+      _$LoadedImpl;
 
   double get totalInvestment;
   int get totalShares;
@@ -733,7 +684,6 @@ abstract class _Loaded implements LoadPortfolioState {
   double get totalPLPercentage;
   double get totalDailyPL;
   List<LocalStockDataModel> get localStockDataList;
-  List<PieChartDataModel> get pieChartDataList;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -787,8 +737,7 @@ class _$FailedImpl implements _Failed {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)
+            List<LocalStockDataModel> localStockDataList)
         loaded,
     required TResult Function() failed,
   }) {
@@ -808,8 +757,7 @@ class _$FailedImpl implements _Failed {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)?
+            List<LocalStockDataModel> localStockDataList)?
         loaded,
     TResult? Function()? failed,
   }) {
@@ -829,8 +777,7 @@ class _$FailedImpl implements _Failed {
             double currentValue,
             double totalPLPercentage,
             double totalDailyPL,
-            List<LocalStockDataModel> localStockDataList,
-            List<PieChartDataModel> pieChartDataList)?
+            List<LocalStockDataModel> localStockDataList)?
         loaded,
     TResult Function()? failed,
     required TResult orElse(),

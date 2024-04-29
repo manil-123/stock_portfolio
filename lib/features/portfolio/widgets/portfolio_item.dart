@@ -11,17 +11,14 @@ import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
 import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/features/portfolio/models/local_stock_data/local_stock_data_model.dart';
-import 'package:share_portfolio/features/portfolio/models/pie_chart_data_model.dart';
 
 class PortfolioItemList extends StatelessWidget {
   const PortfolioItemList({
     super.key,
     required this.stockList,
-    required this.pieChartDataList,
   });
 
   final List<LocalStockDataModel> stockList;
-  final List<PieChartDataModel> pieChartDataList;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +46,7 @@ class PortfolioItemList extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   context.router.push(
-                    PortfolioStockListRoute(pieChartDataList: pieChartDataList),
+                    const PortfolioStockListRoute(),
                   );
                 },
                 child: Container(

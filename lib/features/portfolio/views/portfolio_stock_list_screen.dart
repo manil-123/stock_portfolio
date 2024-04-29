@@ -13,7 +13,6 @@ import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/features/portfolio/models/local_stock_data/local_stock_data_model.dart';
 import 'package:share_portfolio/core/widgets/show_alert_dialog.dart';
-import 'package:share_portfolio/features/portfolio/models/pie_chart_data_model.dart';
 import 'package:share_portfolio/features/portfolio/widgets/portfolio_pie_chart.dart';
 import 'package:share_portfolio/features/portfolio/widgets/portfolio_item.dart';
 import 'package:share_portfolio/features/portfolio/widgets/stock_addition_alert.dart';
@@ -22,10 +21,7 @@ import 'package:share_portfolio/features/portfolio/widgets/stock_addition_alert.
 class PortfolioStockListScreen extends StatefulWidget {
   const PortfolioStockListScreen({
     super.key,
-    required this.pieChartDataList,
   });
-
-  final List<PieChartDataModel> pieChartDataList;
 
   @override
   State<PortfolioStockListScreen> createState() =>
@@ -109,38 +105,48 @@ class _PortfolioStockListScreenState extends State<PortfolioStockListScreen> {
             ),
           ],
           child: BlocBuilder<LoadPortfolioStockListCubit,
-              LoadPortfolioStockListState>(
+              GenericState<LoadPortfolioStockListState>>(
             builder: (context, state) {
               return state.maybeWhen(
                 loading: () => const SpinKitPulsingGrid(
                   color: Colors.white,
                 ),
-                loaded: (localStockDataList) {
-                  return SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        PortfolioPieChart(
-                          pieChartDataList: widget.pieChartDataList,
-                        ),
-                        ListView.builder(
-                          itemCount: localStockDataList.length,
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 12.w, vertical: 12.h),
-                          itemBuilder: (context, index) {
-                            return PortfolioItem(
-                              stockData: localStockDataList[index],
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  );
+                success: (loadedState) {
+                  return (loadedState.pieChartDataList.isEmpty &&
+                          loadedState.localStockDataList.isEmpty)
+                      ? const Center(
+                          child: Text(
+                            AppStrings.portfolioEmpty,
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      : SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              PortfolioPieChart(
+                                pieChartDataList: loadedState.pieChartDataList,
+                              ),
+                              ListView.builder(
+                                itemCount:
+                                    loadedState.localStockDataList.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 12.w, vertical: 12.h),
+                                itemBuilder: (context, index) {
+                                  return PortfolioItem(
+                                    stockData:
+                                        loadedState.localStockDataList[index],
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        );
                 },
-                failed: () => const Center(
+                error: (errorMsg) => Center(
                   child: SizedBox(
-                    child: Text(AppStrings.failedToLoad),
+                    child: Text(errorMsg),
                   ),
                 ),
                 orElse: () {

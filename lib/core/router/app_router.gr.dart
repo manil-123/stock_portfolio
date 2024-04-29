@@ -18,8 +18,6 @@ import 'package:share_portfolio/features/dashboard/dashboard_wrapper_screen.dart
 import 'package:share_portfolio/features/home/views/home_screen.dart' as _i5;
 import 'package:share_portfolio/features/home/views/home_wrapper_screen.dart'
     as _i6;
-import 'package:share_portfolio/features/portfolio/models/pie_chart_data_model.dart'
-    as _i19;
 import 'package:share_portfolio/features/portfolio/views/add_stocks_screen.dart'
     as _i1;
 import 'package:share_portfolio/features/portfolio/views/import_stocks_screen.dart'
@@ -96,13 +94,9 @@ abstract class $AppRouter extends _i17.RootStackRouter {
       );
     },
     PortfolioStockListRoute.name: (routeData) {
-      final args = routeData.argsAs<PortfolioStockListRouteArgs>();
       return _i17.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i9.PortfolioStockListScreen(
-          key: args.key,
-          pieChartDataList: args.pieChartDataList,
-        ),
+        child: const _i9.PortfolioStockListScreen(),
       );
     },
     PortfolioWrapperRoute.name: (routeData) {
@@ -272,41 +266,16 @@ class PortfolioRoute extends _i17.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.PortfolioStockListScreen]
-class PortfolioStockListRoute
-    extends _i17.PageRouteInfo<PortfolioStockListRouteArgs> {
-  PortfolioStockListRoute({
-    _i18.Key? key,
-    required List<_i19.PieChartDataModel> pieChartDataList,
-    List<_i17.PageRouteInfo>? children,
-  }) : super(
+class PortfolioStockListRoute extends _i17.PageRouteInfo<void> {
+  const PortfolioStockListRoute({List<_i17.PageRouteInfo>? children})
+      : super(
           PortfolioStockListRoute.name,
-          args: PortfolioStockListRouteArgs(
-            key: key,
-            pieChartDataList: pieChartDataList,
-          ),
           initialChildren: children,
         );
 
   static const String name = 'PortfolioStockListRoute';
 
-  static const _i17.PageInfo<PortfolioStockListRouteArgs> page =
-      _i17.PageInfo<PortfolioStockListRouteArgs>(name);
-}
-
-class PortfolioStockListRouteArgs {
-  const PortfolioStockListRouteArgs({
-    this.key,
-    required this.pieChartDataList,
-  });
-
-  final _i18.Key? key;
-
-  final List<_i19.PieChartDataModel> pieChartDataList;
-
-  @override
-  String toString() {
-    return 'PortfolioStockListRouteArgs{key: $key, pieChartDataList: $pieChartDataList}';
-  }
+  static const _i17.PageInfo<void> page = _i17.PageInfo<void>(name);
 }
 
 /// generated route for

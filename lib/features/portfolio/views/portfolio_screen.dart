@@ -70,15 +70,16 @@ class PortfolioScreen extends StatelessWidget {
                 loading: () => const SpinKitPulsingGrid(
                   color: Colors.white,
                 ),
-                loaded: (totalInvestment,
-                    totalShares,
-                    totalStock,
-                    totalProfiLoss,
-                    currentValue,
-                    totalPLPercentage,
-                    totalDailyPL,
-                    localStockDataList,
-                    pieChartDataList) {
+                loaded: (
+                  totalInvestment,
+                  totalShares,
+                  totalStock,
+                  totalProfiLoss,
+                  currentValue,
+                  totalPLPercentage,
+                  totalDailyPL,
+                  localStockDataList,
+                ) {
                   return SafeArea(
                     child: SingleChildScrollView(
                       child: Padding(
@@ -114,7 +115,6 @@ class PortfolioScreen extends StatelessWidget {
                             ),
                             PortfolioItemList(
                               stockList: localStockDataList,
-                              pieChartDataList: pieChartDataList,
                             ),
                             16.verticalSpace,
                           ],

@@ -2,6 +2,7 @@ class ErrorMsg {
   static const noInternetConnection = "No internet connection";
   static const scrapError = "Failed to load data";
   static const failedToImportData = "Failed to import data";
+  static const failedTogetData = "Failed to get data";
 }
 
 class AppStrings {
@@ -27,6 +28,8 @@ class AppStrings {
   static const noProfitLoss = "No profit/loss";
   static const totalInvestment = "Total Investment";
   static const failedToLoadPortfolio = "Failed to load portfolio";
+  static const portfolioEmpty =
+      "Portfolio Empty \n Please add stocks clicking plus icon.";
 
   //*Watchlist
   static const myWatchlist = "My Watchlist";

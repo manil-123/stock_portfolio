@@ -13,7 +13,6 @@ class LoadPortfolioState with _$LoadPortfolioState {
     required double totalPLPercentage,
     required double totalDailyPL,
     required List<LocalStockDataModel> localStockDataList,
-    required List<PieChartDataModel> pieChartDataList,
   }) = _Loaded;
   const factory LoadPortfolioState.failed() = _Failed;
 }
