@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
@@ -12,6 +11,7 @@ import 'package:share_portfolio/features/portfolio/widgets/current_holdings.dart
 import 'package:share_portfolio/features/portfolio/widgets/portfolio_item.dart';
 import 'package:share_portfolio/features/portfolio/widgets/portfolio_watchlist_heading.dart';
 import 'package:share_portfolio/features/portfolio/widgets/profit_loss.dart';
+import 'package:share_portfolio/features/portfolio/widgets/stock_addition_alert.dart';
 
 import '../widgets/welcome.dart';
 
@@ -89,8 +89,13 @@ class PortfolioScreen extends StatelessWidget {
                             PortfolioWatchlistHeading(
                               title: AppStrings.portfolio,
                               onViewAll: () {
-                                context.router.push(
-                                  const AddStocksRoute(),
+                                showDialog(
+                                  context: context,
+                                  builder: (ctx) {
+                                    return StockAdditionAlert(
+                                      dialogContext: ctx,
+                                    );
+                                  },
                                 );
                               },
                             ),

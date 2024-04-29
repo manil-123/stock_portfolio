@@ -99,7 +99,7 @@ class ImportStocksScreen extends StatelessWidget {
                       };
                     },
                   ),
-                  text: 'Import',
+                  text: AppStrings.import,
                   color: AppColors.primary,
                   textColor: AppColors.white,
                 ),

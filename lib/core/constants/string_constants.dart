@@ -54,6 +54,9 @@ class AppStrings {
   static const stockDeletedSuccessfully = "Stock deleted successfully";
   static const failedToDeleteStock = "Failed to delete stock";
   static const clickToImportExcelFile = "Click here to import excel file";
+  static const import = "Import";
+  static const addManually = "Add manually";
+  static const importExcelFiles = "Import Excel Files";
 }
 
 class ValidationStrings {

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/database/dao/local_stock_dao.dart';
@@ -125,7 +123,7 @@ class LocalStockRepositoryImpl implements LocalStockRepository {
           quantity: excelData.quantity,
           price: excelData.price,
         );
-        log(localStockData.toJson().toString());
+        addStockToPortfolio(localStockData);
       }
       return 1;
     } catch (e) {
