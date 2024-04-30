@@ -37,7 +37,7 @@ class ShareInfoWidget extends StatelessWidget {
                 children: [
                   Text(
                     symbol,
-                    style: theme.titleMedium,
+                    style: theme.titleMedium!.copyWith(color: AppColors.white),
                   ),
                   Text(
                     companyName,
@@ -58,7 +58,7 @@ class ShareInfoWidget extends StatelessWidget {
                       .toString(),
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
-                  style: theme.titleMedium,
+                  style: theme.titleMedium!.copyWith(color: AppColors.white),
                 ),
                 Container(
                   height: 24,
