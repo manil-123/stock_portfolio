@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  autocomplete_textfield_ns: ^2.0.0
+  autocomplete_textfield: ^2.0.1
   # Navigator
   auto_route: ^7.8.4
   ffi: ^2.1.0
@@ -68,8 +68,6 @@ dependencies:
   # local authentication
   local_auth: ^2.1.6
   path_provider: ^2.0.15
-  # handle responsiveness
-  responsive_builder: ^0.7.0
   # Local storage
   sembast: ^3.4.4
   

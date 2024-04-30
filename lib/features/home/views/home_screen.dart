@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:share_portfolio/core/extensions/int_extension.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
+import 'package:share_portfolio/core/utils/screen_size_checker.dart';
 import 'package:share_portfolio/features/home/blocs/home_bloc.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/features/home/models/nepse_price_series/nepse_time_series_data_response.dart';
@@ -62,49 +62,48 @@ class HomeScreen extends StatelessWidget {
               const HomeEvent.loadHome(),
             );
       },
-      child: ResponsiveBuilder(builder: (context, sizingInformation) {
-        if (sizingInformation.deviceScreenType != DeviceScreenType.mobile) {
-          return SafeArea(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-              children: [
-                NepseIndexScreen(
-                  timeSeriesData: timeSeriesData,
-                ),
-                30.verticalSpace,
-                Column(
-                  children: [
-                    TopGainersList(
-                      topGainers: topGainers,
-                    ),
-                    24.horizontalSpace,
-                    TopLosersList(
-                      topLosers: topLosers,
-                    ),
-                  ],
-                ),
-              ],
+      child: ScreenSizeChecker.isDesktop(context)
+          ? SafeArea(
+              child: ListView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                children: [
+                  NepseIndexScreen(
+                    timeSeriesData: timeSeriesData,
+                  ),
+                  30.verticalSpace,
+                  Column(
+                    children: [
+                      TopGainersList(
+                        topGainers: topGainers,
+                      ),
+                      24.horizontalSpace,
+                      TopLosersList(
+                        topLosers: topLosers,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          : SafeArea(
+              child: ListView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                children: [
+                  NepseIndexScreen(
+                    timeSeriesData: timeSeriesData,
+                  ),
+                  16.verticalSpace,
+                  TopGainersList(
+                    topGainers: topGainers,
+                  ),
+                  TopLosersList(
+                    topLosers: topLosers,
+                  ),
+                ],
+              ),
             ),
-          );
-        }
-        return SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-            children: [
-              NepseIndexScreen(
-                timeSeriesData: timeSeriesData,
-              ),
-              16.verticalSpace,
-              TopGainersList(
-                topGainers: topGainers,
-              ),
-              TopLosersList(
-                topLosers: topLosers,
-              ),
-            ],
-          ),
-        );
-      }),
     );
   }
 }

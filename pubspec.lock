@@ -65,14 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.3.2"
-  autocomplete_textfield_ns:
+  autocomplete_textfield:
     dependency: "direct main"
     description:
-      name: autocomplete_textfield_ns
-      sha256: "71fe63787a5808125823af6320ec0f72431b102b723546ac3ac5711d34011e69"
+      name: autocomplete_textfield
+      sha256: "8170e66d381c21623f1cfbb957ab9c6b5a45d9c50a6daac7fc57dbc3ba94abb4"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   bloc:
     dependency: transitive
     description:
@@ -800,14 +800,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
-  responsive_builder:
-    dependency: "direct main"
-    description:
-      name: responsive_builder
-      sha256: a38ba9ba86c9daf08904674553034b651377b1d685d10ee450d8350ae51f76ec
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.0"
   sembast:
     dependency: "direct main"
     description:

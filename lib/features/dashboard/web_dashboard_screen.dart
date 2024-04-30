@@ -9,12 +9,10 @@ class WebDashboardScreen extends StatelessWidget {
   WebDashboardScreen({super.key});
 
   final _innerRouterKey = GlobalKey<AutoRouterState>();
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       body: Row(
         children: [
           Container(

@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:share_portfolio/core/router/app_router.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/app_colors.dart';
+import 'package:share_portfolio/core/utils/screen_size_checker.dart';
 import 'package:share_portfolio/features/dashboard/web_dashboard_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -20,14 +20,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (context, sizingInformation) {
-        // Check the sizing information here and return your UI
-        if (sizingInformation.deviceScreenType == DeviceScreenType.desktop) {
-          return WebDashboardScreen();
-        }
-        if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
-          return WillPopScope(
+    return ScreenSizeChecker.isDesktop(context)
+        ? WebDashboardScreen()
+        : WillPopScope(
             onWillPop: () async {
               if (currentBackPressTime == null ||
                   DateTime.now().difference(currentBackPressTime!) >
@@ -103,10 +98,5 @@ class _DashboardScreenState extends State<DashboardScreen> {
               },
             ),
           );
-        }
-
-        return WebDashboardScreen();
-      },
-    );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
+import 'package:share_portfolio/core/utils/screen_size_checker.dart';
 import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart';
 import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
@@ -62,7 +63,9 @@ class _ShareListLoaded extends StatelessWidget {
       },
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          padding: ScreenSizeChecker.isDesktop(context)
+              ? const EdgeInsets.symmetric(horizontal: 32, vertical: 32)
+              : const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Column(
             children: [
               Align(
