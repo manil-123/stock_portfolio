@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/features/watchlist/blocs/add_to_watchlist/add_to_watchlist_cubit.dart';
 import 'package:share_portfolio/features/watchlist/blocs/load_watchlist/load_watchlist_cubit.dart';
@@ -27,6 +28,8 @@ class WatchlistScreen extends StatelessWidget {
         onRefresh: () async {
           context.read<LoadWatchlistCubit>().loadWatchlist();
         },
+        backgroundColor: AppColors.primary,
+        color: AppColors.white,
         child: BlocBuilder<LoadWatchlistCubit, LoadWatchlistState>(
           builder: (context, state) {
             return state.maybeWhen(

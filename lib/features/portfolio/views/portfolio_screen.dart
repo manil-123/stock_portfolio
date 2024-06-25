@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/core/extensions/int_extension.dart';
 import 'package:share_portfolio/core/state/generic_state.dart';
+import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/features/portfolio/blocs/add_stock/add_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/import_stock/import_stock_cubit.dart';
@@ -32,6 +33,8 @@ class PortfolioScreen extends StatelessWidget {
         onRefresh: () async {
           _loadPortfolio(context);
         },
+        backgroundColor: AppColors.primary,
+        color: AppColors.white,
         child: MultiBlocListener(
           listeners: [
             BlocListener<AddStockCubit, AddStockState>(

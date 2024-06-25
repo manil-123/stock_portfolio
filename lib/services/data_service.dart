@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -36,21 +38,23 @@ class DataService {
 
   Future<List<StockInfoModel>> fetchShareData() async {
     try {
-      final response = await scrapper.fetchStockData();
-      final shareInfoList = StockInfoList.fromMap(response);
-      //* Store Nepse Stock data after deleting all previous records
-      _stockDao.deleteAll();
-      for (var item in shareInfoList.shareInfoList!) {
-        _stockDao.insertStockInfo(
-          StockInfoCompanion(
-            symbol: Value(item.symbol),
-            companyName: Value(item.companyName),
-            ltp: Value(item.ltp),
-            change: Value(item.change),
-          ),
-        );
-      }
-      return shareInfoList.shareInfoList ?? [];
+      return await Isolate.run(() async {
+        final response = await scrapper.fetchStockData();
+        final shareInfoList = StockInfoList.fromMap(response);
+        //* Store Nepse Stock data after deleting all previous records
+        _stockDao.deleteAll();
+        for (var item in shareInfoList.shareInfoList!) {
+          _stockDao.insertStockInfo(
+            StockInfoCompanion(
+              symbol: Value(item.symbol),
+              companyName: Value(item.companyName),
+              ltp: Value(item.ltp),
+              change: Value(item.change),
+            ),
+          );
+        }
+        return shareInfoList.shareInfoList ?? [];
+      });
     } catch (e) {
       final stockDataList = await _stockDao.getAllStocksData();
 

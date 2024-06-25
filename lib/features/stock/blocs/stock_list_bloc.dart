@@ -21,7 +21,11 @@ class StockListBloc extends Bloc<StockListEvent, StockListState> {
       emit(
         const StockListState.loading(),
       );
+      await Future.delayed(
+        const Duration(seconds: 1),
+      );
       final shareListResponse = await _nepseRepo.getStockInfoList();
+
       shareListResponse.fold((failure) {
         emit(
           StockListState.failed(failure: failure),

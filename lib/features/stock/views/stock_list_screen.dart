@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
+import 'package:share_portfolio/core/theme/app_colors.dart';
 import 'package:share_portfolio/core/theme/theme_data.dart';
 import 'package:share_portfolio/core/utils/screen_size_checker.dart';
 import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart';
@@ -61,6 +62,8 @@ class _ShareListLoaded extends StatelessWidget {
               const StockListEvent.loadShareList(),
             );
       },
+      backgroundColor: AppColors.primary,
+      color: AppColors.white,
       child: SingleChildScrollView(
         child: Padding(
           padding: ScreenSizeChecker.isDesktop(context)
