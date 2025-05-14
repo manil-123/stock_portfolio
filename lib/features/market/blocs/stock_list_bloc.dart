@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/error/failures.dart';
-import 'package:share_portfolio/features/stock/models/stock_info_model.dart';
+import 'package:share_portfolio/features/market/models/stock_info_model.dart';
 import 'package:share_portfolio/repository/nepse_repository.dart';
 
 part 'stock_list_event.dart';
@@ -27,6 +29,7 @@ class StockListBloc extends Bloc<StockListEvent, StockListState> {
       final shareListResponse = await _nepseRepo.getStockInfoList();
 
       shareListResponse.fold((failure) {
+        log('failure ' + failure.toString());
         emit(
           StockListState.failed(failure: failure),
         );

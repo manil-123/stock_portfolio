@@ -36,7 +36,7 @@ import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_por
     as _i27;
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart'
     as _i28;
-import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart'
+import 'package:share_portfolio/features/market/blocs/stock_list_bloc.dart'
     as _i21;
 import 'package:share_portfolio/features/watchlist/blocs/add_to_watchlist/add_to_watchlist_cubit.dart'
     as _i23;

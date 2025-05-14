@@ -28,11 +28,11 @@ import 'package:share_portfolio/features/portfolio/views/portfolio_stock_list_sc
     as _i9;
 import 'package:share_portfolio/features/portfolio/views/portfolio_wrapper_screen.dart'
     as _i10;
-import 'package:share_portfolio/features/stock/views/stock_detail_screen.dart'
+import 'package:share_portfolio/features/market/views/stock_detail_screen.dart'
     as _i12;
-import 'package:share_portfolio/features/stock/views/stock_list_screen.dart'
+import 'package:share_portfolio/features/market/views/stock_list_screen.dart'
     as _i13;
-import 'package:share_portfolio/features/stock/views/stock_list_wrapper_screen.dart'
+import 'package:share_portfolio/features/market/views/stock_list_wrapper_screen.dart'
     as _i14;
 import 'package:share_portfolio/features/watchlist/views/watchlist_screen.dart'
     as _i15;

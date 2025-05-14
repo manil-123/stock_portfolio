@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:share_portfolio/core/router/app_router.gr.dart';
-import 'package:share_portfolio/features/stock/models/stock_info_list.dart';
-import 'package:share_portfolio/features/stock/models/stock_info_model.dart';
+import 'package:share_portfolio/features/market/models/stock_info_list.dart';
+import 'package:share_portfolio/features/market/models/stock_info_model.dart';
 import 'package:share_portfolio/core/widgets/share_info_widget.dart';
 
 class MySearchDelegate extends SearchDelegate {

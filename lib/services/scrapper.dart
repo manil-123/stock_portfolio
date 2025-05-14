@@ -9,6 +9,24 @@ import 'package:share_portfolio/core/error/exception.dart';
 
 @LazySingleton()
 class Scrapper {
+  Future<Map<String, dynamic>> getNepseIndex() async {
+    try {
+      final url = Uri.parse(URLConstants.SCRAP_URL);
+      final response = await http.get(
+        url,
+      );
+
+      final html = parse(response.body);
+      final sliderData = html.querySelector(' #index-slider')!;
+      final sliderItems = sliderData.querySelectorAll('.list-item');
+      return {};
+    } on SocketException {
+      throw const NoInternetException();
+    } catch (e) {
+      throw ScrapException(ErrorMsg.scrapError);
+    }
+  }
+
   Future<Map<String, dynamic>> fetchNepsePriceHistory() async {
     try {
       final url = Uri.parse(URLConstants.NEPSE_PRICE_HISTORY_URL);

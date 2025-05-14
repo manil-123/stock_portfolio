@@ -2,7 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:share_portfolio/core/database/db/app_db.dart';
 import 'package:share_portfolio/core/database/entity/stock_info.dart';
-import 'package:share_portfolio/features/stock/models/stock_info_model.dart';
+import 'package:share_portfolio/features/market/models/stock_info_model.dart';
 
 part 'stock_dao.g.dart';
 

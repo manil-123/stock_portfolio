@@ -8,7 +8,7 @@ import 'package:share_portfolio/features/portfolio/blocs/delete_stock/delete_sto
 import 'package:share_portfolio/features/portfolio/blocs/load_add_stocks/load_add_stock_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio/load_portfolio_cubit.dart';
 import 'package:share_portfolio/features/portfolio/blocs/load_portfolio_stock_list/load_portfolio_stock_list_cubit.dart';
-import 'package:share_portfolio/features/stock/blocs/stock_list_bloc.dart';
+import 'package:share_portfolio/features/market/blocs/stock_list_bloc.dart';
 
 @RoutePage()
 class DashboardWrapperScreen extends AutoRouter implements AutoRouteWrapper {

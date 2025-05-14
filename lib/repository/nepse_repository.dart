@@ -7,7 +7,7 @@ import 'package:share_portfolio/features/home/models/top_gainers/top_gainers_mod
 import 'package:share_portfolio/services/data_service.dart';
 import 'package:share_portfolio/features/home/models/top_losers/top_losers_model.dart';
 import '../core/model/nepse_index_model.dart';
-import '../features/stock/models/stock_info_model.dart';
+import '../features/market/models/stock_info_model.dart';
 
 abstract class NepseRepository {
   Future<Either<Failure, List<StockInfoModel>>> getStockInfoList();

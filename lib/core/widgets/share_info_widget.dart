@@ -82,13 +82,15 @@ class ShareInfoWidget extends StatelessWidget {
                           size: 14,
                         ),
                         6.horizontalSpace,
-                        Text(
-                          '${double.parse(change).toStringAsFixed(1)} %',
-                          style: theme.bodySmall!.copyWith(
-                              color: double.parse(change) >= 0
-                                  ? const Color(0xFF30D059)
-                                  : const Color(0xFFF73961),
-                              fontSize: 12.0),
+                        Flexible(
+                          child: Text(
+                            '${double.parse(change).toStringAsFixed(1)} %',
+                            style: theme.bodySmall!.copyWith(
+                                color: double.parse(change) >= 0
+                                    ? const Color(0xFF30D059)
+                                    : const Color(0xFFF73961),
+                                fontSize: 12.0),
+                          ),
                         )
                       ],
                     ),

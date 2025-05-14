@@ -46,3 +46,6 @@ app.*.map.json
 /android/app/release
 
 /lib/core/constants/constants.dart
+
+# FVM Version Cache
+.fvm/

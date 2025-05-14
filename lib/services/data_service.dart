@@ -13,11 +13,11 @@ import 'package:share_portfolio/core/database/db/app_db.dart';
 import 'package:share_portfolio/features/home/models/nepse_price_series/nepse_time_series_data_response.dart';
 import 'package:share_portfolio/features/home/models/top_gainers/top_gainers_model.dart';
 import 'package:share_portfolio/core/model/nepse_index_model.dart';
-import 'package:share_portfolio/features/stock/models/stock_info_list.dart';
+import 'package:share_portfolio/features/market/models/stock_info_list.dart';
 import 'package:share_portfolio/features/home/models/top_losers/top_losers_model.dart';
 import 'package:share_portfolio/services/scrapper.dart';
 import 'dart:convert';
-import '../features/stock/models/stock_info_model.dart';
+import '../features/market/models/stock_info_model.dart';
 import 'dart:async';
 
 @LazySingleton()
@@ -38,23 +38,24 @@ class DataService {
 
   Future<List<StockInfoModel>> fetchShareData() async {
     try {
-      return await Isolate.run(() async {
-        final response = await scrapper.fetchStockData();
-        final shareInfoList = StockInfoList.fromMap(response);
-        //* Store Nepse Stock data after deleting all previous records
-        _stockDao.deleteAll();
-        for (var item in shareInfoList.shareInfoList!) {
-          _stockDao.insertStockInfo(
-            StockInfoCompanion(
-              symbol: Value(item.symbol),
-              companyName: Value(item.companyName),
-              ltp: Value(item.ltp),
-              change: Value(item.change),
-            ),
-          );
-        }
-        return shareInfoList.shareInfoList ?? [];
+      final response = await scrapper.fetchStockData();
+      final shareInfoList = await Isolate.run(() {
+        return StockInfoList.fromMap(response);
       });
+
+      //* Store Nepse Stock data after deleting all previous records
+      _stockDao.deleteAll();
+      for (var item in shareInfoList.shareInfoList!) {
+        _stockDao.insertStockInfo(
+          StockInfoCompanion(
+            symbol: Value(item.symbol),
+            companyName: Value(item.companyName),
+            ltp: Value(item.ltp),
+            change: Value(item.change),
+          ),
+        );
+      }
+      return shareInfoList.shareInfoList ?? [];
     } catch (e) {
       final stockDataList = await _stockDao.getAllStocksData();
 

@@ -10,7 +10,7 @@ import 'package:share_portfolio/core/constants/string_constants.dart';
 import 'package:share_portfolio/core/widgets/message_widget.dart';
 import 'package:share_portfolio/core/model/list_data_model.dart';
 import 'package:share_portfolio/features/watchlist/models/watchlist_data_model.dart';
-import 'package:share_portfolio/features/stock/components/line_titles.dart';
+import 'package:share_portfolio/features/market/components/line_titles.dart';
 import 'package:share_portfolio/core/extensions/int_extension.dart';
 
 @RoutePage()
